@@ -19,5 +19,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 ### Todo List
 * [ ] Add promises section to Javascript
 * [ ] Work on react section
+* [ ] Reformat and space Javascript section
+* [ ] Reformat and space React Section
 * [x] Make a docker page
 * [x] Add to bootstrap page

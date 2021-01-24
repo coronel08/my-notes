@@ -79,16 +79,20 @@ Buttons inside form default "type="submit"" change to "type="button"" or somethi
 ---
 ## CSS
 ### Stylesheet
-Can add CSS inline (not preffered), style element (add style div in head of document), add stylesheet (by using code below)
+Can add 
+
+* CSS inline (not preffered), 
+* Style element (add style div in head of document), 
+* Add stylesheet (by using code below)
 ```
 <link rel="stylesheet" href="__.css"> 
 ```
 <br>
 
 #### CSS Properties
-Properties are used for styling ex: font weight, color, padding [CSS common properties MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference)<br>
+Properties are used for styling ex: font weight, color, padding [CSS common properties MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference)
 
-[Extended CSS properties list MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)<br><br>
+[Extended CSS properties list MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)<br>
 
 
 ##### Custom Property / Variable
@@ -110,15 +114,15 @@ Common styling properties and usefull sites.<br>
 [Text decoration](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration) shorthand for underline or color<br>
 [Styling Color Names](https://htmlcolorcodes.com/color-names/)<br>
 [Color Pallete Ideas ](https://coolors.co/palettes/trending)<br>
-[Border styling MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/border)<br><br>
+[Border styling MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/border)<br>
 
 #### Measurements
 [Units of measurement for CSS em/rem/px/% etc](https://www.w3schools.com/cssref/css_units.asp)
-<br><br><br>
-Need to merge with other doc on measurements
+
 * em (parents size, changes if nested in a loop/list)
 * rem (gets size from root of document)
 * auto
+<br><br>
 
 ### Selectors
 Order of selectors specificity, the more specific css will override the lower ones.
@@ -217,7 +221,7 @@ Nth of example
     color:black;
 }
 ```
-<br><br>
+<br>
 
 #### Pseudo Elements
 Keyword added to a selector
@@ -242,7 +246,7 @@ Keyword added to a selector
 ### Display 
 [w3 Display Property Values](https://www.w3schools.com/cssref/pr_class_display.asp)
 [w3 Display Prop example](https://www.w3schools.com/css/css_display_visibility.asp) Show display on click and hide on click
-[Flex align/center/justify etc](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)<br><br>
+[Flex align/center/justify etc](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)<br>
 
 
 #### Visibility vs Display
@@ -258,14 +262,7 @@ Can use visibility instead of [display:none](https://www.w3schools.com/css/css_d
 
 ### Transform
 [MDN transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) for rotate, scale, move/translate etc
-
-
-
-
-
-
-
-
+<br><br>
 
 ### Example of Flex 
 The align-items centers vertical, justify content centers horizontal.
@@ -299,7 +296,7 @@ Example of a bootstrap button
 ```
 <button type="button" class="btn btn-warning"> Primary <button>
 ```
-<br><br>
+<br>
 
 ### FontAwesome Icon
 Import Icon in [Bootstrap tutorial](https://fontawesome.com/v3.2.1/examples/)
@@ -331,7 +328,7 @@ CSS for adding Font Awesome Icon, Icon tag inside of toggle. Showing how to sele
     bottom: 3px;
 }
 ```
-<br><br>
+<br>
 
 
 ### Bootstrap Accordion Example 
