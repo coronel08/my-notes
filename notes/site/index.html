@@ -34,7 +34,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem active">
-                                <a href="." class="nav-link">Welcome to MkDocs</a>
+                                <a href="." class="nav-link">My Notes</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="bootstrap/" class="nav-link">Bootstrap</a>
                             </li>
                             <li class="navitem">
                                 <a href="css/" class="nav-link">CSS Notes</a>
@@ -62,7 +65,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="css/" class="nav-link">
+                                <a rel="next" href="bootstrap/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -84,25 +87,13 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
+            <li class="nav-item" data-level="1"><a href="#my-notes" class="nav-link">My Notes</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#bootcamptable-of-contents" class="nav-link">BootcampTable of Contents</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#html" class="nav-link">HTML</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#css" class="nav-link">CSS</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -113,7 +104,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
+<h1 id="my-notes">My Notes</h1>
 <p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
 <h2 id="commands">Commands</h2>
 <ul>
@@ -134,179 +125,11 @@
 <ul>
 <li>[ ] Add promises section to Javascript</li>
 <li>[ ] Work on react section</li>
-<li>[ ] Make a docker page</li>
-<li>[ ] Add to bootstrap section</li>
-</ul>
-<h2 id="bootcamptable-of-contents">BootcampTable of Contents</h2>
-<ul>
-<li><a href="#html">HTML</a><ul>
-<li><a href="#semantic-elements">Semantic Elements</a></li>
-<li><a href="#button">Button</a></li>
-</ul>
-</li>
-<li><a href="#css">CSS</a><ul>
-<li><a href="#styling">Styling</a><ul>
-<li><a href="#measurements">Measurements</a></li>
-</ul>
-</li>
-<li><a href="#selectors">Selectors</a></li>
-<li><a href="#pseudo-classes">Pseudo Classes</a></li>
-<li><a href="#pseudo-elements">Pseudo Elements</a></li>
-<li><a href="#position">Position</a></li>
-<li><a href="#transition">Transition</a></li>
-<li><a href="#transform">Transform</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="html">HTML</h2>
-<p>Can use <a href="https://docs.emmet.io/cheat-sheet/">Emmet shortcuts</a> for html</p>
-<h3 id="semantic-elements">Semantic Elements</h3>
-<p>Use more specified elements rather than Divs, not included the <strong> tables element </strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms">MDN Elements</a><br> also has table elements here
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">Input types MDN</a> such as radio, checkbox, date, email etc. As well as attributes like value, name, placeholder, required etc
-Dropdown using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">Select MDN</a></p>
-<pre><code>&lt;main&gt; for major components that go on every page navbar header etc
-&lt;nav&gt;
-&lt;header&gt;
-&lt;aside&gt; something like a navbar,  call out, or photo
-
-&lt;section&gt; creates large sections
-&lt;article&gt; used for like a blog post
-&lt;form action=&quot;&quot;&gt; google for form elements
-    &lt;input type=&quot;&quot; placeholder=&quot;&quot;&gt; goes in form, usually use with &lt;label&gt;
-&lt;footer&gt;
-&lt;summary&gt;
-&lt;details&gt;
-</code></pre>
-<p><br><br></p>
-<h4 id="form-example">Form Example</h4>
-<p>Use a form to search google results</p>
-<pre><code>&lt;form action=&quot;https://www.google.com/search&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;q&quot;&gt;
-    &lt;buton&gt;Search Google&lt;/button&gt;
-&lt;/form&gt;
-</code></pre>
-<p><br></p>
-<h4 id="button">Button</h4>
-<p>Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
-<br><br><br></p>
-<h2 id="css">CSS</h2>
-<p>Can add CSS inline (not preffered), style element (add style div in head of document), add stylesheet (by using code below)</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;__.css&quot;&gt; 
-</code></pre>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference">CSS properties MDN</a></p>
-<p>Can also create custom properties/variables</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">Extended CSS properties list MDN</a>
-<br><br><br></p>
-<h3 id="styling">Styling</h3>
-<p><a href="https://www.w3schools.in/css3/text/">Text styling</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration">Text decoration</a> shorthand for underline or color</p>
-<p><a href="https://htmlcolorcodes.com/color-names/">Styling Color Names</a></p>
-<p><a href="https://coolors.co/palettes/trending">Color Pallete Ideas </a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">Border styling MDN</a>
-<br><br></p>
-<h4 id="measurements">Measurements</h4>
-<p>Need to merge with other doc on measurements
-* em (parents size, changes if nested in a loop/list)
-* rem (gets size from root of document)
-* auto</p>
-<p><br><br></p>
-<h3 id="selectors">Selectors</h3>
-<p>Order of selectors specificity, the more specific css will override the lower ones.
-* ID (Most specific)
-* Class
-* Element</p>
-<p>Universal Selector, select everything</p>
-<pre><code>* {
-    color:pink;
-}
-</code></pre>
-<p>Select all elements like h1, h2 or nav</p>
-<pre><code>h1,h2 {
-    color:purple;
-}
-</code></pre>
-<p>Select every 2nd text input, red border. Uses an <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">attribute selector MDN</a> to sellect all input elements with a type=text</p>
-<pre><code>input[type=&quot;text]:nth-of-type(2n){
-    border:2px solid:red;
-}
-</code></pre>
-<p>Select a class</p>
-<pre><code>.test{
-    background-color:blue;
-}
-</code></pre>
-<p>Select an ID/Label</p>
-<pre><code>#test{
-    background-color:black;
-}
-</code></pre>
-<p>Descendant selector, select an anchor tag in a .class</p>
-<pre><code>.class a{
-    color:white;
-}
-</code></pre>
-<p>Adjacent Selector, example selects every button that comes after a button on the same level</p>
-<pre><code>h2 + button {
-    font-size:40px
-}
-</code></pre>
-<p>Direct Child Selector, example selects only the anchors within the footer element</p>
-<pre><code>footer &gt; a {
-    color:purple;
-}
-
-or footer.class{
-    color:purple;
-}
-</code></pre>
-<p><br><br></p>
-<h3 id="pseudo-classes">Pseudo Classes</h3>
-<p>Section7 vid 76, goes into selecting nth of element. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">Full MDN list</a></p>
-<ul>
-<li>:active</li>
-<li>:checked</li>
-<li>:first</li>
-<li>:first-child</li>
-<li>:hover</li>
-<li>:not()</li>
-<li>:nth-child()</li>
-<li>:nth-of-type() 
-Example highlight a button inside a post class on hover</li>
-</ul>
-<pre><code>.post button:hover{
-    background:color: red;
-}
-</code></pre>
-<p>Nth of example</p>
-<pre><code>.post:nth-of-type(2n){
-    color:black;
-}
-</code></pre>
-<p><br><br></p>
-<h3 id="pseudo-elements">Pseudo Elements</h3>
-<p>Keyword added to a selector
-* ::after
-* ::before
-* ::first-letter
-* ::first-line
-* ::selection</p>
-<p><br><br></p>
-<h3 id="position">Position</h3>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">Poition MDN</a> Ch9 video 94.<br />
-* static
-* relative (can change top and sides from where it would be regularly)
-* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative )
-* fixed (always present)
-<br><br></p>
-<h3 id="transition">Transition</h3>
-<p>Transition format for changing speed of transitions. Works well on hover or active. Look into timing functions for ease in animations etc <br />
-{
-    Transition: (property name) (duration) (timing function) (delay)
-}
-<br><br></p>
-<h3 id="transform">Transform</h3>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN transform</a> for rotate, scale, move/translate etc</p></div>
+<li>[ ] Reformat and space Javascript section</li>
+<li>[ ] Reformat and space React Section</li>
+<li>[x] Make a docker page</li>
+<li>[x] Add to bootstrap page</li>
+</ul></div>
             </div>
         </div>
 
@@ -390,5 +213,5 @@ Example highlight a button inside a post class on hover</li>
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-01-24 05:49:11.674148+00:00
+Build Date UTC : 2021-01-24 00:16:01.789903+00:00
 -->
