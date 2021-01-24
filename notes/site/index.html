@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>My Docs</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="css/" class="nav-link">CSS Notes</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="docker/" class="nav-link">Docker</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="javascript/" class="nav-link">Javascript Notes</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="react/" class="nav-link">React Notes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="css/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bootcamptable-of-contents" class="nav-link">BootcampTable of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#html" class="nav-link">HTML</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#css" class="nav-link">CSS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
+<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
+<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
+<li><code>mkdocs build</code> - Build the documentation site.</li>
+<li><code>mkdocs -h</code> - Print help message and exit.</li>
+</ul>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#todo-list">Todo List</a></li>
+<li><a href="css/">CSS Notes</a></li>
+<li><a href="react/">React Notes</a></li>
+<li><a href="javascript/">Javascript Notes</a></li>
+<li><a href="#Todo-list">Todo List</a></li>
+</ul>
+<h3 id="todo-list">Todo List</h3>
+<ul>
+<li>[ ] Add promises section to Javascript</li>
+<li>[ ] Work on react section</li>
+<li>[ ] Make a docker page</li>
+<li>[ ] Add to bootstrap section</li>
+</ul>
+<h2 id="bootcamptable-of-contents">BootcampTable of Contents</h2>
+<ul>
+<li><a href="#html">HTML</a><ul>
+<li><a href="#semantic-elements">Semantic Elements</a></li>
+<li><a href="#button">Button</a></li>
+</ul>
+</li>
+<li><a href="#css">CSS</a><ul>
+<li><a href="#styling">Styling</a><ul>
+<li><a href="#measurements">Measurements</a></li>
+</ul>
+</li>
+<li><a href="#selectors">Selectors</a></li>
+<li><a href="#pseudo-classes">Pseudo Classes</a></li>
+<li><a href="#pseudo-elements">Pseudo Elements</a></li>
+<li><a href="#position">Position</a></li>
+<li><a href="#transition">Transition</a></li>
+<li><a href="#transform">Transform</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="html">HTML</h2>
+<p>Can use <a href="https://docs.emmet.io/cheat-sheet/">Emmet shortcuts</a> for html</p>
+<h3 id="semantic-elements">Semantic Elements</h3>
+<p>Use more specified elements rather than Divs, not included the <strong> tables element </strong></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms">MDN Elements</a><br> also has table elements here
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">Input types MDN</a> such as radio, checkbox, date, email etc. As well as attributes like value, name, placeholder, required etc
+Dropdown using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">Select MDN</a></p>
+<pre><code>&lt;main&gt; for major components that go on every page navbar header etc
+&lt;nav&gt;
+&lt;header&gt;
+&lt;aside&gt; something like a navbar,  call out, or photo
+
+&lt;section&gt; creates large sections
+&lt;article&gt; used for like a blog post
+&lt;form action=&quot;&quot;&gt; google for form elements
+    &lt;input type=&quot;&quot; placeholder=&quot;&quot;&gt; goes in form, usually use with &lt;label&gt;
+&lt;footer&gt;
+&lt;summary&gt;
+&lt;details&gt;
+</code></pre>
+<p><br><br></p>
+<h4 id="form-example">Form Example</h4>
+<p>Use a form to search google results</p>
+<pre><code>&lt;form action=&quot;https://www.google.com/search&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;q&quot;&gt;
+    &lt;buton&gt;Search Google&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p><br></p>
+<h4 id="button">Button</h4>
+<p>Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
+<br><br><br></p>
+<h2 id="css">CSS</h2>
+<p>Can add CSS inline (not preffered), style element (add style div in head of document), add stylesheet (by using code below)</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;__.css&quot;&gt; 
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference">CSS properties MDN</a></p>
+<p>Can also create custom properties/variables</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">Extended CSS properties list MDN</a>
+<br><br><br></p>
+<h3 id="styling">Styling</h3>
+<p><a href="https://www.w3schools.in/css3/text/">Text styling</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration">Text decoration</a> shorthand for underline or color</p>
+<p><a href="https://htmlcolorcodes.com/color-names/">Styling Color Names</a></p>
+<p><a href="https://coolors.co/palettes/trending">Color Pallete Ideas </a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">Border styling MDN</a>
+<br><br></p>
+<h4 id="measurements">Measurements</h4>
+<p>Need to merge with other doc on measurements
+* em (parents size, changes if nested in a loop/list)
+* rem (gets size from root of document)
+* auto</p>
+<p><br><br></p>
+<h3 id="selectors">Selectors</h3>
+<p>Order of selectors specificity, the more specific css will override the lower ones.
+* ID (Most specific)
+* Class
+* Element</p>
+<p>Universal Selector, select everything</p>
+<pre><code>* {
+    color:pink;
+}
+</code></pre>
+<p>Select all elements like h1, h2 or nav</p>
+<pre><code>h1,h2 {
+    color:purple;
+}
+</code></pre>
+<p>Select every 2nd text input, red border. Uses an <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">attribute selector MDN</a> to sellect all input elements with a type=text</p>
+<pre><code>input[type=&quot;text]:nth-of-type(2n){
+    border:2px solid:red;
+}
+</code></pre>
+<p>Select a class</p>
+<pre><code>.test{
+    background-color:blue;
+}
+</code></pre>
+<p>Select an ID/Label</p>
+<pre><code>#test{
+    background-color:black;
+}
+</code></pre>
+<p>Descendant selector, select an anchor tag in a .class</p>
+<pre><code>.class a{
+    color:white;
+}
+</code></pre>
+<p>Adjacent Selector, example selects every button that comes after a button on the same level</p>
+<pre><code>h2 + button {
+    font-size:40px
+}
+</code></pre>
+<p>Direct Child Selector, example selects only the anchors within the footer element</p>
+<pre><code>footer &gt; a {
+    color:purple;
+}
+
+or footer.class{
+    color:purple;
+}
+</code></pre>
+<p><br><br></p>
+<h3 id="pseudo-classes">Pseudo Classes</h3>
+<p>Section7 vid 76, goes into selecting nth of element. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">Full MDN list</a></p>
+<ul>
+<li>:active</li>
+<li>:checked</li>
+<li>:first</li>
+<li>:first-child</li>
+<li>:hover</li>
+<li>:not()</li>
+<li>:nth-child()</li>
+<li>:nth-of-type() 
+Example highlight a button inside a post class on hover</li>
+</ul>
+<pre><code>.post button:hover{
+    background:color: red;
+}
+</code></pre>
+<p>Nth of example</p>
+<pre><code>.post:nth-of-type(2n){
+    color:black;
+}
+</code></pre>
+<p><br><br></p>
+<h3 id="pseudo-elements">Pseudo Elements</h3>
+<p>Keyword added to a selector
+* ::after
+* ::before
+* ::first-letter
+* ::first-line
+* ::selection</p>
+<p><br><br></p>
+<h3 id="position">Position</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">Poition MDN</a> Ch9 video 94.<br />
+* static
+* relative (can change top and sides from where it would be regularly)
+* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative )
+* fixed (always present)
+<br><br></p>
+<h3 id="transition">Transition</h3>
+<p>Transition format for changing speed of transitions. Works well on hover or active. Look into timing functions for ease in animations etc <br />
+{
+    Transition: (property name) (duration) (timing function) (delay)
+}
+<br><br></p>
+<h3 id="transform">Transform</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN transform</a> for rotate, scale, move/translate etc</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2021-01-24 05:49:11.674148+00:00
+-->
