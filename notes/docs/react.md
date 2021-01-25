@@ -1,14 +1,17 @@
 # React Notes
-Notes on learning React.<br><br>
+Notes on learning React.
+
+Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-app/)
+<br><br>
 
 ## Table of Contents
-*[React Notes](#react-notes)
+* [React Notes](#react-notes)
     * [Using Class and State](#class-state)
-    * [Switch vs Router](#Switch-vs-Router)
-    * [Hashrouter vs Browserrouter](#Hashrouter-vs-Browserrouter)
-    * [Navlink vs Link](#Navlink-vs-Link)
+    * [Switch vs Router](#switch-vs-router)
+    * [Hashrouter vs Browserrouter](#hashrouter-vs-browserrouter)
+    * [Navlink vs Link](#navlink-vs-link)
     * [Inline Styling React](Inline-Styling-React)
-
+* [React and Django](#react-and-django)
 
 
 ## Class State
@@ -55,3 +58,9 @@ const StyledMenu = styled.div`
     }
 `
 ```
+
+
+## React and Django
+React as frontend and Django as Backend [Blog Tutorial](https://wsvincent.com/django-rest-framework-react-tutorial/)
+
+React(redux, axios) and Django and Docker [medium tutorial](https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf). gave up on this project
