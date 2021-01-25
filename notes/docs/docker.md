@@ -39,6 +39,7 @@ Docker Syntax: docker {{cmd}} {{flags}} {{image:tag}} {{cmd}}
 * exec
 * ps 
 * images
+* rmi = remove images
 * stop
 
 
@@ -76,7 +77,7 @@ docker run \
     -itd \ 
     -- rm \
     -v {{${PWD}/folder:folder}} \
-    -p {{port:port}} \
+    -p {{port-to-open:container-port}} \
     -e CHOKIDAR_USEPOLLING=true \
     {{img_name}}
 ```

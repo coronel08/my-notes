@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Bootstrap - My Docs</title>
+        <title>Django - My Docs</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -36,11 +36,11 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">My Notes</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Bootstrap</a>
-                            </li>
                             <li class="navitem">
-                                <a href="../css/" class="nav-link">CSS Notes</a>
+                                <a href="../css/" class="nav-link">CSS HTML Bootstrap Notes</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Django</a>
                             </li>
                             <li class="navitem">
                                 <a href="../docker/" class="nav-link">Docker</a>
@@ -60,12 +60,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../css/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../css/" class="nav-link">
+                                <a rel="next" href="../docker/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -86,12 +86,38 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#django" class="nav-link">Django</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="django">Django</h1>
+<p><a href="https://docs.djangoproject.com/en/3.1/intro/tutorial01/#the-development-server">Polls Tutorial Django Doc</a></p>
+<p><a href="https://docs.docker.com/compose/django/">Docker and Django docs</a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#django-commands">Django Commands</a></li>
+</ul>
+<h3 id="django-commands">Django Commands</h3>
+<p>Start Project</p>
+<pre><code>Django-admin startproject {{projeect-name}} .
+</code></pre>
+<p>Migrations</p>
+<pre><code>python manage.py makemigrations {{component-name}}
+python manage.py migrate {{component-name}}
+</code></pre>
+<p>Start server</p>
+<pre><code>python manage.py runserver
+</code></pre></div>
             </div>
         </div>
 

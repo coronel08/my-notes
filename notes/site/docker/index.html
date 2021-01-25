@@ -37,10 +37,10 @@
                                 <a href=".." class="nav-link">My Notes</a>
                             </li>
                             <li class="navitem">
-                                <a href="../bootstrap/" class="nav-link">Bootstrap</a>
+                                <a href="../css/" class="nav-link">CSS HTML Bootstrap Notes</a>
                             </li>
                             <li class="navitem">
-                                <a href="../css/" class="nav-link">CSS Notes</a>
+                                <a href="../django/" class="nav-link">Django</a>
                             </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">Docker</a>
@@ -60,7 +60,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../css/" class="nav-link">
+                                <a rel="prev" href="../django/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -86,12 +86,149 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#docker" class="nav-link">Docker</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker-compose-commands" class="nav-link">Docker-compose commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker-stack" class="nav-link">Docker Stack</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="docker">Docker</h1>
+<p>Sandbox docker environment <a href="https://labs.play-with-docker.com/">Play with docker</a> </p>
+<p>A guide on developing React inside of Docker <a href="https://willschenk.com/articles/2020/developing_react_inside_docker/">blog</a></p>
+<p>Setting up docker in pycharm and vscode <a href="https://stackoverflow.com/questions/58855616/how-can-i-use-a-docker-container-as-a-virtualenv-for-running-python-tests-from-m">Stackoverflow</a>
+<br><br></p>
+<p>Start with dockerignore</p>
+<pre><code>echo &quot;venv .venv .git&quot; &gt; .dockerignore
+</code></pre>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#tutorials">Tutorials</a></li>
+<li><a href="#docker-commands">Docker Commands</a><ul>
+<li><a href="#flags">Flags</a></li>
+<li><a href="#build-and-run-and-push">Build / Run / Push</a></li>
+<li><a href="#docker-run">Docker Run</a></li>
+</ul>
+</li>
+<li><a href="#docker-compose-commands">Docker-compose Commands</a></li>
+<li><a href="#dockerfile-example">Dockerfile Example</a><ul>
+<li><a href="#jupyter-notebook-dockerfile">Jupyter Notebook Dockerfile</a></li>
+</ul>
+</li>
+<li><a href="#docker-django-stack">Docker Django Stack</a></li>
+</ul>
+<h3 id="tutorials">Tutorials</h3>
+<p>Getting started tutorial/Todo app</p>
+<pre><code>docker run -d -p 80:80 docker/getting-started
+</code></pre>
+<p><a href="https://docs.docker.com/compose/gettingstarted/">Docker-compose Docs</a> using Flask, Redis to Count clicks.</p>
+<h3 id="docker-commands">Docker Commands</h3>
+<p>Docker Syntax: docker {{cmd}} {{flags}} {{image:tag}} {{cmd}}
+* build
+* run
+* exec
+* ps 
+* images
+* rmi = remove images
+* stop</p>
+<h4 id="flags">Flags</h4>
+<ul>
+<li>-f = File name (defaults to Dockerfile)</li>
+<li>-t = tag</li>
+<li>-d = detached</li>
+<li>-p = port </li>
+<li>-v = volume</li>
+<li>-e = environment</li>
+<li>-it = interactive shell</li>
+<li>--rm = remove the container once we exit</li>
+<li>--build-arg SOME_ENV_VAR=hello = Is the build time variable</li>
+</ul>
+<h4 id="build-and-run-and-push">Build and Run and Push</h4>
+<p>Docker Hub <a href="https://docs.docker.com/docker-hub/">Documentation</a></p>
+<pre><code>docker build -t coronel08/{{tag-name}} .
+docker run -d -p {{ports}} --name {{name}} coronel08/{{tag-name}}
+docker exec -it {{container-id}} bash # if bash fails try sh
+docker push coronel08/{{tag-name}}
+</code></pre>
+<h4 id="docker-run">Docker Run</h4>
+<p>An example of docker run command to setup a python container</p>
+<pre><code> docker run --rm -it python:3.8 python
+ docker run --rm -p 8888:8888 jupyter/scipy-notebook
+</code></pre>
+<p>Long docker run example, the env in this is used for hotloading.</p>
+<pre><code>docker run \
+    -itd \ 
+    -- rm \
+    -v {{${PWD}/folder:folder}} \
+    -p {{port:port}} \
+    -e CHOKIDAR_USEPOLLING=true \
+    {{img_name}}
+</code></pre>
+<h3 id="dockerfile-example">Dockerfile Example</h3>
+<p>Run apt-get update and install. Dont forget to remove cahced data. Also use -y flag when installing</p>
+<p>Can use either apt-get clean or the rm -rf command to clean </p>
+<pre><code>RUN apt-get update &amp;&amp; apt-get install -y\
+package1\
+package2\
+&amp;&amp; apt-get clean
+# &amp;&amp; rm -rf /var/lib/apt/lists/* 
+
+COPY requirements.txt /app/requirements.txt
+WORKDIR app
+RUN pip install --user -r 
+COPY . /app
+</code></pre>
+<h4 id="jupyter-notebook-dockerfile">Jupyter Notebook Dockerfile</h4>
+<p>Building a Jupyter Notebook Dockerfile <a href="https://mlinproduction.com/docker-for-ml-part-2/">Mlinproduction blog</a></p>
+<pre><code>FROM jupyter/scipy-notebook
+
+ARG SOME_ENV_VAR
+ENV SOME_ENV_VAR=${SOME_ENV_VAR}
+
+RUN pip install awscli --upgrade --user
+RUN echo 'export PATH=~/.local/bin:$PATHn' &amp;gt;&amp;gt; $HOME/.bashrc
+
+COPY requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+RUN rm ./requirements.txt
+</code></pre>
+<p>Build </p>
+<pre><code>docker build --build-arg SOME_ENV_VAR=hello -t my-jupyter-image -f Dockerfile .
+</code></pre>
+<p>Run</p>
+<pre><code>docker run --rm -p 8888:8888 my-jupyter-image
+</code></pre>
+<hr />
+<h2 id="docker-compose-commands">Docker-compose commands</h2>
+<ul>
+<li>up</li>
+<li>down</li>
+<li>stop</li>
+</ul>
+<pre><code>docker-compose up -d --build #build flag recreates the file
+</code></pre>
+<hr />
+<h2 id="docker-stack">Docker Stack</h2>
+<h3 id="docker-flask-stack">Docker Flask Stack</h3>
+<p>Dockerizing Flask with Postgres, Gunicorn and Nginx <a href="https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/">Testdriven.io</a></p>
+<h3 id="docker-django-stack">Docker Django Stack</h3>
+<p><a href="https://docs.docker.com/compose/django/">Docker docs Django</a></p>
+<p>Dockerizing Django with Postgres Gunicorn and Nginx <a href="https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/">Testdriven.io</a></p></div>
             </div>
         </div>
 

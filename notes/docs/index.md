@@ -11,7 +11,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 
 ## Table of Contents
-* [Bootstrap](bootstap.md)
 * [CSS Notes](css.md)
 * [Django](django.md)
 * [Docker](docker.md)
@@ -160,4 +159,4 @@ git rebase another master
 * [ ] Reformat and space Javascript section
 * [ ] Reformat and space React Section
 * [x] Make a docker page
-* [x] Add to bootstrap page
+* [ ] Fill bootstrap page

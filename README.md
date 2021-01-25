@@ -45,3 +45,5 @@ echo "venv .venv .git" > .dockerignore
 * [x] Makedocs
     * [ ] Organize notes
 * [ ] Dockerize and setup in reverse proxy
+    * [x] Setup Nginx Reverse Proxy
+    * [ ] Might need docker-compose

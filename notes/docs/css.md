@@ -1,4 +1,6 @@
-# CSS Notes
+# CSS
+**HTML CSS Bootstrap Notes**
+
 Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
 Javascript to handle toggle is at bottom of index.html of vid-site1 project
