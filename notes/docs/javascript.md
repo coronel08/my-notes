@@ -3,6 +3,7 @@
 * decrement = --
 <br><br>
 
+---
 ## Table of Contents
 * [Javascript Notes](#javascript-notes)
     * [Closures and Nesting Functions](#closures-and-nesting-functions)
@@ -18,6 +19,7 @@
     * [Conditionals vs Switch vs Ternary](#Conditionals-vs-Switch-vs-Ternary)
     * [Function](function)
 
+---
 ## Closures and Nesting Functions
 [Closures Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
 ```
@@ -82,6 +84,7 @@ console.log(getPrivateVariable())
 ```
 <br><br>
 
+---
 ## Recursion vs Loop
 For Loop below / Iteration
 ```
@@ -104,6 +107,7 @@ function countdown(number){
 ```
 <br><br>
 
+---
 ## Array methods
 * [array method chart](https://www.w3schools.com/jsref/jsref_obj_array.asp)
 * [array method examples](https://www.w3schools.com/js/js_array_methods.asp)
@@ -142,6 +146,7 @@ Slice method slices out a piece of an array into a new array. <br>
 slice(start,stop)
 <br> <br>
 
+---
 ## Sorting Arrays
 [W3 Sorting Arrays page](https://www.w3schools.com/js/js_array_sort.asp)
 sort(): Sorts an array alphabetically 
@@ -179,6 +184,7 @@ points.sort((a,b) => b - a)
 * findIndex(): 
 <br><br>
 
+---
 ## Strip HTML strings
 strip the html from an element
 ```
@@ -187,7 +193,7 @@ const stripHTMLTags = str => str.replace(/<[^>]*>/g, '')
 stripHTMLTags ('<a href="#"> Me and you </a>')
 ```
 
-
+---
 ## Destructuring
 Example below skips b and then defines the rest using rest/spread operator. Based on position
 ```
@@ -219,6 +225,7 @@ function printUser{}
 ```
 <br><br>
 
+---
 ## Conditionals vs Switch vs Ternary
 [Conditionals w3](https://www.w3schools.com/js/js_if_else.asp). If, Else statements
 ```
@@ -255,7 +262,7 @@ var beverage = (age >= 21) ? "Beer":"Juice"
 ```
 <br><br>
 
-
+---
 ## Function
 Function Expression, need to be declared before call
 ```

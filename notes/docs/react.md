@@ -4,6 +4,7 @@ Notes on learning React.
 Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-app/)
 <br><br>
 
+---
 ## Table of Contents
 * [React Notes](#react-notes)
     * [Using Class and State](#class-state)
@@ -59,7 +60,7 @@ const StyledMenu = styled.div`
 `
 ```
 
-
+---
 ## React and Django
 React as frontend and Django as Backend [Blog Tutorial](https://wsvincent.com/django-rest-framework-react-tutorial/)
 

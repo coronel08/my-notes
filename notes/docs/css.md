@@ -3,13 +3,6 @@
 
 Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
-Javascript to handle toggle is at bottom of index.html of vid-site1 project
-
-Javascript if else practice using Javascipt Query Selector, Classlist.conatins, and GetElementByClassname. See Javascript section of file for if/else selecting javascript examples. 
-
-
-[BOOTSTRAP Tutorial SITE](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
-
 
 ---
 ## Table of Contents
@@ -62,7 +55,7 @@ Dropdown using [Select MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/El
 <summary>
 <details>
 ```
-<br><br>
+<br>
 
 #### Form Example
 Use a form to search google results
@@ -74,7 +67,7 @@ Use a form to search google results
 ```
 <br>
 
-#### Button 
+### Button 
 Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
 <br><br>
 
@@ -277,7 +270,6 @@ ALIGN-CONTENT should be used with WRAP in flex container.
 <br><br>
 
 
-
 ---
 ## Lightbox Photos
 [Lightbox Photo Gallery w3](https://www.w3schools.com/howto/howto_js_lightbox.asp)
@@ -287,6 +279,9 @@ ALIGN-CONTENT should be used with WRAP in flex container.
 
 ---
 ## Bootstrap
+BOOTSTRAP Tutorial[Docs site](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
+
+
 Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported into head
 ```
     <!-- Bootstrap CDN https://fontawesome.com/v3.2.1/get-started/ -->

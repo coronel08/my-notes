@@ -11,7 +11,7 @@ Start with dockerignore
 echo "venv .venv .git" > .dockerignore
 ```
 
-
+---
 ## Table of Contents
 * [Tutorials](#tutorials)
 * [Docker Commands](#docker-commands)
@@ -23,8 +23,8 @@ echo "venv .venv .git" > .dockerignore
     * [Jupyter Notebook Dockerfile](#jupyter-notebook-dockerfile)
 * [Docker Django Stack](#docker-django-stack)
 
-
-### Tutorials
+---
+## Tutorials
 Getting started tutorial/Todo app
 ```
 docker run -d -p 80:80 docker/getting-started
@@ -32,7 +32,8 @@ docker run -d -p 80:80 docker/getting-started
 [Docker-compose Docs](https://docs.docker.com/compose/gettingstarted/) using Flask, Redis to Count clicks.
 
 
-### Docker Commands
+---
+## Docker Commands
 Docker Syntax: docker {{cmd}} {{flags}} {{image:tag}} {{cmd}}
 * build
 * run
@@ -43,7 +44,7 @@ Docker Syntax: docker {{cmd}} {{flags}} {{image:tag}} {{cmd}}
 * stop
 
 
-#### Flags
+### Flags
 * -f = File name (defaults to Dockerfile)
 * -t = tag
 * -d = detached
@@ -55,7 +56,7 @@ Docker Syntax: docker {{cmd}} {{flags}} {{image:tag}} {{cmd}}
 * --build-arg SOME_ENV_VAR=hello = Is the build time variable
 
 
-#### Build and Run and Push
+### Build and Run and Push
 Docker Hub [Documentation](https://docs.docker.com/docker-hub/)
 ```
 docker build -t coronel08/{{tag-name}} .
@@ -65,7 +66,7 @@ docker push coronel08/{{tag-name}}
 ```
 
 
-#### Docker Run
+### Docker Run
 An example of docker run command to setup a python container
 ```
  docker run --rm -it python:3.8 python
@@ -82,8 +83,8 @@ docker run \
     {{img_name}}
 ```
 
-
-### Dockerfile Example
+---
+## Dockerfile Example
 Run apt-get update and install. Dont forget to remove cahced data. Also use -y flag when installing
 
 
@@ -102,7 +103,7 @@ COPY . /app
 ```
 
 
-#### Jupyter Notebook Dockerfile 
+### Jupyter Notebook Dockerfile 
 Building a Jupyter Notebook Dockerfile [Mlinproduction blog](https://mlinproduction.com/docker-for-ml-part-2/)
 ```
 FROM jupyter/scipy-notebook
@@ -144,6 +145,8 @@ docker-compose up -d --build #build flag recreates the file
 
 ### Docker Flask Stack
 Dockerizing Flask with Postgres, Gunicorn and Nginx [Testdriven.io](https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/)
+
+Flask, Sqlite, Nginx stack [tutorial-academy](https://tutorial-academy.com/uwsgi-nginx-flask-python-sqlite-docker-example/)
 
 ### Docker Django Stack
 [Docker docs Django](https://docs.docker.com/compose/django/)

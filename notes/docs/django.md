@@ -3,11 +3,12 @@
 
 [Docker and Django docs](https://docs.docker.com/compose/django/)
 
+---
 ## Table of Contents
 * [Django Commands](#django-commands)
 
-
-### Django Commands
+---
+## Django Commands
 Start Project
 ```
 Django-admin startproject {{projeect-name}} .

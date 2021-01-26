@@ -154,7 +154,10 @@ git rebase another master
 
 ---
 ## Todo List
-* [ ] Add promises section to Javascript
+* [ ] Javascript
+    * [ ] Add promises section to Javascript
+    * [ ] Add Javascript handle toggle at bottom of index.html in vid-site1 project
+    * [ ] Add Javascript if else using Javascipt Query Selector, Classlist.conatins, and GetElementByClassname in vid-site1 project. 
 * [ ] Work on react section
 * [ ] Reformat and space Javascript section
 * [ ] Reformat and space React Section
