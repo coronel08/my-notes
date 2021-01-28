@@ -24,6 +24,7 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
     * [Transition](#transition)
     * [Transform](#transform)
     * [Example of Flex ](#example-of-flex)
+    * [CSS grid](#css-grid)
 * [Lightbox Photos](#lightbox-photos)
 * [Bootstrap](#bootstrap)
     * [Bootstrap button ](#bootstrap-button)
@@ -90,6 +91,14 @@ Properties are used for styling ex: font weight, color, padding [CSS common prop
 [Extended CSS properties list MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)<br>
 
 
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=X6tTBxEmZCE) tutorial on using CSS properties
+
+* overflow
+* text-shadow
+* background-image on text
+
+<br>
+
 ##### Custom Property / Variable
 Can also create custom properties/variables. Example shows adding a custom property for the color blue
 ```
@@ -102,7 +111,7 @@ Can also create custom properties/variables. Example shows adding a custom prope
 ```
 <br>
 
-
+---
 ### Styling
 Common styling properties and usefull sites.<br>
 [Text styling](https://www.w3schools.in/css3/text/)<br>
@@ -110,6 +119,9 @@ Common styling properties and usefull sites.<br>
 [Styling Color Names](https://htmlcolorcodes.com/color-names/)<br>
 [Color Pallete Ideas ](https://coolors.co/palettes/trending)<br>
 [Border styling MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/border)<br>
+
+
+[Fireship YT](https://www.youtube.com/watch?v=rXuHGLzSmSE&t=6s) Switching between themes in css and some javascript
 
 #### Measurements
 [Units of measurement for CSS em/rem/px/% etc](https://www.w3schools.com/cssref/css_units.asp)
@@ -119,6 +131,12 @@ Common styling properties and usefull sites.<br>
 * auto
 <br><br>
 
+
+#### Navbar 
+[Fireship YT](https://www.youtube.com/watch?v=biOMz4puGt8&t=335s) Building an animated CSS Bar tutorial
+<br><br>
+
+---
 ### Selectors
 Order of selectors specificity, the more specific css will override the lower ones.
 * ID (Most specific)
@@ -186,6 +204,7 @@ Example targeting the "a" item inside of text, inside of showcase when active.
 ```
 <br><br>
 
+---
 ### Pseudo Classes 
 Example of using active psuedo class
 ```
@@ -227,7 +246,7 @@ Keyword added to a selector
 * ::selection
 <br><br>
 
-
+---
 ### Positions
 [Position MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
 [Position Property Values](https://www.w3schools.com/cssref/pr_class_position.asp)
@@ -236,8 +255,9 @@ Keyword added to a selector
 * relative (can change top and sides from where it would be regularly)
 * absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative )
 * fixed (always present)
-<br><br><br>
+<br><br>
 
+---
 ### Display 
 [w3 Display Property Values](https://www.w3schools.com/cssref/pr_class_display.asp)
 [w3 Display Prop example](https://www.w3schools.com/css/css_display_visibility.asp) Show display on click and hide on click
@@ -248,6 +268,7 @@ Keyword added to a selector
 Can use visibility instead of [display:none](https://www.w3schools.com/css/css_display_visibility.asp). display none deletes the item, visibility just hides it in place.
 <br><br>
 
+---
 ### Transition
 [Transition MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) format for changing speed of transitions. Works well on hover or active. Look into timing functions for ease in animations etc   
 {
@@ -255,11 +276,16 @@ Can use visibility instead of [display:none](https://www.w3schools.com/css/css_d
 }
 <br><br>
 
+---
 ### Transform
 [MDN transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) for rotate, scale, move/translate etc
 <br><br>
 
+---
 ### Example of Flex 
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=fYq5PXgSsbE&t=170s) flexbox in 15 minutes
+
+
 The align-items centers vertical, justify content centers horizontal.
 ALIGN-CONTENT should be used with WRAP in flex container.
 ```
@@ -269,6 +295,12 @@ ALIGN-CONTENT should be used with WRAP in flex container.
 ```
 <br><br>
 
+---
+### CSS grid
+[Fireship YT](https://www.youtube.com/watch?v=uuOXPWCh-6o&t=3s) Introduction setting up css grid
+
+
+[Fireship YT](https://www.youtube.com/watch?v=705XCEruZFs) Using grid like a bootstrap or flex tutorial
 
 ---
 ## Lightbox Photos
@@ -288,6 +320,9 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 ```
+<br><br>
+
+---
 ### Bootstrap button 
 Example of a bootstrap button
 ```
@@ -295,6 +330,7 @@ Example of a bootstrap button
 ```
 <br>
 
+---
 ### FontAwesome Icon
 Import Icon in [Bootstrap tutorial](https://fontawesome.com/v3.2.1/examples/)
 ```
@@ -327,7 +363,7 @@ CSS for adding Font Awesome Icon, Icon tag inside of toggle. Showing how to sele
 ```
 <br>
 
-
+---
 ### Bootstrap Accordion Example 
 [Bootstrap Accordion Docs](https://getbootstrap.com/docs/4.5/components/collapse/)
 

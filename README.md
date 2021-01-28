@@ -1,4 +1,4 @@
-# my-notes
+# My-Notes
 Using mkdocs to document my notes on different languages, frameworks, and other. 
 
 
@@ -46,3 +46,16 @@ echo "venv .venv .git" > .dockerignore
     * [ ] Organize notes
 * [x] Dockerize and setup in reverse proxy
     * [x] Setup Nginx Reverse Proxy
+* [ ] Work on React section
+    * [ ] API section needs work
+    * [ ] Functions vs Classes
+    * [ ] Add callbacks vs promises
+    * [x] Add classes  vs functions
+    * [x] Add React Hooks
+        * [x] useState()
+        * [x] useEffect()
+* [ ] Javascript needs arrow function and other notes
+* [x] Work on Django section
+    * [x] Add notes on building an api and setting up backend. 
+    * [ ] Keep Adding to Django section
+* [ ] Add Flask Rest section to Django

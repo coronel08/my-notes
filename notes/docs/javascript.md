@@ -17,7 +17,9 @@
     * [Strip HTML strings](#Strip-HTML-strings)
     * [Destructuring](#Destructuring)
     * [Conditionals vs Switch vs Ternary](#Conditionals-vs-Switch-vs-Ternary)
-    * [Function](function)
+    * [Arrow Functions](#arrow-functions)
+    * [Function](#function)
+    * [Promises](#promises)
 
 ---
 ## Closures and Nesting Functions
@@ -111,6 +113,9 @@ function countdown(number){
 ## Array methods
 * [array method chart](https://www.w3schools.com/jsref/jsref_obj_array.asp)
 * [array method examples](https://www.w3schools.com/js/js_array_methods.asp)
+
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=R8rmfD9Y5-c) 8 Javascript array tutorials. 
+
 <br><br>
 
 ### Add or Delete an item in an array
@@ -168,6 +173,7 @@ points.sort((a,b) => b - a)
 #### Can also use Math.max() or Math.min()
 <br><br>
 
+---
 ## Array Itteration
 [Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach
 [W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp)
@@ -192,9 +198,12 @@ const stripHTMLTags = str => str.replace(/<[^>]*>/g, '')
 <!-- Example -->
 stripHTMLTags ('<a href="#"> Me and you </a>')
 ```
+<br><br>
 
 ---
 ## Destructuring
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=NIq3qLaHCIs) Array and Object destructuring tutorial
+
 Example below skips b and then defines the rest using rest/spread operator. Based on position
 ```
 const alphabet = ['a','b','c','d','e','f']
@@ -223,6 +232,11 @@ const {name, address:{ city }} = person1
 
 function printUser{}
 ```
+<br><br>
+
+---
+## Arrow Functions
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=h33Srr5J9nY) Arrow function tutorial
 <br><br>
 
 ---
@@ -277,3 +291,8 @@ function getRectArea(width, height){
     return width * height
 }
 ```
+<br><br>
+
+---
+## Promises
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
