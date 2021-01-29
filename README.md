@@ -1,6 +1,7 @@
 # My-Notes
 Using mkdocs to document my notes on different languages, frameworks, and other. 
 
+theme file goes in /site/css/   overwrites styling and makes it mobile. 
 
 For [mkdocs tutorial](https://towardsdatascience.com/creating-software-documentation-in-under-10-minutes-with-mkdocs-b11f52f0fb10)
 
