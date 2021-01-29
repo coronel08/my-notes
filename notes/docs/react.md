@@ -9,6 +9,7 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
 * [React Notes](#react-notes)
     * [Class](#class)
         * [Class Lifecycle Methods](#class-lifecycle-methods)
+        * [Async and Await](#async-await)
     * [Functions](#functions)
         * [hooks](#hooks)
             * [useState](#usestate)
@@ -50,6 +51,10 @@ Lifecycle methods docs [react](https://reactjs.org/docs/react-component.html#com
 * componentDidMount()
 <br><br>
 
+### Async Await
+A synthatic sugar over Javascript Promises, helpful when fetching from an API. You can use try/catch for proper error handling [valntinog blog](https://www.valentinog.com/blog/await-react/)
+<br><br>
+
 ---
 ## Functions
 Building a clock component using classes then refractoring to functions [dev.to](https://dev.to/danielleye/react-class-component-vs-function-component-with-hooks-13dg) able to use Hooks. 
@@ -68,11 +73,14 @@ Instead of setting state with this.state in a constructor we can import useState
 #### UseEffect
 We can pass in a function in useEffect to update on change. Also allows to pass in an array as the second argument.
 
+
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=0ZJgIjIuY7U&t=309s)
+
 
 useEffect replacing componentDidMount [stackoverflow](https://stackoverflow.com/questions/53945763/componentdidmount-equivalent-on-a-react-function-hooks-component)
 
-[Webdev blog] on using useEffect(https://thewebdev.info/2020/05/05/react-hooks-equivalent-of-componentdidmount/)
+
+[Webdev blog](https://thewebdev.info/2020/05/05/react-hooks-equivalent-of-componentdidmount/) on using useEffect
 <br><br>
 
 ---
@@ -128,7 +136,7 @@ const StyledMenu = styled.div`
 <br><br>
 
 ### Flashcard
-[Web Dev Simplified YT](https://www.youtube.com/watch?v=hEtZ040fsD8&t=2096s) building a flashcard app
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=hEtZ040fsD8&t=2096s) building a flashcard app, using an API for data.
 <br><br>
 
 ### Reactstrap
@@ -140,4 +148,4 @@ A bootstrap for React
 An extensive tutorial on building a react Todo List from scratch. [vegibit site](https://vegibit.com/create-a-react-element-from-scratch/)
 
 
-[Brian Design YT](https://www.youtube.com/watch?v=3nLTB_E6XAM) building a React site 2hr tutorial.
+[Brian Design YT](https://www.youtube.com/watch?v=3nLTB_E6XAM) building a React site 2hr tutorial. Have not gone through it

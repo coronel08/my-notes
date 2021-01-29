@@ -296,3 +296,6 @@ function getRectArea(width, height){
 ---
 ## Promises
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
+
+
+[CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises

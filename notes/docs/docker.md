@@ -144,11 +144,20 @@ docker-compose up -d --build #build flag recreates the file
 ## Docker Stack
 
 ### Docker Flask Stack
+Docker, Flask, React, Nginx [Medium](https://medium.com/swlh/deploy-and-secure-a-react-flask-app-with-docker-and-nginx-768ca582863b) 
+
+
 Dockerizing Flask with Postgres, Gunicorn and Nginx [Testdriven.io](https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/)
+
 
 Flask, Sqlite, Nginx stack [tutorial-academy](https://tutorial-academy.com/uwsgi-nginx-flask-python-sqlite-docker-example/)
 
+
+Flask, Docker, Nginx [towardsdatascience](https://towardsdatascience.com/how-to-deploy-ml-models-using-flask-gunicorn-nginx-docker-9b32055b3d0)
+
+
 ### Docker Django Stack
 [Docker docs Django](https://docs.docker.com/compose/django/)
+
 
 Dockerizing Django with Postgres Gunicorn and Nginx [Testdriven.io](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)

@@ -48,8 +48,9 @@ echo "venv .venv .git" > .dockerignore
     * [x] Setup Nginx Reverse Proxy
 * [ ] Work on React section
     * [ ] API section needs work
-    * [ ] Functions vs Classes
-    * [ ] Add callbacks vs promises
+        * [ ] Axios vs ____
+    * [x] Functions vs Classes
+    * [x] Add callbacks vs promises
     * [x] Add classes  vs functions
     * [x] Add React Hooks
         * [x] useState()
@@ -58,4 +59,4 @@ echo "venv .venv .git" > .dockerignore
 * [x] Work on Django section
     * [x] Add notes on building an api and setting up backend. 
     * [ ] Keep Adding to Django section
-* [ ] Add Flask Rest section to Django
+* [x] Add Flask Rest section to Django
