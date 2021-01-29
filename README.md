@@ -60,3 +60,6 @@ echo "venv .venv .git" > .dockerignore
     * [x] Add notes on building an api and setting up backend. 
     * [ ] Keep Adding to Django section
 * [x] Add Flask Rest section to Django
+* [ ] Add python 
+    * [ ] [Python full stack](https://www.fullstackpython.com)
+    * [ ] [FreeCodeCamp](https://www.freecodecamp.org/news/the-ultimate-guide-to-the-pandas-library-for-data-science-in-python/amp/) Pandas
