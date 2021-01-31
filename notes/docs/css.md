@@ -1,4 +1,4 @@
-# CSS
+# CSS and HTML
 **HTML CSS Bootstrap Notes**
 
 Notes for CSS, made during vid-site1 project
@@ -13,8 +13,11 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
     * [Stylesheet](#stylesheet)
         * [CSS Properties](#css-properties)
             * [Custom property/variable](#custom-property-/-variable)
+        * [Fonts](#fonts)
     * [Styling](#styling)
         * [Measurements](#measurements)
+        * [Media Queries](#media-queries)
+        * [Navbar](#navbar)
     * [Selectors](#selectors)
     * [Pseudo Classes](#pseudo-classes)
         * [Pseudo Elements](#pseudo-elements)
@@ -23,7 +26,9 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
         * [Visiblity vs Display](#visiblity-vs-display)
     * [Transition](#transition)
     * [Transform](#transform)
-    * [Example of Flex ](#example-of-flex)
+    * [Background](#background)
+    * [Flexbox](#flexbox)
+        * [Example of Flex ](#example-of-flex)
     * [CSS grid](#css-grid)
 * [Lightbox Photos](#lightbox-photos)
 * [Bootstrap](#bootstrap)
@@ -94,7 +99,7 @@ Properties are used for styling ex: font weight, color, padding [CSS common prop
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=X6tTBxEmZCE) tutorial on using CSS properties
 
 * overflow
-* text-shadow
+* text-shadow / border-shadow / box-shadow
 * background-image on text
 
 <br>
@@ -111,6 +116,13 @@ Can also create custom properties/variables. Example shows adding a custom prope
 ```
 <br>
 
+#### Fonts
+https://fonts.google.com/
+```
+<link href="" rel="stylesheet">
+```
+<br><br>
+
 ---
 ### Styling
 Common styling properties and usefull sites.<br>
@@ -124,13 +136,18 @@ Common styling properties and usefull sites.<br>
 [Fireship YT](https://www.youtube.com/watch?v=rXuHGLzSmSE&t=6s) Switching between themes in css and some javascript
 
 #### Measurements
-[Units of measurement for CSS em/rem/px/% etc](https://www.w3schools.com/cssref/css_units.asp)
+Units of measurement for CSS em/rem/px/% etc[w3 schools](https://www.w3schools.com/cssref/css_units.asp) [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
 
 * em (parents size, changes if nested in a loop/list)
 * rem (gets size from root of document)
 * auto
+* ch (character height, good for rows)
+* fr (fraction, good for columns)
 <br><br>
 
+#### Media Queries
+[MDN](https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/) Media Queries
+<br><br>
 
 #### Navbar 
 [Fireship YT](https://www.youtube.com/watch?v=biOMz4puGt8&t=335s) Building an animated CSS Bar tutorial
@@ -282,9 +299,36 @@ Can use visibility instead of [display:none](https://www.w3schools.com/css/css_d
 <br><br>
 
 ---
-### Example of Flex 
+### Background 
+* [Background property](https://developer.mozilla.org/en-US/docs/Web/CSS/background) shorthand
+    * background-color
+    * background-image
+    * [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
+    * background position
+    * background-repeat
+
+<br><br>
+
+---
+### Flexbox
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=fYq5PXgSsbE&t=170s) flexbox in 15 minutes
 
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) Flexbox concepts. and list of property references [MDN](https://developer.mozilla.org/en-US/docs/Glossary/Flexbox)
+
+
+* flex **shorthand** for flex-grow, flex-shrink, flex-basis. Based on Axis, works with wrap. 
+    * flex-grow [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow) to make an item take up more space
+    * flex-shrink [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink)
+    * flex-basis [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis) sets the size of the content box
+* flex-direction (can use column or row or reverse) 
+* justify-content (spacing for content in div. relies on flex direction)
+* align-items (centers vertical or horizontal, used to have all items start at the align)
+* flex-wrap (wraps instead of shrinks content)
+    * align-content should be used with wrap
+<br>
+
+#### Example of Flex 
 
 The align-items centers vertical, justify content centers horizontal.
 ALIGN-CONTENT should be used with WRAP in flex container.
@@ -301,6 +345,33 @@ ALIGN-CONTENT should be used with WRAP in flex container.
 
 
 [Fireship YT](https://www.youtube.com/watch?v=705XCEruZFs) Using grid like a bootstrap or flex tutorial
+
+
+[FreeCodeCamp](https://www.freecodecamp.org/news/learn-css-grid-by-building-5-layouts/amp/) Excercises followed in HTML grid files. 
+
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) Grid Layout and CSS properties
+* grid template **Shorthand** for grid-template-rows, grid-template-columns, grid-template-areas 
+    * grid-template-column [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
+        * repeat (positive-integer, auto-fill, auto-fit)
+        * grid-column **Shorthand** for start and end(# / span #)
+            * grid-column-start
+            * grid-column-end
+        * column-gap
+    * grid-template-row [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
+    * grid-template-areas [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Grid_Template_Areas)
+
+
+Using fr unit / fraction and repeat, fr avoids the overspan problems of using a %
+```
+grid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-column-gap: 10px;
+}
+```
+
+
 
 ---
 ## Lightbox Photos
