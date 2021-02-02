@@ -32,8 +32,10 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
     * [CSS grid](#css-grid)
 * [Lightbox Photos](#lightbox-photos)
 * [Bootstrap](#bootstrap)
-    * [Bootstrap button ](#bootstrap-button)
-    * [FontAwesome Icon](#fontawesome-icon)
+    * [Grid System](#grid-system)
+    * [Bootstrap Components](#bootstrap-components)
+        * [Bootstrap Button ](#bootstrap-button)
+        * [FontAwesome Icon](#fontawesome-icon)
     * [Bootstrap Accordion Example](#bootstrap-accordion-example)
 
 ---
@@ -372,7 +374,6 @@ grid{
 ```
 
 
-
 ---
 ## Lightbox Photos
 [Lightbox Photo Gallery w3](https://www.w3schools.com/howto/howto_js_lightbox.asp)
@@ -382,7 +383,7 @@ grid{
 
 ---
 ## Bootstrap
-BOOTSTRAP Tutorial[Docs site](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
+BOOTSTRAP Tutorial[Bootstrap site](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
 
 
 Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported into head
@@ -391,18 +392,131 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 ```
+<br>
+
+### Bootstrap Spacing
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/spacing/) Spacing. Sizing goes from 0-5 or auto. 
+* m = margin
+* p = padding
+    * t = top
+    * b = bottom
+    * l = left
+    * r = right
+    * x = both left and right
+    * y = both top and bottom
+    * blank = all 4 sides
+<br><br>
+
+
+--- 
+### Grid System
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/layout/grid/) Grid tutorial, container grid made up of 12 columns. Defaults to include **gutter**
+
+#### Container
+* container gives a responsive container use like divs
+    * container-fluid wraps entire width
+    * container-sm to container-xl responsive breakpoints based on screen size
+
+#### Row and Col
+* row
+    * col (responsive equal width)
+        * col-8 (example of 2/3 width)
+        * col-md-auto (variable width content, based on width of content)
+        * mix and match breakpoints in col to make responsive
+```
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div class="col-12 col-md-8">.col-12 .col-md-8</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div>
+```
+
+#### Bootstrap Flex
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 <br><br>
 
 ---
-### Bootstrap button 
+### Bootstrap Components
+[Bootstrap Site](https://getbootstrap.com/docs/4.5/components/alerts/) list of component names / classes
+
+<br>
+
+#### Typography
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/content/typography/) Shows typography class name options
+
+
+* Headers like H1 can be replaced with **display-1** all the way to display 4
+* lead make a paragraph stand out
+* inline text
+    * mark to highlight
+    * del or s to strikethough
+    * u for underline
+    * small for subscript/ fine print
+    * strong to bold
+    * em as italicized
+* text alignment and wrapping and transform [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/text/)
+    * text-center, text-justify, text-left
+* blockquote for quotes
+* footer for naming a source or quote
+* list-style or list-unstyled
+* list-inline with list-inline-item to have span of list items
+<br>
+
+#### Bootstrap Alert
+<br>
+
+#### Bootstrap button 
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/buttons/) button section
+
+* outline buttons (btn-utline-warning)
+* sizes (btn-md)
+* active
+* disabled
+
 Example of a bootstrap button
 ```
 <button type="button" class="btn btn-warning"> Primary <button>
 ```
 <br>
 
----
-### FontAwesome Icon
+##### Bootstrap Badge
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/badge/) Also **badges** and **pills** 
+<br>
+
+##### Button Grouping
+[Bootstrap Site](https://getbootstrap.com/docs/4.1/components/button-group/) group buttons, may require javascript. make sure to use role="group".
+<br><br>
+
+#### Bootstrap Images
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/content/images/) 
+<br><br>
+
+#### Bootstrap Forms
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/forms/) Forms section and [custom forms](https://getbootstrap.com/docs/4.0/components/forms/#custom-forms)
+* class="form-row" (form grid overrides default column gutters)
+    * class="form-group" (adds structure to forms)
+        * class="form control"
+<br>
+
+##### Input group
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/input-group/) input groups extend form controls
+
+<br><br>
+
+#### Bootstrap Navbar
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/navbar/) Responsive Navbar that collapses
+
+<br><br>
+
+#### Bootstrap Icon
+[Bootstrap Site](https://icons.getbootstrap.com/) Can also use Icons in forms using **Input Group**
+<br>
+
+[Tutorial Example](https://www.tutorialandexample.com/bootstrap-icons/) Bootstrap Icon examples
+
+<br><br>
+
+##### FontAwesome Icon
 Import Icon in [Bootstrap tutorial](https://fontawesome.com/v3.2.1/examples/)
 ```
 <i class="icon-facebook">Facebook</i> 
@@ -434,6 +548,10 @@ CSS for adding Font Awesome Icon, Icon tag inside of toggle. Showing how to sele
 ```
 <br>
 
+Resources
+* Font Awesome Sizing Icons [FontAwesome Site](https://fontawesome.com/v5.9.0/how-to-use/on-the-web/styling/sizing-icons)
+* 
+<br><br>
 ---
 ### Bootstrap Accordion Example 
 [Bootstrap Accordion Docs](https://getbootstrap.com/docs/4.5/components/collapse/)
