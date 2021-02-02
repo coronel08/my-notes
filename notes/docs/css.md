@@ -394,7 +394,25 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
 ```
 <br>
 
-### Bootstrap Spacing
+### Bootstrap Components
+[Bootstrap Site](https://getbootstrap.com/docs/4.5/components/) list of component names / classes. Popular ones below.
+* Buttons
+* Card
+* Carousel
+* Collapse
+* Dropdown
+* Forms
+* Modal
+* Navbar
+* Progress
+<br><br>
+
+### Bootstrap Utilities
+[Bootstrap Site](https://getbootstrap.com/docs/4.1/layout/utilities-for-layout/) Easy way to do CSS styling using Bootstrap Classes instead
+<br>
+
+
+#### Bootstrap Spacing
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/spacing/) Spacing. Sizing goes from 0-5 or auto. 
 * m = margin
 * p = padding
@@ -405,7 +423,12 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
     * x = both left and right
     * y = both top and bottom
     * blank = all 4 sides
+<br>
+
+#### Bootstrap Flex
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 <br><br>
+
 
 
 --- 
@@ -430,21 +453,11 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
 </div>
 ```
-
-#### Bootstrap Flex
-[Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 <br><br>
 
 ---
-### Bootstrap Components
-[Bootstrap Site](https://getbootstrap.com/docs/4.5/components/alerts/) list of component names / classes
-
-<br>
-
-#### Typography
+### Typography
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/content/typography/) Shows typography class name options
-
-
 * Headers like H1 can be replaced with **display-1** all the way to display 4
 * lead make a paragraph stand out
 * inline text
@@ -460,15 +473,12 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
 * footer for naming a source or quote
 * list-style or list-unstyled
 * list-inline with list-inline-item to have span of list items
-<br>
+<br><br>
 
-#### Bootstrap Alert
-<br>
-
-#### Bootstrap button 
+---
+### Bootstrap button 
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/components/buttons/) button section
-
-* outline buttons (btn-utline-warning)
+* outline buttons (btn-outline-warning)
 * sizes (btn-md)
 * active
 * disabled
@@ -479,44 +489,46 @@ Example of a bootstrap button
 ```
 <br>
 
-##### Bootstrap Badge
-[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/badge/) Also **badges** and **pills** 
-<br>
-
-##### Button Grouping
+#### Button Grouping
 [Bootstrap Site](https://getbootstrap.com/docs/4.1/components/button-group/) group buttons, may require javascript. make sure to use role="group".
 <br><br>
 
-#### Bootstrap Images
+---
+### Bootstrap Badge
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/components/badge/) Also **badges** and **pills** 
+<br><br>
+
+---
+### Bootstrap Images
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/content/images/) 
 <br><br>
 
-#### Bootstrap Forms
+---
+### Bootstrap Forms
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/components/forms/) Forms section and [custom forms](https://getbootstrap.com/docs/4.0/components/forms/#custom-forms)
 * class="form-row" (form grid overrides default column gutters)
     * class="form-group" (adds structure to forms)
         * class="form control"
 <br>
 
-##### Input group
+#### Input group
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/components/input-group/) input groups extend form controls
-
 <br><br>
 
-#### Bootstrap Navbar
+---
+### Bootstrap Navbar
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/components/navbar/) Responsive Navbar that collapses
-
 <br><br>
 
-#### Bootstrap Icon
+---
+### Bootstrap Icon
 [Bootstrap Site](https://icons.getbootstrap.com/) Can also use Icons in forms using **Input Group**
 <br>
 
 [Tutorial Example](https://www.tutorialandexample.com/bootstrap-icons/) Bootstrap Icon examples
-
 <br><br>
 
-##### FontAwesome Icon
+#### FontAwesome Icon
 Import Icon in [Bootstrap tutorial](https://fontawesome.com/v3.2.1/examples/)
 ```
 <i class="icon-facebook">Facebook</i> 
@@ -550,8 +562,8 @@ CSS for adding Font Awesome Icon, Icon tag inside of toggle. Showing how to sele
 
 Resources
 * Font Awesome Sizing Icons [FontAwesome Site](https://fontawesome.com/v5.9.0/how-to-use/on-the-web/styling/sizing-icons)
-* 
 <br><br>
+
 ---
 ### Bootstrap Accordion Example 
 [Bootstrap Accordion Docs](https://getbootstrap.com/docs/4.5/components/collapse/)
