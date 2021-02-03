@@ -158,8 +158,8 @@ Units of measurement for CSS em/rem/px/% etc[w3 schools](https://www.w3schools.c
 ---
 ### Selectors
 Order of selectors specificity, the more specific css will override the lower ones.
-* ID (Most specific)
-* Class
+* ID (Most specific) Ex: #heading-group
+* Class Ex: .class-name
 * Element
 
 

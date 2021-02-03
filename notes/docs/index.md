@@ -3,6 +3,17 @@ For [mkdocs tutorial](https://towardsdatascience.com/creating-software-documenta
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
+
+## Helpful Links
+**HTML Templates**
+[HTML5up](https://html5up.net/)
+
+
+**Photos and Videos**
+* [Unsplash Photos](https://unsplash.com/)
+* [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)
+
+
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.
 * `mkdocs serve` - Start the live-reloading docs server.
