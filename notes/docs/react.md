@@ -132,6 +132,7 @@ An extensive tutorial on building a react Todo List from scratch. [vegibit site]
 
 [Brian Design YT](https://www.youtube.com/watch?v=3nLTB_E6XAM) building a React site 2hr tutorial. Have not gone through it
 
+[Dev.to](https://dev.to/rafavls/creating-a-weather-app-with-reactjs-part-2-5gi3) Creating a weather app with React, Openweather API, Google Geocode API
 
 ### Navbar
 [Fireship YT](https://www.youtube.com/watch?v=IF6k0uZuypA) Recreating Facebook Navbar using React, CSS, and HTML
