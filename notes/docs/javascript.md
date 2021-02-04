@@ -20,6 +20,7 @@
     * [Arrow Functions](#arrow-functions)
     * [Function](#function)
     * [Promises](#promises)
+    * [API](#api)
 
 ---
 ## Closures and Nesting Functions
@@ -299,3 +300,8 @@ function getRectArea(width, height){
 
 
 [CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
+<br><br>
+
+---
+## API
+Using Json Server [Git](https://github.com/typicode/json-server) to create an Api tutorial using json-server to read json DB, Apollo server to work with Express, and then GraphQL  [Codeburst](https://codeburst.io/how-to-implement-a-graphql-api-on-top-of-an-existing-rest-api-db8b343ddb5a)

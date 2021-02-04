@@ -8,6 +8,7 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
 ## Table of Contents
 * [HTML](#html)
     * [Semantic Elements](#semantic-elements)
+        * [Form Example](#form-example)
     * [Button](#button)
 * [CSS](#css)
     * [Stylesheet](#stylesheet)
@@ -30,21 +31,39 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
     * [Flexbox](#flexbox)
         * [Example of Flex ](#example-of-flex)
     * [CSS grid](#css-grid)
+    * [Box Sizing](#box-sizing)
 * [Lightbox Photos](#lightbox-photos)
 * [Bootstrap](#bootstrap)
-    * [Grid System](#grid-system)
     * [Bootstrap Components](#bootstrap-components)
-        * [Bootstrap Button ](#bootstrap-button)
-        * [FontAwesome Icon](#fontawesome-icon)
+    * [Bootstrap Utilities](#bootstrap-utilities)
+        * [Bootstrap Spacing](#bootstrap-spacing)
+        * [Bootstrap Flex](#bootstrap-flex)
+    * [Grid System](#grid-system)
+        * [Container](#container)
+        * [Row and Col](#row-and-col)
+    * [Typography](#typography)
+    * [Bootstrap Button](#bootstrap-button)
+        * [Button Grouping](#button-grouping)
+    * [Bootstrap Badge](#bootstrap-badge)
+    * [Bootstrap Images](bootstrap-images)
+    * [Bootstrap Forms](#bootstrap-forms)
+        * [Input Group](#input-group)
+    * [Bootstrap Navbar](#bootstrap-navbar)
+    * [Bootstrap Icon](#bootstrap-icon)
+        * [FontAwesome Icon](font-awesome-icon)
     * [Bootstrap Accordion Example](#bootstrap-accordion-example)
 
 ---
 ## HTML
-Can use [Emmet shortcuts](https://docs.emmet.io/cheat-sheet/) for html
+Can use [Emmet shortcuts](https://docs.emmet.io/cheat-sheet/) for html.
 
+
+[CSS Tricks](https://css-tricks.com/best-way-implement-wrapper-css/) Use Wrapper to wrap body and section 
+* Wrapper vs Section 
+* Body vs Div
 
 ### Semantic Elements
-Use more specified elements rather than Divs, not included the ** tables element **
+Use more specified elements rather than Divs, not included the **tables element**
 
 [MDN Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms)<br> also has table elements here
 [Input types MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) such as radio, checkbox, date, email etc. As well as attributes like value, name, placeholder, required etc
@@ -74,6 +93,7 @@ Use a form to search google results
 </form>
 ```
 <br>
+
 
 ### Button 
 Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
@@ -372,7 +392,13 @@ grid{
     grid-column-gap: 10px;
 }
 ```
+<br><br>
 
+---
+### Box-Sizing
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing) Use for sizing and layout elements.
+* content-box default box behavior
+* border-box includes padding in box width
 
 ---
 ## Lightbox Photos
@@ -385,6 +411,11 @@ grid{
 ## Bootstrap
 BOOTSTRAP Tutorial[Bootstrap site](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
 
+
+[Bootstrap site](https://getbootstrap.com/docs/3.4/css/) Introduction 
+* Media Queries 
+* Grid Options
+    * Nesting Columns Column Ordering
 
 Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported into head
 ```
@@ -406,6 +437,8 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
 * Navbar
 * Progress
 <br><br>
+
+**Bootstrap Rows then Cols need to be in a container/container-fluid class**
 
 ### Bootstrap Utilities
 [Bootstrap Site](https://getbootstrap.com/docs/4.1/layout/utilities-for-layout/) Easy way to do CSS styling using Bootstrap Classes instead

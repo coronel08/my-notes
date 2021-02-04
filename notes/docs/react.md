@@ -18,11 +18,12 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
     * [Switch vs Router](#switch-vs-router)
     * [Hashrouter vs Browserrouter](#hashrouter-vs-browserrouter)
     * [Navlink vs Link](#navlink-vs-link)
-    * [Inline Styling React](Inline-Styling-React)
+    * [Styling](#styling)
+        * [Inline Styling React](#inline-styling-react)
+    * [Tutorials](#tutorials)
         * [Navbar](#navbar)
         * [Flashcard](#flashcard)
         * [Reactstrap](#reactstrap)
-    * [Tutorials](#tutorials)
 
 
 ---
@@ -114,20 +115,23 @@ Example of React Navlink and Route. Navlink is used to specify which element is 
 <br><br>
 
 ---
-## Inline Styling React
-Styled components using inline example.
-```
-import styled from "styled-component"
-const StyledMenu = styled.div`
-    .menu {
-        list-style:none;
-        background-color: white;
-    }
-    .menu.active {
-        background-color:black;
-    }
-`
-```
+## Styling
+
+
+### Inline Styling React
+Styled components are inline and can be used to define styles and reusable components. [Styled-Components Site](https://styled-components.com/docs/basics) Getting Started styling components
+
+
+[Styled-Components Site](https://styled-components.com/docs/faqs#can-i-nest-rules) Faqs show to Nest Rules, CSS Frameworks, Override Styles, Attrs
+<br>
+
+---
+## Tutorials
+An extensive tutorial on building a react Todo List from scratch. [vegibit site](https://vegibit.com/create-a-react-element-from-scratch/)
+
+
+[Brian Design YT](https://www.youtube.com/watch?v=3nLTB_E6XAM) building a React site 2hr tutorial. Have not gone through it
+
 
 ### Navbar
 [Fireship YT](https://www.youtube.com/watch?v=IF6k0uZuypA) Recreating Facebook Navbar using React, CSS, and HTML
@@ -142,10 +146,3 @@ const StyledMenu = styled.div`
 ### Reactstrap
 A bootstrap for React
 <br><br>
-
----
-## Tutorials
-An extensive tutorial on building a react Todo List from scratch. [vegibit site](https://vegibit.com/create-a-react-element-from-scratch/)
-
-
-[Brian Design YT](https://www.youtube.com/watch?v=3nLTB_E6XAM) building a React site 2hr tutorial. Have not gone through it
