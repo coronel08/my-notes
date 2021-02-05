@@ -1,26 +1,238 @@
-# Javascript Notes
-* increment = ++
-* decrement = --
+# Javascript Basics
+number += 1
+* increment ++
+* decrement --
+
+
+Use **let** or **const** over **var**. Case Styling/Naming Conventions:
+* camelCasing for objects
+* start booleans with is ex: const isTrue = true
 <br><br>
 
----
 ## Table of Contents
-* [Javascript Notes](#javascript-notes)
-    * [Closures and Nesting Functions](#closures-and-nesting-functions)
-        * [private variable](#private-variable)
-    * [Recursion vs Loop](#recursion-vs-loop)
+* [Javascript Basics](#javascript-basics)
+    * [Math](#math)
+    * [Logical Operators](#logical-operators)
+        * [Conditionals](#conditionals)
+        * [Switch](#switch)
+        * [Ternary](#ternary)
+    * [String Methods](#string-methods)
+        * [Template Literals](#template-literals)
     * [Array Methods](#array-methods)
         * [splicing](#splicing)
         * [slice](#slice)
+        * [Sorting Arrays](#sorting-arrays)
+            * [Highest or Lowest Array Value](#highest-or-lowest-array-value)
+    * [Closures and Nesting Functions](#closures-and-nesting-functions)
+        * [private variable](#private-variable)
+    * [Recursion vs Loop](#recursion-vs-loop)
     * [Sorting Arrays](#sorting-arrays)
     * [Array Itteration](#Array-Itteration)
     * [Strip HTML strings](#Strip-HTML-strings)
     * [Destructuring](#Destructuring)
-    * [Conditionals vs Switch vs Ternary](#Conditionals-vs-Switch-vs-Ternary)
     * [Arrow Functions](#arrow-functions)
     * [Function](#function)
     * [Promises](#promises)
     * [API](#api)
+        * [Requests](#requests)
+
+
+---
+## Math
+* random ( gives random number between 0 - 1)
+```
+<!-- Up to 100, +1 to avoid zero's -->
+Math.floor(Math.random() * 100) + 1
+```
+* round 
+* abs (removes neg)
+* floor (removes decimal)
+* ceil (removes decimal and rounds up)
+<br><br>
+
+---
+## Logical Operators
+* && (and)
+* || (or)
+* ! (not)
+
+<br><br>
+
+
+### Conditionals 
+[Conditionals w3](https://www.w3schools.com/js/js_if_else.asp). If, else if, else statements
+```
+<!-- By default the && runs before || but can change that with parenthesis
+if ((age > 0 && age < 5) || age <= 100 && age >= 65){}
+ -->
+if (typeof(age) == "number"){
+    if (age > 0 && age < 5 || age <= 100 && age >= 65){
+        console.log("Free!!!")
+    } else if (age >= 5 && age < 13){
+        console.log("$10")
+    } else if ( age >= 13 && age < 65 ){
+        console.log("$20")
+    } else {
+        console.log("Invalid?")
+    }
+} else {
+    console.log("not a number?")
+}
+```
+Truthy Boolean(if exist/true)
+```
+let arg= 10
+
+if (arg){
+    console.log(arg)
+}
+```
+
+### Switch
+[Switch w3](https://www.w3schools.com/js/js_switch.asp). 
+
+The getDay operator returns a number for the Day. The Switch conditional gives a name to the number.
+```
+switch (new Date().getDay()){
+    case 0:
+        day = "Sunday";
+        break;
+    case 1:
+        day = "Monday";
+        break;
+    case 3:
+        day = "Other";
+        break;
+}
+```
+
+### Ternary 
+[Ternary Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+```
+var age = 26
+var beverage = (age >= 21) ? "Beer":"Juice"
+```
+<br><br>
+
+---
+## Function
+Function Expression, need to be declared before call
+```
+const getRectArea = function(width, height){
+    return width * height;
+}
+
+```
+Function Declaration, can be called at any point
+```
+function getRectArea(width, height){
+    return width * height
+}
+```
+<br><br>
+
+
+--- 
+## String Methods
+[W3schools](https://www.w3schools.com/jsref/jsref_obj_string.asp)
+* concat
+* repeat
+* replace
+* replaceAll
+* slice
+* split
+* trim
+
+
+### Template Literals
+Allow embedded expressions, **Use backticks not single quotes** 
+```
+`I counted ${3 + 4} sheep`
+```
+<br><br>
+
+
+---
+## Array methods
+* [array method chart](https://www.w3schools.com/jsref/jsref_obj_array.asp)
+* [array method examples](https://www.w3schools.com/js/js_array_methods.asp)
+
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=R8rmfD9Y5-c) 8 Javascript array tutorials. 
+
+<br><br>
+
+### Add or Delete an item in an array
+
+Can add or delete to an array using **pop/push** for last items. **Shift/unshift** for begining of array. 
+
+Can also add to back of an array by using **Length**
+```
+fruits[fruits.length] = "Pineapple"
+```
+Using ES6, use [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+```
+fruits = ["start", ...fruits]
+```
+<br>
+
+Change value of an item by using array index. changes apple to Kiwi
+```
+var fruits = ['Apple','Orange']
+fruits[0] = 'Kiwi'
+```
+<br>
+
+### Splicing
+Using Splice to add new items to an array. <br>
+Splice(start,del, items)
+```
+fruits.splice(1,0,"item1")
+```
+
+### Slice
+Slice method slices out a piece of an array into a new array. <br> 
+slice(start,stop)
+<br> <br>
+
+
+### Sorting Arrays
+[W3 Sorting Arrays page](https://www.w3schools.com/js/js_array_sort.asp)
+sort(): Sorts an array alphabetically 
+reverse(): reverse sort
+random use [Fisher Yates Method](https://www.w3schools.com/js/js_array_sort.asp)<br><br>
+
+
+#### Highest or Lowest Array Value
+**Sorting Ascending**
+Now points[0] will return lowest value
+points[points.length - 1] will return highest value
+```
+var points = [40,100,1,5,25,10]
+points.sort(function(a,b){return a - b})
+```
+**Sorting Descending**
+```
+points.sort((a,b) => b - a)
+```
+#### Can also use Math.max() or Math.min()
+<br><br>
+
+---
+## Array Itteration
+[Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach
+[W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp)
+[High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/)
+* forEach(): need to learn, check link above
+* map()
+* filter(): creates a new array with items that pass filter
+* reduce(): adds all values
+* every(): checks if every item passes test/function
+* some(): check if some items pass test/function
+* indexOf(): returns index of item looking for
+* lastIndexOf(): returns last occurence of item 
+* find(): returns value of item that passes test/fucntion
+* findIndex(): 
+<br><br>
 
 ---
 ## Closures and Nesting Functions
@@ -111,87 +323,6 @@ function countdown(number){
 <br><br>
 
 ---
-## Array methods
-* [array method chart](https://www.w3schools.com/jsref/jsref_obj_array.asp)
-* [array method examples](https://www.w3schools.com/js/js_array_methods.asp)
-
-[Web Dev Simplified YT](https://www.youtube.com/watch?v=R8rmfD9Y5-c) 8 Javascript array tutorials. 
-
-<br><br>
-
-### Add or Delete an item in an array
-
-Can add or delete to an array using **pop/push** for last items. **Shift/unshift** for begining of array. 
-
-Can also add to back of an array by using **Length**
-```
-fruits[fruits.length] = "Pineapple"
-```
-Using ES6, use [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
-```
-fruits = ["start", ...fruits]
-```
-<br>
-
-Change value of an item by using array index. changes apple to Kiwi
-```
-var fruits = ['Apple','Orange']
-fruits[0] = 'Kiwi'
-```
-<br>
-
-### Splicing
-Using Splice to add new items to an array. <br>
-Splice(start,del, items)
-```
-fruits.splice(1,0,"item1")
-```
-
-### Slice
-Slice method slices out a piece of an array into a new array. <br> 
-slice(start,stop)
-<br> <br>
-
----
-## Sorting Arrays
-[W3 Sorting Arrays page](https://www.w3schools.com/js/js_array_sort.asp)
-sort(): Sorts an array alphabetically 
-reverse(): reverse sort
-random use [Fisher Yates Method](https://www.w3schools.com/js/js_array_sort.asp)<br><br>
-
-### Highest or Lowest Array Value
-**Sorting Ascending**
-Now points[0] will return lowest value
-points[points.length - 1] will return highest value
-```
-var points = [40,100,1,5,25,10]
-points.sort(function(a,b){return a - b})
-```
-**Sorting Descending**
-```
-points.sort((a,b) => b - a)
-```
-#### Can also use Math.max() or Math.min()
-<br><br>
-
----
-## Array Itteration
-[Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach
-[W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp)
-[High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/)
-* forEach(): need to learn, check link above
-* map()
-* filter(): creates a new array with items that pass filter
-* reduce(): adds all values
-* every(): checks if every item passes test/function
-* some(): check if some items pass test/function
-* indexOf(): returns index of item looking for
-* lastIndexOf(): returns last occurence of item 
-* find(): returns value of item that passes test/fucntion
-* findIndex(): 
-<br><br>
-
----
 ## Strip HTML strings
 strip the html from an element
 ```
@@ -241,60 +372,6 @@ function printUser{}
 <br><br>
 
 ---
-## Conditionals vs Switch vs Ternary
-[Conditionals w3](https://www.w3schools.com/js/js_if_else.asp). If, Else statements
-```
-if (time < 10){
-    greeting="Good morning"
-} else if (time < 20){
-    greeting = "Good day"
-} else {
-    greeting = "Good evening"
-}
-```
-
-[Switch w3](https://www.w3schools.com/js/js_switch.asp). 
-
-The getDay operator returns a number for the Day. The Switch conditional gives a name to the number.
-```
-switch (new Date().getDay()){
-    case 0:
-        day = "Sunday";
-        break;
-    case 1:
-        day = "Monday";
-        break;
-    case 2:
-        day = "Tuesday";
-        break;
-}
-```
-
-[Ternary Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
-```
-var age = 26
-var beverage = (age >= 21) ? "Beer":"Juice"
-```
-<br><br>
-
----
-## Function
-Function Expression, need to be declared before call
-```
-const getRectArea = function(width, height){
-    return width * height;
-}
-
-```
-Function Declaration, can be called at any point
-```
-function getRectArea(width, height){
-    return width * height
-}
-```
-<br><br>
-
----
 ## Promises
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
 
@@ -305,3 +382,19 @@ function getRectArea(width, height){
 ---
 ## API
 Using Json Server [Git](https://github.com/typicode/json-server) to create an Api tutorial using json-server to read json DB, Apollo server to work with Express, and then GraphQL  [Codeburst](https://codeburst.io/how-to-implement-a-graphql-api-on-top-of-an-existing-rest-api-db8b343ddb5a)
+
+### Requests
+5 Ways to make Http request in node/javascript
+[Logrocket](https://blog.logrocket.com/5-ways-to-make-http-requests-in-node-js/)
+and [Twilio](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html)
+<br>
+
+Can test out API's by running the command below 
+```
+node {{filename}}
+```
+* HTTPS module
+* Axios
+* Got
+* Super Agent
+* node-fetch
