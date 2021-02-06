@@ -46,20 +46,23 @@ let plants = [
         * [Ternary](#ternary)
     * [String Methods](#string-methods)
         * [Template Literals](#template-literals)
+        * [Strip HTML strings](#Strip-HTML-strings)
     * [Array Methods](#array-methods)
-        * [splicing](#splicing)
-        * [slice](#slice)
+        * [Splicing](#splicing)
+        * [Slice](#slice)
         * [Sorting Arrays](#sorting-arrays)
             * [Highest or Lowest Array Value](#highest-or-lowest-array-value)
+    * [Array Itteration](#array-itteration)
     * [Objects Key/Value Pairs](#objects-key-value)
+        * [Iterate Objects](#iterate-objects)
     * [Loops](#loops)
+        * [For Loop](#for-loop)
+            * [For Of Loop](#for-of-loop)
+        * [While Loop](#while-loop)
         * [Recursion vs Loop](#recursion-vs-loop)
     * [Closures and Nesting Functions](#closures-and-nesting-functions)
         * [private variable](#private-variable)
-    * [Sorting Arrays](#sorting-arrays)
-    * [Array Itteration](#Array-Itteration)
-    * [Strip HTML strings](#Strip-HTML-strings)
-    * [Destructuring](#Destructuring)
+    * [Destructuring](#destructuring)
     * [Arrow Functions](#arrow-functions)
     * [Function](#function)
     * [Promises](#promises)
@@ -178,6 +181,16 @@ function getRectArea(width, height){
 Allow embedded expressions, **Use backticks not single quotes** 
 ```
 `I counted ${3 + 4} sheep`
+```
+<br>
+
+
+### Strip HTML strings
+strip the html from an element
+```
+const stripHTMLTags = str => str.replace(/<[^>]*>/g, '')
+<!-- Example -->
+stripHTMLTags ('<a href="#"> Me and you </a>')
 ```
 <br><br>
 
@@ -337,6 +350,25 @@ for (let i = 0; i < animals.length; i++){
     console.log(animals[i])
 }
 ```
+<br>
+
+#### For Of Loop
+Easier way to loop and iterate arrays
+```
+let items = ['book','car','can']
+for (let item of items){
+    console.log(item)
+}
+```
+Refractor student nested for loop
+```
+for (let row of seatingChart){
+    for (let student of row){
+        console.log(student)
+    }
+}
+```
+
 <br><br>
 
 ### While Loop
@@ -353,24 +385,7 @@ while (guess !== secret ){
 } 
 console.log("Correct")
 ```
-<br><br>
-
-### For Of Loop
-Easier way to loop and iterate arrays
-```
-let items = ['book','car','can']
-for (let item of items){
-    console.log(item)
-}
-```
-Refractor student nested for loop
-```
-for (let row of seatingChart){
-    for (let student of row){
-        console.log(student)
-    }
-}
-```
+<br>
 
 #### Recursion vs Loop
 For Loop below / Iteration
@@ -446,6 +461,8 @@ counter1.increment()
 counter1.value()
 counter2.value()
 ```
+<br><br>
+
 ### private variable 
 ```
 function secretVariable(){
@@ -456,17 +473,6 @@ function secretVariable(){
 }
 var getPrivateVariable = secretVariable()
 console.log(getPrivateVariable())
-```
-<br><br>
-
-
----
-## Strip HTML strings
-strip the html from an element
-```
-const stripHTMLTags = str => str.replace(/<[^>]*>/g, '')
-<!-- Example -->
-stripHTMLTags ('<a href="#"> Me and you </a>')
 ```
 <br><br>
 
