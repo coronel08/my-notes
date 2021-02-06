@@ -9,6 +9,34 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
 * start booleans with is ex: const isTrue = true
 <br><br>
 
+
+Objects / Key value pairs, can mix and match objects and arrays
+```
+const fitBitData{
+    steps : 2131
+    day : "Thursday"
+    workout : ['steps', 'stairs']
+    weight : {
+        start : 180,
+        goal : 160
+    }
+}
+```
+<br>
+
+Array / List can mix and match objects and arrays
+```
+let plants = [
+    ['fruits', 'apple','lemon'],
+    ['vegetable','lettuce','kale']
+    {
+        tree: apple
+        size : large
+    }
+]
+```
+<br>
+
 ## Table of Contents
 * [Javascript Basics](#javascript-basics)
     * [Math](#math)
@@ -23,9 +51,11 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
         * [slice](#slice)
         * [Sorting Arrays](#sorting-arrays)
             * [Highest or Lowest Array Value](#highest-or-lowest-array-value)
+    * [Objects Key/Value Pairs](#objects-key-value)
+    * [Loops](#loops)
+        * [Recursion vs Loop](#recursion-vs-loop)
     * [Closures and Nesting Functions](#closures-and-nesting-functions)
         * [private variable](#private-variable)
-    * [Recursion vs Loop](#recursion-vs-loop)
     * [Sorting Arrays](#sorting-arrays)
     * [Array Itteration](#Array-Itteration)
     * [Strip HTML strings](#Strip-HTML-strings)
@@ -164,7 +194,10 @@ Allow embedded expressions, **Use backticks not single quotes**
 ### Add or Delete an item in an array
 
 Can add or delete to an array using **pop/push** for last items. **Shift/unshift** for begining of array. 
-
+* Push (add to end)
+* Pop (remove from end)
+* Shift (remove from start)
+* Unshift (add to start)
 Can also add to back of an array by using **Length**
 ```
 fruits[fruits.length] = "Pineapple"
@@ -183,14 +216,14 @@ fruits[0] = 'Kiwi'
 <br>
 
 ### Splicing
-Using Splice to add new items to an array. <br>
+Using Splice to add new items to an array. Changes array <br>
 Splice(start,del, items)
 ```
 fruits.splice(1,0,"item1")
 ```
 
 ### Slice
-Slice method slices out a piece of an array into a new array. <br> 
+Slice method slices out a piece of an array into a new array. Doesn't chage array <br> 
 slice(start,stop)
 <br> <br>
 
@@ -232,6 +265,133 @@ points.sort((a,b) => b - a)
 * lastIndexOf(): returns last occurence of item 
 * find(): returns value of item that passes test/fucntion
 * findIndex(): 
+<br><br>
+
+---
+## Objects Key-Value
+Objects are key-value pairs similar to Dicts in python. Different from an array.
+```
+const fitBitData = {
+    totalSteps : 234234
+    totalMiles : 324.1
+    workoutsThisWeek : '5 of 7'
+
+}
+```
+**Can access objects in two ways.**
+* dot method, allows for variables 
+* array method
+```
+let birthYear = 2020
+
+let years = {
+    1999 : "Good"
+    2020 : "Bad" 
+}
+
+years.1999  <!-- returns good  -->
+years[birthYear]  <!-- returns bad -->
+```
+<br>
+
+### Iterate Objects
+ Object.entries() both keys and values //  Object.keys()   //  Object.values()
+<br>
+
+#### For in
+Arrays use **in** instead of **of** to Loop over an array. Can also use Object.values to iterate.
+```
+testScores ={
+    kim:89
+    shawn:91
+    marlon:72
+}
+
+for (let person in testScores){
+    console.log('${person} scored ${testScores[person]}')
+}
+```
+<br><br>
+
+---
+## Loops
+* for loop
+* while loop
+* for ... of loop
+* for ... in loop 
+
+### For Loop
+Loops can be nested helpfull for nested arrays. 
+
+Ex:for loop starts at 1,stops at 10, adds 1 each time
+```
+for (let i=1; i <= 10; i++ ){
+    console.log(i)
+}
+```
+Looping over an array
+```
+const animals = ['lions', 'tigers', 'bears']
+
+for (let i = 0; i < animals.length; i++){
+    console.log(animals[i])
+}
+```
+<br><br>
+
+### While Loop
+```
+let secret = 'password'
+let guess = prompt("Enter the code")
+
+while (guess !== secret ){
+    guess = prompt(guess)
+    console.log("Wrong password")
+    if (guess === "stop" || guess === "exit"){
+        break;
+    }
+} 
+console.log("Correct")
+```
+<br><br>
+
+### For Of Loop
+Easier way to loop and iterate arrays
+```
+let items = ['book','car','can']
+for (let item of items){
+    console.log(item)
+}
+```
+Refractor student nested for loop
+```
+for (let row of seatingChart){
+    for (let student of row){
+        console.log(student)
+    }
+}
+```
+
+#### Recursion vs Loop
+For Loop below / Iteration
+```
+function countdown(number){
+    for (let i=number; i > 0; i--) {
+        console.log(i)
+    }
+}
+```
+Recursion below, a recursive function calls itself
+```
+function countdown(number){
+    if(number === 0){
+        return
+    }
+
+    console.log(number)
+    countdown(number - 1)
+}
+```
 <br><br>
 
 ---
@@ -299,28 +459,6 @@ console.log(getPrivateVariable())
 ```
 <br><br>
 
----
-## Recursion vs Loop
-For Loop below / Iteration
-```
-function countdown(number){
-    for (let i=number; i > 0; i--) {
-        console.log(i)
-    }
-}
-```
-Recursion below, a recursive function calls itself
-```
-function countdown(number){
-    if(number === 0){
-        return
-    }
-
-    console.log(number)
-    countdown(number - 1)
-}
-```
-<br><br>
 
 ---
 ## Strip HTML strings
