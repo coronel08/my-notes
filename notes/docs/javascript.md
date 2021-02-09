@@ -71,6 +71,7 @@ let plants = [
             * [For Of Loop](#for-of-loop)
         * [While Loop](#while-loop)
         * [Recursion vs Loop](#recursion-vs-loop)
+    * [Rest and Spread](#rest-spread)
     * [Destructuring](#destructuring)
     * [Promises](#promises)
 * [Node and Express](#node-and-express)
@@ -359,7 +360,7 @@ Can also add to back of an array by using **Length**
 ```
 fruits[fruits.length] = "Pineapple"
 ```
-Using ES6, use [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+Using spread parameter
 ```
 fruits = ["start", ...fruits]
 ```
@@ -591,28 +592,43 @@ try{
     console.log("ERorr ! 1 !")
 }
 ```
-
 <br><br>
+---
 
+## Rest Spread
+Using ES6, use [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), spread examples can be seen in destructuring example. 
+
+Rest parameter can be used for passing an array into an object and apply array functions 
+```
+function sum(...nums){
+    return nums.reduce((prev,current) => prev + current)
+}
+
+console.log(sum(12,34,2))
+```
+<br><br>
 
 ---
 ## Destructuring
-[Web Dev Simplified YT](https://www.youtube.com/watch?v=NIq3qLaHCIs) Array and Object destructuring tutorial
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=NIq3qLaHCIs) **Array** and **Object** destructuring tutorial
 
+### Array Destructuring
 Example below skips b and then defines the rest using rest/spread operator. Based on position
 ```
 const alphabet = ['a','b','c','d','e','f']
 const [a,,c,...rest] = alphabet
 console.log(a,c,rest)
 ``` 
-A function that returns an array thaat gets deconstructed
+A function that returns an array that gets deconstructed
 ```
 function testFunction(num1,num2){
     return [a+b, a*b]
 }
 const [sum, multiply, division='No'] = testFunction(3,4)
 ```
-OBJECT DESTRUCTURING, instead of being based on position it is based on the name of the key. Need to research on how to destructure into a function
+
+### Object Destructuring
+instead of being based on position it is based on the name of the key. Need to research on how to destructure into a function
 ```
 const person1 = {
     name:"Frank",
@@ -622,10 +638,33 @@ const person1 = {
         state: "Ca"
     }
 }
-
-const {name, address:{ city }} = person1
+<!-- name is renamed to name1 so we can reference it as name1 instead  of name -->
+const {name: name1, address:{ city }, zip='1234'} = person1
 
 function printUser{}
+```
+
+### Param Destructuring
+put the object key in the functions parameters{}
+```
+const runner = {
+    first:"Tom",
+    age: 36,
+    last:"Henderson",
+}
+
+function fullName({first,last}){
+    return `${first} ${last}`
+}
+
+<!-- longhand version
+function fullName(runner){
+    const first, last = runner
+    return `${first} ${last}`
+}
+ -->
+
+fullName(runner)
 ```
 <br><br>
 
