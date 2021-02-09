@@ -14,12 +14,14 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
         * [hooks](#hooks)
             * [useState](#usestate)
             * [useEffect](#useeffect)
+            * [useFetch](#usefetch)
     * [API](#api)
     * [Switch vs Router](#switch-vs-router)
     * [Hashrouter vs Browserrouter](#hashrouter-vs-browserrouter)
     * [Navlink vs Link](#navlink-vs-link)
     * [Styling](#styling)
         * [Inline Styling React](#inline-styling-react)
+    * [Redux](#redux)
     * [Tutorials](#tutorials)
         * [Navbar](#navbar)
         * [Flashcard](#flashcard)
@@ -82,6 +84,10 @@ useEffect replacing componentDidMount [stackoverflow](https://stackoverflow.com/
 
 
 [Webdev blog](https://thewebdev.info/2020/05/05/react-hooks-equivalent-of-componentdidmount/) on using useEffect
+<br>
+
+#### UseFetch
+[Medium](https://medium.com/swlh/write-a-custom-reusable-hook-usefetch-1443d8d4e1e1) useFetch to write a custom reusable hook
 <br><br>
 
 ---
@@ -123,7 +129,13 @@ Styled components are inline and can be used to define styles and reusable compo
 
 
 [Styled-Components Site](https://styled-components.com/docs/faqs#can-i-nest-rules) Faqs show to Nest Rules, CSS Frameworks, Override Styles, Attrs
-<br>
+<br><br>
+
+---
+## Redux
+[Medium](https://medium.com/swlh/understanding-react-redux-and-react-redux-c52d46dd1a04) Understanding react Store -> View -> Actions -> Reduce -> Store
+
+
 
 ---
 ## Tutorials

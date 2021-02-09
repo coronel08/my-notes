@@ -5,7 +5,7 @@ number += 1
 
 
 Use **let** or **const** over **var**. Case Styling/Naming Conventions:
-* camelCasing for objects
+* camelCasing for objects and functions
 * start booleans with is ex: const isTrue = true
 <br><br>
 
@@ -44,6 +44,16 @@ let plants = [
         * [Conditionals](#conditionals)
         * [Switch](#switch)
         * [Ternary](#ternary)
+    * [Function](#function)
+        * [Closures and Nesting Functions](#closures-and-nesting-functions)
+            * [Private Variable](#private-variable)
+        * [High Order Functions](#high-order-functions)
+            * [Accept Functions as Arguments](#accept-functions-as-arguments)
+            * [Return a Function](#return-a-function)
+        * [Function Expression](#function-expression)
+        * [Function Declaration](#function-delcaration)
+        * [Function Methods](#function-methods)
+        * [Arrow Functions](#arrow-functions)
     * [String Methods](#string-methods)
         * [Template Literals](#template-literals)
         * [Strip HTML strings](#Strip-HTML-strings)
@@ -52,7 +62,8 @@ let plants = [
         * [Slice](#slice)
         * [Sorting Arrays](#sorting-arrays)
             * [Highest or Lowest Array Value](#highest-or-lowest-array-value)
-    * [Array Itteration](#array-itteration)
+        * [Array Itteration](#array-itteration-methods)
+            * [forEach](#forEach)
     * [Objects Key/Value Pairs](#objects-key-value)
         * [Iterate Objects](#iterate-objects)
     * [Loops](#loops)
@@ -60,12 +71,9 @@ let plants = [
             * [For Of Loop](#for-of-loop)
         * [While Loop](#while-loop)
         * [Recursion vs Loop](#recursion-vs-loop)
-    * [Closures and Nesting Functions](#closures-and-nesting-functions)
-        * [private variable](#private-variable)
     * [Destructuring](#destructuring)
-    * [Arrow Functions](#arrow-functions)
-    * [Function](#function)
     * [Promises](#promises)
+* [Node and Express](#node-and-express)
     * [API](#api)
         * [Requests](#requests)
 
@@ -98,7 +106,9 @@ Math.floor(Math.random() * 100) + 1
 <!-- By default the && runs before || but can change that with parenthesis
 if ((age > 0 && age < 5) || age <= 100 && age >= 65){}
  -->
-if (typeof(age) == "number"){
+if (typeof(age) !== "number"){
+    console.log("not a number?")
+} else {
     if (age > 0 && age < 5 || age <= 100 && age >= 65){
         console.log("Free!!!")
     } else if (age >= 5 && age < 13){
@@ -108,8 +118,6 @@ if (typeof(age) == "number"){
     } else {
         console.log("Invalid?")
     }
-} else {
-    console.log("not a number?")
 }
 ```
 Truthy Boolean(if exist/true)
@@ -149,6 +157,102 @@ var beverage = (age >= 21) ? "Beer":"Juice"
 
 ---
 ## Function
+### Closures and Nesting Functions
+[Closures Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+```
+function init(){
+    var private = 'Mozilla'
+    function displayName(){
+        return private
+    }
+    return displayName()
+}
+myInit = init()
+myInit()
+```
+** best Example ** can also be redone to use arrow functions
+```
+var counter = function(){
+    let privateCounter=0
+    function changeCount(value){
+        privateCounter += value
+    }
+
+    return{
+        increment:function(){
+            changeCount(1)
+        },
+        decrement:function(){
+            changeCount(-1)
+        },
+        value:function(){
+            return privateCounter
+        }
+    }
+}
+counter1=counter()
+counter2=counter()
+counter1.increment()
+counter1.value()
+counter2.value()
+```
+<br>
+
+
+#### Private Variable 
+```
+function secretVariable(){
+    let private = "secret variable"
+    return function(){
+        return private
+    }
+}
+var getPrivateVariable = secretVariable()
+console.log(getPrivateVariable())
+```
+<br><br>
+
+
+### High Order Functions
+Operate with other functions, they accept other functions as arguments or return a function
+<br>
+
+
+#### Accept functions as arguments
+```
+function rollTwice(func){
+    func()
+    func()
+}
+
+function diceRoll(){
+    roll = Math.floor( Math.random() * 6) + 1
+    console.log(roll)
+}
+
+callTwice(diceRoll)
+```
+<br>
+
+
+#### Return a function
+```
+function makeBetweenFunc(min, max){
+    return function(num){
+        return num >= min && num <= max;
+    }
+}
+
+let isChild = makeBetweenFunc(0,18)
+let isAdult = makeBetweenFunc(18,65)
+let isSenior = makeBetweenFunc(66,110)
+
+console.log(isChild(10))
+```
+<br><br>
+
+
+### Function Expression
 Function Expression, need to be declared before call
 ```
 const getRectArea = function(width, height){
@@ -156,11 +260,51 @@ const getRectArea = function(width, height){
 }
 
 ```
+<br><br>
+
+
+### Function Declaration
 Function Declaration, can be called at any point
 ```
 function getRectArea(width, height){
     return width * height
 }
+```
+<br><br>
+
+
+### Function Methods
+Can add functions as properties on objects
+```
+const myFunc = {
+    multiply : function(x,y){return x * y},
+    divide : function(x,y){return x / y},
+<!-- Shorthand for adding methods -->
+    root(x){ return x*x}
+}
+```
+<br>
+
+
+#### This
+Use the keyword this to access other properties on the same object. 
+
+If inheritting this, it could refer to the window. **This keyword acts different in arrow functions**
+<br><br>
+
+### Arrow Functions
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=h33Srr5J9nY) Arrow function tutorial
+```
+<!-- One Liner -->
+    const isEven = num => num % 2 === 0
+<!-- Implicit Return (only works on returning 1 thing) -->
+    const isEven = num => (
+        num % 2 === 0
+    )
+<!-- Standard -->
+    const isEven = (num) => {
+        return num % 2 === 0 
+    }
 ```
 <br><br>
 
@@ -263,14 +407,14 @@ points.sort((a,b) => b - a)
 #### Can also use Math.max() or Math.min()
 <br><br>
 
----
-## Array Itteration
+
+### Array Itteration Methods
 [Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach
 [W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp)
 [High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/)
-* forEach(): need to learn, check link above
-* map()
+* map(): creates a new array for function mapped  
 * filter(): creates a new array with items that pass filter
+* forEach(): replaced with for of loop but can be usefull 
 * reduce(): adds all values
 * every(): checks if every item passes test/function
 * some(): check if some items pass test/function
@@ -278,7 +422,36 @@ points.sort((a,b) => b - a)
 * lastIndexOf(): returns last occurence of item 
 * find(): returns value of item that passes test/fucntion
 * findIndex(): 
+
+
+Exmaple showing filter and map used in one line
+```
+const movies = [
+    {
+        title: "Sharknado",
+        score: 35,
+        year: 2013
+    },
+    {
+        title: "Amadeus",
+        score: 90,
+        year: 1984
+    }
+]
+let goodMovies = movies.filter(m => m.score > 80).map(m => m.title)
+```
 <br><br>
+
+#### forEach
+```
+const nums = [9,8,7,6,5,4,3,2,1]
+
+nums.forEach(function (el){
+    if (el % 2 === 0){
+        console.log(el)
+    }
+})
+```
 
 ---
 ## Objects Key-Value
@@ -407,74 +580,20 @@ function countdown(number){
     countdown(number - 1)
 }
 ```
+<br>
+
+### Try and Catch
+Need both try and catch
+```
+try{
+    hello.toUpperCase()
+} catch (e){
+    console.log("ERorr ! 1 !")
+}
+```
+
 <br><br>
 
----
-## Closures and Nesting Functions
-[Closures Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
-```
-function makeAdder(a){
-    return function(b){
-        return a + b
-    }
-}
-var add5 = makeAdder(5)
-var add20 = makeAdder(20)
-add5(8)
-add20(8)
-```
-another example
-```
-function init(){
-    var private = 'Mozilla'
-    function displayName(){
-        return private
-    }
-    return displayName()
-}
-myInit = init()
-myInit()
-```
-** best Example ** can also be redone to use arrow functions
-```
-var counter = function(){
-    var privateCounter=0
-    function changeCount(value){
-        privateCounter += value
-    }
-
-    return{
-        increment:function(){
-            changeCount(1)
-        },
-        decrement:function(){
-            changeCount(-1)
-        },
-        value:function(){
-            return privateCounter
-        }
-    }
-}
-counter1=counter()
-counter2=counter()
-counter1.increment()
-counter1.value()
-counter2.value()
-```
-<br><br>
-
-### private variable 
-```
-function secretVariable(){
-    var private = "secret variable"
-    return function(){
-        return private
-    }
-}
-var getPrivateVariable = secretVariable()
-console.log(getPrivateVariable())
-```
-<br><br>
 
 ---
 ## Destructuring
@@ -511,11 +630,6 @@ function printUser{}
 <br><br>
 
 ---
-## Arrow Functions
-[Web Dev Simplified YT](https://www.youtube.com/watch?v=h33Srr5J9nY) Arrow function tutorial
-<br><br>
-
----
 ## Promises
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
 
@@ -524,6 +638,10 @@ function printUser{}
 <br><br>
 
 ---
+# Node and Express
+
+<br><br>
+
 ## API
 Using Json Server [Git](https://github.com/typicode/json-server) to create an Api tutorial using json-server to read json DB, Apollo server to work with Express, and then GraphQL  [Codeburst](https://codeburst.io/how-to-implement-a-graphql-api-on-top-of-an-existing-rest-api-db8b343ddb5a)
 
