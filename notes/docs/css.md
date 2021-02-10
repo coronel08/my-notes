@@ -195,7 +195,7 @@ h1,h2 {
     color:purple;
 }
 ```
-Select every 2nd text input, red border. Uses an [attribute selector MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to sellect all input elements with a type=text
+Select every 2nd text input, red border. Uses an [attribute selector MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to select all input elements with a type=text
 ```
 input[type="text]:nth-of-type(2n){
     border:2px solid:red;

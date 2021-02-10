@@ -167,6 +167,9 @@ Can try deploying into [learn Django deployment options](https://learndjango.com
 
 
 [Reddit](https://www.reddit.com/r/djangolearning/comments/im9hyx/learn_how_to_build_a_simple_twitter_clone_using/?sort=confidence) Building a twitter clone using django and vue.
+
+
+[TestDriven](https://testdriven.io/blog/django-spa-auth/) Single Page authentication 
 <br><br>
 
 ---

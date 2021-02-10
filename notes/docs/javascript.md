@@ -74,6 +74,7 @@ let plants = [
     * [Rest and Spread](#rest-spread)
     * [Destructuring](#destructuring)
     * [Promises](#promises)
+* [DOM](#dom)
 * [Node and Express](#node-and-express)
     * [API](#api)
         * [Requests](#requests)
@@ -674,6 +675,64 @@ fullName(runner)
 
 
 [CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
+<br><br>
+
+---
+# DOM Selectors
+Can select using getElement or querySelector [W3 Query](https://www.w3schools.com/jsref/met_document_queryselector.asp)
+* document.getElementById || document.querySelector('#')
+* document.getElementsByTagName || document.querySelector('a[title='Test']') attribute selector to select inside a tag
+* document.getElementsByClassName || document.querySelector('.')
+* document.querySelectorAll() 
+<br><br>
+
+## Manipulate
+Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of objects, [MDN](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) list of methods like append, children. Look at Colt Steeles ch24: World of Dom to review. Practiced Dom manipulation in Javascript/Pokemon-Dom
+* classlist - 
+    * classlist.add("newClass") to add class to an element
+    * classlist.remove()
+    * classlist.contains()
+    * classlist.toggle()
+* getAttribute 
+* setAttribute - can also change attributes using document.querySelector('input').type = "text"
+* appendChild - [W3](https://www.w3schools.com/jsref/met_node_appendchild.asp)
+* append - [W3](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append)
+* prepend
+* removeChild
+* remove
+* createElement - create div/li/p etc [w3](https://www.w3schools.com/jsref/met_document_createelement.asp)
+* innerText - senitive to display hidden or none change text
+* textContent - return everything text
+* innerHTML - can retreive html and update html, html changes wont change on innerText
+* value
+* parentElement - 
+* children - can also do childrenCount 
+* nextSibling - 
+* nextElementSibling - avoids whitespace
+* previousSibling -
+* previousElementSibling - avoids whitespace 
+* style - doesnt contain styles from stylesheet, only inline. 
+    * window.getComputedStyle(h1).fontSize - get current style of an element
+    ```
+    <h1>
+        <span>R</span>
+        <span>A</span>
+        <span>I</span>
+        <span>N</span>
+        <span>B</span>
+        <span>O</span>
+        <span>W</span>
+    </h1>
+
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+    let rainbow = document.querySelector('span')
+    for(let i in rainbow){
+        rainbow[i].style.color = colors[i];
+    }
+    ```
+<br>
+
+
 <br><br>
 
 ---
