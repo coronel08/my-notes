@@ -732,7 +732,15 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
     ```
 <br>
 
+## eventListener
+Example can be seen in /javascript/rand-bg-color.html
+```
+hello = document.querySelector('#hello')
 
+hello.addEventListener('click', () =>{
+    console.log('hello')
+})
+```
 <br><br>
 
 ---
