@@ -23,7 +23,8 @@ echo "venv .venv .git" > .dockerignore
     * [Dockerfile Example](#dockerfile-example)
         * [Jupyter Notebook Dockerfile](#jupyter-notebook-dockerfile)
     * [Docker Django Stack](#docker-django-stack)
-* [Kubernetes]
+* [Kubernetes](#kubernetes)
+    * [Kubectl](#kubectl)
 ---
 ## Tutorials
 Getting started tutorial/Todo app
