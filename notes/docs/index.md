@@ -13,6 +13,13 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [Unsplash Photos](https://unsplash.com/)
 * [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)
 
+**Emoji Markdown**
+[github](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+
+**Other** 
+[Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
+
 
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.

@@ -13,16 +13,17 @@ echo "venv .venv .git" > .dockerignore
 
 ---
 ## Table of Contents
-* [Tutorials](#tutorials)
-* [Docker Commands](#docker-commands)
-    * [Flags](#flags)
-    * [Build / Run / Push](#build-and-run-and-push)
-    * [Docker Run](#docker-run)
-* [Docker-compose Commands](#docker-compose-commands)
-* [Dockerfile Example](#dockerfile-example)
-    * [Jupyter Notebook Dockerfile](#jupyter-notebook-dockerfile)
-* [Docker Django Stack](#docker-django-stack)
-
+* [Docker](#docker)
+    * [Tutorials](#tutorials)
+    * [Docker Commands](#docker-commands)
+        * [Flags](#flags)
+        * [Build / Run / Push](#build-and-run-and-push)
+        * [Docker Run](#docker-run)
+    * [Docker-compose Commands](#docker-compose-commands)
+    * [Dockerfile Example](#dockerfile-example)
+        * [Jupyter Notebook Dockerfile](#jupyter-notebook-dockerfile)
+    * [Docker Django Stack](#docker-django-stack)
+* [Kubernetes]
 ---
 ## Tutorials
 Getting started tutorial/Todo app
@@ -161,3 +162,69 @@ Flask, Docker, Nginx [towardsdatascience](https://towardsdatascience.com/how-to-
 
 
 Dockerizing Django with Postgres Gunicorn and Nginx [Testdriven.io](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)
+<br><br>
+
+---
+# Kubernetes
+[kubernetes](https://kubernetes.io/docs/tasks/tools/) Install tools
+
+* [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+* [Minikube](https://minikube.sigs.k8s.io/docs/start/) and [Minikube Cluster tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/)
+
+
+[Logz.io](https://logz.io/blog/kubernetes-as-a-service-gke-aks-eks/) Kubernetes on cloud providers **loosing support for docker containerd**
+
+## Kubectl
+
+kubectl [command] [TYPE] [NAME] [flags]
+```
+kubectl create -f {{./pod.json}}
+kubectl apply -f {{example-service.yaml}}
+```
+kubectl get
+```
+# List all pods in plain-text output format.
+kubectl get pods
+
+# List all pods in plain-text output format and include additional information (such as node name).
+kubectl get pods -o wide
+
+# List all daemon sets in plain-text output format.
+kubectl get ds
+
+# List all pods running on node server01
+kubectl get pods --field-selector=spec.nodeName=server01
+```
+kubectl describe
+```
+# Display the details of the node with name <node-name>.
+kubectl describe nodes <node-name>
+
+# Display the details of the pod with name <pod-name>.
+kubectl describe pods/<pod-name>
+
+# Describe all pods
+kubectl describe pods
+```
+kubectl delete
+```
+# Delete a pod using the type and name specified in the pod.yaml file.
+kubectl delete -f pod.yaml
+
+# Delete all the pods and services that have the label '<label-key>=<label-value>'.
+kubectl delete pods,services -l <label-key>=<label-value>
+
+# Delete all pods, including uninitialized ones.
+kubectl delete pods --all
+```
+kubectl exec
+```
+# Get output from running 'date' from pod <pod-name>. By default, output is from the first container.
+kubectl exec <pod-name> -- date
+
+# Get output from running 'date' in container <container-name> of pod <pod-name>.
+kubectl exec <pod-name> -c <container-name> -- date
+
+# Get an interactive TTY and run /bin/bash from pod <pod-name>. By default, output is from the first container.
+kubectl exec -ti <pod-name> -- /bin/bash
+```
