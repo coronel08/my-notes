@@ -43,6 +43,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
         * [4.2 Juggling Commits](#4.2-juggling-commits)
         * [4.3 Juggling Commits #2](#4.3-juggling-commits-2)
         * [5.1 Rebasing over 9000](#5.1-rebasing-over-9000)
+* [Linux](#linux)
 * [Todo List](#todo-list)
 
 ---
@@ -168,8 +169,12 @@ git rebase bugFix side
 git rebase side another
 git rebase another master
 ```
+---
 
+# Linux
+[Install mergerfs](https://zackreed.me/mergerfs-another-good-option-to-pool-your-snapraid-disks/) and [setup mergerfs and snapraid](https://selfhostedhome.com/combining-different-sized-drives-with-mergerfs-and-snapraid/) and a tutorial on [snapraid only](https://www.addictivetips.com/ubuntu-linux-tips/set-up-snapraid-on-ubuntu-server/)
 
+* Cifs(samba) Vs NFS(preffered) for filesharing mounting
 ---
 ## Todo List
 * [ ] Javascript
