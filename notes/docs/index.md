@@ -172,9 +172,10 @@ git rebase another master
 ---
 
 # Linux
-[Install mergerfs](https://zackreed.me/mergerfs-another-good-option-to-pool-your-snapraid-disks/) and [setup mergerfs and snapraid](https://selfhostedhome.com/combining-different-sized-drives-with-mergerfs-and-snapraid/) and a tutorial on [snapraid only](https://www.addictivetips.com/ubuntu-linux-tips/set-up-snapraid-on-ubuntu-server/)
+[Install mergerfs](https://zackreed.me/mergerfs-another-good-option-to-pool-your-snapraid-disks/) and [setup mergerfs and snapraid](https://selfhostedhome.com/combining-different-sized-drives-with-mergerfs-and-snapraid/)
 
-* Cifs(samba) Vs NFS(preffered) for filesharing mounting
+* Cifs(samba) Vs NFS(preffered) for filesharing mounting. labels only on ext4 drives. Use GPT instead of MBR for partition tables.
+
 ---
 ## Todo List
 * [ ] Javascript
