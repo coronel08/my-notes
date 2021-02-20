@@ -733,7 +733,12 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
 <br>
 
 ## eventListener
-Example can be seen in /javascript/rand-bg-color.html
+Example can be seen in /javascript/rand-bg-color.html. Event Listeneres can be 
+* click
+* submit
+* change - only works when you click out the input box
+* input - works everytime the input box changes
+
 ```
 hello = document.querySelector('#hello')
 
@@ -741,6 +746,11 @@ hello.addEventListener('click', () =>{
     console.log('hello')
 })
 ```
+<br>
+
+### Form Event Listener
+Check file Javascript/input-events.html to see a formw ith javascript and event listener.
+
 <br><br>
 
 ---
