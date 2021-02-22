@@ -53,6 +53,7 @@ let plants = [
         * [Function Expression](#function-expression)
         * [Function Declaration](#function-delcaration)
         * [Function Methods](#function-methods)
+            * [This](#this)
         * [Arrow Functions](#arrow-functions)
     * [String Methods](#string-methods)
         * [Template Literals](#template-literals)
@@ -74,7 +75,10 @@ let plants = [
     * [Rest and Spread](#rest-spread)
     * [Destructuring](#destructuring)
     * [Promises](#promises)
-* [DOM](#dom)
+* [DOM Selectors](#dom-selectors)
+    * [Manipulate](#manipulate)
+    * [Event Listener](#eventlistener)
+    * [Form Event Listener](#form-event-listener)
 * [Node and Express](#node-and-express)
     * [API](#api)
         * [Requests](#requests)
@@ -750,6 +754,9 @@ hello.addEventListener('click', () =>{
 
 ### Form Event Listener
 Check file Javascript/input-events.html to see a formw ith javascript and event listener.
+
+
+Can also do nested events / event Bubbling. To stop nest or bubbling use e.stopPropagation()
 
 <br><br>
 
