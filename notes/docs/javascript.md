@@ -74,11 +74,12 @@ let plants = [
         * [Recursion vs Loop](#recursion-vs-loop)
     * [Rest and Spread](#rest-spread)
     * [Destructuring](#destructuring)
-    * [Promises](#promises)
 * [DOM Selectors](#dom-selectors)
     * [Manipulate](#manipulate)
     * [Event Listener](#eventlistener)
     * [Form Event Listener](#form-event-listener)
+* [Async](#async)
+    * [Promises](#promises)
 * [Node and Express](#node-and-express)
     * [API](#api)
         * [Requests](#requests)
@@ -674,14 +675,6 @@ fullName(runner)
 <br><br>
 
 ---
-## Promises
-[Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
-
-
-[CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
-<br><br>
-
----
 # DOM Selectors
 Can select using getElement or querySelector [W3 Query](https://www.w3schools.com/jsref/met_document_queryselector.asp)
 * document.getElementById || document.querySelector('#')
@@ -757,6 +750,27 @@ Check file Javascript/input-events.html to see a formw ith javascript and event 
 
 
 Can also do nested events / event Bubbling. To stop nest or bubbling use e.stopPropagation()
+
+<br><br>
+
+---
+# Async
+Async is just a promise, using **async** and **await**. Always returns a promise
+
+
+Await can only be used with functions that use Async. Await will pause the execution of the function, waiting for a promise to be resolved.
+
+
+Can do error checking with **try** and **catch** in an async and await function.
+
+## Promises
+check /Javascript/Promises folder to see examples.
+
+
+[Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
+
+
+[CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
 
 <br><br>
 

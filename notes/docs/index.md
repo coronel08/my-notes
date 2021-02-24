@@ -19,7 +19,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 **Other** 
 [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
-
+[ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
 
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.
