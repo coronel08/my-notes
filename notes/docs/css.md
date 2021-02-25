@@ -9,7 +9,6 @@ Check [Readme for Video site](https://github.com/coronel08/website-vid-project) 
 * [HTML](#html)
     * [Semantic Elements](#semantic-elements)
         * [Form Example](#form-example)
-    * [Button](#button)
 * [CSS](#css)
     * [Stylesheet](#stylesheet)
         * [CSS Properties](#css-properties)
@@ -93,9 +92,6 @@ Use a form to search google results
 </form>
 ```
 <br>
-
-
-### Button 
 Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
 <br><br>
 

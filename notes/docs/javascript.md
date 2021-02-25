@@ -762,6 +762,7 @@ Await can only be used with functions that use Async. Await will pause the execu
 
 
 Can do error checking with **try** and **catch** in an async and await function.
+<br><br>
 
 ## Promises
 check /Javascript/Promises folder to see examples.
@@ -771,6 +772,34 @@ check /Javascript/Promises folder to see examples.
 
 
 [CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
+<br><br>
+
+## Axios
+A library fo making HTTP request
+
+Import into html or **npm install axios**
+```
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+```
+```
+axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log(res.data.ticker.price)
+    })
+    .catch(err => {
+        console.log("Error !!",err)
+    })
+
+const fetchBitcoinPrice = async() => {
+    try {
+        const res = await axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+        console.log(res.data.ticker.price)
+    } catch (e) {
+        console.log("Error !!",err)
+    }
+}
+```
+
 
 <br><br>
 
@@ -780,6 +809,33 @@ check /Javascript/Promises folder to see examples.
 <br><br>
 
 ## API
+Use fetch to get API, old way was XMLHttpRequest
+```
+<!-- using then and catch -->
+fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log("Response, waiting to parse...", res)
+        return res.json()
+    })
+    .then(data => {
+        console.log(data.ticker.price)
+    })
+    .catch(e => {
+        console.log("Error", e)
+    })
+
+<!-- Refractored using async and await -->
+const fetchBitcoinPrice = async() => {
+    try{
+        const res = await fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+        const data = await res.json()
+        console.log(data.ticker.price)
+    } catch (e) {
+        console.log("Something is wrong", e)
+    }
+}
+```
+
 Using Json Server [Git](https://github.com/typicode/json-server) to create an Api tutorial using json-server to read json DB, Apollo server to work with Express, and then GraphQL  [Codeburst](https://codeburst.io/how-to-implement-a-graphql-api-on-top-of-an-existing-rest-api-db8b343ddb5a)
 
 ### Requests
