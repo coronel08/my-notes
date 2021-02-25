@@ -78,12 +78,12 @@ let plants = [
     * [Manipulate](#manipulate)
     * [Event Listener](#eventlistener)
     * [Form Event Listener](#form-event-listener)
-* [Async](#async)
-    * [Promises](#promises)
-* [Node and Express](#node-and-express)
+* [Promises](#promises)
+    * [Async](#async)
     * [API](#api)
+        * [Axios](#axios)
         * [Requests](#requests)
-
+* [OOP](#oop)
 
 ---
 ## Math
@@ -750,62 +750,26 @@ Check file Javascript/input-events.html to see a formw ith javascript and event 
 
 
 Can also do nested events / event Bubbling. To stop nest or bubbling use e.stopPropagation()
-
 <br><br>
 
 ---
-# Async
-Async is just a promise, using **async** and **await**. Always returns a promise
-
-
-Await can only be used with functions that use Async. Await will pause the execution of the function, waiting for a promise to be resolved.
-
-
-Can do error checking with **try** and **catch** in an async and await function.
+# Promises
+Check /Javascript/Promises folder to see examples on Promises, Async, and Axios.
 <br><br>
 
-## Promises
-check /Javascript/Promises folder to see examples.
-
-
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=DHvZLI7Db8E)
-
-
+<br>
 [CodePumpkin](https://codepumpkin.com/callbacks-promises-javascript/) Callbacks vs promises
 <br><br>
 
-## Axios
-A library fo making HTTP request
 
-Import into html or **npm install axios**
-```
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-```
-```
-axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
-    .then(res => {
-        console.log(res.data.ticker.price)
-    })
-    .catch(err => {
-        console.log("Error !!",err)
-    })
+## Async
+Async is just a promise, using **async** and **await**. Always returns a promise
+<br>
+Await can only be used with functions that use Async. Await will pause the execution of the function, waiting for a promise to be resolved.
+<br>
 
-const fetchBitcoinPrice = async() => {
-    try {
-        const res = await axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
-        console.log(res.data.ticker.price)
-    } catch (e) {
-        console.log("Error !!",err)
-    }
-}
-```
-
-
-<br><br>
-
----
-# Node and Express
-
+Can do error checking with **try** and **catch** in an async and await function.
 <br><br>
 
 ## API
@@ -835,8 +799,35 @@ const fetchBitcoinPrice = async() => {
     }
 }
 ```
-
 Using Json Server [Git](https://github.com/typicode/json-server) to create an Api tutorial using json-server to read json DB, Apollo server to work with Express, and then GraphQL  [Codeburst](https://codeburst.io/how-to-implement-a-graphql-api-on-top-of-an-existing-rest-api-db8b343ddb5a)
+<br>
+
+### Axios
+A library fo making HTTP request
+
+Import into html or **npm install axios**
+```
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+```
+```
+axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log(res.data.ticker.price)
+    })
+    .catch(err => {
+        console.log("Error !!",err)
+    })
+
+const fetchBitcoinPrice = async() => {
+    try {
+        const res = await axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+        console.log(res.data.ticker.price)
+    } catch (e) {
+        console.log("Error !!",err)
+    }
+}
+```
+<br>
 
 ### Requests
 5 Ways to make Http request in node/javascript
@@ -853,3 +844,63 @@ node {{filename}}
 * Got
 * Super Agent
 * node-fetch
+<br><br>
+
+---
+# OOP
+[MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS) OOP Tutorial
+
+
+Object Prototypes -- Old and wrong way to add to a class
+<br><br>
+Factory Functions -- returns a new object without new, better to use **new** keyword and constructor function
+```
+function person(firstName, LastName, age){
+    const person = {}
+    person.firstName = firstName
+    person.lastName = lastName
+    person.age = age
+}
+```
+
+## New and Constructor Functions
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) New Operator and Constructor Functions
+```
+<!-- This is the constructor function -->
+function Car(make, model, year){
+    this.make = make
+    this.model = model
+    this.year = year
+}
+
+<!-- Create in instance of the object with new -->
+const car1 = new Car('Honda', 'Talon', 1993)
+<!-- Add a property to an object instance -->
+car1.color = 'black'
+```
+### Classes
+Use a class and constructor instead of constructor functions. Can inherit from other classes using **extends** and **super** inside of the constructor to inherit objects.  
+<br><br>
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Classes 
+```
+class Color{
+    constructor(r,g,b,name){
+        this.r = r
+        this.g = g
+        this.b = b 
+        this.name = name
+    }
+
+    <!-- Method of the object -->
+    greet(){
+        <!-- Destructuring the variables -->
+        let {r,g,b, name} = this
+        return `Hello from ${name}, ${r}, ${g}, ${b}}`
+    }
+}
+
+const c1 = new Color(255,67,89, 'black')
+```
+
+#### 
