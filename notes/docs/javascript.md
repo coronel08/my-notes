@@ -44,6 +44,7 @@ let plants = [
         * [Conditionals](#conditionals)
         * [Switch](#switch)
         * [Ternary](#ternary)
+            * [Nullish Operator](#nullish-operator)
     * [Function](#function)
         * [Closures and Nesting Functions](#closures-and-nesting-functions)
             * [Private Variable](#private-variable)
@@ -159,6 +160,28 @@ switch (new Date().getDay()){
 ```
 var age = 26
 var beverage = (age >= 21) ? "Beer":"Juice"
+```
+
+#### Nullish Operator
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) Nullish Coalescing Operator and Optional Chaining
+
+Set Default value 
+```
+function calculatePrice(price, tax){
+    price = price
+    taxes = taxes ?? .25
+    console.log(price, tax)
+}
+
+calculatePrice(10)
+```
+
+Optional Changing
+```
+let test = {prop : "Hello"}
+
+console.log(test?.prop)
+console.log(test?.thing)
 ```
 <br><br>
 
@@ -335,6 +358,9 @@ Allow embedded expressions, **Use backticks not single quotes**
 ```
 <br>
 
+#### Formatting String Output
+[Like Python string formatting, can do Inline styling](https://riptutorial.com/javascript/example/14972/formatting-console-output)
+<br>
 
 ### Strip HTML strings
 strip the html from an element
@@ -773,7 +799,10 @@ Can do error checking with **try** and **catch** in an async and await function.
 <br><br>
 
 ## API
-Use fetch to get API, old way was XMLHttpRequest
+[MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) HTTP API Methods like **GET, POST, DELETE, PATCH**
+
+
+Use Javascript fetch to get API, old way was XMLHttpRequest
 ```
 <!-- using then and catch -->
 fetch('https://api.cryptonator.com/api/ticker/btc-usd')

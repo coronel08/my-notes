@@ -92,7 +92,10 @@ Use a form to search google results
 </form>
 ```
 <br>
-Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior
+Buttons inside form default "type="submit"" change to "type="button"" or something else to change behavior.
+<br><br>
+
+Form method defaults to **GET** method, not **POST**
 <br><br>
 
 ---
