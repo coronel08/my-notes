@@ -795,7 +795,7 @@ Async is just a promise, using **async** and **await**. Always returns a promise
 Await can only be used with functions that use Async. Await will pause the execution of the function, waiting for a promise to be resolved.
 <br>
 
-Can do error checking with **try** and **catch** in an async and await function.
+Can do error checking with **try** or **then** and **catch** in an async and await function.
 <br><br>
 
 ## API
