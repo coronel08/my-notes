@@ -21,9 +21,9 @@
 
 * db
 * show databases or show dbs
-* show collections
 * use {{db_name}}   - create and switch to db
-* db.{{db_name}}.find()
+* show collections   - use after switching to db to see contents
+* db.{{db_name}}.find() - to show everything in collections
 * db.{{db_name}}.find({key:"value"})   - find specific item using key and value
 
 Example of finding movie using $in operator in Mongo
@@ -45,6 +45,7 @@ Delete
 * db.{{db_name}}.deleteOne({name:"Charlie"})
 * db.{{db_name}}.deleteMany({})    - This deletes evrything
 
+Put vs Patch request. Put = overwrites while Patch = changes a portion
 
 #### Mongoose ODM
 [Mongoose Docs](https://mongoosejs.com/docs/guide.html) Schema 
