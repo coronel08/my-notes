@@ -10,7 +10,7 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
 <br><br>
 
 
-Objects / Key value pairs, can mix and match objects and arrays
+Objects / Key value pairs, can mix and match objects and arrays {}
 ```
 const fitBitData{
     steps : 2131
@@ -85,6 +85,7 @@ let plants = [
         * [Axios](#axios)
         * [Requests](#requests)
 * [OOP](#oop)
+* [Export](#export)
 
 ---
 ## Math
@@ -932,4 +933,18 @@ class Color{
 const c1 = new Color(255,67,89, 'black')
 ```
 
-#### 
+# Export
+Create an object and then export it 
+```
+const PI = 3.14
+const square = x => x* x
+
+const math = {
+    pi: pi
+    square: square
+}
+
+module.exports = math
+
+//could also add directly by adding module.exports to every variable that is going to be exported
+```
