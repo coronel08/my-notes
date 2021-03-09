@@ -7,6 +7,11 @@
 | Microsoft  | Redis      |
 
 
+## Relation
+* one to few - example a user address
+* one to many - medium amount of data approach, store data seperately but reference item thru id
+* one to million - large amount of data, easier to reference the parent on the child doc. Works well for a tweet, a user can have million tweets.
+
 ---
 ## Table of Contents
 * [MongoDB](#mongodb)
@@ -54,4 +59,7 @@ Put vs Patch request. Put = overwrites while Patch = changes a portion
 [Mongoose Docs](https://mongoosejs.com/docs/tutorials/virtuals.html) Can do Virtuals to create temp functions
 **For examples using database check out /MongoDB/index.js and /MongoDB/product.js**
 
+[MongoDB Blog](https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-3) schema blog rules pt3
+
 When updating an item, remember to make update validate.
+
