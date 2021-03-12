@@ -34,6 +34,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [Docker](docker.md)
 * [Javascript](javascript.md)
 * [React](react.md)
+* [Python](python.md)
 * [Git](#git)
     * [Branches](#branches)
     * [Reversing Changes in Git](#reversing-changes-in-git)
