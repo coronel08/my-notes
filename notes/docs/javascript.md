@@ -7,6 +7,9 @@ number += 1
 Use **let** or **const** over **var**. Case Styling/Naming Conventions:
 * camelCasing for objects and functions
 * start booleans with is ex: const isTrue = true
+* control flow [](https://exploringjs.com/impatient-js/ch_control-flow.html)
+    * if, switch, while, do-while, for, for-of, for-await-of-loop, for-in
+    * break, continue, else, return
 <br><br>
 
 
@@ -618,6 +621,7 @@ function countdown(number){
 
 ### Try and Catch
 Need both try and catch
+[Try/Catch and Throw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements)
 ```
 try{
     hello.toUpperCase()

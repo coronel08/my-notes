@@ -8,7 +8,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 **HTML Templates**
 [HTML5up](https://html5up.net/)
 [Bootstrap Templates](https://startbootstrap.com/)
-
+[Python Module library](https://github.com/vinta/awesome-python)
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
 * [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)
