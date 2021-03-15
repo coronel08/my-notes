@@ -1,4 +1,4 @@
-# CSS and HTML
+# CSS and HTML and Bootstrap
 **HTML CSS Bootstrap Notes**
 
 Notes for CSS, made during vid-site1 project
@@ -456,7 +456,11 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
     * y = both top and bottom
     * blank = all 4 sides
 <br>
+In Bootstrap5 For aligning within a flexbox div or row...
 
+ml-auto is now ms-auto
+mr-auto is now me-auto
+<br>
 #### Bootstrap Flex
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 <br><br>
