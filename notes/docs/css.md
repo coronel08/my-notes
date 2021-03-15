@@ -456,7 +456,7 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
     * y = both top and bottom
     * blank = all 4 sides
 <br>
-In Bootstrap5 For aligning within a flexbox div or row...
+In [Bootstrap5](https://stackoverflow.com/questions/18672452/left-align-and-right-align-within-div-in-bootstrap) For aligning within a flexbox div or row...
 
 ml-auto is now ms-auto
 mr-auto is now me-auto
