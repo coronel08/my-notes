@@ -6,9 +6,10 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Helpful Links
 **HTML Templates**
-[HTML5up](https://html5up.net/)
-[Bootstrap Templates](https://startbootstrap.com/)
-[Python Module library](https://github.com/vinta/awesome-python)
+* [HTML5up](https://html5up.net/)
+* [Bootstrap Templates](https://startbootstrap.com/)
+* [Python Module library](https://github.com/vinta/awesome-python)
+
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
 * [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)
@@ -18,10 +19,15 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 
 **Other** 
-[Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
-[ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
-[GoalKicker Notes](https://goalkicker.com/)
-[Eloquent Javascript](https://eloquentjavascript.net/)
+* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
+* [ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
+* [GoalKicker Notes](https://goalkicker.com/)
+* [Eloquent Javascript](https://eloquentjavascript.net/)
+* [DB Links and tools](https://github.com/mgramin/awesome-db-tools)
+
+**Tutorials**
+* [Full stack road map](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer)
+* [Project Based Learning](https://github.com/tuvtran/project-based-learning)
 
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.
