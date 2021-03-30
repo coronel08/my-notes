@@ -141,6 +141,11 @@ docker run --rm -p 8888:8888 my-jupyter-image
 docker-compose up -d --build #build flag recreates the file
 ```
 
+To recreate a single docker-compose component
+* docker-compose stop {{container-name}}
+* docker-compose up -d --no-recreate {{container_name}}
+
+
 
 ---
 ## Docker Stack
