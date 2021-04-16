@@ -31,7 +31,9 @@ venv\Scripts\activate
     * [Data Types](#data-types)
     * [String Methods](#string-methods)
     * [Built in Functions](#built-in-functions)
-    * [Loops and Conditionals](#loops-and-conditionals)
+    * [Conditionals](#conditionals)
+        * [Ternary Operators](#ternary-operators)
+    * [Loops](#loops)
         * [While Loop](#while-loop)
         * [For Loop](#for-loop)
     * [Functions](#functions)
@@ -83,18 +85,36 @@ String methods dont modify original string, return a new string. [W3](https://ww
 <br><br>
 ---
 
-## Loops and Conditionals
-Can interrupt loop with **break or continue or pass or return** <br>
+## Conditionals
 Exception handling with **try and except and raise and else**<br>
 
+* use **if, elif, else, finally** for control flow
 
-Ternary Operator
+
+### Ternary Operator
 <result_if_true> if <condition> else <result_if_false>
 ```
 def is_adult(age):
     return True if age > 18 else false
 ```
-* use **if, elif, else, finally** for control flow
+
+### If
+We can check if an item exists 
+'''
+if test:
+    print(test, 'does exist')
+d = {'hello' : 'world' }
+print(d.get('hello', 'default_value'))
+<!-- This prints world since hello exist -->
+print(d.get('howdy', 'default_value'))
+<!-- This prints out default value since the key doesnt exist -->
+'''
+
+
+---
+
+## Loops
+Can interrupt loop with **break or continue or pass or return** <br>
 
 
 ### While Loops
@@ -119,11 +139,19 @@ for index, item in enumerate(items):
 
 ---
 ## Functions
+def func(positional, keyword=value, *args, **kwargs):
+* positional are mandatory and have no defualt values
+* keyword are optional and have default values
+* args
+* kwargs keyword arguments for passing a dictionary
+
 ```
 def change(value=1):
     print (value)
 change(5)
 ```
+
+
 
 ### Built in Functions
 [Python Docs](https://docs.python.org/3/library/functions.html) <br>
@@ -146,7 +174,6 @@ change(5)
 * zip()
 <br>
 
-### Args and Kwargs
 
 #### Lambda Functions
 lambda <arguments> : <expression>
@@ -182,3 +209,11 @@ class Dog:
 ### Decorators
 
 ### Wrappers
+
+# Destructuring 
+```
+string = 'This is a test string.'
+_, is, *rest = string.split(' ')
+```
+
+# Generators
