@@ -9,7 +9,6 @@ a[1:8:2]
 * Naming Conventions for python
     * functions: snake_case
     * classes: CamelCase
-* Use **with** to open files instead of **try open and close**. With closes file automatically 
 
 
 Added python venv using 
@@ -45,8 +44,9 @@ venv\Scripts\activate
 
 ---
 ## Data Types
-Immutable: cant be changed after its created
-Mutable:can be changed, List/Dict/Set
+Immutable: cant be changed after its created <br>
+Mutable:can be changed, List/Dict/Set <br>
+Sets and Dictionaries are hash tables, they also drop duplicate entries. Dictionaries can not have two identicial keys<br>
 * list - [] push and pop remove the last item
     * insert()/append() - add
     * remove()/pop() - remove 
@@ -89,7 +89,13 @@ String methods dont modify original string, return a new string. [W3](https://ww
 Exception handling with **try and except and raise and else**<br>
 
 * use **if, elif, else, finally** for control flow
-
+* use **with** to open files instead of **try open and close**. With closes file automatically, helpful for threading
+```
+with open("file.txt", "w") as output:
+    output.write(
+        "testing writing function"
+    )
+```
 
 ### Ternary Operator
 <result_if_true> if <condition> else <result_if_false>
@@ -100,7 +106,7 @@ def is_adult(age):
 
 ### If
 We can check if an item exists 
-'''
+```
 if test:
     print(test, 'does exist')
 d = {'hello' : 'world' }
@@ -108,7 +114,7 @@ print(d.get('hello', 'default_value'))
 <!-- This prints world since hello exist -->
 print(d.get('howdy', 'default_value'))
 <!-- This prints out default value since the key doesnt exist -->
-'''
+```
 
 
 ---
@@ -174,6 +180,12 @@ change(5)
 * zip()
 <br>
 
+#### Comprehensions
+List Comprehensions 
+```
+a = [3,4,5]
+b = [i for i in a if i >4 ]
+```
 
 #### Lambda Functions
 lambda <arguments> : <expression>
@@ -185,6 +197,7 @@ Another Example
 ```
 numbers = [1, 2, 3, 4, 5]
 numbers_power_2 = list(map(lambda n : n**2, numbers))
+numbers_filter = list(filter(lambda n: n > 3, numbers))
 ```
 
 #### Recursion
@@ -214,6 +227,10 @@ class Dog:
 ```
 string = 'This is a test string.'
 _, is, *rest = string.split(' ')
+<!-- prints is -->
 ```
+
+
+
 
 # Generators
