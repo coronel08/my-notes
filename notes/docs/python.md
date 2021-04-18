@@ -207,20 +207,74 @@ numbers_filter = list(filter(lambda n: n > 3, numbers))
 ---
 
 # OOP
-
+* Attributes = variables
+* Methods = functions
+* Property = 
+* Objects = Classes instances
 
 ## Classes
 ```
 class Dog:
-    def __init__(self,property):
-        self.property = property
+    name = "Cooky" # class attribute
+    def __init__(self,property, age):
+        self.property = property # instance attribute
+        self.__age = age # private variable because dunder __
 
-    def method/function
+    def test(self): # method/function
+        pass
+    
+    @property #delcare property age
+    def age(self):
+        return self.__age
+
+    @age.setter # setter for property age
+    def age(self, value):
+        self.__age = value
+
+    @age.deleter # deleter for property age
+    def age(self, value):
+        print('...Deleting')
+        del self.__age
+
+    @classmethod
+    def toStringClass(cls):
+        print('Dog Class attribute ', cls.property)
+    
+    @staticmethod
+    def toStringStatic(): 
+        print('Static method of dog')
 ```
 * __str__ - resturns a string (more for end users)
 * __repr__ - returns a printable string (more for devs)
 
 ### Decorators
+Can use a decorator to nest a function within another function. [tutorialsteacher.com](https://www.tutorialsteacher.com/python/decorators)
+```
+def myDecorator(function) # decorator function
+    def innerFunction():
+        function()
+        print('Inner function')
+    return innerFunction # return a wrapper function
+
+@myDecorator
+def greet():
+    print('Hello from greet function')
+
+greet()
+```
+
+#### Built in Decorators
+* @property can use on any method/ function in the class to declare the method as a property
+    * @propertyName.setter
+    * @propertyName.deleter 
+* @classmethod
+    * has to be called by Classname.MethodName() or object.MethodName()
+    * can acccess class attributes but not the instance attributes
+    * can be used to declare a factory method that returns objects of a class
+* @staticmethod 
+    * has to be called by Classname.MethodName() or object.MethodName()
+    * cant have cls or self parameter
+    * cant access class attributes or instance attributes
 
 ### Wrappers
 
