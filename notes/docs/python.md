@@ -47,6 +47,7 @@ venv\Scripts\activate
 Immutable: cant be changed after its created <br>
 Mutable:can be changed, List/Dict/Set <br>
 Sets and Dictionaries are hash tables, they also drop duplicate entries. Dictionaries can not have two identicial keys<br>
+
 * list - [] push and pop remove the last item
     * insert()/append() - add
     * remove()/pop() - remove 

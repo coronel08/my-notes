@@ -446,9 +446,10 @@ points.sort((a,b) => b - a)
 
 
 ### Array Itteration Methods
-[Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach
-[W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp)
-[High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/)
+[Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach <br>
+[W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp) <br>
+[High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/) <br>
+
 * map(): creates a new array for function mapped  
 * filter(): creates a new array with items that pass filter
 * forEach(): replaced with for of loop but can be usefull 
