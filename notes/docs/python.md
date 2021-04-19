@@ -55,12 +55,16 @@ Sets and Dictionaries are hash tables, they also drop duplicate entries. Diction
 ```
 name,age,country,career = ('Diana',32,'Canada','CompSci')
 ```
-* dict - {'key':'value'}
+* dict - {'key':'value'} dictionary methods below
+    * .get() - returns the value of a key
     * .keys()
-    * .values()
     * .items()
+    * .values()
+    * .clear() - removes all keys
+    * .update() - updates key value
 * set - set() or {'element1','element2'}
     * sets are unordered, no duplicates, but elements must be immutable. A tuple can include a set but not a list or dict
+    * Python has set methods as well [tutorialsteacher.com](https://www.tutorialsteacher.com/python/set-methods)
 <br><br>
 ---
 
@@ -110,11 +114,13 @@ We can check if an item exists
 ```
 if test:
     print(test, 'does exist')
+
+<!-- checking in a dict -->
 d = {'hello' : 'world' }
-print(d.get('hello', 'default_value'))
 <!-- This prints world since hello exist -->
-print(d.get('howdy', 'default_value'))
+print(d.get('hello', 'default_value'))
 <!-- This prints out default value since the key doesnt exist -->
+print(d.get('howdy', 'default_value'))
 ```
 
 
@@ -199,12 +205,13 @@ nums = [x for x in range(21) if x%2==0 if x%5==0]
 ```
 
 #### Lambda Functions
-lambda <arguments> : <expression>
+lambda <arguments> : <expression> <br>
+
 ```
 multiply = lambda a,b : a*b
 print (multiply(3,2))
 ```
-Another Example
+Another Example can also be written as list comprehensions
 ```
 numbers = [1, 2, 3, 4, 5]
 numbers_power_2 = list(map(lambda n : n**2, numbers))
@@ -237,6 +244,8 @@ next(seq)
 <!-- Generator Expression -->
 squares = (x*x for x in range(5))
 print(next(square))
+for x in squares:
+    print(x)
 
 <!-- or pass a generator function to another fucntion  -->
 sum(x*x for x in range(5))
