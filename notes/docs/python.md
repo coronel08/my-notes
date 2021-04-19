@@ -9,6 +9,7 @@ a[1:8:2]
 * Naming Conventions for python
     * functions: snake_case
     * classes: CamelCase
+    * module names/file names : keep name short and lowercase, avoid special symbols
 
 
 Added python venv using 
