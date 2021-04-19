@@ -182,10 +182,20 @@ change(5)
 <br>
 
 #### Comprehensions
-List Comprehensions 
+List Comprehensions, can also do if-else in a condition
 ```
 a = [3,4,5]
 b = [i for i in a if i >4 ]
+
+
+<!-- Nested Loop list comprehension, great for making coordinates -->
+num1 = [1,2,3]
+num2 = [4,5,6]
+nums = [(x,y) for x in num1 for y in nums2]
+print(nums)
+
+<!-- Multiple if conditions in list comprehension, print if divisbile by 2 and 5 -->
+nums = [x for x in range(21) if x%2==0 if x%5==0]
 ```
 
 #### Lambda Functions
@@ -202,6 +212,35 @@ numbers_filter = list(filter(lambda n: n > 3, numbers))
 ```
 
 #### Recursion
+A function thaat calls itself is a recursive function
+```
+def facotiral(n):
+    if n == 1:
+        print(n)
+        return 1
+    else:
+        print(n, '*', end =' ')
+        return n * factorial(n - 1)
+```
+
+#### Generators
+Generators use parenthesis, need to use yield instead of return, and next(functionName) to call functionName. <br>
+Can be used when dealing with complex function, large data, or state
+```
+def get_sequence(x):
+    for i in range(x):
+        yield i
+
+seq = get_sequence(5)
+next(seq)
+
+<!-- Generator Expression -->
+squares = (x*x for x in range(5))
+print(next(square))
+
+<!-- or pass a generator function to another fucntion  -->
+sum(x*x for x in range(5))
+```
 
 <br><br>
 ---
@@ -211,16 +250,19 @@ numbers_filter = list(filter(lambda n: n > 3, numbers))
 * Methods = functions
 * Property = 
 * Objects = Classes instances
+* Instantiate = test = class()
 
 ## Classes
 ```
 class Dog:
-    name = "Cooky" # class attribute
+    count = 0 # class attribute
+
     def __init__(self,property, age):
         self.property = property # instance attribute
         self.__age = age # private variable because dunder __
+        Dog.count += 1 # alters the class attribute whenever a class is instantiated
 
-    def test(self): # method/function
+    def test(self): # a class method/function
         pass
     
     @property #delcare property age
@@ -284,8 +326,3 @@ string = 'This is a test string.'
 _, is, *rest = string.split(' ')
 <!-- prints is -->
 ```
-
-
-
-
-# Generators
