@@ -4,6 +4,8 @@
 Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
 
+Id and Class names should use - ex: commet-form, do not camelcase or underscore
+
 ---
 ## Table of Contents
 * [HTML](#html)
