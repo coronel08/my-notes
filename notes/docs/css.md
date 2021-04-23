@@ -5,6 +5,14 @@ Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
 
 Id and Class names should use - ex: commet-form, do not camelcase or underscore
+FontAwesome
+```
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+```
+
+Bootstrap
+```
+```
 
 ---
 ## Table of Contents
