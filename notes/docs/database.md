@@ -1,4 +1,5 @@
 # Database
+* Learn SQL [SQL ZOO](https://sqlzoo.net/) or [w3](https://www.w3schools.com/sql/)
 
 | SQL        | NOSQL      |
 | :--------- |:---------- |
