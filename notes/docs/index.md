@@ -186,6 +186,13 @@ git rebase another master
 * Cifs(samba) Vs NFS(preffered) for filesharing mounting. labels only on ext4 drives. Use GPT instead of MBR for partition tables.
 
 ---
+# Windows
+Find all IP Addresses on a network 
+```
+arp -a
+```
+
+---
 ## Todo List
 * [ ] Javascript
     * [ ] Add promises section to Javascript
