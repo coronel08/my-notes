@@ -1,4 +1,9 @@
 # Python
+Can run a script -interactive by using -i flag
+```
+python -i <script>
+```
+
 Indexing [start:stop:step]
 ```
 a = [1, 2, 3, 4, 5, 6, 7, 8]
