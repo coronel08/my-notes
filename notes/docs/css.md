@@ -84,7 +84,7 @@ Dropdown using [Select MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/El
 <aside> something like a navbar,  call out, or photo
 
 <section> creates large sections
-<article> used for like a blog post
+<article> used for like a blog post, have text here for SEO
 <form action=""> google for form elements
     <input type="" placeholder=""> goes in form, usually use with <label>
 <footer>
