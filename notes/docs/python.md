@@ -12,7 +12,7 @@ a[1:8:2]
     * module names/file names : keep name short and lowercase, avoid special symbols
 
 
-Added python venv using 
+Added python venv using, can use [configParser](https://pythonhowtoprogram.com/how-to-use-configparser-for-configuration-files-in-python-3/) or python-dotenv for secret/variavles
 ```
 virtualenv venv
 <!-- Activate venv on linux -->
