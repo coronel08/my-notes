@@ -12,9 +12,10 @@ a[1:8:2]
 <br>
 
 * Naming Conventions for python
-    * functions: snake_case
+    * functions: snake_case, constants uppercase SNAKE_CASE
     * classes: CamelCase
     * module names/file names : keep name short and lowercase, avoid special symbols
+    * Parameters = variable names in def statement, arguments = values passed into a function
 
 
 Added python venv using, can use [configParser](https://pythonhowtoprogram.com/how-to-use-configparser-for-configuration-files-in-python-3/) or python-dotenv for secret/variavles
@@ -101,6 +102,7 @@ Exception handling with **try and except and raise and else**<br>
 
 * use **if, elif, else, finally** for control flow
 * use **with** to open files instead of **try open and close**. With closes file automatically, helpful for threading
+* use **is** to campare instead of ==
 ```
 with open("file.txt", "w") as output:
     output.write(
@@ -261,11 +263,13 @@ sum(x*x for x in range(5))
 ---
 
 # OOP
-* Attributes = variables
+* Attributes = variables, usually name following a .
 * Methods = functions
 * Property = 
 * Objects = Classes instances
 * Instantiate = test = class()
+
+Private variable example using bank account (Beyond the Basic Stuff , Al S)[https://inventwithpython.com/beyond/chapter15.html]
 
 ## Classes
 ```
