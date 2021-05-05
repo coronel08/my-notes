@@ -103,7 +103,7 @@ WORKDIR app
 RUN pip install --user -r 
 COPY . /app
 ```
-
+<br>
 
 ### Jupyter Notebook Dockerfile 
 Building a Jupyter Notebook Dockerfile [Mlinproduction blog](https://mlinproduction.com/docker-for-ml-part-2/)
@@ -128,7 +128,20 @@ Run
 ```
 docker run --rm -p 8888:8888 my-jupyter-image
 ```
+<br>
 
+### Good Dockerfile steps
+[19 steps to good Dockerfile](https://jkutner.github.io/2021/04/26/write-good-dockerfile.html)
+
+* Organize steps from least to most frequently changing steps to optimize caching
+* Combine apt-get update and insta apt-get install and remove package manager cache
+```
+RUN apt-get update -y \
+    && apt-get install ssh vim -y
+    && rm -rf /var/lib/apt/lists/*
+```
+* specify tags FROM debian:buster or debian:buster-20210408 instead of from debian
+* learn multi stage builds 
 
 ---
 ## Docker-compose commands

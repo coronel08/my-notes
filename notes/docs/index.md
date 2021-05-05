@@ -185,6 +185,66 @@ git rebase another master
 
 * Cifs(samba) Vs NFS(preffered) for filesharing mounting. labels only on ext4 drives. Use GPT instead of MBR for partition tables.
 
+
+## Setup Linux
+Users and groups 
+```
+sudo adduser ___
+sudo usermod -a -G sudo ___
+sudo su - ___ #confirm the new account works
+sudo pkill -u _____  #kill user process
+sudo deluser ____ #delete user
+```
+<br><br>
+
+SSH and Key-Pair (can allow or deny users in /etc/ssh/sshd_config or disable password login)
+```
+apt install openssh-server
+
+ls ~/.ssh #check for existing keys first
+ssh-keygen #generate keys, private key=id_rsa & public key=id_rsa.pub
+ssh-copy-id <username@ip>
+#or
+cat ~/.ssh/id_rsa.pub | ssh <username@ip> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+```
+<br><br>
+
+UFW
+```
+sudo apt install ufw
+sudo ufw enable #or disable
+sudo ufw allow 22 #or deny
+sudo ufw allow ssh
+```
+<br><br>
+
+Fail2Ban, jail.local is used to make changes to ufw. [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server)
+<br>
+
+Make edits or changes in [sshd] enabled=true, port=22, maxretry=6
+```
+sudo apt install fail2ban
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local 
+
+<!-- Unbanning an IP -->
+fail2ban-client status
+fail2ban-client set sshd unban ip <ip>
+```
+<br><br>
+
+OpenVPN[RPItips](https://raspberrytips.com/install-openvpn-raspberry-pi/)
+```
+sudo apt install openvpn
+```
+<br><br>
+
+Commands on Linux
+```
+netstat -tulpn #display all connections
+service --status-all #display services
+```
+
 ---
 # Windows
 Find all IP Addresses on a network 
