@@ -61,6 +61,7 @@ Bootstrap
     * [Bootstrap Icon](#bootstrap-icon)
         * [FontAwesome Icon](font-awesome-icon)
     * [Bootstrap Accordion Example](#bootstrap-accordion-example)
+* [Wordpress](#wordpress)
 
 ---
 ## HTML
@@ -471,10 +472,13 @@ In [Bootstrap5](https://stackoverflow.com/questions/18672452/left-align-and-righ
 ml-auto is now ms-auto
 mr-auto is now me-auto
 <br>
+
 #### Bootstrap Flex
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 <br><br>
 
+#### Bootstrap Sizing
+[Bootstrap Sizing](https://mdbootstrap.com/docs/standard/utilities/sizing/) for width, height, and also relative to the viewport.
 
 
 --- 
@@ -672,3 +676,6 @@ Button needs data-toggle="collapse"
 
 </div>
 ```
+
+
+# Wordpress
