@@ -475,6 +475,11 @@ mr-auto is now me-auto
 
 #### Bootstrap Flex
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
+
+Might need to add d-flex or d-block to get these working
+* justify-content : can change alignment of everything in flexbox
+* align-items / align-self : for the y axis, move up and down
+* 
 <br><br>
 
 #### Bootstrap Sizing
