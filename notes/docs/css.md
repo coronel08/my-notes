@@ -471,6 +471,13 @@ In [Bootstrap5](https://stackoverflow.com/questions/18672452/left-align-and-righ
 
 ml-auto is now ms-auto
 mr-auto is now me-auto
+
+##### Responsive margin and paddings
+CHange margin or padding based on screen size in bootstrap
+```
+mr-lg-5 #margin right on large screens
+pr-lg-5 #padding right on large screens
+```
 <br>
 
 #### Bootstrap Flex
