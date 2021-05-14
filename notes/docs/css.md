@@ -486,6 +486,7 @@ mr-auto is now me-auto
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/layout/grid/) Grid tutorial, container grid made up of 12 columns. Defaults to include **gutter**
 
 #### Container
+[Container ](https://www.w3schools.com/bootstrap4/bootstrap_containers.asp) Usually goes Container -> row -> col
 * container gives a responsive container use like divs
     * container-fluid wraps entire width
     * container-sm to container-xl responsive breakpoints based on screen size
