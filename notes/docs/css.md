@@ -59,7 +59,7 @@ Bootstrap
         * [Input Group](#input-group)
     * [Bootstrap Navbar](#bootstrap-navbar)
     * [Bootstrap Icon](#bootstrap-icon)
-        * [FontAwesome Icon](font-awesome-icon)
+        * [FontAwesome Icon](#font-awesome-icon)
     * [Bootstrap Accordion Example](#bootstrap-accordion-example)
 * [Wordpress](#wordpress)
 
