@@ -486,7 +486,9 @@ pr-lg-5 #padding right on large screens
 Might need to add d-flex or d-block to get these working
 * justify-content : can change alignment of everything in flexbox
 * align-items / align-self : for the y axis, move up and down
-* 
+    * align-items : used on row
+    * align-self : used on col
+
 <br><br>
 
 #### Bootstrap Sizing
