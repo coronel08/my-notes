@@ -2,6 +2,7 @@
 Notes on learning React. 
 
 Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-app/)
+[React Best Practices](https://betterprogramming.pub/21-best-practices-for-a-clean-react-project-df788a682fb)
 <br><br>
 
 ---

@@ -59,6 +59,7 @@ Sets and Dictionaries are hash tables, they also drop duplicate entries. Diction
     * insert()/append() - add
     * remove()/pop() - remove 
 * tuple (immutable) - () example below
+    * namedtuple - also an option 
 ```
 name,age,country,career = ('Diana',32,'Canada','CompSci')
 ```
