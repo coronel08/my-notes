@@ -631,6 +631,7 @@ Resources
 
 ---
 ### Bootstrap Accordion Example 
+[Bootstrap Cards Equal Heights](https://mdbootstrap.com/docs/b4/jquery/plugins/equal-height-columns/)
 [Bootstrap Accordion Docs](https://getbootstrap.com/docs/4.5/components/collapse/)
 
 
