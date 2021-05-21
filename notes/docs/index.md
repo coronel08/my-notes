@@ -9,6 +9,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [HTML5up](https://html5up.net/)
 * [Bootstrap Templates](https://startbootstrap.com/)
 * [Python Module library](https://github.com/vinta/awesome-python)
+* [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
 
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)

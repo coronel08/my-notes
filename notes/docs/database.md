@@ -1,5 +1,7 @@
 # Database
 * Learn SQL [SQL ZOO](https://sqlzoo.net/) or [w3](https://www.w3schools.com/sql/)
+* Pandas instead of SQL[Haki Benita Site](https://hakibenita.com/sql-for-data-analysis)
+* Move from excel to Python[Medium](https://towardsdatascience.com/a-complete-yet-simple-guide-to-move-from-excel-to-python-d664e5683039)
 
 | SQL        | NOSQL      |
 | :--------- |:---------- |
@@ -15,11 +17,100 @@
 
 ---
 ## Table of Contents
+* [SQL](#sql)
 * [MongoDB](#mongodb)
     * [CRUD](#crud)
         * [Mongoose ODM](#mongoose-odm)
-* [SQL](#sql)
 
+---
+## SQL 
+Syntax Basics
+```
+SELECT <expressions>
+FROM <tables>
+JOIN <to other table> ON <join condition>
+WHERE <predicates>
+GROUP BY <expressions>
+HAVING <predicate>
+ORDER BY <expressions>
+LIMIT <number of rows>
+```
+
+Example Query
+```
+WITH emails as (
+    SELECT 'me@email.com' AS email
+)
+SELECT * from emails;
+```
+Another example
+```
+WITH emp AS (
+    SELECT * FROM (VALUES
+        ('Haki',    'R&D',      'Manager'),
+        ('Dan',     'R&D',      'Developer'),
+        ('Jax',     'R&D',      'Developer'),
+        ('George',  'Sales',    'Manager'),
+        ('Bill',    'Sales',    'Developer'),
+        ('David',   'Sales',    'Developer')
+    ) AS t(
+        name,       department,  role
+    )
+)
+SELECT * FROM emp;
+
+  name  │ department │   role
+────────┼────────────┼───────────
+ Haki   │ R&D        │ Manager
+ Dan    │ R&D        │ Developer
+ Jax    │ R&D        │ Developer
+ George │ Sales      │ Manager
+ Bill   │ Sales      │ Developer
+ David  │ Sales      │ Developer
+```
+
+Create a Pivot table in PANDAS vs SQL
+```
+<!-- PANDAS VERSION -->
+import pandas as pd
+df = pd.DataFrame({
+    'name': ['Haki', 'Dan', 'Jax', 'George', 'Bill', 'David'],
+    'department': ['R&D', 'R&D', 'R&D', 'Sales', 'Sales', 'Sales',],
+    'role': ['Manager', 'Developer', 'Developer', 'Manager', 'Developer', 'Developer'],
+})
+pd.pivot_table(df, values='name', index='role', columns='department', aggfunc='count')
+
+
+<!-- SQL VERSION -->
+WITH emp AS (
+    SELECT * FROM (VALUES
+        ('Haki',    'R&D',      'Manager'),
+        ('Dan',     'R&D',      'Developer'),
+        ('Jax',     'R&D',      'Developer'),
+        ('George',  'Sales',    'Manager'),
+        ('Bill',    'Sales',    'Developer'),
+        ('David',   'Sales',    'Developer')
+    ) as t(
+        name, department, role
+    )
+)
+
+<!-- Using CASE but Aggregate Expressions with COUNT is better
+SELECT
+    role,
+    SUM(CASE department WHEN 'R&D' THEN 1 ELSE 0 END) as "R&D",
+    SUM(CASE department WHEN 'SALES' THEN 1 ELSE 0 END) as "Sales" 
+-->
+SELECT
+    role,
+    COUNT(*) FILTER (WHERE department = 'R&D') as "R&D",
+    COUNT(*) FILTER (WHERE department = 'SALES') as "Sales"
+
+FROM
+    emp
+GROUP BY
+    role;
+```
 
 ---
 ## MongoDB
