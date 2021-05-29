@@ -30,6 +30,12 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [Full stack road map](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer)
 * [Project Based Learning](https://github.com/tuvtran/project-based-learning)
 
+**Servers/Hosting**
+* servercheap.net
+* webdock.io
+* vultr.com
+
+
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.
 * `mkdocs serve` - Start the live-reloading docs server.
