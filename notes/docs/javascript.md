@@ -1,4 +1,7 @@
 # Javascript Basics
+[Replace Jquery with Javascript](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)
+
+
 number += 1
 * increment ++
 * decrement --
