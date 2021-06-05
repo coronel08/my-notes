@@ -20,7 +20,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 
 **Other** 
-* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
+* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban [Network Chuck Vid](https://youtu.be/ZhMw53Ud2tY)
 * [ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
 * [GoalKicker Notes](https://goalkicker.com/)
 * [Eloquent Javascript](https://eloquentjavascript.net/)
