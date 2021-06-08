@@ -20,7 +20,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 
 **Other** 
-* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban
+* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban [Network Chuck Vid](https://youtu.be/ZhMw53Ud2tY)
 * [ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
 * [GoalKicker Notes](https://goalkicker.com/)
 * [Eloquent Javascript](https://eloquentjavascript.net/)
@@ -29,6 +29,12 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 **Tutorials**
 * [Full stack road map](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer)
 * [Project Based Learning](https://github.com/tuvtran/project-based-learning)
+
+**Servers/Hosting**
+* servercheap.net
+* webdock.io
+* vultr.com
+
 
 ## Commands
 * `mkdocs new [dir-name]` - Create a new project.
