@@ -217,6 +217,12 @@ Select a class
     background-color:blue;
 }
 ```
+Select an element with both classes
+```
+.test.purple{
+    background-color:purple;
+}
+```
 Select an ID/Label
 ```
 #test{
