@@ -253,6 +253,19 @@ service --status-all #display services
 ```
 
 ---
+## Bash
+Explain Shell commands [ExplainShell](https://explainshell.com/)
+
+Get the last parameter by using $_ or !$ or "alt"+"."
+```
+ mkdir newdir
+ cd $_
+```
+Run last command
+```
+!!
+```
+
 # Windows
 Find all IP Addresses on a network 
 ```
