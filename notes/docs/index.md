@@ -7,7 +7,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 ## Helpful Links
 **HTML Templates**
 * [HTML5up](https://html5up.net/)
-* [Bootstrap Templates](https://startbootstrap.com/)
+* [StartBootstrap Templates](https://startbootstrap.com/) and more templates [Bootstarters](https://www.bootstarters.com/?ref=producthunt)
 * [Python Module library](https://github.com/vinta/awesome-python)
 * [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
 
@@ -20,7 +20,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 
 **Other** 
-* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) showws ssh setup, create account, ufw, failban [Network Chuck Vid](https://youtu.be/ZhMw53Ud2tY)
+* [Server Setup Linux YT](https://www.youtube.com/watch?v=ZsjK4VDopiE) shows ssh setup, create account, ufw, failban [Network Chuck Vid](https://youtu.be/ZhMw53Ud2tY) also [Reddit server hardening link](https://www.reddit.com/r/linux/comments/ns7r7o/a_complete_yet_beginner_friendly_guide_on_how_to/)
 * [ShortcutFoo ](https://www.shortcutfoo.com/app/dojos/vscode-win/cheatsheet)
 * [GoalKicker Notes](https://goalkicker.com/)
 * [Eloquent Javascript](https://eloquentjavascript.net/)
