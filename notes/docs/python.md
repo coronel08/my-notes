@@ -110,6 +110,7 @@ String methods dont modify original string, return a new string. [W3](https://ww
 
 ## Conditionals
 Exception handling with **try and except and raise and else**<br>
+[Mathspp Blog](https://mathspp.com/blog/pydonts/chaining-comparison-operators) chaining conditionals <br>
 
 * use **if, elif, else, finally** for control flow
 * use **with** to open files instead of **try open and close**. With closes file automatically, helpful for threading
@@ -175,6 +176,17 @@ while start < len(items):
 
 ### For Loops
 for loop
+```
+words = ["Hey", "there"]
+
+# pythonic way
+for word in words:
+    print(f"{word} has {len(word)} letters in it")
+
+# bad way
+for i in range(len(words)):
+    print(f"{words[i]} has {len(words[i])} letters in it")
+```
 
 for loop with index
 ```
@@ -418,8 +430,9 @@ greet()
 ---
 
 # Destructuring 
+[Mathspp blog](https://mathspp.com/blog/pydonts/structural-pattern-matching-tutorial)
 ```
 string = 'This is a test string.'
-_, is, *rest = string.split(' ')
+_, this, *rest = string.split(' ')
 <!-- prints is -->
 ```
