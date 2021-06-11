@@ -36,18 +36,27 @@ venv\Scripts\activate
 * [Python](#python)
     * [Data Types](#data-types)
     * [String Methods](#string-methods)
-    * [Built in Functions](#built-in-functions)
     * [Conditionals](#conditionals)
-        * [Ternary Operators](#ternary-operators)
+        * [Ternary Operators](#ternary-operator)
+            * [If](#if)
+            * [In](#in)
     * [Loops](#loops)
         * [While Loop](#while-loop)
         * [For Loop](#for-loop)
+    * [Iterate](#iterate)
+        * [List Comprehension](#list-comprehension)
+        * [Dict Comprehension](#dict-comprehension)
     * [Functions](#functions)
+        * [Built in Functions](#built-in-functions)
         * [Lambda](#lambda-functions)
         * [Recursion](#recursion)
+        * [Generators](#generators)
 * [OOP](#oop)
     * [Classes](#classes)
     * [Decorators](#decorators)
+        * [Built in Decorators](#built-in-decorators)
+    * [Wrappers](#wrappers)
+* [Destructuring](#destructuring)
 
 ---
 ## Data Types
@@ -63,13 +72,14 @@ Sets and Dictionaries are hash tables, they also drop duplicate entries. Diction
 ```
 name,age,country,career = ('Diana',32,'Canada','CompSci')
 ```
-* dict - {'key':'value'} dictionary methods below
+* dict - {'key':'value'} dictionary methods below, can also do OrderedDict for a doubley linked list
     * .get() - returns the value of a key
     * .keys()
     * .items()
     * .values()
     * .clear() - removes all keys
     * .update() - updates key value
+    * .setdefault() - returns key value, if none sets it to default value and returns that
 * set - set() or {'element1','element2'}
     * sets are unordered, no duplicates, but elements must be immutable. A tuple can include a set but not a list or dict
     * Python has set methods as well [tutorialsteacher.com](https://www.tutorialsteacher.com/python/set-methods)
@@ -103,7 +113,7 @@ Exception handling with **try and except and raise and else**<br>
 
 * use **if, elif, else, finally** for control flow
 * use **with** to open files instead of **try open and close**. With closes file automatically, helpful for threading
-* use **is** to campare instead of ==
+* use **is** to compare instead of ==
 ```
 with open("file.txt", "w") as output:
     output.write(
@@ -116,6 +126,9 @@ with open("file.txt", "w") as output:
 ```
 def is_adult(age):
     return True if age > 18 else false
+
+a, b = 10, 20
+min = a if a < b else b
 ```
 
 ### If
@@ -131,7 +144,18 @@ print(d.get('hello', 'default_value'))
 <!-- This prints out default value since the key doesnt exist -->
 print(d.get('howdy', 'default_value'))
 ```
+### In
+```
+name_list = ["Fidel","Karina"]
+number_list = [323,714]
+text = "Mom text to someone out"
 
+for index, value in enumerate(name_list):
+    if value in text:
+        print(f"{index}:{value} in text, return number {number_list[index]}")
+    else:
+        pass
+```
 
 ---
 
@@ -160,6 +184,66 @@ for index, item in enumerate(items):
 <br><br>
 
 ---
+
+
+## Iterate
+Using Enumerate to add index to item iteration
+```
+list1 = ['a', 'b', 'c', 'd', 'e']
+for index, item in enumerate(list1):
+    print(index,item)
+```
+Using zip
+```
+list_a = [1, 2, 3, 4]
+list_b = [10, 20, 30, 40]
+
+# List comprehension
+list_sum = [a + b for a, b in zip(list_a, list_b)]
+# for loop to zip into a list
+list_sum = []
+for a, b in zip(list_a, list_b):
+  list_sum.append(a + b)
+print(list_sum) # [11, 22, 33, 44]
+```
+For list of unequal lengths zip_longest and zip_shortest
+```
+from itertools import zip_longest, zip_shortest
+short = [1, 2]
+long = [10, 20, 30, 40]
+zip_short = [a + b for a, b in zip(short, long)]
+print(zip_short) # [11, 22]
+zip_long = [a + b for a, b in zip_longest(short, long, fillvalue=0)]
+print(zip_long) # [11, 22, 30, 40]
+```
+
+
+### List Comprehension
+List Comprehensions, can also do if-else in a condition
+```
+a = [3,4,5]
+b = [i for i in a if i >4 ]
+
+
+<!-- Nested Loop list comprehension, great for making coordinates -->
+num1 = [1,2,3]
+num2 = [4,5,6]
+nums = [(x,y) for x in num1 for y in nums2]
+print(nums)
+
+<!-- Multiple if conditions in list comprehension, print if divisbile by 2 and 5 -->
+nums = [x for x in range(21) if x%2==0 if x%5==0]
+```
+### Dict Comprehension
+```
+my_basket = {'apple': 2, 'banana': 3, 'starfruit': 1}
+double_my_basket = {k:v*2 for (k, v) in my_basket.items()}
+print(double_my_basket) # {'apple': 4, 'banana': 6, 'starfruit': 2}
+```
+<br><br>
+
+---
+
 ## Functions
 def func(positional, keyword=value, *args, **kwargs):
 * positional are mandatory and have no defualt values
@@ -186,34 +270,19 @@ change(5)
 * input()
 * int()
 * iter()
+* join()
 * len()
 * map()
+* min()
 * max()
 * print()
 * sorted()
 * str()
+* sum()
 * tuple()
 * zip()
-<br>
 
-#### Comprehensions
-List Comprehensions, can also do if-else in a condition
-```
-a = [3,4,5]
-b = [i for i in a if i >4 ]
-
-
-<!-- Nested Loop list comprehension, great for making coordinates -->
-num1 = [1,2,3]
-num2 = [4,5,6]
-nums = [(x,y) for x in num1 for y in nums2]
-print(nums)
-
-<!-- Multiple if conditions in list comprehension, print if divisbile by 2 and 5 -->
-nums = [x for x in range(21) if x%2==0 if x%5==0]
-```
-
-#### Lambda Functions
+### Lambda Functions
 lambda <arguments> : <expression> <br>
 
 ```
@@ -227,7 +296,7 @@ numbers_power_2 = list(map(lambda n : n**2, numbers))
 numbers_filter = list(filter(lambda n: n > 3, numbers))
 ```
 
-#### Recursion
+### Recursion
 A function thaat calls itself is a recursive function
 ```
 def facotiral(n):
@@ -239,7 +308,7 @@ def facotiral(n):
         return n * factorial(n - 1)
 ```
 
-#### Generators
+### Generators
 Generators use parenthesis, need to use yield instead of return, and next(functionName) to call functionName. <br>
 Can be used when dealing with complex function, large data, or state
 ```
@@ -259,10 +328,9 @@ for x in squares:
 <!-- or pass a generator function to another fucntion  -->
 sum(x*x for x in range(5))
 ```
-
 <br><br>
----
 
+---
 # OOP
 * Attributes = variables, usually name following a .
 * Methods = functions
@@ -339,6 +407,10 @@ greet()
     * cant access class attributes or instance attributes
 
 ### Wrappers
+
+<br><br>
+
+---
 
 # Destructuring 
 ```
