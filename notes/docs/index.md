@@ -192,6 +192,11 @@ git rebase another master
 
 * Cifs(samba) Vs NFS(preffered) for filesharing mounting. labels only on ext4 drives. Use GPT instead of MBR for partition tables.
 
+If problems using diffferent versions of python
+```
+python3 -m pip install package
+
+```
 
 ## Setup Linux
 Users and groups 
