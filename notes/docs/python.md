@@ -72,7 +72,7 @@ Sets and Dictionaries are hash tables, they also drop duplicate entries. Diction
 ```
 name,age,country,career = ('Diana',32,'Canada','CompSci')
 ```
-* dict - {'key':'value'} dictionary methods below, can also do OrderedDict for a doubley linked list
+* dict - {'key':'value'} dictionary methods below, can also do OrderedDict for a doubley linked list [thispointer dict multiple values](https://thispointer.com/python-dictionary-with-multiple-values-per-key/)
     * .get() - returns the value of a key
     * .keys()
     * .items()
@@ -114,6 +114,7 @@ Exception handling with **try and except and raise and else**<br>
 * use **if, elif, else, finally** for control flow
 * use **with** to open files instead of **try open and close**. With closes file automatically, helpful for threading
 * use **is** to compare instead of ==
+* can **short-circuit** a conditional, prove a conditional wrong or right with **and** / **or** / **all**/ **any**
 ```
 with open("file.txt", "w") as output:
     output.write(
@@ -197,6 +198,10 @@ Using zip
 ```
 list_a = [1, 2, 3, 4]
 list_b = [10, 20, 30, 40]
+list_c = ["a","b","c","d"]
+
+# zip a list into a tuple, could also zip into a dict
+test = list(zip(list_a,list_b, list_c))
 
 # List comprehension
 list_sum = [a + b for a, b in zip(list_a, list_b)]
