@@ -629,6 +629,8 @@ CSS for adding Font Awesome Icon, Icon tag inside of toggle. Showing how to sele
     bottom: 3px;
 }
 ```
+[Css-Tricks](https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/) add shadow to font awesome icons.
+
 <br>
 
 Resources
