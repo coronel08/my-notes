@@ -408,6 +408,15 @@ grid{
     grid-column-gap: 10px;
 }
 ```
+Flashcard grid example
+```
+.card-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: .5rem;
+}
+```
 <br><br>
 
 ---
@@ -571,7 +580,8 @@ Example of a bootstrap button
 
 ---
 ### Bootstrap Images
-[Bootstrap Site](https://getbootstrap.com/docs/4.0/content/images/) 
+[Bootstrap Site](https://getbootstrap.com/docs/4.0/content/images/)<br> 
+Can also use srcset to make responsive images [css-tricks](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/)
 <br><br>
 
 ---
