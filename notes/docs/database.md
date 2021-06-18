@@ -51,6 +51,15 @@
 
 ---
 # SQL 
+Data Types
+* VARCHAR - alphanumeric data type
+* NVARCHAR - stores international characters as well
+* INT 
+* DECIMAL 
+* FLOAT 
+* DATE - YYYY-MM-DD
+* DATETIME
+* BIT - 0 or 1 or NULL
 ## Syntax Basics
 ```
 SELECT <expressions>
