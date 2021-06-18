@@ -3,6 +3,10 @@
 * Pandas instead of SQL[Haki Benita Site](https://hakibenita.com/sql-for-data-analysis)
 * Move from excel to Python[Medium](https://towardsdatascience.com/a-complete-yet-simple-guide-to-move-from-excel-to-python-d664e5683039)
 
+Adding more advanced SQL methods
+* [SQL Rank Function](https://www.sqlshack.com/overview-of-sql-rank-functions/)
+* [CTE Common Table Expressions in SQL](https://www.geeksforgeeks.org/cte-in-sql/)
+
 | SQL        | NOSQL      |
 | :--------- |:---------- |
 | SQlite     | MongoDB    |
@@ -45,6 +49,11 @@
 ---
 ## Table of Contents
 * [SQL](#sql)
+    * [Syntax Basics](#syntax-basics)
+    * [Database Normalization](#database-normalization)
+        * [1nf](#1nf)
+        * [2nf](#2nf)
+        * [3nf](#3nf)
 * [MongoDB](#mongodb)
     * [CRUD](#crud)
         * [Mongoose ODM](#mongoose-odm)
@@ -61,18 +70,114 @@ Data Types
 * DATETIME
 * BIT - 0 or 1 or NULL
 ## Syntax Basics
+SYNTAX
 ```
 SELECT <expressions>
 FROM <tables>
 JOIN <to other table> ON <join condition>
 WHERE <predicates>
-GROUP BY <expressions>
+GROUP BY <expressions> ORDER BY <expressions>
 HAVING <predicate>
 ORDER BY <expressions>
 LIMIT <number of rows>
+ON
+EQUALS <exact match> BETWEEN <between a range> 
+LIKE <%Value%> - searches for value in any field <Value%> searches for vlaue at start of field
+IS NULL or IS NOT NULL <>
+INSERT or INSERT INTO <>
+UPDATE <>
+DELETE
 ```
 
-Example Query
+
+Syntax should be written in a readable form like below
+```
+-- Single line comments in SQL
+/* Multi Line comments in SQL */
+SELECT
+    SalesOrderDetailID,
+    OrderQty,
+    ProductID,
+    UnitPrice,
+FROM Sales.SalesOrderDetail
+WHERE UnitPrice < 2000
+```
+
+### Transofrming Data
+* SUM
+* MIN
+* MAX
+* COUNT
+* AVG
+
+### Joins
+* INNER JOIN - Returns only matching value between two or more tables in the result
+* LEFT JOIN - Returns matching values between two or more tables in the result, but also returns non-matching values from the primary table
+* RIGHT JOIN - Returns matching values between two or more tables in the result, but also returns non-matching values from the secondary table
+* FULL JOIN - Returns matching values as well as all non-matching values
+* DISTINCT - obtain unique values from a group of values
+* Aliases - temp names that can be used for tables and columns
+
+INNER JOIN EXAMPLE
+```
+SELECT
+    P.BusinessEntityID,
+    P.PerstonType,
+    P.FirstName,
+    P.LastName,
+    JC.JobCandidateID,
+    JC.Resume
+FROM Person.Person as P
+INNER JOIN HumanResources.JobCandidate as JC 
+ON P.BusinessEntityID = JC.BusinessEntityID
+```
+
+### Data Definition Language
+#### Create 
+```
+-- Creates a Database
+CREATE DATABASE DatabaseName
+
+-- Creates a Schema
+CREATE SCHEMA SchemaName
+
+-- Creates a table
+CREATE TABLE SchemaName.TableName
+(
+    Column1 datatype Primary KEY,
+    Column2 datatype(n),
+    Column3 datatype
+)
+
+-- Create a View Table
+CREATE VIEW ViewName
+AS
+SELECT
+    Column1,
+    Column2
+FROM TableName
+```
+#### Alter
+Alter an existing table like adding an additional column to a table or changing the name of the database
+```
+-- Alters the name of the database 
+ALTER DATABASE DatabaseName MODIFY NAME = NewDatabaseName
+
+-- Alters a table by adding a column
+ALTER TABLE TableName
+ADD ColumnName datatype(n)
+```
+
+#### Drop
+Drop objects within the database
+```
+-- Go to table and drop it
+USE MasterTable
+GO
+DROP DATABASE DatabaseName
+DROP TABLE TableName
+```
+### Example Query
 ```
 WITH emails as (
     SELECT 'me@email.com' AS email
