@@ -1,6 +1,7 @@
 # Javascript Basics
-[Replace Jquery with Javascript](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)
-
+Same as Javascript Dom Manipulation and Selectors Section
+Replace Jquery with Javascript[tobiashlin](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)<br>
+[sitepoint](https://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/)
 
 number += 1
 * increment ++

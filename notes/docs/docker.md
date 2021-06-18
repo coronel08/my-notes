@@ -161,11 +161,12 @@ To recreate a single docker-compose component
 
 
 ---
-## Docker Stack
+## Docker-compose Stack
 
 ### Docker Flask Stack
 Docker, Flask, React, Nginx [Medium](https://medium.com/swlh/deploy-and-secure-a-react-flask-app-with-docker-and-nginx-768ca582863b) 
 
+Docker React Nginx Blog [Medium](https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf)
 
 Dockerizing Flask with Postgres, Gunicorn and Nginx [Testdriven.io](https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/)
 
