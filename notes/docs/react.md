@@ -27,6 +27,7 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
         * [Navbar](#navbar)
         * [Flashcard](#flashcard)
         * [Reactstrap](#reactstrap)
+* [Next](#next)
 
 
 ---
@@ -160,3 +161,37 @@ An extensive tutorial on building a react Todo List from scratch. [vegibit site]
 ### Reactstrap
 A bootstrap for React
 <br><br>
+
+---
+
+# Next
+
+
+## Basics
+
+### Img
+Next has its own [Image tag](https://nextjs.org/docs/basic-features/image-optimization) will need to [configure host](https://nextjs.org/docs/messages/next-image-unconfigured-host) when setting it up. 
+
+
+### Static vs Server Rendering
+[Next.js Pages](https://nextjs.org/docs/basic-features/pages) and (data fetching)[https://nextjs.org/docs/basic-features/data-fetching]
+* Static Rendering - The HTML is generated at build time and will be reused on each request.
+    * getStaticProps - page content depends on external data. Can Data Fetch so that we can pre render with data
+    * getStaticPaths - page path depends on external data
+* Server Rendering - The HTML is generated on each request. Best for data pages that need data that is rendered on each request.
+    * getServerSideProps - is run on every request, fetches the data and passes it to the page
+
+### Router
+* index routes - The router will automatically route files named index to the root of the directory.
+* nested routes - nested folders and files in the pages will be generated in the same way
+* dynamic routes - use bracket syntax to match named parameters []
+#### Link
+Next has its own Link tag format
+```
+<Link href="/about">
+    <a>About Us</a>
+</Link>
+```
+#### useRouter
+[useRouter hook](https://nextjs.org/docs/api-reference/next/router#userouter), can use router.push for buttons and for passing data into url. Also looks into router.prefetch that would for example prefetch a page after login.
+
