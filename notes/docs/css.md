@@ -61,7 +61,7 @@ Bootstrap
     * [Bootstrap Icon](#bootstrap-icon)
         * [FontAwesome Icon](#font-awesome-icon)
     * [Bootstrap Accordion Example](#bootstrap-accordion-example)
-* [Wordpress](#wordpress)
+* [Tailwind](#tailwind)
 
 ---
 ## HTML
@@ -303,13 +303,17 @@ Keyword added to a selector
 
 ---
 ### Positions
+Positions allows you to place things anywhere and is more flexible than the flex box or grid. Added test.html to show difference between relative and absolute. followed [FreecodeCamp](https://www.freecodecamp.org/news/css-position-property-explained/amp/)
+
 [Position MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
 [Position Property Values](https://www.w3schools.com/cssref/pr_class_position.asp)
 
 * static
-* relative (can change top and sides from where it would be regularly)
-* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative )
+* relative (can change top and sides from where it would be regularly) PARENT
+* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative ) CHILD
 * fixed (always present)
+
+
 <br><br>
 
 ---
@@ -712,4 +716,4 @@ Button needs data-toggle="collapse"
 ```
 
 
-# Wordpress
+# Tailwind

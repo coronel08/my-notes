@@ -168,6 +168,13 @@ A bootstrap for React
 
 
 ## Basics
+Make sure to edit [metadata](https://nextjs.org/learn/basics/assets-metadata-css/metadata) in head section and create a [layout](https://nextjs.org/learn/basics/assets-metadata-css/metadata)
+
+
+### CSS styling
+Global styles are imported into the pages/_app.js, all other styles use css modules and must end with .module.css
+
+
 
 ### Img
 Next has its own [Image tag](https://nextjs.org/docs/basic-features/image-optimization) will need to [configure host](https://nextjs.org/docs/messages/next-image-unconfigured-host) when setting it up. 
