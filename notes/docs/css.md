@@ -41,7 +41,7 @@ Bootstrap
         * [Example of Flex ](#example-of-flex)
     * [CSS grid](#css-grid)
     * [Box Sizing](#box-sizing)
-* [Lightbox Photos](#lightbox-photos)
+        * [Photos](#photos)
 * [Bootstrap](#bootstrap)
     * [Bootstrap Components](#bootstrap-components)
     * [Bootstrap Utilities](#bootstrap-utilities)
@@ -65,7 +65,7 @@ Bootstrap
 
 ---
 ## HTML
-Can use [Emmet shortcuts](https://docs.emmet.io/cheat-sheet/) for html.
+Can use [Emmet shortcuts](https://docs.emmet.io/cheat-sheet/) for html.<br>
 
 
 [CSS Tricks](https://css-tricks.com/best-way-implement-wrapper-css/) Use Wrapper to wrap body and section 
@@ -183,6 +183,9 @@ Units of measurement for CSS em/rem/px/% etc[w3 schools](https://www.w3schools.c
 
 #### Navbar 
 [Fireship YT](https://www.youtube.com/watch?v=biOMz4puGt8&t=335s) Building an animated CSS Bar tutorial
+
+[Sidebar HTML and CSS Example](https://dev.to/code_mystery/sidebar-menu-using-html-and-css-o49)<br>
+
 <br><br>
 
 ---
@@ -321,7 +324,10 @@ Positions allows you to place things anywhere and is more flexible than the flex
 [w3 Display Property Values](https://www.w3schools.com/cssref/pr_class_display.asp)
 [w3 Display Prop example](https://www.w3schools.com/css/css_display_visibility.asp) Show display on click and hide on click
 [Flex align/center/justify etc](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)<br>
-
+* none - deletes the item
+* inline - like using span, height and width have no effect
+* block - starts on a new line and takes up all width
+* inline-block - can apply height and width
 
 #### Visibility vs Display
 Can use visibility instead of [display:none](https://www.w3schools.com/css/css_display_visibility.asp). display none deletes the item, visibility just hides it in place.
@@ -430,14 +436,18 @@ Flashcard grid example
 * border-box includes padding in box width
 
 ---
-## Lightbox Photos
-[Lightbox Photo Gallery w3](https://www.w3schools.com/howto/howto_js_lightbox.asp)
+### Photos 
+[Lightbox Photo Gallery w3](https://www.w3schools.com/howto/howto_js_lightbox.asp)<br>
+
+[Carousel Photo](https://dev.to/code_mystery/image-slider-using-html-css-and-javascript-5dfn)<br>
 
 [Modal photo Gallery w3](https://www.w3schools.com/howto/howto_css_modal_images.asp)
 <br><br>
 
+
+
 ---
-## Bootstrap
+# Bootstrap
 BOOTSTRAP Tutorial[Bootstrap site](https://getbootstrap.com/docs/4.5/getting-started/introduction/) Components tab for styling
 
 
@@ -454,7 +464,7 @@ Added in [BootstrapCDN](https://fontawesome.com/v3.2.1/get-started/), imported i
 ```
 <br>
 
-### Bootstrap Components
+## Bootstrap Components
 [Bootstrap Site](https://getbootstrap.com/docs/4.5/components/) list of component names / classes. Popular ones below.
 * Buttons
 * Card
@@ -717,3 +727,41 @@ Button needs data-toggle="collapse"
 
 
 # Tailwind
+[Tailwind Infoworld](https://www.infoworld.com/article/3622288/tailwind-css-learn-the-joys-of-functional-responsive-css.amp.html) shows navbar, responsive layout
+
+
+[Nerdcave](https://nerdcave.com/tailwind-cheat-sheet) Tailwind Cheat Sheet
+
+
+Set [width](https://tailwindcss.com/docs/width) with either 
+* number- like w-6 
+* w-auto - 
+* w-screen - takes the entire width of viewport
+* w-full - full width
+* w-{fraction} - can use fractions like w-3/5 or w-11/12
+
+## Tailwind Flex
+[Tailwind Docs](https://tailwindcss.com/docs/align-items#center)
+
+## Responsive design
+[Tailwind Docs](https://tailwindcss.com/docs/responsive-design) breakpoints and responsive design
+
+
+#### Cards
+Made responsive card design in tailwind
+```
+    <div class="grid grid-cols-1 sm:grid-cols2 md:grid-cols-3 justift-items-center gap-2">
+        <div class="w-64 h-64 md:w-11/12 border border-solid border-blue-900 rounded bg-blue-200">
+            <div class="w-full bg-blue-500 font-bold pl-2">Title 1</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+          </div>
+        <div class="w-64 h-64 md:w-11/12 border border-solid border-blue-900 rounded bg-blue-200">
+            <div class="w-full bg-blue-500 font-bold pl-2">Title 1</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+          </div>
+          <div class="w-64 h-64 md:w-11/12 border border-solid border-blue-900 rounded bg-blue-200">
+            <div class="w-full bg-blue-500 font-bold pl-2">Title 1</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+          </div>
+    </div>
+```
