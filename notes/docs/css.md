@@ -442,8 +442,10 @@ Flashcard grid example
 [Carousel Photo](https://dev.to/code_mystery/image-slider-using-html-css-and-javascript-5dfn)<br>
 
 [Modal photo Gallery w3](https://www.w3schools.com/howto/howto_css_modal_images.asp)
-<br><br>
 
+
+[Object fit property to resize images or not](https://www.w3schools.com/csS/css3_object-fit.asp)
+<br><br>
 
 
 ---
@@ -748,10 +750,16 @@ Set [width](https://tailwindcss.com/docs/width) with either
 * w-{fraction} - can use fractions like w-3/5 or w-11/12
 
 ## Tailwind Flex
-[Tailwind Docs](https://tailwindcss.com/docs/align-items#center)
-
+[Tailwind Align Items](https://tailwindcss.com/docs/align-items#center)
+[Tailwind Containers](https://tailwindcss.com/docs/container)
 ## Responsive design
-[Tailwind Docs](https://tailwindcss.com/docs/responsive-design) breakpoints and responsive design
+[Tailwind Responsive](https://tailwindcss.com/docs/responsive-design) breakpoints and responsive design
+[Tailwind Display](https://tailwindcss.com/docs/display)
+[Tailwind Position](https://tailwindcss.com/docs/position)
+[Tailwind Float](https://tailwindcss.com/docs/float) and [Tailwind Clear](https://tailwindcss.com/docs/clear)
+[Tailwind Object-Fit](https://tailwindcss.com/docs/object-fit)
+[Tailwind Object Position](https://tailwindcss.com/docs/object-position)
+
 
 [Hover, Active, Focus, Checked, First-Child, etc and other states](https://tailwindcss.com/docs/hover-focus-and-other-states)
 
@@ -782,3 +790,5 @@ Made responsive card design in tailwind
 
 Can build reusable components in React [SmashingMag](https://www.smashingmagazine.com/2020/05/reusable-react-components-tailwind/) Used methods 1 and 2 succesfully.
 [React Docs](https://reactjs.org/docs/components-and-props.html) on Components and Props 
+
+[Dynamic Values Section](https://tailwindcss.com/docs/just-in-time-mode) to see how to change styles based on classname
