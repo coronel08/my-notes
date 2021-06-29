@@ -1,6 +1,8 @@
 # React Notes
 Notes on learning React. 
 
+
+[15 React Libraries](https://dev.to/coursesity/react-libraries-to-use-in-2021-15-top-picks-37d7) to use 
 Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-app/)
 [React Best Practices](https://betterprogramming.pub/21-best-practices-for-a-clean-react-project-df788a682fb)
 <br><br>

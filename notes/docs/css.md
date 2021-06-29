@@ -733,6 +733,13 @@ Button needs data-toggle="collapse"
 [Nerdcave](https://nerdcave.com/tailwind-cheat-sheet) Tailwind Cheat Sheet
 
 
+[Tailwind Install Docs](https://tailwindcss.com/docs/installation)
+
+## Sizing and Spacing
+Margin and Padding is the same as bootstrap but can go higher in numbers <br>
+Can go from text-base to text-6xl 
+<br>
+
 Set [width](https://tailwindcss.com/docs/width) with either 
 * number- like w-6 
 * w-auto - 
@@ -746,6 +753,7 @@ Set [width](https://tailwindcss.com/docs/width) with either
 ## Responsive design
 [Tailwind Docs](https://tailwindcss.com/docs/responsive-design) breakpoints and responsive design
 
+[Hover, Active, Focus, Checked, First-Child, etc and other states](https://tailwindcss.com/docs/hover-focus-and-other-states)
 
 #### Cards
 Made responsive card design in tailwind
@@ -765,3 +773,12 @@ Made responsive card design in tailwind
           </div>
     </div>
 ```
+
+#### Tailwind React
+[SmashMagazine](https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/) uses tailwind post-css and autoprefixer
+[Logrocket](https://blog.logrocket.com/theming-react-components-tailwind-css/) Creates a dark adn light theme in react. Not too helpful
+
+
+
+Can build reusable components in React [SmashingMag](https://www.smashingmagazine.com/2020/05/reusable-react-components-tailwind/) Used methods 1 and 2 succesfully.
+[React Docs](https://reactjs.org/docs/components-and-props.html) on Components and Props 
