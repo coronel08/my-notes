@@ -888,6 +888,7 @@ node {{filename}}
 ---
 # OOP
 [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS) OOP Tutorial
+[dev.to](https://dev.to/yumatsushima07/javascript-7-oop-fundamentals-you-will-need-4hk8) 7 OOP concepts
 
 
 Object Prototypes -- Old and wrong way to add to a class

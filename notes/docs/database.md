@@ -351,6 +351,7 @@ Or also create a mapping table with 2 foreign keys and remove the "Category ID" 
 # MongoDB
 [Mongo Docs](https://docs.mongodb.com/manual/reference/operator/query/) Operators such as greater than or in
 
+* Login with -  "mongo -u root -p example"
 * db
 * show databases or show dbs
 * use {{db_name}}   - create and switch to db

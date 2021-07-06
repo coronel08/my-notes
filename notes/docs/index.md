@@ -10,6 +10,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [StartBootstrap Templates](https://startbootstrap.com/) and more templates [Bootstarters](https://www.bootstarters.com/?ref=producthunt)
 * [Python Module library](https://github.com/vinta/awesome-python)
 * [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
+* [CSS Art](https://codepen.io/braydoncoyerffe8ea)
 
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
