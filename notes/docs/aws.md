@@ -84,3 +84,45 @@ Lifecycle policies move data around to different storage classes based on time <
 * Amazon Relational Database Service - SQL to store and query data, managed service that automates scaling and setup
 * Amazon DynamoDB - non relational database using key-value pairs
 * Amazon Redshift - Data warehousing services for big data analytics
+
+
+## Security
+Follow best practice of giving least privilages 
+* AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user
+    * Users - 
+    * Groups - Collection of Users and permissions 
+    * Policies - allows or denies permissions to AWS  
+    * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term
+* AWS Organizations - For large business
+    * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
+* AWS Artifcat - Security and Compliance reports
+* AWS Shield - DDOS protection service
+* AWS Key Management Service (KMS) -
+* AWS Web Application Firewall (WAF) - 
+
+## Support
+* AWS Support plans
+    * Basic - 
+    * Developer - Best practice guidance, Client Side Diagnostics, and architecture support
+    * Business - Use case guidance, All aws trusted advisor checks, 
+    * Enterprise - Application architecture guidance, event management, (Technical Account Manager)TAM 
+
+## Migration 
+* AWS Cloud Migration Framework
+    * Business 
+    * People - HR
+    * Governance
+    * Platform
+    * Security
+    * Operations
+* 6 Different Staretegies for Migration
+    * Rehosting - Lift and Shift 
+    * Replatforming - Lift, Tinker, and Shift
+    * Refactoring - Driven by a need to add new features and edit code
+    * Repurchasing - Software as a service option
+    * Retaining - Keeping critical applications at the source environment
+    * Retiring - removing applications that are no longer needed
+* Snow Family - transports data into aws physically
+    * snowcone - 8tb
+    * snowball - 42tb to 80tb 
+    * snowmobile - 100PB
