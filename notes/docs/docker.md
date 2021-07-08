@@ -163,6 +163,10 @@ To recreate a single docker-compose component
 ---
 ## Docker-compose Stack
 
+
+### Docker React Nginx
+Dockerizing a react nginx app using the following links and tutorials [Dockerizing React](https://typeofnan.dev/how-to-serve-a-react-app-with-nginx-in-docker/) and [Dockerizing React](https://dev.to/bahachammakhi/dockerizing-a-react-app-with-nginx-using-multi-stage-builds-1nfm)<br>
+
 ### Docker Flask Stack
 Docker, Flask, React, Nginx [Medium](https://medium.com/swlh/deploy-and-secure-a-react-flask-app-with-docker-and-nginx-768ca582863b) 
 
