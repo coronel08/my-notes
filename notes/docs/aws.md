@@ -107,11 +107,11 @@ Follow best practice of giving least privilages
     * Business - Use case guidance, All aws trusted advisor checks, 
     * Enterprise - Application architecture guidance, event management, (Technical Account Manager)TAM 
 * AWS Well Architected Framework - Evaluates workload agaisnt the 5 pillars
-    * Operational Excellence -  Run workloads 
-    * Security
+    * Operational Excellence -  The ability to run and monitor systems and improve supporting processes and procedures
+    * Security - Delivering business value through trisk assesssments and mitigation
     * Reliability - Recover from interruptions and change resources to meet demand
-    * Performance Efficiency - Using resources efficiently 
-    * Cost Optimization - Reduce cost of ownership
+    * Performance Efficiency - Selecting right resources based on workload requirements and making informed decisions to maintain efficiency
+    * Cost Optimization - Reduce cost of ownership, avoid or eliminate unneeded cost.
 
 ## Migration 
 * AWS Cloud Migration Framework
