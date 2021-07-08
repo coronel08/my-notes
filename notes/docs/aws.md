@@ -72,7 +72,7 @@ Public and private subnets in a VPC can communicate with each other
 ## Storage and DB 
 Snapshots - incremental backups <br>
 Lifecycle policies move data around to different storage classes based on time <br>
-* Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource
+* Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases.
 * Amazon Simple Storage (S3) - store data as objects and stores them into buckets (max object size 5tb). Write once read many storage 
     * S3 Standard - Can also store static website hosting in S3
     * S3 Standard Infrequent Access - long term storage but needs quick access, lower storage price and higher retrieval price
@@ -106,6 +106,12 @@ Follow best practice of giving least privilages
     * Developer - Best practice guidance, Client Side Diagnostics, and architecture support
     * Business - Use case guidance, All aws trusted advisor checks, 
     * Enterprise - Application architecture guidance, event management, (Technical Account Manager)TAM 
+* AWS Well Architected Framework - Evaluates workload agaisnt the 5 pillars
+    * Operational Excellence -  Run workloads 
+    * Security
+    * Reliability - Recover from interruptions and change resources to meet demand
+    * Performance Efficiency - Using resources efficiently 
+    * Cost Optimization - Reduce cost of ownership
 
 ## Migration 
 * AWS Cloud Migration Framework
