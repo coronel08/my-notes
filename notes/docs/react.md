@@ -137,9 +137,44 @@ Styled components are inline and can be used to define styles and reusable compo
 
 ---
 ## Redux
+[Redux Getting started](https://redux.js.org/introduction/getting-started)
+[Redux Essentials](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
+[Redux Fundamentals](https://redux.js.org/tutorials/fundamentals/part-1-overview)
+[Redux Toolkits](https://redux-toolkit.js.org/)
+
 [Medium](https://medium.com/swlh/understanding-react-redux-and-react-redux-c52d46dd1a04) Understanding react Store -> View -> Actions -> Reduce -> Store
 
+* Actions are plain objects with a type field, and describe "what happened" in the app
+* Reducers are functions that calculate a new state value based on previous state + an action
+* A Redux store runs the root reducer whenever an action is dispatched
+* UseSelector hook lets our component extract whatever pieces of data it needs from the Redux store state.
 
+
+```
+// Old way of doing this
+import {createStore} from 'redux'
+
+function counterReducer(state = {value:0}, action) {
+    switch (action.type){
+        case 'counter/incremented':
+            return {value: state.value + 1}
+        case 'counter/decremented':
+            return {value: state.value - 1}
+        default:
+            return state
+    }
+}
+
+// Can use subscribe, dispatch is the only way to update the state, getstate to retrieve the updated value
+let store = createStore(counterReducer)
+store.subscribe(() => console.log(store.getState()))
+
+store.dispatch({type: 'counter/incremented'})
+store.dispatch({type:'counter/incremented'})
+store.dispatch({type: 'counter/decremented'})
+
+console.log(store.getState())
+```
 
 ---
 ## Tutorials
@@ -168,6 +203,11 @@ A bootstrap for React
 
 # Next
 
+Start next application
+```
+npx create-next-app nextjs-blog --use-npm
+npm run dev
+```
 
 ## Basics
 Make sure to edit [metadata](https://nextjs.org/learn/basics/assets-metadata-css/metadata) in head section and create a [layout](https://nextjs.org/learn/basics/assets-metadata-css/metadata)

@@ -466,6 +466,18 @@ points.sort((a,b) => b - a)
 * findIndex(): 
 
 
+Reduce Example
+```
+// Reduce function example 
+const numbers = [2,3,4,5]
+const addNumbers = (prevResult, currentItem) => {
+    console.log(prevResult, currentItem)
+    return prevResult + currentItem
+}
+const initValue = 12
+const total = numbers.reduce(addNumbers, initValue)
+```
+
 Exmaple showing filter and map used in one line
 ```
 const movies = [
