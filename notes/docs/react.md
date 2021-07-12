@@ -144,10 +144,31 @@ Styled components are inline and can be used to define styles and reusable compo
 
 [Medium](https://medium.com/swlh/understanding-react-redux-and-react-redux-c52d46dd1a04) Understanding react Store -> View -> Actions -> Reduce -> Store
 
+
+Redux setup steps (Global state should go in the Redux store, local state should stay in React components)
+* Import provider and store into index.js
+* import ConfigureStore in app/store.js and accept reducer in a folder either component/whatever or features/whatever 
+* Reducer located in either component/whatever or features/whatever is organized into a slice. Import CreateSlice and work reducer functions.
+    * async logic is done with a thunk
+
 * Actions are plain objects with a type field, and describe "what happened" in the app
 * Reducers are functions that calculate a new state value based on previous state + an action
 * A Redux store runs the root reducer whenever an action is dispatched
 * UseSelector hook lets our component extract whatever pieces of data it needs from the Redux store state.
+    * Can also initiate state using UseSelector redux hook
+    ```
+    const countPlusTwo = useSelector(state => state.counter.value + 2)
+    ```
+* UseDispatch is a redux hook that gives access to the dispatch method from the store, typically used like below:
+    ```
+    const dispatch = useDispatch();
+
+    <button
+      className={styles.button}
+      aria-label="Decrement value"
+      onClick={() => dispatch(decrement())}
+    >
+    ```
 
 
 ```
