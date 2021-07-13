@@ -145,6 +145,12 @@ Styled components are inline and can be used to define styles and reusable compo
 [Medium](https://medium.com/swlh/understanding-react-redux-and-react-redux-c52d46dd1a04) Understanding react Store -> View -> Actions -> Reduce -> Store
 
 
+[Data flow tutorial, very helpful](https://redux.js.org/tutorials/essentials/part-3-data-flow)
+Start template for Redux 
+```
+npx create-react-app my-app --template redux
+```
+
 Redux setup steps (Global state should go in the Redux store, local state should stay in React components)
 * Import provider and store into index.js
 * import ConfigureStore in app/store.js and accept reducer in a folder either component/whatever or features/whatever 
