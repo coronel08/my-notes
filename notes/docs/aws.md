@@ -182,7 +182,7 @@ Follow best practice of giving least privilages
     * Cost Optimization - Reduce cost of ownership, avoid or eliminate unneeded cost.
 
 ## Migration 
-* AWS Total Cost Ownership (TCO) - free tool that provides info on possible savings when deploying to AWS.
+* AWS Total Cost Ownership (TCO) - free tool that provides info on possible savings when deploying to AWS. (Cost Explorer only analyzes current cost and ussage)
 * AWS Application Discovery Service - helps systems integrators plan application migration projects by identifying on-premise applications.
 * AWS Cloud Adoption Framework (CAF) - helps organizations design a road map to cloud adoption
 
