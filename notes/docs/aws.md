@@ -23,6 +23,12 @@ AWS Well Architected Dramework, best practices for designing in cloud
 
 
 ## Notes
+
+Server-based services include: Amazon EC2, Amazon RDS, Amazon Redshift and Amazon EMR.
+
+Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and Amazon DynamoDB.
+
+
 * AWS Professional Services - team of experts that help set up desired business on AWS
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
@@ -67,6 +73,9 @@ Serverless Computing
 * Dedicated Host - Fully dedicated to one host
 
 * AWS Resource Groups - Use to create custom console for environments and view/manage resources easily.
+
+* AWS Cost & Usage report - contains the most conprehensive set of AWS cost and usage data
+* AWS Cost Explorer - visualize and understand and manage AWS cost and usage, forecast up to 12 months ahead.  
 
 ### Scaling
 * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
