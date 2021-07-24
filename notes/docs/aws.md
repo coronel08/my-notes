@@ -3,6 +3,12 @@ Savings PLans available for Lambda, Fargate, and EC2
 Horizontal Scaling  = adding several smaller instances when workloads increase 
 Can work with AWS through AWS Management Console, CLI, or SDK
 
+
+Server-based services include: Amazon EC2, Amazon RDS, Amazon Redshift and Amazon EMR.
+Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and Amazon DynamoDB.
+
+
+
 * Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
 * AWS CloudFormation - is a Yaml based tool used to define resources
 
@@ -20,34 +26,36 @@ AWS Well Architected Dramework, best practices for designing in cloud
 * Software as a Service - completed product that is run and managed 
 ## Table of contents
 
+* [AWS](#Aws)
+* [Services](#services)
+* [EC2](#ec2)
+    * [Instance Types](#instance-types)
+    * [Pricing](#pricing)
+    * [Scaling](#scaling)
+* [Global Infastructure](#global-infastructure)
+* [Networking](#networking) 
+* [Storage and DB](#storage-and-db)
+* [Security](#security)
+* [Support](#support)
+* [Migration](#migration)
 
-
-## Notes
-
-Server-based services include: Amazon EC2, Amazon RDS, Amazon Redshift and Amazon EMR.
-
-Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and Amazon DynamoDB.
-
-
-* AWS Professional Services - team of experts that help set up desired business on AWS
-* Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
-* Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
-* AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
-* AWS Outposts - provides AWS infastracture to on premises facility. 
+## Services
+* Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
 * AWS CloudHSM - security model that lets you use your own encryption keys
+* AWS CodeBuild - continuous integration service allows testing code
 * AWS CodeCommit - used for software version control by developers. 
 * AWS CodeDeploy - automates code deployment to instances
-* AWS Config - continually monitor for compliance or vulnerabilities in AWS
-* AWS CodeBuild - continuous integration service allows testing code
-* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
-* Amazon Quicksight - Business Intelligence tool
-* Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
+* AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
+* Amazon Detective - easily investigate security findings.
+* AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
 * Amazon GuardDuty - threat detection that monitors accounts and workloads
 * Amazon Macie - data security and data privacy service that uses machine learning to protect data 
-* Amazon detective - easily investigate security findings.
+* AWS Professional Services - team of experts that help set up desired business on AWS
+* Amazon Quicksight - Business Intelligence tool
 * AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
 
 ## EC2
+Elastic Cloud Computation
 Infrastructure as a Service - computers and data storage provided
 
 ### Instance Types
@@ -95,8 +103,11 @@ Regions are picked based on the following:
 * Available Services - some services may not be availaable in your region yet
 * Pricing - varies by region due to operating costs
 
-### Edge Locations
+
+
+Edge Locations
 Amazon Cloudfront is a Content Delivery Network that caches content closer to customers. An Edge Location is a site that is used for CDN.
+
 
 ## Networking
 Public and private subnets in a VPC can communicate with each other
@@ -107,6 +118,7 @@ Public and private subnets in a VPC can communicate with each other
     * AWS Client VPN 
     * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS
 * AWS Direct Connect establishes a direct connection between your data center and a VPC
+* AWS Outposts - provides AWS infastracture to on premises facility. 
 
 
 ### Network ACL
@@ -126,6 +138,8 @@ S3 => multiple availability zones
 Snapshots - incremental backups <br>
 Lifecycle policies move data around to different storage classes based on time <br>
 * Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. Cannot be attached to multiple compute resources at a time.
+
+
 * Amazon Simple Storage (S3) - store data as objects and stores them into buckets (max object size 5tb). Write once read many storage. Can host a static website or can be used as a media store for Cloudfront. Amazon S3 assigns a URL for each object you upload. Can scale and replicate data automatically across multiple Availability Zones(except One-Zone IA). Cant be attached to compute resources
     * S3 Standard - Can also store static website hosting in S3
     * S3 Standard Infrequent Access - long term storage but needs quick access, lower storage price and higher retrieval price
@@ -133,12 +147,18 @@ Lifecycle policies move data around to different storage classes based on time <
     * S3 Intelligent Tiering - Ideal for data with unknown or changing access patterns
     * S3 Glacier - Long term storage for data archiving, retrieve within hours
     * S3 Glacier Deep Archive - lowest cost storage, retrieve within several hours
+
+
 * Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling.  
-* Amazon Relational Database Service - SQL to store and query data, managed service that automates scaling and setup
+
+
+Databases
+* Amazon RDS (Relational Database Service) - SQL to store and query data, managed service that automates scaling and setup
 * Amazon DynamoDB - non relational database using key-value pairs
 * Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
 * Amazon Storage Gateway - helps extend their on-premise storage to AWS
 * Amazon Aurora - Mysql and PostgreSQL relational database, an Amazon RDS service
+* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
 
 ## Security
 Security Bulletins - AWS notifies customers about security and privacy events.
@@ -158,10 +178,13 @@ Follow best practice of giving least privilages
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 
 
-* Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance
+* Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics.
 * Cloudtrail - Log of all actions and API calls taking place in AWS
 
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon
+* Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
+* Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
+
 ## Support
 * AWS Support plans
     * Basic - 
