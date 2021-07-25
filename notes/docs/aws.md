@@ -6,8 +6,11 @@ Can work with AWS through AWS Management Console, CLI, or SDK
 
 Server-based services include: Amazon EC2, Amazon RDS, Amazon Redshift and Amazon EMR.
 Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and Amazon DynamoDB.
-
-
+* Global Services include:
+    * IAM(Identity and Access Management)
+    * Route 53 DNS service
+    * Cloudfront CDN 
+    * WAF Web application firewall
 
 * Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
 * AWS CloudFormation - is a Yaml based tool used to define resources
@@ -40,6 +43,8 @@ AWS Well Architected Dramework, best practices for designing in cloud
 * [Migration](#migration)
 
 ## Services
+Most services are region scoped
+
 * Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodeBuild - continuous integration service allows testing code
@@ -166,7 +171,7 @@ Security Bulletins - AWS notifies customers about security and privacy events.
 Follow best practice of giving least privilages 
 * AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user
     * Users - Recommended IAM entity when granting a person long term access permissions.
-    * Groups - Collection of Users and permissions 
+    * Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group 
     * Policies - allows or denies permissions to AWS, attached to users
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
 * AWS Organizations - For large business
