@@ -58,6 +58,8 @@ Most services are region scoped
 * AWS Professional Services - team of experts that help set up desired business on AWS
 * Amazon Quicksight - Business Intelligence tool
 * AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
+* Server Name Indication(SNI) - used to route multiple SSL certificates
+
 
 ## EC2
 Elastic Cloud Computation
@@ -93,10 +95,22 @@ Serverless Computing
 ### Scaling
 * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
 * Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
-    * Classic - HTTP, HTTPS, TCP
-    * Application (ALB) - HTTP, HTTPS, Websocket. Can route based on URL, hostname, Query String and fits well with docker.
-        * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
-    * Network - TCP, TLS, UDP
+    * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
+        * Classic Load Balancer - HTTP, HTTPS, TCP
+            * Provides a static DNS name we can use in our application.
+        * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. 
+            * Can route based on URL, hostname, Query String and fits well with docker.
+            * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
+            * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
+            * Provides a static DNS name we can use in our application.
+            * need to use the X-Forwarded-For header to get originating IP address of traffic.
+        * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
+            * exposes a public static IP
+    * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
+        * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
+        * Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
+        * Simple Scaling - Increase or decrease based on a single scaling adjustment
+        * Scheduled Actions - Schedule adjustments based on patterns and time
 
 * SNS - Simple Notification Service, publish messages to subscribers
 * SQS -Simple Que Service, send store and receive messages 
