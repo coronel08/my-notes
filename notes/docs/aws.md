@@ -93,6 +93,10 @@ Serverless Computing
 ### Scaling
 * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
 * Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
+    * Classic - HTTP, HTTPS, TCP
+    * Application (ALB) - HTTP, HTTPS, Websocket. Can route based on URL, hostname, Query String and fits well with docker.
+        * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
+    * Network - TCP, TLS, UDP
 
 * SNS - Simple Notification Service, publish messages to subscribers
 * SQS -Simple Que Service, send store and receive messages 
@@ -143,7 +147,10 @@ S3 => multiple availability zones
 Snapshots - incremental backups <br>
 Lifecycle policies move data around to different storage classes based on time <br>
 * Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. Cannot be attached to multiple compute resources at a time.
-
+    * GP2/GP3: General Purpose SSD
+    * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
+    * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
+    * SC1: Low cost HDD less frequently accessed workloads
 
 * Amazon Simple Storage (S3) - store data as objects and stores them into buckets (max object size 5tb). Write once read many storage. Can host a static website or can be used as a media store for Cloudfront. Amazon S3 assigns a URL for each object you upload. Can scale and replicate data automatically across multiple Availability Zones(except One-Zone IA). Cant be attached to compute resources
     * S3 Standard - Can also store static website hosting in S3
@@ -154,7 +161,9 @@ Lifecycle policies move data around to different storage classes based on time <
     * S3 Glacier Deep Archive - lowest cost storage, retrieve within several hours
 
 
-* Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling.  
+* Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
+    * Bursting Vs Provisioned: Bursting throughput grows with filesystem but with provisioned throughput is set to a high throughput regardless of file size 
+    * Lifecycle Management: move file after N days into either standard or EFS-IA(Infrequent Access)
 
 
 Databases
