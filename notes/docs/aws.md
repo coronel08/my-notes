@@ -150,6 +150,14 @@ Public and private subnets in a VPC can communicate with each other
 
 ### DNS
 * Route 53 - Manages Dns records and offer health checks to monitor health and performance.
+    * Most common record routings are:
+        * A: hostname ipv4 example.com -> 12.3.1.3
+        * AAAA: hostname ipv6
+        * Cname: hostname to hostname example.com -> ----
+        * Alias: hostname to AWS resource
+    * Time to Live
+        * High TTL(24hrs) has less traffic and possibly outdated records
+        * Low TTL(60hrs) more traffic on DNS and records are outdated for less time.
 * Cloudfront - Can integrate AWS Shield and AWS WAF to protect against network DDOS attacks.
 
 ## Storage and DB 
@@ -180,12 +188,27 @@ Lifecycle policies move data around to different storage classes based on time <
     * Lifecycle Management: move file after N days into either standard or EFS-IA(Infrequent Access)
 
 
-Databases
-* Amazon RDS (Relational Database Service) - SQL to store and query data, managed service that automates scaling and setup
+### Databases
+* Amazon RDS (Relational Database Service) - SQL to store and query data, managed service that automates scaling, backups, and setup. Stored on EBS
+    * Read Replicas - up to 5 Read Replicas, ASYNC so reads are eventually caught up. Cant write to replica. IF AWS in same region you do not pay for data transfers
+    * RDS Multi AZ(Disaster Recovery) failover in case of loss
+    * Encryption - encrypt with AWS KMS. If master is not encrypted the read replicas can't be encrypted. SSL Certificate to encrypt data in flight,needs to be turned on.
+    * Security - uses security groups to control which IP can communicate. Can also use Policies, username and password or IAM-token authentication(only in Mysql and Postgresql and only last 15 mins)
+* Amazon Aurora - Mysql and PostgreSQL relational database, an Amazon RDS service. 5x performance. Offers high availability, read scaling, and auto scaling
+    * Can have up to 15 read replicas and a Master
+    * Has writer endpoint for master and reader endpoint for load balancing replicas
+* Amazon ElastiCache - managed Redis or Memcached service. In memory DB that makes app stateless. 
+    * REDIS - has Read Replicas and data durability, backup and restore features.
+    * MEMCACHED - Multi-node for sharding, no backup and restore or replication. For data that can be lost.
+    * Cache Strategies
+        * Lazy-Loading - Only requested data is cached. If data not in cache it has to read cache, read db, and then write to cache resulting in higher read latency. Data can also be stale as it isnt updated right away.
+        * Write Through - Data in cache is never stale but gets a write penalty instaed of read penalty. Data is written to cache then written to db
+    * Replication Cluster
+        * No cluster - One primary node up to 5 replicas. 1 write and several reader nodes. One shard all nodes have all the data.
+        * Cluster Mode - data is partitioned across shards
 * Amazon DynamoDB - non relational database using key-value pairs
 * Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
 * Amazon Storage Gateway - helps extend their on-premise storage to AWS
-* Amazon Aurora - Mysql and PostgreSQL relational database, an Amazon RDS service
 * Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
 
 ## Security
