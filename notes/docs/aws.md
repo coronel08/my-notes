@@ -134,14 +134,19 @@ Amazon Cloudfront is a Content Delivery Network that caches content closer to cu
 
 ## Networking
 Public and private subnets in a VPC can communicate with each other
-* VPC - Virtual Private Cloud, can organize resources into subnets 
+* VPC - Virtual Private Cloud is a regional resource, can organize resources into subnets which are availability zone resources
     * Internet Gateway - attach an internet gateway to a vpc to connect to the internet
+    * NAT Gateway - AWS managed allow your instances in private subnets to access the internet
     * Transit Gateway - simplifies how customers connect all of their VPC's, acts as a hub
+    * VPC Endpoints, only used within your VPC. Just to access AWS services privately within your VPC
+        * VPC Endpoints Gateway - only for S3 and DynamoDB allow you to connect to AWS using a private network instead of wwww
+        * VPC Endpoint Interface(ENI) - the rest of the services
+    * VPC Peering - connects two VPC privately with AWS network, must be established in each VPC
 * VPG - Virtual Private Gateway / VPN 
     * AWS Client VPN 
-    * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS
-* AWS Direct Connect establishes a direct connection between your data center and a VPC
-* AWS Outposts - provides AWS infastracture to on premises facility. 
+    * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS. Over internet
+    * AWS Direct Connect establishes a direct connection between your data center and a VPC. It is a private connection and doesn't use internet. 
+    * AWS Outposts - provides AWS infastracture to on premises facility. 
 
 
 ### Network ACL
@@ -153,11 +158,20 @@ Public and private subnets in a VPC can communicate with each other
     * Most common record routings are:
         * A: hostname ipv4 example.com -> 12.3.1.3
         * AAAA: hostname ipv6
-        * Cname: hostname to hostname example.com -> ----
-        * Alias: hostname to AWS resource
+        * Cname: hostname to hostname test.example.com -> (only for non root domain)
+        * Alias: hostname to AWS resource, free and works for root domain
     * Time to Live
         * High TTL(24hrs) has less traffic and possibly outdated records
         * Low TTL(60hrs) more traffic on DNS and records are outdated for less time.
+    * Routing Policy
+        * simple -
+        * weighted - distributed based on percentage loads
+        * latency - redirect to server with least latency
+        * failover - health check mandatory
+        * geolocation - routing based on user location, needs a default policy in case no match.
+        * geoproximity - if you want to shift traffic from one region to another by increasing the bias
+        * multi-value - route traffic to multiple resources and associate health checks with records. not a substitute for Load Balancing but helps.
+    * Health Checks - checks status of resources, can integrate with CloudWatch
 * Cloudfront - Can integrate AWS Shield and AWS WAF to protect against network DDOS attacks.
 
 ## Storage and DB 
