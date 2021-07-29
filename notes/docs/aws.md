@@ -182,21 +182,41 @@ S3 => multiple availability zones
 
 Snapshots - incremental backups <br>
 Lifecycle policies move data around to different storage classes based on time <br>
+
+### EBS
 * Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. Cannot be attached to multiple compute resources at a time.
     * GP2/GP3: General Purpose SSD
     * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
     * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
     * SC1: Low cost HDD less frequently accessed workloads
 
+### S3
+Objects = files and buckets = directories
+
 * Amazon Simple Storage (S3) - store data as objects and stores them into buckets (max object size 5tb). Write once read many storage. Can host a static website or can be used as a media store for Cloudfront. Amazon S3 assigns a URL for each object you upload. Can scale and replicate data automatically across multiple Availability Zones(except One-Zone IA). Cant be attached to compute resources
-    * S3 Standard - Can also store static website hosting in S3
-    * S3 Standard Infrequent Access - long term storage but needs quick access, lower storage price and higher retrieval price
-    * S3 OneZone IA - Stores data in a single zone, lower storage price
-    * S3 Intelligent Tiering - Ideal for data with unknown or changing access patterns
-    * S3 Glacier - Long term storage for data archiving, retrieve within hours
-    * S3 Glacier Deep Archive - lowest cost storage, retrieve within several hours
-
-
+    * Types
+        * S3 Standard - Can also store static website hosting in S3
+        * S3 Standard Infrequent Access - long term storage but needs quick access, lower storage price and higher retrieval price
+        * S3 OneZone IA - Stores data in a single zone, lower storage price
+        * S3 Intelligent Tiering - Ideal for data with unknown or changing access patterns
+        * S3 Glacier - Long term storage for data archiving, retrieve within hours
+        * S3 Glacier Deep Archive - lowest cost storage, retrieve within several hours
+    * S3 Encryption
+        * SSE-S3 - server side encrypts S3 objects using keys managed by AWS
+            * Must set header "x-amz-server-side-encryption":"AES256"
+        * SSE-KMS - Key Management Service, server side encryption
+            * Must set header "x-amz-server-side-encryption":"aws:kms"
+        * SSE-C - Manage your own encryption, server side encryption
+            * Https must be used
+            * Encryption key must be provided in HTTP headers
+        * Client Side Encryption - Client handles encrypt/decrypt and manages keys
+    * S3 Security, (can connect to s3 using VPC Endpoints and logged in AWS Cloudtrail)
+        * User Based - IAM Policies sets what Users are allowed to do what API calls 
+        * Resource Based  
+            * Bucket wide rules from the S3 console
+            * Object Access Control List (ACL) - finer grain control
+            * Bucket Access Control List (ACL) - less common
+### EFS
 * Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
     * Bursting Vs Provisioned: Bursting throughput grows with filesystem but with provisioned throughput is set to a high throughput regardless of file size 
     * Lifecycle Management: move file after N days into either standard or EFS-IA(Infrequent Access)
