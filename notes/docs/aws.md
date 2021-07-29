@@ -64,6 +64,7 @@ Most services are region scoped
 ## EC2
 Elastic Cloud Computation
 Infrastructure as a Service - computers and data storage provided
+EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/latest/meta-data
 
 ### Instance Types
 * General Purpose - Balanced
@@ -253,6 +254,8 @@ Follow best practice of giving least privilages
     * Users - Recommended IAM entity when granting a person long term access permissions.
     * Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group 
     * Policies - allows or denies permissions to AWS, attached to users
+        * Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
+        * Policy Simulator - google it
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
 * AWS Organizations - For large business
     * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
