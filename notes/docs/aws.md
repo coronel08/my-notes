@@ -45,7 +45,7 @@ AWS Well Architected Dramework, best practices for designing in cloud
 ## Services
 Most services are region scoped
 
-* Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
+
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodeBuild - continuous integration service allows testing code
 * AWS CodeCommit - used for software version control by developers. 
@@ -194,14 +194,22 @@ Lifecycle policies move data around to different storage classes based on time <
 ### S3
 Objects = files and buckets = directories
 
+* Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
+
+
 * Amazon Simple Storage (S3) - store data as objects and stores them into buckets (max object size 5tb). Write once read many storage. Can host a static website or can be used as a media store for Cloudfront. Amazon S3 assigns a URL for each object you upload. Can scale and replicate data automatically across multiple Availability Zones(except One-Zone IA). Cant be attached to compute resources
     * Types
         * S3 Standard - Can also store static website hosting in S3
         * S3 Standard Infrequent Access - long term storage but needs quick access, lower storage price and higher retrieval price
         * S3 OneZone IA - Stores data in a single zone, lower storage price
         * S3 Intelligent Tiering - Ideal for data with unknown or changing access patterns
-        * S3 Glacier - Long term storage for data archiving, retrieve within hours
-        * S3 Glacier Deep Archive - lowest cost storage, retrieve within several hours
+        * S3 Glacier - Long term storage for data archiving, minimum storage duration 90 days, retrieve within hours
+            * Expedited Retrieve - 1-5 mins
+            * Standard - 3-5 hours
+            * Bulk - 5-12 hours
+        * S3 Glacier Deep Archive - lowest cost storage, minimum storage duration 180 days, retrieve within several hours
+            * Standard - 12 hours
+            * Bulk - 48 hours
     * S3 Encryption
         * SSE-S3 - server side encrypts S3 objects using keys managed by AWS
             * Must set header "x-amz-server-side-encryption":"AES256"
@@ -217,6 +225,17 @@ Objects = files and buckets = directories
             * Bucket wide rules from the S3 console
             * Object Access Control List (ACL) - finer grain control
             * Bucket Access Control List (ACL) - less common
+    * S3 Replication( buckets can be in different accounts)
+        * CRR(Cross Region Replication) - compliance reasons, lower latency, across accounts
+        * SRR(Same Region Replication) - log aggregation, live replication between production and test accounts
+    * S3 Lifecycle Rules can be created for path prefix or certain object tags
+        * transition actions - when objects are moved to another storage class
+        * expiration actions - objects are deleted after some time
+    * S3 Performance
+        * Multi Part Upload - auto applied for files 5gb or larger. speeds up transfers by splitting up file 
+        * S3 Transfer Acceleration - Increase transfer speed by using AWS Edge locations
+        * S3 Byte-Range - Can be used to speed up downloads by running parallel, can also be used to retrieve partial data
+        * S3 Select and Glacier Select - use SQL statements to filter data
 ### EFS
 * Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
     * Bursting Vs Provisioned: Bursting throughput grows with filesystem but with provisioned throughput is set to a high throughput regardless of file size 
