@@ -75,8 +75,14 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 
 Serverless Computing
 * AWS lambda - Cloud function that only gets charged when triggered 
-* ECS - Elastic Container Service
-* EKS - Elastic Kubernetes Service
+* ECS (Elastic Container Service) - 
+    * Task Definition - json metadata to tell ECS how to run a docker container.
+    * Task Role - allow each tasks to have a specific role, use different roles for different services.
+        * Task Placement - When service is scaled in ECS the task placement figures out what container to put it in
+            * Binpack - places task on instance with least available  cpu/memory. cost savings
+            * Random 
+            * Spread - Evenly spread task
+* EKS (Elastic Kubernetes Service) - 
 * Fargate - Works with both ECS and EKS, its a container engine
 
 ### Pricing
