@@ -13,6 +13,14 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * WAF Web application firewall
 
 * Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
+    * Deployment Options
+        * All at Once - fastest but has downtime
+        * Rolling - updates a bucket at a time then moves to next
+        * Rolling with additional batches - like rolling but spins up new instances to move the batch
+        * Immutable - spins new instances in ASG, deploys to these and then swaps instances
+        * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
+        * Blue Green - manual swap of URL's
+    * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
 * AWS CloudFormation - is a Yaml based tool used to define resources
 
 
