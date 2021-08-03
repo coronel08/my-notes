@@ -57,11 +57,12 @@ Most services are region scoped
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
     * AWS CodeCommit - used for software version control by developers. github clone
-        * Use AWS STS with AssumeRole API to share 
+        * Use AWS STS with AssumeRole API to share cross accounts, SSH Keys, or HTTPS credentials in user profiles. Doesnt support HTTP public access 
     * AWS CodeBuild - continuous integration service allows testing code, jenkins clone
-        * builds docker images, uses buidspec.yml for instructions
+        * builds docker images, uses buidspec.yml(placed at root folder) for instructions
         * by default can't access resources in VPC, CodeBuild is launched outside of VPC
-    * AWS CodeDeploy - automates code deployment to instances
+    * AWS CodeDeploy - automates code deployment to instances.
+        * Order is Stop Application => Before Install => After Install => Start Application
 * AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
 * Amazon Detective - easily investigate security findings.
 * AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
