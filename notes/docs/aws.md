@@ -21,8 +21,26 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
         * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
         * Blue Green - manual swap of URL's
     * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
-* AWS CloudFormation - is a Yaml based tool used to define resources
-
+* AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
+    * [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
+    * Parameters - provide inputs for templates
+        * Ref, YAML shorthand !Ref can call Parameters and Resources
+        * Fn::GetAtt
+    * Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
+        * Fn::FindInMap
+    * Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID.
+        * Need to be exported and imported using Fn::ImportValue
+    * Conditions
+        * Fn::If / Fn::Not / Fn::Equals etc
+    * Other Functions
+        * Fn::Join
+        * Fn::Sub
+    * Rollbacks - if failure the changes get deleted and version rolls back to before failure
+    * ChangeSets - view changes in stack before it happens
+    * Nested Stacks - reuse stacks in other stacks example load balancer 
+    * Cross Stacks - helpful when stacks have different lifecycles, use Export and Import
+    * StackSets - Create, Update, Delete stacks across multiple accounts and regions
+    
 
 AWS Well Architected Dramework, best practices for designing in cloud
 1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations.
