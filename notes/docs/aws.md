@@ -151,7 +151,8 @@ Serverless Computing
         * Scheduled Actions - Schedule adjustments based on patterns and time
 
 * SNS - Simple Notification Service, publish messages to subscribers
-* SQS -Simple Que Service, send store and receive messages 
+* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery
+    * 
 * Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
 
 * CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
@@ -317,18 +318,38 @@ Follow best practice of giving least privilages
     * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
 * AWS Artifcat - Security and Compliance reports
 * AWS Shield - DDOS protection service
-* AWS Key Management Service (KMS) - to create and control encryption keys used to encrypt data such as EBS volumes
+* AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes
 * AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 
-
-* Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics.
-* Cloudtrail - Log of all actions and API calls taking place in AWS
 
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
 
+
+### Monitoring
+* Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics. 
+    * Metrics - 
+        * Basic Monitoring - metrics every 5 mins
+        * Detailed Monitoring - metrics every 1 min
+        * High Resolution - metrics every 1 second, alarm can be triggered as often as 10 seconds
+    * Logs - Can go to S3 for archival, stream to ElasticSearch. By default no longs from EC2 will go to CloudWatch. Can be setup on premise also. Never expire by default
+        * Cloudwatch Logs Agent - old version of agent, can only send CloudWatch logs
+        * CloudWatch Unified Agent - Can collect additional metrics like ram etc. 
+    * Events - send notifications can schedule on a CRON or event pattern.
+        * EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc
+    * Alarm - triggers notifications for any metric
+* Cloudtrail - Log of all actions and API calls taking place in AWS
+* X-Ray - troubleshooting application performance and errors, must import the AWS X-Ray SDK and install X-Ray daemon to enable it
+    * Tracing - end to end way to follow requests
+        * Segments/SubSegments - details on app/service
+        * Sampling - amount of requests sent
+        * Annotations - Key-Value pairs used to index traces and use with filters
+        * Metadata - Key-Value pairs, not indexed or used for searching 
+    * If not working in:
+        * EC2 ensure IAM role has proper permissions and daemon running
+        * AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
 ## Support
 * AWS Support plans
     * Basic - 
