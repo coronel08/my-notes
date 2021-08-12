@@ -42,7 +42,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * StackSets - Create, Update, Delete stacks across multiple accounts and regions
     
 
-AWS Well Architected Dramework, best practices for designing in cloud
+AWS Well Architected Framework, best practices for designing in cloud
 1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations.
 2. Security - protect information
 3. Reliability - ability to recover from disruptions.
@@ -71,7 +71,7 @@ AWS Well Architected Dramework, best practices for designing in cloud
 ## Services
 Most services are region scoped
 
-
+* AWS Amplify - fully managed service for hosting static web apps. CI/CD 
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
     * AWS CodeCommit - used for software version control by developers. github clone
@@ -151,8 +151,13 @@ Serverless Computing
         * Scheduled Actions - Schedule adjustments based on patterns and time
 
 * SNS - Simple Notification Service, publish messages to subscribers
-* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery
-    * 
+    * Topic Publish - create a topic and a subscription
+    * Direct Publish - for mobile create a platform and endpoint
+* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with
+    * Message Visibility Timeout - message visibility timeout is 30 seconds by default, if not processed within the timeout it will be processed twice.
+    * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
+    * Delay Queue - default is 0 seconds but can be up to 15 minutes
+    * Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. Between 1 - 20 seconds. 
 * Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
 
 * CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
