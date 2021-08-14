@@ -152,12 +152,27 @@ Serverless Computing
 
 * SNS - Simple Notification Service, publish messages to subscribers
     * Topic Publish - create a topic and a subscription
+        * FIFO - one message delivery thru SQS. First in/First Out
+        * Standard - Best effort to keep message order, at least once delivery. publish to SQS, Lambda, HTTP, SMS, Email
     * Direct Publish - for mobile create a platform and endpoint
-* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with
+
+* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically.
     * Message Visibility Timeout - message visibility timeout is 30 seconds by default, if not processed within the timeout it will be processed twice.
     * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
     * Delay Queue - default is 0 seconds but can be up to 15 minutes
     * Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. Between 1 - 20 seconds. 
+
+* Kinesis - collect, process, and analyze streaming data such as Application logs, Metrics, and telemetry data. Meant for real time big data. Group data into shards using a partition key.
+    * Kinesis Data Streams - scaled with shards. Retention between 1 day(default) to 365. Manage scaling thru shard splitting or shard merging.
+        * producers - gets info from producers/source, puts it into shards. Provisioned Throughput Exceeded when shard is over used, need to use highly destributed partition key, retries with exponential backoff, or increase shards.
+        * consumers - gets data streams and processes it in kinesis data firehose, kinesis data analytics, apps, or lambda 
+            * shared (classic) Fan out consumer pull - max 5 get records api calls/sec
+            * enhanced fan out consumer push - higher cost and lower latency pushes data to shards instead of pulling. 
+    * Kinsesis Data Firehouse - upload streaming data into resources, automatic scaling. no data storage. convert data along the way
+        * writes data to S3, Redshift, ElasticSearch, or custom API or 3rd party like MongoDB
+    * Kinesis Data Analytics - SQL application
+    * Kinesis Video Streams - 
+
 * Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
 
 * CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
