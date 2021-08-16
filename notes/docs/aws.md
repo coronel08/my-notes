@@ -12,15 +12,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * Cloudfront CDN 
     * WAF Web application firewall
 
-* Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
-    * Deployment Options
-        * All at Once - fastest but has downtime
-        * Rolling - updates a bucket at a time then moves to next
-        * Rolling with additional batches - like rolling but spins up new instances to move the batch
-        * Immutable - spins new instances in ASG, deploys to these and then swaps instances
-        * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
-        * Blue Green - manual swap of URL's
-    * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
+
 * AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
     * [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
     * Parameters - provide inputs for templates
@@ -53,18 +45,29 @@ AWS Well Architected Framework, best practices for designing in cloud
 * Infastructure as a Service - building blocks of cloud
 * Platform as a Service - removes the need to manage infastructure like hardware and OS. 
 * Software as a Service - completed product that is run and managed 
+
 ## Table of contents
 
-* [AWS](#Aws)
+* [AWS](#aws)
 * [Services](#services)
 * [EC2](#ec2)
     * [Instance Types](#instance-types)
+        * [Serverless Computing](#serverless-computing)
     * [Pricing](#pricing)
     * [Scaling](#scaling)
+* [Elastic BeanStalk](#elastic-beanstalk)
+* [SNS + SQS + Kinesis](#SNS-SQS-and-Kinesis)
 * [Global Infastructure](#global-infastructure)
 * [Networking](#networking) 
+    * [Network ACL](#network-acl)
+    * [DNS](#dns)
 * [Storage and DB](#storage-and-db)
+    * [EBS](#ebs)
+    * [S3](#s3)
+    * [EFS](#efs)
+    * [Databases](#databases)
 * [Security](#security)
+    * [Monitoring](#monitoring)
 * [Support](#support)
 * [Migration](#migration)
 
@@ -104,7 +107,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 * Accelerated Computing - graphics or streaming
 * Storage Optimized - Data warehousing or high read and write performance
 
-Serverless Computing
+#### Serverless Computing
+![](../../photos/serverless.png)
+
 * AWS lambda - Cloud function that only gets charged when triggered 
 * ECS (Elastic Container Service) - 
     * Task Definition - json metadata to tell ECS how to run a docker container.
@@ -115,6 +120,8 @@ Serverless Computing
             * Spread - Evenly spread task
 * EKS (Elastic Kubernetes Service) - 
 * Fargate - Works with both ECS and EKS, its a container engine
+
+
 
 ### Pricing
 * On Demand - always available 
@@ -150,6 +157,24 @@ Serverless Computing
         * Simple Scaling - Increase or decrease based on a single scaling adjustment
         * Scheduled Actions - Schedule adjustments based on patterns and time
 
+* Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
+
+* CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
+
+
+## Elastic BeanStalk
+* Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
+    * Deployment Options
+        * All at Once - fastest but has downtime
+        * Rolling - updates a bucket at a time then moves to next
+        * Rolling with additional batches - like rolling but spins up new instances to move the batch
+        * Immutable - spins new instances in ASG, deploys to these and then swaps instances
+        * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
+        * Blue Green - manual swap of URL's
+    * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
+
+
+## SNS SQS and Kinesis
 * SNS - Simple Notification Service, publish messages to subscribers
     * Topic Publish - create a topic and a subscription
         * FIFO - one message delivery thru SQS. First in/First Out
@@ -173,9 +198,16 @@ Serverless Computing
     * Kinesis Data Analytics - SQL application
     * Kinesis Video Streams - 
 
-* Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
 
-* CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
+## Lambda
+* Pay per request and compute time, increasing RAM will also improve CPU and Network.
+    * Synchronous Invocation - result is returned right away
+        * Services:
+    * Asynchronous Invocation - events are placed in an Event Queue
+        * Services: S3, SNS, CloudWatch Events, CodeCommit/CodePipeline
+* Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays.
+* lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
+* Cloudwatch Events - either cronjob or codepipeline into Cloudwatch Events/EventBridge 
 
 ## Global Infastracture
 Regions are geographically isolated areas and are made up of smaller availability zones/ data centers,  
@@ -370,6 +402,7 @@ Follow best practice of giving least privilages
     * If not working in:
         * EC2 ensure IAM role has proper permissions and daemon running
         * AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
+
 ## Support
 * AWS Support plans
     * Basic - 
