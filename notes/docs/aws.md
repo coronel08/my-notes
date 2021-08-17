@@ -201,13 +201,37 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 
 ## Lambda
 * Pay per request and compute time, increasing RAM will also improve CPU and Network.
+    * from 128mb - 10gb (64mb increments), at 1792mb you get more than one CPU and need to use multi-threading
+    * Execution time ranging from 1 sec - 15 minutes
+    * /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb. 
+    * up to 1000 concurrent executions, can be throttled with reserved concurrency
+    * Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
+    * Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
+        * Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions
+        * Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
+* Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
+* lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
+* Invoking functions
     * Synchronous Invocation - result is returned right away
         * Services:
     * Asynchronous Invocation - events are placed in an Event Queue
         * Services: S3, SNS, CloudWatch Events, CodeCommit/CodePipeline
-* Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays.
-* lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
-* Cloudwatch Events - either cronjob or codepipeline into Cloudwatch Events/EventBridge 
+        * Lambda Destinations - can send results to destinations like SQS for succesful and failed events. Recommend to use destinations over DLQ 
+    * Event Source Mapping Invocation - reads from an event source that invokes a lambda function
+        * Streamed Services: DynamoDB, Kinesis. by default if function returns error the entire batch is reprocessed until succeed or expire
+        * Polled Services: SQS, MQ. 
+* Logging and Monitoring
+    * Cloudwatch Events - either cronjob or codepipeline into Cloudwatch Events/EventBridge. Lambda metrics are displayed in Cloudwatch Metrics.
+    * X-Ray - enable in lambda configuration and use SDK in code.
+        * Environment variables
+            * _X_AMZN_TRACE_ID: contains the tracing header
+            * AWS_XRAY_CONTEXT_MISSING: by default, Log_Error
+            * AWS_XRAY_DAEMON_ADDRESS: the x ray daemon IP port
+* Networking
+    * By default the Lambda function is launched in its own VPC and can't access resources or internet unless defined, 
+        * ENI(Elastic Network Interface) allows it to interact with VPC
+        * Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
+
 
 ## Global Infastracture
 Regions are geographically isolated areas and are made up of smaller availability zones/ data centers,  
