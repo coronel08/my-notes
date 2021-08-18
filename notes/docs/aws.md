@@ -66,6 +66,7 @@ AWS Well Architected Framework, best practices for designing in cloud
     * [S3](#s3)
     * [EFS](#efs)
     * [Databases](#databases)
+        * [DynamoDB](#DynamoDB)
 * [Security](#security)
     * [Monitoring](#monitoring)
 * [Support](#support)
@@ -374,6 +375,12 @@ Objects = files and buckets = directories
     * Replication Cluster
         * No cluster - One primary node up to 5 replicas. 1 write and several reader nodes. One shard all nodes have all the data.
         * Cluster Mode - data is partitioned across shards
+* Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
+* Amazon Storage Gateway - helps extend their on-premise storage to AWS
+* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
+
+
+#### DynamoDB
 * Amazon DynamoDB - non relational database using key-value pairs. Replication across 3 AZ.
     * Maximum size of an item is 400kb, can store large objects in S3 and send metadata to DynamoDB
     * Primary Keys
@@ -414,9 +421,7 @@ Objects = files and buckets = directories
         * --starting-token - dictates where to start
     * Transactions - CRUD operations for multiple rowa in different tables. if one update fails they all fail
         * capacity - consumes 2x WCU RCU
-* Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
-* Amazon Storage Gateway - helps extend their on-premise storage to AWS
-* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
+
 
 ## Security
 Security Bulletins - AWS notifies customers about security and privacy events.
@@ -521,3 +526,26 @@ Follow best practice of giving least privilages
 * CloudEndure Migration - automated lift and shift for migrating apps.
 
 * AWS Server Migration Service(SMS) - migrates workloads to AWS, supports virtual machine migrations, then saves them as a new Amazon Machine Image(AMI) that can be launched as an EC2
+
+
+## API Gateway
+* Can handle API versioning and handle different environments
+* API Types - mapping templates only available for AWS and HTTP
+    * HTTP API - Lambda, HTTP backends. no data mapping, usgae plan, or API keys
+    * Websocket API - Lambda, HTTP, AWS Services. stateful use case so theyre implemented in real time applications. used for 2 way communication
+    * REST API - Lambda, HTTP, AWS Services
+    * Mock - returns a response without sending to the backend
+* Endpoint Types
+    * Edge-Optimized - routed through CloudFront Edge locations
+    * Regional - For Clients within the same region
+    * Private - Only accessed from your VPC
+* Deployment Stages - need to deploy for changes to be in effect, deployed in stages
+    * Stage Variables - environment variables for API gateway, passed in context object in AWS 
+    * Canary Deployment - usually prod stage, can choose % of traffic the stages receive
+* Caching - reduces # of calls made to API, Default TTL is 300 seconds but max is 3600s. Capacity between .5gb to 237gb. expensive so used mainly in production
+* Usage Plans & Api Keys - use Api keys to identify clients and meter access, how much and how fast they can call api. can throttle and add quota 
+* CloudWatch - metrics are by stage
+* Security
+    * Resource Policies  / IAM - JSON similar to Lambda Resource policy, Allow for access and security. Great for users and role already in AWS
+    * Cognito User Pools - API gateway automatically verifies using AWS Cognito
+    * Lambda Authorizer / Custom Auth - token based auth, great for 3rd party
