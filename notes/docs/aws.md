@@ -374,7 +374,46 @@ Objects = files and buckets = directories
     * Replication Cluster
         * No cluster - One primary node up to 5 replicas. 1 write and several reader nodes. One shard all nodes have all the data.
         * Cluster Mode - data is partitioned across shards
-* Amazon DynamoDB - non relational database using key-value pairs
+* Amazon DynamoDB - non relational database using key-value pairs. Replication across 3 AZ.
+    * Maximum size of an item is 400kb, can store large objects in S3 and send metadata to DynamoDB
+    * Primary Keys
+        * Partition Key only (hash) - must be unique for each item ex: user id
+        * Partition key + sort key - data is grouped by partition key, sort key is range key ex: user id = partition key and game id = sort key
+    * Indexes
+        * Local Secondary Index (LSI) - must be defined at creation, alternate range key for table that is local to hash key. up to 5 indexes per table 
+        * Global Secondary Index (GSI) - speed up queries on non-key attributes, can be modified unlike LSI. If writes are throttled on GSI then main table will be throttled.
+    * Throughput, can be increased temporarily using burst credit and spread throughout partitions
+        * read capacity units - throughput for reads. 
+            * Eventuall Consistent Reads - By default. 2 reads per second for up to 4kb in size
+            * Strongly Consistent Reads - 1 read per second for up to 4kb in size
+        * write capacity units - 1 write capacity represents 1 write per second of 1kb in size
+        * throttling - if we exceeed use we get ProvisionedThroughputExceededException, can be fixed with exponential back off or using DynamoDB Accelerator(DAX)
+    * API
+        * write
+            * PutItem 
+            * UpdateItem
+            * Conditional Writes - accepts a write only if conditions are met
+        * delete
+            * DeleteItem - can also be a conditional delete
+            * DeleteTable 
+        * read
+            * GetItem - read based on primary key
+        * batching - reduces # of API calls
+            * BatchWriteItem - up to 25 in one call, up to 16mb of data written, up to 400kb of data per item. If batched items fail we need to use exponential back-off algorithm
+            * BatchGetItem - up to 100 items, up to 16mb of data
+        * query - returns items based on filter or value. up to 1mb of data 
+        * scan - scans the entire table and filters out data(inefficient)
+    * DAX - DynamoDB Accelerator, low latency cache with 5 minutes TTL for cache by default
+    * Streams - changes in DynamoDB can be turned into a stream and read by Lambda and EC2 instances. Made of shards like Kinesis Data Streams
+        * Lambda - uses event source mapping with permissions. Invoked synchonously 
+    * CLI
+        * --projection-expression - attributes to retrieve
+        * --filter-expression - filter results
+        * --page-size - full dataset received but each API call will request less data
+        * --max-items - max # of results
+        * --starting-token - dictates where to start
+    * Transactions - CRUD operations for multiple rowa in different tables. if one update fails they all fail
+        * capacity - consumes 2x WCU RCU
 * Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
 * Amazon Storage Gateway - helps extend their on-premise storage to AWS
 * Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
