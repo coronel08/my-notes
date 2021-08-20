@@ -76,6 +76,12 @@ AWS Well Architected Framework, best practices for designing in cloud
 Most services are region scoped
 
 * AWS Amplify - fully managed service for hosting static web apps. CI/CD 
+* AWS AppSync - managed service that uses GraphQL. Can combine data from more than one source. Also able to get real time data or access local data on mobile apps from offline as well.
+    * Security
+        * API_KEY:
+        * AWS IAM: 
+        * OPENID_CONNECT:
+        * AMAZON_COGNITO_USER_POOLS:
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
     * AWS CodeCommit - used for software version control by developers. github clone
@@ -577,3 +583,5 @@ communication
 
 ## AWS Step Functions
 * Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
+    * Standard Workflows - max duration 1 year, 2000/second. exaclty one workflow
+    * Express Workflows - max duration 5 minutes 100,000/second. at least once workflow
