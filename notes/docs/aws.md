@@ -443,7 +443,13 @@ Follow best practice of giving least privilages
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 
 
-* Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon
+* Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
+    * Types
+        * Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users
+            * Lambda Triggers - can invoke lambda functions on triggers
+        * Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools
+        * Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
+
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
 
@@ -527,7 +533,7 @@ Follow best practice of giving least privilages
 
 * AWS Server Migration Service(SMS) - migrates workloads to AWS, supports virtual machine migrations, then saves them as a new Amazon Machine Image(AMI) that can be launched as an EC2
 
-
+communication
 ## API Gateway
 * Can handle API versioning and handle different environments
 * API Types - mapping templates only available for AWS and HTTP
@@ -549,3 +555,25 @@ Follow best practice of giving least privilages
     * Resource Policies  / IAM - JSON similar to Lambda Resource policy, Allow for access and security. Great for users and role already in AWS
     * Cognito User Pools - API gateway automatically verifies using AWS Cognito
     * Lambda Authorizer / Custom Auth - token based auth, great for 3rd party
+
+
+## Serverless Application Model 
+* Yaml Code that is built on CloudFormations and can use CodeDeploy to deploy lambda functions. 
+* Structure - requires transform and resources
+    * Transform Header - indicates its SAM template "Transform: 'AWS::Serverless-2016-10-31'"
+    * Write Code 
+        * AWS::SERVERLESS::Function
+        * AWS::SERVERLESS::Api
+        * AWS::Serverless::SimpleTable
+    * Package and Deploy
+        * AWS cloudformation package
+        * AWS cloudformation deploy
+* Policy Templates - adds permission to lambda
+    * S3ReadPolicy - read only permission
+    * SQSPollerPolicy - poll SQS queue
+    * DynamoDBCrudPolicy - crud policy
+* Serverless Application Repository (SAR) - repo for serverless applications
+
+
+## AWS Step Functions
+* Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
