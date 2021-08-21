@@ -337,6 +337,8 @@ Objects = files and buckets = directories
             * Must set header "x-amz-server-side-encryption":"AES256"
         * SSE-KMS - Key Management Service, server side encryption
             * Must set header "x-amz-server-side-encryption":"aws:kms"
+            * Leverages GenerateDataKey & Decrypt KMS API calls
+            * Count against KMS limits
         * SSE-C - Manage your own encryption, server side encryption
             * Https must be used
             * Encryption key must be provided in HTTP headers
@@ -446,9 +448,20 @@ Follow best practice of giving least privilages
     * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
 * AWS Artifcat - Security and Compliance reports
 * AWS Shield - DDOS protection service
-* AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes
+* AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail
+    * Customer Master Key (CMK) - symmetric (AES-256 keys), never get access to the key
+        * AWS Managed Service Default CMK - Free
+        * User Keys created in KMS - $1/month
+        * User Keys imported - $1/month
+    * Asymmetric (RSA & ECC key pairs) - public key is downloadable but cant access private key. Can use for encryption outside of AWS
+    * KMS Key Policies 
+        * Default KMS Policy - created if key policy not provided
+        * Custom KMS Key Policy - define users and roles that can access the keys. Useful for cross account access
+    * Envelope Encryption - anything over 4kb needs to be encrypted using Envelope Encryption, using GenerateDataKey API 
 * AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
+* SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation
+* AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS. More expensive than SSM Parameter Store.
 
 ### Amazon Cognito
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
@@ -481,6 +494,7 @@ Follow best practice of giving least privilages
     * Managed Policy - maintained by AWS
     * Customer Managed Policy - Best Practice and allows version control and variables
     * Inline policy - Strict 1-1 relationship between policy and principal, policy is deleted if you delete the IAM principal
+
 ### Monitoring
 * Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics. 
     * Metrics - 
