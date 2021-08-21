@@ -82,6 +82,7 @@ Most services are region scoped
         * AWS IAM: 
         * OPENID_CONNECT:
         * AMAZON_COGNITO_USER_POOLS:
+* AWS Certificate Manager (ACM) - provision, manage and deploy certificates(public or private) for https
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
     * AWS CodeCommit - used for software version control by developers. github clone
@@ -384,7 +385,8 @@ Objects = files and buckets = directories
 * Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
 * Amazon Storage Gateway - helps extend their on-premise storage to AWS
 * Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
-
+* DocumentDB - managed MongoDB 
+* Neptune - graph database
 
 #### DynamoDB
 * Amazon DynamoDB - non relational database using key-value pairs. Replication across 3 AZ.
@@ -448,7 +450,7 @@ Follow best practice of giving least privilages
 * AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 
-
+### Amazon Cognito
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
     * Types
         * Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users
@@ -459,7 +461,26 @@ Follow best practice of giving least privilages
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
 
+#### Directory Service
+* AWS Managed Microsoft AD - AD managed in AWS and can have on prem AD as a trusted connection. If user not in AWS checks On Prem
+* AD Connector - proxy into on prem AD
+* Simple AD - AD compatible managed directory on AWS, cant be joined with on premise AD. For microsoft in AWS
 
+### Security Token Service
+* Security Service Token (STS) - limited and temp access up to 15 mins - 1 hour. 
+* API
+    * AssumeRole - defines IAM role and access within account or cross account
+    * AssumeRoleWithSAML - return credentials for users logged with SAML
+    * AssumeRoleWithWebIdentity - Use cognito Pools instead of this
+    * GetSessionToken - MFA
+    * GetFederationToken - obtain temp creds for federated user
+    * GetCallerIdentity - return details about IAM user or role 
+    * DecodeAuthorizationMessage - decode error message when API is denied
+    * iam:PassRole - passes permissions to other services
+* Policy - IAM Policies and S3 bucket Policies work together to decide allowable actions.
+    * Managed Policy - maintained by AWS
+    * Customer Managed Policy - Best Practice and allows version control and variables
+    * Inline policy - Strict 1-1 relationship between policy and principal, policy is deleted if you delete the IAM principal
 ### Monitoring
 * Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics. 
     * Metrics - 
