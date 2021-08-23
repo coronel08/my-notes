@@ -18,6 +18,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * Parameters - provide inputs for templates
         * Ref, YAML shorthand !Ref can call Parameters and Resources
         * Fn::GetAtt
+        * bootstrapped from filepath example location "/etc/ecs/ecs.config"
     * Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
         * Fn::FindInMap
     * Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID.
@@ -92,6 +93,9 @@ Most services are region scoped
         * by default can't access resources in VPC, CodeBuild is launched outside of VPC
     * AWS CodeDeploy - automates code deployment to instances.
         * Order is Stop Application => Before Install => After Install => Start Application
+        * Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
+        * Hooks - correspond to lifecycle events such as ApplicationStart, ApplicationStop, etc.
+        * Agent - a software package that makes it possible to be used in CodeDeploy
 * AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
 * Amazon Detective - easily investigate security findings.
 * AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
@@ -116,7 +120,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 * Storage Optimized - Data warehousing or high read and write performance
 
 #### Serverless Computing
-![](../../photos/serverless.png)
+![](https://raw.githubusercontent.com/coronel08/my-notes/main/photos/serverless.png)
 
 * AWS lambda - Cloud function that only gets charged when triggered 
 * ECS (Elastic Container Service) - 
@@ -126,6 +130,11 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             * Binpack - places task on instance with least available  cpu/memory. cost savings
             * Random 
             * Spread - Evenly spread task
+    * If you terminate an instance while in STOPPED state that may lead to synchronization issues, isnt automatically removed from cluster.
+    * ECR (Elastic Container Registry) - store images, make sure IAM permissions are set "ecr:GetAuthorizationToken" to authenticate to a registry. 
+    * Start Docker container
+        * $(aws ecr get-login --no-include-email) - retrieves token valid for 12 hours
+        * docker pull 1234567890.dkr.ecr.eu-west-1.amazonaws.com/demo:latest
 * EKS (Elastic Kubernetes Service) - 
 * Fargate - Works with both ECS and EKS, its a container engine
 
@@ -156,9 +165,11 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
             * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
             * Provides a static DNS name we can use in our application.
-            * need to use the X-Forwarded-For header to get originating IP address of traffic.
+            * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
         * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
-            * exposes a public static IP
+            * exposes a public static IP. Doesn't support "X-Forwarded-For" header
+            * Availablity Zone - creates a load balancer in each Availablity Zone,
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
     * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
         * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
         * Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
@@ -174,11 +185,12 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 * Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
     * Deployment Options
         * All at Once - fastest but has downtime
-        * Rolling - updates a bucket at a time then moves to next
-        * Rolling with additional batches - like rolling but spins up new instances to move the batch
+        * Rolling - updates a bucket at a time then moves to next. Rollback would be manually done
+        * Rolling with additional batches - like rolling but spins up new instances to move the batch. rollback would be manually done.
         * Immutable - spins new instances in ASG, deploys to these and then swaps instances
         * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
-        * Blue Green - manual swap of URL's
+        * Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
     * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
 
 
@@ -188,7 +200,6 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * FIFO - one message delivery thru SQS. First in/First Out
         * Standard - Best effort to keep message order, at least once delivery. publish to SQS, Lambda, HTTP, SMS, Email
     * Direct Publish - for mobile create a platform and endpoint
-
 * SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically.
     * Message Visibility Timeout - message visibility timeout is 30 seconds by default, if not processed within the timeout it will be processed twice.
     * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
@@ -201,9 +212,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * consumers - gets data streams and processes it in kinesis data firehose, kinesis data analytics, apps, or lambda 
             * shared (classic) Fan out consumer pull - max 5 get records api calls/sec
             * enhanced fan out consumer push - higher cost and lower latency pushes data to shards instead of pulling. 
-    * Kinsesis Data Firehouse - upload streaming data into resources, automatic scaling. no data storage. convert data along the way
+    * Kinsesis Data Firehouse - upload streaming data into resources, automatic scaling. no data storage. convert data along the way. easiest way to load streaming data in data stores and analytic tools.
         * writes data to S3, Redshift, ElasticSearch, or custom API or 3rd party like MongoDB
-    * Kinesis Data Analytics - SQL application
+    * Kinesis Data Analytics - SQL application, build sql queries
     * Kinesis Video Streams - 
 
 
@@ -274,7 +285,7 @@ Public and private subnets in a VPC can communicate with each other
 
 ### Network ACL
 * Network Access Control List - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
-* Security Group - Statefull and set at instances and can group instances. by default denies all inbound and allows all outbound. Used to control which Ip address can connect
+* Security Group - Statefull and set at instances and can group instances. by default denies all inbound and allows all outbound. Used to control which Ip address can connect. Virtual Firewall at the instance level
 
 ### DNS
 * Route 53 - Manages Dns records and offer health checks to monitor health and performance.
@@ -296,6 +307,8 @@ Public and private subnets in a VPC can communicate with each other
         * multi-value - route traffic to multiple resources and associate health checks with records. not a substitute for Load Balancing but helps.
     * Health Checks - checks status of resources, can integrate with CloudWatch
 * Cloudfront - Can integrate AWS Shield and AWS WAF to protect against network DDOS attacks.
+    * Can use infront of an Application Load Balancer
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
 
 ## Storage and DB 
 EBS => multiple servers in same availability zone. 
@@ -401,7 +414,7 @@ Objects = files and buckets = directories
         * Global Secondary Index (GSI) - speed up queries on non-key attributes, can be modified unlike LSI. If writes are throttled on GSI then main table will be throttled.
     * Throughput, can be increased temporarily using burst credit and spread throughout partitions
         * read capacity units - throughput for reads. 
-            * Eventuall Consistent Reads - By default. 2 reads per second for up to 4kb in size
+            * Eventually Consistent Reads - By default. 2 reads per second for up to 4kb in size
             * Strongly Consistent Reads - 1 read per second for up to 4kb in size
         * write capacity units - 1 write capacity represents 1 write per second of 1kb in size
         * throttling - if we exceeed use we get ProvisionedThroughputExceededException, can be fixed with exponential back off or using DynamoDB Accelerator(DAX)
@@ -461,6 +474,7 @@ Follow best practice of giving least privilages
 * AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 * SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation
+    * SecureString - plain text parameter name with an encrypted value. only uses one call to get
 * AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS. More expensive than SSM Parameter Store.
 
 ### Amazon Cognito
@@ -470,6 +484,7 @@ Follow best practice of giving least privilages
             * Lambda Triggers - can invoke lambda functions on triggers
         * Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools
         * Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i3.jpg)
 
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
@@ -501,7 +516,7 @@ Follow best practice of giving least privilages
         * Basic Monitoring - metrics every 5 mins
         * Detailed Monitoring - metrics every 1 min
         * High Resolution - metrics every 1 second, alarm can be triggered as often as 10 seconds
-    * Logs - Can go to S3 for archival, stream to ElasticSearch. By default no longs from EC2 will go to CloudWatch. Can be setup on premise also. Never expire by default
+    * Logs - Can go to S3 for archival, stream to ElasticSearch. By default no logs from EC2 will go to CloudWatch. Can be setup on premise also. Never expire by default
         * Cloudwatch Logs Agent - old version of agent, can only send CloudWatch logs
         * CloudWatch Unified Agent - Can collect additional metrics like ram etc. 
     * Events - send notifications can schedule on a CRON or event pattern.
