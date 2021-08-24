@@ -19,6 +19,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
         * Ref, YAML shorthand !Ref can call Parameters and Resources
         * Fn::GetAtt
         * bootstrapped from filepath example location "/etc/ecs/ecs.config"
+    * Resources - describes resources that you want to provision, can associate with conditions
     * Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
         * Fn::FindInMap
     * Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID.
@@ -32,8 +33,9 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * ChangeSets - view changes in stack before it happens
     * Nested Stacks - reuse stacks in other stacks example load balancer 
     * Cross Stacks - helpful when stacks have different lifecycles, use Export and Import
+        * Fn::ImportValue - returns value of an output exported by another stack
     * StackSets - Create, Update, Delete stacks across multiple accounts and regions
-    
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)    
 
 AWS Well Architected Framework, best practices for designing in cloud
 1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations.
@@ -51,11 +53,8 @@ AWS Well Architected Framework, best practices for designing in cloud
 
 * [AWS](#aws)
 * [Services](#services)
+    * [Serverless Computing](#serverless-computing)
 * [EC2](#ec2)
-    * [Instance Types](#instance-types)
-        * [Serverless Computing](#serverless-computing)
-    * [Pricing](#pricing)
-    * [Scaling](#scaling)
 * [Elastic BeanStalk](#elastic-beanstalk)
 * [SNS + SQS + Kinesis](#SNS-SQS-and-Kinesis)
 * [Global Infastructure](#global-infastructure)
@@ -107,19 +106,7 @@ Most services are region scoped
 * Server Name Indication(SNI) - used to route multiple SSL certificates
 
 
-## EC2
-Elastic Cloud Computation
-Infrastructure as a Service - computers and data storage provided
-EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/latest/meta-data
-
-### Instance Types
-* General Purpose - Balanced
-* Compute Optimized - for processing heavy loads
-* Memory Optimized - for something like a high performance database
-* Accelerated Computing - graphics or streaming
-* Storage Optimized - Data warehousing or high read and write performance
-
-#### Serverless Computing
+### Serverless Computing
 ![](https://raw.githubusercontent.com/coronel08/my-notes/main/photos/serverless.png)
 
 * AWS lambda - Cloud function that only gets charged when triggered 
@@ -138,49 +125,64 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 * EKS (Elastic Kubernetes Service) - 
 * Fargate - Works with both ECS and EKS, its a container engine
 
+---
+## EC2
+Elastic Cloud Computation
+Infrastructure as a Service - computers and data storage provided
+EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/latest/meta-data
 
-
-### Pricing
-* On Demand - always available 
-* EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
-* Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
-    * Standard RI - Most significant discount 72%
-    * Convertible RI - change attributes as long as its an even exchange discount 54%
-* Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
-* Dedicated Host - Fully dedicated to one host
+* Instance Types:
+    * General Purpose - Balanced
+    * Compute Optimized - for processing heavy loads
+    * Memory Optimized - for something like a high performance database
+    * Accelerated Computing - graphics or streaming
+    * Storage Optimized - Data warehousing or high read and write performance
+* Pricing:
+    * On Demand - always available 
+    * EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
+    * Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
+        * Standard RI - Most significant discount 72%
+        * Convertible RI - change attributes as long as its an even exchange discount 54%
+    * Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
+    * Dedicated Host - Fully dedicated to one host
+* Scaling:
+    * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
+        * By default health check configurations of auto scaling groups are set to EC2, to automate the replacement of unhealthy instances change from EC2 to ELB 
+        * Cannot add a volume to an existing instance if the existing volume is approaching capacity. A volume is attached to a new instance when it is added
+    * Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
+        * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
+            * Classic Load Balancer - HTTP, HTTPS, TCP
+                * Provides a static DNS name we can use in our application.
+            * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. 
+                * Can route based on URL, hostname, Query String and fits well with docker.
+                * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
+                * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
+                * Provides a static DNS name we can use in our application.
+                * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
+                * SSL Passthrough - data passes through fully encrypted
+                * SSL Termination / Offloading - load balancer decrypts traffic
+            * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
+                * exposes a public static IP. Doesn't support "X-Forwarded-For" header
+                * Availablity Zone - creates a load balancer in each Availablity Zone,
+            ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
+        * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
+            * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
+            * Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
+            * Simple Scaling - Increase or decrease based on a single scaling adjustment
+            * Scheduled Actions - Schedule adjustments based on patterns and time
+* EC2 USer Data - can pass shell scripts and cloud-init directives. Used to run common configuration tasks. Run only during boot cycle when first launched but can be configured to run on restart.
+    * scripts - executed with root privileges
 
 * AWS Resource Groups - Use to create custom console for environments and view/manage resources easily.
 
 * AWS Cost & Usage report - contains the most conprehensive set of AWS cost and usage data
 * AWS Cost Explorer - visualize and understand and manage AWS cost and usage, forecast up to 12 months ahead.  
 
-### Scaling
-* EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
-* Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
-    * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
-        * Classic Load Balancer - HTTP, HTTPS, TCP
-            * Provides a static DNS name we can use in our application.
-        * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. 
-            * Can route based on URL, hostname, Query String and fits well with docker.
-            * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
-            * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
-            * Provides a static DNS name we can use in our application.
-            * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
-        * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
-            * exposes a public static IP. Doesn't support "X-Forwarded-For" header
-            * Availablity Zone - creates a load balancer in each Availablity Zone,
-        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
-    * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
-        * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
-        * Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
-        * Simple Scaling - Increase or decrease based on a single scaling adjustment
-        * Scheduled Actions - Schedule adjustments based on patterns and time
-
 * Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
 
 * CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
 
-
+---
 ## Elastic BeanStalk
 * Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
     * Deployment Options
@@ -190,21 +192,23 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Immutable - spins new instances in ASG, deploys to these and then swaps instances
         * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
         * Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
-![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
     * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
-
+---
 ## SNS SQS and Kinesis
 * SNS - Simple Notification Service, publish messages to subscribers
     * Topic Publish - create a topic and a subscription
         * FIFO - one message delivery thru SQS. First in/First Out
         * Standard - Best effort to keep message order, at least once delivery. publish to SQS, Lambda, HTTP, SMS, Email
     * Direct Publish - for mobile create a platform and endpoint
+
 * SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically.
-    * Message Visibility Timeout - message visibility timeout is 30 seconds by default, if not processed within the timeout it will be processed twice.
+    * Message Visibility Timeout - message visibility timeout is 30 seconds by default, max 12 hours, if not processed within the timeout it will be processed twice. Prevents other consumers from receiving and processing the same message.
     * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
     * Delay Queue - default is 0 seconds but can be up to 15 minutes
-    * Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. Between 1 - 20 seconds. 
+    * Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. "WaitTimeSeconds" Between 1 - 20 seconds. 
+    * Security - can encrypt messages in queues using AWS KMS(Key Management Service)
 
 * Kinesis - collect, process, and analyze streaming data such as Application logs, Metrics, and telemetry data. Meant for real time big data. Group data into shards using a partition key.
     * Kinesis Data Streams - scaled with shards. Retention between 1 day(default) to 365. Manage scaling thru shard splitting or shard merging.
@@ -218,6 +222,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     * Kinesis Video Streams - 
 
 
+---
 ## Lambda
 * Pay per request and compute time, increasing RAM will also improve CPU and Network.
     * from 128mb - 10gb (64mb increments), at 1792mb you get more than one CPU and need to use multi-threading
@@ -228,6 +233,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     * Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
         * Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions
         * Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
 * Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
 * lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
 * Invoking functions
@@ -250,8 +256,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     * By default the Lambda function is launched in its own VPC and can't access resources or internet unless defined, 
         * ENI(Elastic Network Interface) allows it to interact with VPC
         * Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
+![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q39-i1.jpg)
 
-
+---
 ## Global Infastracture
 Regions are geographically isolated areas and are made up of smaller availability zones/ data centers,  
 Regions are picked based on the following:
@@ -265,7 +272,7 @@ Regions are picked based on the following:
 Edge Locations
 Amazon Cloudfront is a Content Delivery Network that caches content closer to customers. An Edge Location is a site that is used for CDN.
 
-
+---
 ## Networking
 Public and private subnets in a VPC can communicate with each other
 * VPC - Virtual Private Cloud is a regional resource, can organize resources into subnets which are availability zone resources
@@ -310,6 +317,7 @@ Public and private subnets in a VPC can communicate with each other
     * Can use infront of an Application Load Balancer
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
 
+---
 ## Storage and DB 
 EBS => multiple servers in same availability zone. 
 EFS => multiple availability zones
@@ -321,10 +329,12 @@ Lifecycle policies move data around to different storage classes based on time <
 
 ### EBS
 * Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. Cannot be attached to multiple compute resources at a time.
-    * GP2/GP3: General Purpose SSD
-    * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
-    * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
-    * SC1: Low cost HDD less frequently accessed workloads
+    * Types
+        * GP2/GP3: General Purpose SSD
+        * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
+        * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
+        * SC1: Low cost HDD less frequently accessed workloads
+    * Security - supports both in flight encryption and at rest using KMS
 
 ### S3
 Objects = files and buckets = directories
@@ -356,7 +366,8 @@ Objects = files and buckets = directories
             * Https must be used
             * Encryption key must be provided in HTTP headers
         * Client Side Encryption - Client handles encrypt/decrypt and manages keys
-    * S3 Security, (can connect to s3 using VPC Endpoints and logged in AWS Cloudtrail)
+    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt5-q55-i1.jpg)
+    * S3 Security, (can connect to s3 using VPC Endpoints and logged in AWS Cloudtrail). Cloudtrail tracks bucket level actions by default, need to enable S3 data events to track object level actions.
         * User Based - IAM Policies sets what Users are allowed to do what API calls 
         * Resource Based  
             * Bucket wide rules from the S3 console
@@ -438,7 +449,7 @@ Objects = files and buckets = directories
         * Lambda - uses event source mapping with permissions. Invoked synchonously 
     * CLI
         * --projection-expression - attributes to retrieve
-        * --filter-expression - filter results
+        * --filter-expression - filter results from a query, applied after a query finishes but before results are returned. max 1mb of data
         * --page-size - full dataset received but each API call will request less data
         * --max-items - max # of results
         * --starting-token - dictates where to start
@@ -446,6 +457,7 @@ Objects = files and buckets = directories
         * capacity - consumes 2x WCU RCU
 
 
+---
 ## Security
 Security Bulletins - AWS notifies customers about security and privacy events.
 
@@ -459,6 +471,8 @@ Follow best practice of giving least privilages
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
 * AWS Organizations - For large business
     * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
+    * Organization Trail - trail that logs all events 
+    * ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 * AWS Artifcat - Security and Compliance reports
 * AWS Shield - DDOS protection service
 * AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail
@@ -475,7 +489,7 @@ Follow best practice of giving least privilages
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
 * SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation
     * SecureString - plain text parameter name with an encrypted value. only uses one call to get
-* AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS. More expensive than SSM Parameter Store.
+* AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
 
 ### Amazon Cognito
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
@@ -533,6 +547,7 @@ Follow best practice of giving least privilages
         * EC2 ensure IAM role has proper permissions and daemon running
         * AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
 
+---
 ## Support
 * AWS Support plans
     * Basic - 
@@ -561,6 +576,7 @@ Follow best practice of giving least privilages
     * Performance Efficiency - Selecting right resources based on workload requirements and making informed decisions to maintain efficiency
     * Cost Optimization - Reduce cost of ownership, avoid or eliminate unneeded cost.
 
+---
 ## Migration 
 * AWS Total Cost Ownership (TCO) - free tool that provides info on possible savings when deploying to AWS. (Cost Explorer only analyzes current cost and ussage)
 * AWS Application Discovery Service - helps systems integrators plan application migration projects by identifying on-premise applications.
@@ -589,7 +605,8 @@ Follow best practice of giving least privilages
 
 * AWS Server Migration Service(SMS) - migrates workloads to AWS, supports virtual machine migrations, then saves them as a new Amazon Machine Image(AMI) that can be launched as an EC2
 
-communication
+
+---
 ## API Gateway
 * Can handle API versioning and handle different environments
 * API Types - mapping templates only available for AWS and HTTP
@@ -613,6 +630,7 @@ communication
     * Lambda Authorizer / Custom Auth - token based auth, great for 3rd party
 
 
+---
 ## Serverless Application Model 
 * Yaml Code that is built on CloudFormations and can use CodeDeploy to deploy lambda functions. 
 * Structure - requires transform and resources
@@ -631,6 +649,7 @@ communication
 * Serverless Application Repository (SAR) - repo for serverless applications
 
 
+---
 ## AWS Step Functions
 * Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
     * Standard Workflows - max duration 1 year, 2000/second. exaclty one workflow
