@@ -203,7 +203,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Standard - Best effort to keep message order, at least once delivery. publish to SQS, Lambda, HTTP, SMS, Email
     * Direct Publish - for mobile create a platform and endpoint
 
-* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically.
+* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically. max size is 256kb
     * Message Visibility Timeout - message visibility timeout is 30 seconds by default, max 12 hours, if not processed within the timeout it will be processed twice. Prevents other consumers from receiving and processing the same message.
     * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
     * Delay Queue - default is 0 seconds but can be up to 15 minutes
@@ -384,6 +384,7 @@ Objects = files and buckets = directories
         * S3 Transfer Acceleration - Increase transfer speed by using AWS Edge locations
         * S3 Byte-Range - Can be used to speed up downloads by running parallel, can also be used to retrieve partial data
         * S3 Select and Glacier Select - use SQL statements to filter data
+
 ### EFS
 * Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
     * Bursting Vs Provisioned: Bursting throughput grows with filesystem but with provisioned throughput is set to a high throughput regardless of file size 
