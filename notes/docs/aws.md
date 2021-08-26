@@ -22,7 +22,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * Resources - describes resources that you want to provision, can associate with conditions
     * Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
         * Fn::FindInMap
-    * Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID.
+    * Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
         * Need to be exported and imported using Fn::ImportValue
     * Conditions
         * Fn::If / Fn::Not / Fn::Equals etc
@@ -32,7 +32,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * Rollbacks - if failure the changes get deleted and version rolls back to before failure
     * ChangeSets - view changes in stack before it happens
     * Nested Stacks - reuse stacks in other stacks example load balancer 
-    * Cross Stacks - helpful when stacks have different lifecycles, use Export and Import
+    * Cross Stacks - Only within same region, helpful when stacks have different lifecycles, use Export and Import
         * Fn::ImportValue - returns value of an output exported by another stack
     * StackSets - Create, Update, Delete stacks across multiple accounts and regions
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)    
@@ -212,7 +212,8 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Standard - Best effort to keep message order, at least once delivery. publish to SQS, Lambda, HTTP, SMS, Email
     * Direct Publish - for mobile create a platform and endpoint
 
-* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. at least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with. Group data by using Group ID. Scales automatically. max size is 256kb
+* SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time.  Group data by using Group ID. Scales automatically. Max size is 256kb. 
+    * standard queue vs FIFO queue - Can't change queue type after you create it. At least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with.
     * Message Visibility Timeout - message visibility timeout is 30 seconds by default, max 12 hours, if not processed within the timeout it will be processed twice. Prevents other consumers from receiving and processing the same message.
     * Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
     * Delay Queue - default is 0 seconds but can be up to 15 minutes
@@ -302,15 +303,17 @@ Public and private subnets in a VPC can communicate with each other
 
 ### Network ACL 
 * Network Access Control List (NACL) - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
+    * Access Control List (ACL) - works with S3, WAF, VPC's
 * Security Group - Statefull and set at instances and can group instances. by default denies all inbound and allows all outbound. Used to control which Ip address can connect. Virtual Firewall at the instance level
 
 ### DNS
 * Route 53 - Manages Dns records and offer health checks to monitor health and performance.
+![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q34-i1.jpg)
     * Most common record routings are:
-        * A: hostname ipv4 example.com -> 12.3.1.3
-        * AAAA: hostname ipv6
-        * Cname: hostname to hostname test.example.com -> (only for non root domain)
-        * Alias: hostname to AWS resource, free and works for root domain
+        * A: hostname to ipv4 example.com -> 12.3.1.3
+        * AAAA: hostname to ipv6
+        * Cname: hostname to hostname test.example.com -> (only for non root domain). Can be used to map one domain name to another
+        * Alias: hostname to AWS resource, free and works for root domain. Can point to somthing like S3
     * Time to Live
         * High TTL(24hrs) has less traffic and possibly outdated records
         * Low TTL(60hrs) more traffic on DNS and records are outdated for less time.
@@ -325,6 +328,7 @@ Public and private subnets in a VPC can communicate with each other
     * Health Checks - checks status of resources, can integrate with CloudWatch
 * Cloudfront - Can integrate AWS Shield and AWS WAF to protect against network DDOS attacks.
     * Can use infront of an Application Load Balancer
+    * Cloudfront Key Pairs - created by root user, used to create signed URLs or signed cookies.
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
 
 ---
@@ -473,10 +477,10 @@ Objects = files and buckets = directories
 Security Bulletins - AWS notifies customers about security and privacy events.
 
 Follow best practice of giving least privilages 
-* AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user
+* AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user. Manage access in AWS by creating policies and attaching them to IAM Identities(users, groups, roles)
     * Users - Recommended IAM entity when granting a person long term access permissions.
     * Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group 
-    * Policies - allows or denies permissions to AWS, attached to users
+    * Policies - allows or denies permissions to AWS, attached to identity or users
         * Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
         * Policy Simulator - google it
         * Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
@@ -484,6 +488,7 @@ Follow best practice of giving least privilages
         * Policy Condition - specify conditions
         * Policy Variables - policy variables act as placeholders in template
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
+    * Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
     * Access Advisor - tool to identify unused roles, IAM reports the last used timestamp
     * Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
@@ -512,7 +517,7 @@ Follow best practice of giving least privilages
 ### Amazon Cognito
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
     * Types
-        * Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users
+        * Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users. returns a token
             * Lambda Triggers - can invoke lambda functions on triggers
         * Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools
         * Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
@@ -554,9 +559,10 @@ Follow best practice of giving least privilages
     * Events - send notifications can schedule on a CRON or event pattern.
         * EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc
     * Alarm - triggers notifications for any metric
-* Cloudtrail - Log of all actions and API calls taking place in AWS by a user, role, or an AWS Service
+* Cloudtrail - Log of all actions and API calls taking place in AWS by a user, role, or an AWS Service. 
 * AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
-* X-Ray - troubleshooting application performance and errors, must import the AWS X-Ray SDK and install X-Ray daemon to enable it
+* X-Ray - troubleshooting application performance and errors, provides end to end view of requests as they travel through your application and maps underlying components. Can collect data across AWS Accounts. To debug and trace data across accounts
+    * must import the AWS X-Ray SDK and install X-Ray daemon to enable it
     * Tracing - end to end way to follow requests
         * Segments/SubSegments - details on app/service
         * Sampling - amount of requests sent
@@ -651,7 +657,7 @@ Follow best practice of giving least privilages
 * Security
     * Resource Policies  / IAM - JSON similar to Lambda Resource policy, Allow for access and security. Great for users and role already in AWS
     * Cognito User Pools - API gateway automatically verifies using AWS Cognito
-    * Lambda Authorizer / Custom Auth - token based auth, great for 3rd party
+    * Lambda Authorizer / Custom Auth - token based auth OAuth or SAML, great for 3rd party
 
 
 ---
