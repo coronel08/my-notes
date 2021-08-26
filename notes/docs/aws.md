@@ -86,16 +86,16 @@ Most services are region scoped
 * AWS CloudHSM - security model that lets you use your own encryption keys
 * AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
     * AWS CodeCommit - used for software version control by developers. github clone
-        * Use AWS STS with AssumeRole API to share cross accounts, SSH Keys, or HTTPS credentials in user profiles. Doesnt support HTTP public access 
+        * Use AWS STS with AssumeRole API to share cross accounts. SSH Keys, Git credentials, AWS access keys, or HTTPS credentials in user profiles. Doesnt support HTTP public access 
     * AWS CodeBuild - continuous integration service allows testing code, jenkins clone
         * builds docker images, uses buidspec.yml(placed at root folder) for instructions
         * by default can't access resources in VPC, CodeBuild is launched outside of VPC
+        * Timeouts - default value is 8 hours, can change it between 5 min - 8 hours.
     * AWS CodeDeploy - automates code deployment to instances.
         * Order is Stop Application => Before Install => After Install => Start Application
         * Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
         * Hooks - correspond to lifecycle events such as ApplicationStart, ApplicationStop, etc.
         * Agent - a software package that makes it possible to be used in CodeDeploy
-* AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
 * Amazon Detective - easily investigate security findings.
 * AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
 * Amazon GuardDuty - threat detection that monitors accounts and workloads
@@ -145,11 +145,15 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Convertible RI - change attributes as long as its an even exchange discount 54%
     * Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
     * Dedicated Host - Fully dedicated to one host
+![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
 * Scaling:
-    * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions.
+    * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions but can span availability zones in 1 region.
         * By default health check configurations of auto scaling groups are set to EC2, to automate the replacement of unhealthy instances change from EC2 to ELB 
         * Cannot add a volume to an existing instance if the existing volume is approaching capacity. A volume is attached to a new instance when it is added
+        * Auto Scaling groups in a vpc launches the EC2 instances in subnets
+        * Can seperate public vs private traffic. An internet facing load balancer will have a public IP address and will route requests to targets using private IP address. Therefore EC2 targets dont need a public IP.
     * Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
+        * Access Logs - disabled by default, logs info such as time the request was received, clients IP, latencies, request paths, and server responses. Stored in S3 buckets and automatically encrypted using SSE-S3
         * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
             * Classic Load Balancer - HTTP, HTTPS, TCP
                 * Provides a static DNS name we can use in our application.
@@ -192,8 +196,13 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Immutable - spins new instances in ASG, deploys to these and then swaps instances
         * Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
         * Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
-    * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config
+    * If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
+    * Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config example below
+    ```
+    .ebextensions/<mysettings>.config
+    ```
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
+
 
 ---
 ## SNS SQS and Kinesis
@@ -236,6 +245,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
 * Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
 * lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
+* Lambda layers - zip file archive that contains additional code or data
 * Invoking functions
     * Synchronous Invocation - result is returned right away
         * Services:
@@ -290,8 +300,8 @@ Public and private subnets in a VPC can communicate with each other
     * AWS Outposts - provides AWS infastracture to on premises facility. 
 
 
-### Network ACL
-* Network Access Control List - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
+### Network ACL 
+* Network Access Control List (NACL) - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
 * Security Group - Statefull and set at instances and can group instances. by default denies all inbound and allows all outbound. Used to control which Ip address can connect. Virtual Firewall at the instance level
 
 ### DNS
@@ -469,9 +479,16 @@ Follow best practice of giving least privilages
     * Policies - allows or denies permissions to AWS, attached to users
         * Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
         * Policy Simulator - google it
+        * Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
+        * Policy Resource - specify a resource using an ARN
+        * Policy Condition - specify conditions
+        * Policy Variables - policy variables act as placeholders in template
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
+    * Access Advisor - tool to identify unused roles, IAM reports the last used timestamp
+    * Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
+![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
 * AWS Organizations - For large business
-    * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members.
+    * Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members. limit permissions but do not grant permissions.
     * Organization Trail - trail that logs all events 
     * ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 * AWS Artifcat - Security and Compliance reports
@@ -488,9 +505,9 @@ Follow best practice of giving least privilages
     * Envelope Encryption - anything over 4kb needs to be encrypted using Envelope Encryption, using GenerateDataKey API 
 * AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
 * AWS Inspector - Automated security assessment service that helps improve the security and compliance
-* SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation
+* SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation. Doesn't automatically rotate the database credential
     * SecureString - plain text parameter name with an encrypted value. only uses one call to get
-* AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
+* AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS, RedShift, and DocumentDB. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
 
 ### Amazon Cognito
 * Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
@@ -537,7 +554,8 @@ Follow best practice of giving least privilages
     * Events - send notifications can schedule on a CRON or event pattern.
         * EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc
     * Alarm - triggers notifications for any metric
-* Cloudtrail - Log of all actions and API calls taking place in AWS
+* Cloudtrail - Log of all actions and API calls taking place in AWS by a user, role, or an AWS Service
+* AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
 * X-Ray - troubleshooting application performance and errors, must import the AWS X-Ray SDK and install X-Ray daemon to enable it
     * Tracing - end to end way to follow requests
         * Segments/SubSegments - details on app/service
@@ -547,6 +565,11 @@ Follow best practice of giving least privilages
     * If not working in:
         * EC2 ensure IAM role has proper permissions and daemon running
         * AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
+
+|CloudWatch |CloudTrail  | Config|
+--- | --- | --- |
+| resource performance monitoring, events, and alerts | account specific activity and audit | resource specific history, audit, and compliance |
+
 
 ---
 ## Support
@@ -558,7 +581,7 @@ Follow best practice of giving least privilages
         * Architecture/tecgnical support during business hours.
     * Business - response time of 1 hour for production systems
         * Use case guidance, 
-        * All aws trusted advisor checks
+        * All aws trusted advisor checks (online tool that guides best practices on cost and performance improvements)
         * AWS Personal Health dashboard 
         * 24x7 technical support engineers. 
         * AWS Support API
@@ -610,7 +633,7 @@ Follow best practice of giving least privilages
 ---
 ## API Gateway
 * Can handle API versioning and handle different environments
-* API Types - mapping templates only available for AWS and HTTP
+* API Types - mapping templates only available for AWS and HTTP(able to transform payload in route)
     * HTTP API - Lambda, HTTP backends. no data mapping, usgae plan, or API keys
     * Websocket API - Lambda, HTTP, AWS Services. stateful use case so theyre implemented in real time applications. used for 2 way communication
     * REST API - Lambda, HTTP, AWS Services
