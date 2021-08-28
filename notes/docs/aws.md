@@ -144,6 +144,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * Standard RI - Most significant discount 72%
         * Convertible RI - change attributes as long as its an even exchange discount 54%
     * Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
+    * Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
     * Dedicated Host - Fully dedicated to one host
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
 * Scaling:
@@ -342,13 +343,15 @@ Snapshots - incremental backups <br>
 Lifecycle policies move data around to different storage classes based on time <br>
 
 ### EBS
-* Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. Cannot be attached to multiple compute resources at a time.
+* Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. 
+    * Cannot be attached to multiple compute resources at a time. Free tier offers 30gb per month
     * Types
         * GP2/GP3: General Purpose SSD
         * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
         * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
         * SC1: Low cost HDD less frequently accessed workloads
     * Security - supports both in flight encryption and at rest using KMS
+    * Option to delete on termination
 
 ### S3
 Objects = files and buckets = directories
@@ -489,7 +492,7 @@ Follow best practice of giving least privilages
         * Policy Variables - policy variables act as placeholders in template
     * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
     * Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
-    * Access Advisor - tool to identify unused roles, IAM reports the last used timestamp
+    * Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp
     * Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
 * AWS Organizations - For large business
