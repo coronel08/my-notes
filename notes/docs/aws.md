@@ -127,7 +127,7 @@ Most services are region scoped
 
 ---
 ## EC2
-Elastic Cloud Computation
+Elastic Cloud Computation - ec2 storage is called "Instance Store" gets terminated with instance
 Infrastructure as a Service - computers and data storage provided
 EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/latest/meta-data
 
@@ -158,9 +158,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
             * Classic Load Balancer - HTTP, HTTPS, TCP
                 * Provides a static DNS name we can use in our application.
+                * Cross-Zone Load Balancing - enabled by default thru console, CLI/API disables it by default. No Charges for inter AZ data.
             * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. 
                 * Can route based on URL, hostname, Query String and fits well with docker.
-                * Comes with Cross-Zone Load Balancing on by default with no charges for inter AZ data
+                * Cross-Zone Load Balancing - on by default with no charges for inter AZ data
                 * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
                 * Provides a static DNS name we can use in our application.
                 * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
@@ -169,6 +170,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
                 * exposes a public static IP. Doesn't support "X-Forwarded-For" header
                 * Availablity Zone - creates a load balancer in each Availablity Zone,
+                * Cross-Zone Load Balancing - Disabled by default, pay for inter AZ data if enabled (Data between availability zones)
             ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
         * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
             * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
@@ -346,12 +348,14 @@ Lifecycle policies move data around to different storage classes based on time <
 * Elastic Block Store (EBS) - behave like physical hard drives. up to 16TiB, stores blocks which is better for example editing video where only some blocks change. Attach to EC2 and are a Zone level resource. Used for storing Amazon RDS databases. More expensive than S3. 
     * Cannot be attached to multiple compute resources at a time. Free tier offers 30gb per month
     * Types
-        * GP2/GP3: General Purpose SSD
-        * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS
-        * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse
+        * GP2/GP3: General Purpose SSD. 1tb - 16tb
+        * IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS. 4gb - 16tb
+            * Can be attached to multiple EC@ instances in the same AZ
+        * ST1: Low Cost HDD designed for frequently accessed. Data Warehouse. Can't be a boot volume. 125mb - 16tb
         * SC1: Low cost HDD less frequently accessed workloads
     * Security - supports both in flight encryption and at rest using KMS
     * Option to delete on termination
+    * Migration - to migrate you need to take a snapshot and restore it to another AZ
 
 ### S3
 Objects = files and buckets = directories
@@ -403,9 +407,11 @@ Objects = files and buckets = directories
         * S3 Select and Glacier Select - use SQL statements to filter data
 
 ### EFS
-* Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system, regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
+* Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system (not compatible with windows), 
+    * Regional resource and auto scaling. More expensive than EBS. use Security groups to control access.
     * Bursting Vs Provisioned: Bursting throughput grows with filesystem but with provisioned throughput is set to a high throughput regardless of file size 
     * Lifecycle Management: move file after N days into either standard or EFS-IA(Infrequent Access)
+    * Security - Encryption at rest using KMS
 
 
 ### Databases
