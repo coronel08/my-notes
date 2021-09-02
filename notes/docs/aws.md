@@ -290,13 +290,14 @@ Amazon Cloudfront is a Content Delivery Network that caches content closer to cu
 ## Networking
 Public and private subnets in a VPC can communicate with each other
 * VPC - Virtual Private Cloud is a regional resource, can organize resources into subnets which are availability zone resources
-    * Internet Gateway - attach an internet gateway to a vpc to connect to the internet
-    * NAT Gateway - AWS managed allow your instances in private subnets to access the internet
+    * Internet Gateway - attach an internet gateway to a vpc to connect to the internet. Public subnets have a route to the internet gateway
+    * NAT Gateway - AWS managed allow your instances in private subnets to access the internet while remaining private
     * Transit Gateway - simplifies how customers connect all of their VPC's, acts as a hub
     * VPC Endpoints, only used within your VPC. Just to access AWS services privately within your VPC
         * VPC Endpoints Gateway - only for S3 and DynamoDB allow you to connect to AWS using a private network instead of wwww
         * VPC Endpoint Interface(ENI) - the rest of the services
     * VPC Peering - connects two VPC privately with AWS network, must be established in each VPC
+    * VPC Flow Logs - captures information about IP traffic to VPC, Subnet, Elastic Network Interface(ENI). Sent to S3 or Cloudwatch logs for storage
 * VPG - Virtual Private Gateway / VPN 
     * AWS Client VPN 
     * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS. Over internet
@@ -308,6 +309,9 @@ Public and private subnets in a VPC can communicate with each other
 * Network Access Control List (NACL) - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
     * Access Control List (ACL) - works with S3, WAF, VPC's
 * Security Group - Statefull and set at instances and can group instances. by default denies all inbound and allows all outbound. Used to control which Ip address can connect. Virtual Firewall at the instance level
+
+[NACL vs Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html)
+
 
 ### DNS
 * Route 53 - Manages Dns records and offer health checks to monitor health and performance.
