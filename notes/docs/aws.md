@@ -363,7 +363,7 @@ Lifecycle policies move data around to different storage classes based on time <
 
 ### S3
 Objects = files and buckets = directories
-
+    
 * Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
 
 
