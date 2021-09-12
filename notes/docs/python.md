@@ -357,6 +357,13 @@ sum(x*x for x in range(5))
 
 Private variable example using bank account (Beyond the Basic Stuff , Al S)[https://inventwithpython.com/beyond/chapter15.html]
 
+
+## 4 Pillars of OOP
+* Inheritance - 
+* Polymorphism - a parent object that gives structure to a child object, can use method overloading to overwrite parent methods.
+* Encapsulation - setter and getter / private functions
+* Abstraction - 
+
 ## Classes
 ```
 class Dog:

@@ -4,6 +4,9 @@ Horizontal Scaling  = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 
+[Getting Started](https://aws.amazon.com/getting-started/?nc1=h_ls)
+
+
 Server-based services include: Amazon EC2, Amazon RDS, Amazon Redshift and Amazon EMR.
 Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and Amazon DynamoDB.
 * Global Services include:
@@ -207,6 +210,8 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
 
+[EBS Samples](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
+
 ---
 ## SNS SQS and Kinesis
 * SNS - Simple Notification Service, publish messages to subscribers
@@ -363,7 +368,7 @@ Lifecycle policies move data around to different storage classes based on time <
 
 ### S3
 Objects = files and buckets = directories
-    
+
 * Amazon Athena - Analytics service that makes it easy to query data in Amazon S3 using standard SQL commands.
 
 
