@@ -159,10 +159,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     * Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
         * Access Logs - disabled by default, logs info such as time the request was received, clients IP, latencies, request paths, and server responses. Stored in S3 buckets and automatically encrypted using SSE-S3
         * 3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
-            * Classic Load Balancer - HTTP, HTTPS, TCP
+            * Classic Load Balancer - HTTP, HTTPS, TCP. Used when needed to support older architecture 
                 * Provides a static DNS name we can use in our application.
                 * Cross-Zone Load Balancing - enabled by default thru console, CLI/API disables it by default. No Charges for inter AZ data.
-            * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. 
+            * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. Used to route web traffic only, IP's are not static
                 * Can route based on URL, hostname, Query String and fits well with docker.
                 * Cross-Zone Load Balancing - on by default with no charges for inter AZ data
                 * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
@@ -170,7 +170,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
                 * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
                 * SSL Passthrough - data passes through fully encrypted
                 * SSL Termination / Offloading - load balancer decrypts traffic
-            * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance
+            * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance, IP's are static.
                 * exposes a public static IP. Doesn't support "X-Forwarded-For" header
                 * Availablity Zone - creates a load balancer in each Availablity Zone,
                 * Cross-Zone Load Balancing - Disabled by default, pay for inter AZ data if enabled (Data between availability zones)
