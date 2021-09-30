@@ -150,6 +150,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     * Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
     * Dedicated Host - Fully dedicated to one host
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
+### Auto Scaling and Load Balancing
 * Scaling:
     * EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions but can span availability zones in 1 region.
         * By default health check configurations of auto scaling groups are set to EC2, to automate the replacement of unhealthy instances change from EC2 to ELB 
@@ -162,7 +163,8 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             * Classic Load Balancer - HTTP, HTTPS, TCP. Used when needed to support older architecture 
                 * Provides a static DNS name we can use in our application.
                 * Cross-Zone Load Balancing - enabled by default thru console, CLI/API disables it by default. No Charges for inter AZ data.
-            * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. Used to route web traffic only, IP's are not static
+                * Support for sticky sessions using application generated cookies
+            * Application Load Balancer (ALB) - HTTP, HTTPS, Websocket. Used to route web traffic only, IP's are not static. Works on the 7th layer/Application.
                 * Can route based on URL, hostname, Query String and fits well with docker.
                 * Cross-Zone Load Balancing - on by default with no charges for inter AZ data
                 * Target groups can be Ec2 instances, Ip Addresses, or Lambda Functions
@@ -170,16 +172,18 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
                 * need to use the "X-Forwarded-For" header to get originating IP address of traffic.
                 * SSL Passthrough - data passes through fully encrypted
                 * SSL Termination / Offloading - load balancer decrypts traffic
-            * Network Load Balancer - TCP, TLS, UDP. Low Latency and high performance, IP's are static.
+            * Network Load Balancer - TCP, UDP, TLS(new SSL). Low Latency and high performance, IP's are static. Works on layer4/Transport of OSI model, the end to end connections using TCP or UDP
                 * exposes a public static IP. Doesn't support "X-Forwarded-For" header
                 * Availablity Zone - creates a load balancer in each Availablity Zone,
                 * Cross-Zone Load Balancing - Disabled by default, pay for inter AZ data if enabled (Data between availability zones)
+                * Supports targets by IP address, including targets outside VPC
             ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
         * Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
             * Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
             * Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
             * Simple Scaling - Increase or decrease based on a single scaling adjustment
             * Scheduled Actions - Schedule adjustments based on patterns and time
+
 * EC2 USer Data - can pass shell scripts and cloud-init directives. Used to run common configuration tasks. Run only during boot cycle when first launched but can be configured to run on restart.
     * scripts - executed with root privileges
 
@@ -279,7 +283,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 
 ---
 ## Global Infastracture
-Regions are geographically isolated areas and are made up of smaller availability zones/ data centers,  
+Regions are geographically isolated areas and are made up of smaller availability zones/ data centers,  Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets. Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
+
+
 Regions are picked based on the following:
 * Compliance or regulations 
 * Proximity 
