@@ -823,7 +823,6 @@ Can do error checking with **try** or **then** and **catch** in an async and awa
 ## API
 [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) HTTP API Methods like **GET, POST, DELETE, PATCH**
 
-
 Use Javascript fetch to get API, old way was XMLHttpRequest
 ```
 <!-- using then and catch -->
@@ -884,6 +883,9 @@ const fetchBitcoinPrice = async() => {
 5 Ways to make Http request in node/javascript
 [Logrocket](https://blog.logrocket.com/5-ways-to-make-http-requests-in-node-js/)
 and [Twilio](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html)
+
+[Fetching Data in React Dev.to](https://dev.to/jideabdqudus/fetching-data-in-react-quick-guide-4fba)
+
 <br>
 
 Can test out API's by running the command below 
