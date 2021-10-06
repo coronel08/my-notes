@@ -58,8 +58,10 @@ AWS Well Architected Framework, best practices for designing in cloud
 * [Services](#services)
     * [Serverless Computing](#serverless-computing)
 * [EC2](#ec2)
+    * [Auto Scaling/ Load Balancing](#auto-scaling-and-load-balancing)
 * [Elastic BeanStalk](#elastic-beanstalk)
 * [SNS + SQS + Kinesis](#SNS-SQS-and-Kinesis)
+* [Lambda](#lambda)
 * [Global Infastructure](#global-infastructure)
 * [Networking](#networking) 
     * [Network ACL](#network-acl)
@@ -71,9 +73,14 @@ AWS Well Architected Framework, best practices for designing in cloud
     * [Databases](#databases)
         * [DynamoDB](#DynamoDB)
 * [Security](#security)
+    * [Cognito](#amazon-cognito)
+    * [Security Token Service](#security-token-service)
     * [Monitoring](#monitoring)
 * [Support](#support)
 * [Migration](#migration)
+* [API gateway](#api-gateway)
+* [Serverless Application Model](#serverless-application-model)
+* [AWS Step Function](#aws-step-functions)
 
 ## Services
 Most services are region scoped
