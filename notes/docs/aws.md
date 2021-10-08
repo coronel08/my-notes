@@ -321,7 +321,7 @@ Public and private subnets in a VPC can communicate with each other
     * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS. Over internet
     * AWS Direct Connect establishes a direct connection between your data center and a VPC. It is a private connection and doesn't use internet. 
     * AWS Outposts - provides AWS infastracture to on premises facility. 
-
+![](https://raw.githubusercontent.com/coronel08/my-notes/main/photos/vpc.png)
 
 ### Network ACL 
 * Network Access Control List (NACL) - subnet level firewall that checks packet coming or leaving a subnet. stateless(always checks)
