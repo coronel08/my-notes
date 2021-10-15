@@ -9,6 +9,7 @@ number += 1
 
 
 Use **let** or **const** over **var**. Case Styling/Naming Conventions:
+* let x=1, y=2
 * camelCasing for objects and functions
 * start booleans with is ex: const isTrue = true
 * control flow [Exploringjs](https://exploringjs.com/impatient-js/ch_control-flow.html)
@@ -453,6 +454,8 @@ points.sort((a,b) => b - a)
 [Youtube vid](https://www.youtube.com/watch?v=R8rmfD9Y5-c) on filter, map, find, foreach <br>
 [W3 Array itteration](https://www.w3schools.com/js/js_array_iteration.asp) <br>
 [High Order fucntions / array iteration exampels](https://vegibit.com/higher-order-functions-in-javascript/) <br>
+[reduce map and filter functions](https://codeburst.io/learn-understand-javascripts-reduce-function-b2b0406efbdc)
+
 
 * map(): creates a new array for function mapped  
 * filter(): creates a new array with items that pass filter

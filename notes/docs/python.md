@@ -200,7 +200,7 @@ for index, item in enumerate(items):
 
 
 ## Iterate
-Using Enumerate to add index to item iteration
+Using Enumerate to add index to item iteration. Can also use zip before enumerate to combine multiple lists
 ```
 list1 = ['a', 'b', 'c', 'd', 'e']
 for index, item in enumerate(list1):
@@ -212,7 +212,7 @@ list_a = [1, 2, 3, 4]
 list_b = [10, 20, 30, 40]
 list_c = ["a","b","c","d"]
 
-# zip a list into a tuple, could also zip into a dict
+# zip a list into a tuple, could also enumerate a zip into a dict
 test = list(zip(list_a,list_b, list_c))
 
 # List comprehension
@@ -240,12 +240,17 @@ List Comprehensions, can also do if-else in a condition
 ```
 a = [3,4,5]
 b = [i for i in a if i >4 ]
+<!-- Can chain if, else statements in a list comprehension -->
+c = [x ** 2 for x in range(7) if x%2 == 0 and x%6 == 0]
+<!-- another example -->
+L = [ "ab_cd_e", "abc", "a_b_c", "a__bc_d_", "__" ]
+resL = [ x.replace('_', ' ') for x in L ]
 
 
 <!-- Nested Loop list comprehension, great for making coordinates -->
 num1 = [1,2,3]
 num2 = [4,5,6]
-nums = [(x,y) for x in num1 for y in nums2]
+nums = [(x,y) for x in num1 for y in num2]
 print(nums)
 
 <!-- Multiple if conditions in list comprehension, print if divisbile by 2 and 5 -->
@@ -256,6 +261,16 @@ nums = [x for x in range(21) if x%2==0 if x%5==0]
 my_basket = {'apple': 2, 'banana': 3, 'starfruit': 1}
 double_my_basket = {k:v*2 for (k, v) in my_basket.items()}
 print(double_my_basket) # {'apple': 4, 'banana': 6, 'starfruit': 2}
+```
+
+
+### Generator Expression
+Generators are used to create iterators, use yield, next, and return for returning a result. Takes less memory than a regular function.
+[geeksforgeeks example](https://www.geeksforgeeks.org/generator-expressions/)
+```
+test_generator = (num ** 2 for num in range(10))
+for num in test_generator:
+    print(num)
 ```
 <br><br>
 
@@ -279,7 +294,7 @@ change(5)
 ### Built in Functions
 [Python Docs](https://docs.python.org/3/library/functions.html) <br>
 [W3](https://www.w3schools.com/python/python_ref_functions.asp)
-* abs() - absolute value
+* abs() - absolute value, positive numbers only
 * dir() - returns a list of objects properties and methods
 * enumerate() - takes a collection(tuple?) and returns it as an enumerated object
 * filter()
@@ -311,12 +326,16 @@ Another Example can also be written as list comprehensions
 numbers = [1, 2, 3, 4, 5]
 numbers_power_2 = list(map(lambda n : n**2, numbers))
 numbers_filter = list(filter(lambda n: n > 3, numbers))
+
+L = [ "ab_cd_e", "abc", "a_b_c", "a__bc_d_", "__" ]
+resl = list(map((lambda x: x.replace('_', ' ')),L))
+
 ```
 
 ### Recursion
-A function thaat calls itself is a recursive function
+A function that calls itself is a recursive function
 ```
-def facotiral(n):
+def factorial(n):
     if n == 1:
         print(n)
         return 1
@@ -359,9 +378,18 @@ Private variable example using bank account (Beyond the Basic Stuff , Al S)[http
 
 
 ## 4 Pillars of OOP
-* Inheritance - 
-* Polymorphism - a parent object that gives structure to a child object, can use method overloading to overwrite parent methods.
+* Inheritance - inherits methods and property from another class, Parent and Children classes.
+* Polymorphism - a parent object that gives structure to a child object, can use Method Overriding to overwrite parent methods. Method Overloading not available in python
 * Encapsulation - setter and getter / private functions
+```
+# attributes can't be changed or accessed by self.wall_material
+class House:
+    def set_wall_material(self, wall_material):
+        self.wall_material = wall_material
+    
+    def get_wall_material(self):
+        print(self.wall_material)
+```
 * Abstraction - 
 
 ## Classes
@@ -401,10 +429,10 @@ class Dog:
 * __str__ - resturns a string (more for end users)
 * __repr__ - returns a printable string (more for devs)
 
-### Decorators
+### Decorators and Wrappers
 Can use a decorator to nest a function within another function. [tutorialsteacher.com](https://www.tutorialsteacher.com/python/decorators)
 ```
-def myDecorator(function) # decorator function
+def myDecorator(function): # decorator function
     def innerFunction():
         function()
         print('Inner function')
@@ -415,6 +443,13 @@ def greet():
     print('Hello from greet function')
 
 greet()
+
+
+""" Without using decorator called like below
+def greet():
+    print("Hello from greet function")
+greet = myDecorator(greet)
+"""
 ```
 
 #### Built in Decorators
@@ -425,14 +460,31 @@ greet()
     * has to be called by Classname.MethodName() or object.MethodName()
     * can acccess class attributes but not the instance attributes
     * can be used to declare a factory method that returns objects of a class
-* @staticmethod 
+* @staticmethod - used when you want to access the class method without Instantiation
     * has to be called by Classname.MethodName() or object.MethodName()
     * cant have cls or self parameter
     * cant access class attributes or instance attributes
+* @abstractmethod - used to create an abstract method
+    * from abc import ABC, abstractmethod
 
-### Wrappers
 
+### High Order Functions
+Functions that can accept other fucntions as an argument are called High Order Functions
+```
+def whisper(name):
+    return name.lower()
+
+def shout(name):
+    return name.upper()
+
+def greeting(func):
+    return func("Test String")
+
+print(greeting(whisper))
+print(greeting(shout))
+```
 <br><br>
+
 
 ---
 
