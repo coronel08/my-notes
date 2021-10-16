@@ -18,21 +18,32 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
 <br><br>
 
 
-Objects / Key value pairs, can mix and match objects and arrays {}
+**Objects** = {} / Key value pairs, can mix and match objects{} and arrays[].
+An object gives you the ability to associate a property name with a value:
+Add into an object by either using dot notation or square bracket notation
 ```
-const fitBitData{
-    steps : 2131
-    day : "Thursday"
-    workout : ['steps', 'stairs']
+let z = {}
+z.foo = 3   // dot notation
+z["bar"] = 4    //square bracket notation
+
+console.log(z)
+```
+
+```
+const fitBitData = {
+    steps : 2131,
+    day : "Thursday",
+    workout : ['steps', 'stairs'],
     weight : {
         start : 180,
         goal : 160
     }
 }
+console.log(fitBitData.steps)
 ```
 <br>
 
-Array / List can mix and match objects and arrays
+**Array** = [] / List can mix and match objects and arrays. Arrays give access to array methods like push, slice, filter, map etc. Array is an object with extra features.
 ```
 let plants = [
     ['fruits', 'apple','lemon'],
@@ -912,7 +923,7 @@ Object Prototypes -- Old and wrong way to add to a class
 <br><br>
 Factory Functions -- returns a new object without new, better to use **new** keyword and constructor function
 ```
-function person(firstName, LastName, age){
+function Person(firstName, LastName, age){
     const person = {}
     person.firstName = firstName
     person.lastName = lastName
