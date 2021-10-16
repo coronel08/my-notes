@@ -464,8 +464,12 @@ greet = myDecorator(greet)
     * has to be called by Classname.MethodName() or object.MethodName()
     * cant have cls or self parameter
     * cant access class attributes or instance attributes
-* @abstractmethod - used to create an abstract method
+* @abstractmethod 
+    * used to create an abstract method, empty in base class and used only for defining structure, this decorator forces the subclasses to implement method
     * from abc import ABC, abstractmethod
+    * [Abstract Base Class](https://towardsdatascience.com/abstract-base-classes-in-python-fundamentals-for-data-scientists-3c164803224b)
+
+
 
 
 ### High Order Functions
