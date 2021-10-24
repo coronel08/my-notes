@@ -209,6 +209,11 @@ console.log(test?.thing)
 ## Function
 ### Closures and Nesting Functions
 [Closures Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+
+Can pass arguments inside function and also optional arguments be assiging a value in the parameter.
+
+let test = (a,b=1) => a+b 
 ```
 function init(){
     var private = 'Mozilla'
@@ -257,7 +262,7 @@ function secretVariable(){
         return private
     }
 }
-var getPrivateVariable = secretVariable()
+let getPrivateVariable = secretVariable()
 console.log(getPrivateVariable())
 ```
 <br><br>
@@ -337,7 +342,7 @@ const myFunc = {
 
 
 #### This
-Use the keyword this to access other properties on the same object. 
+Use the keyword this to access other properties on the same object. Can be used with call and apply to access parent object. 
 
 If inheritting this, it could refer to the window. **This keyword acts different in arrow functions**
 <br><br>
@@ -363,10 +368,13 @@ If inheritting this, it could refer to the window. **This keyword acts different
 ## String Methods
 [W3schools](https://www.w3schools.com/jsref/jsref_obj_string.asp)
 * concat
+* indexOf or lastIndexOf - get index of item
+* padStart - add items to the start of a string
 * repeat
 * replace
 * replaceAll
 * slice
+* substring -almost same as slice
 * split
 * trim
 
@@ -647,6 +655,28 @@ function countdown(number){
     console.log(number)
     countdown(number - 1)
 }
+```
+
+Recursive solutions work better for branching out. Example below shows a puzzle best solved by recursion
+
+starting at 1, add either 5 or multiply 3 to get to the number, return null when it cannot be reached at all.
+```
+function findSolution(target){
+    function find(current, history){
+        if (current == target){
+            return history
+        } else if (current > target){
+            return null
+        } else {
+            return  find(current + 5, `(${history} + 5)`) ||
+                    find(current * 3, `(${history} * 3)`)
+        }
+    }
+    return find(1,'1')
+}
+
+console.log(findSolution(28))
+
 ```
 <br>
 

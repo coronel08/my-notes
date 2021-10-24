@@ -305,14 +305,21 @@ change(5)
 * join()
 * len()
 * map()
-* min()
-* max()
+* min() - accepts key function
+* max() - accepts key function
 * print()
-* sorted()
+* sorted() - accepts key function
 * str()
 * sum()
 * tuple()
 * zip()
+
+```
+# key passes a function to the elements
+
+l1=['blue','green','red','orange']
+print(max(l1, key=len))
+```
 
 ### Lambda Functions
 lambda <arguments> : <expression> <br>
