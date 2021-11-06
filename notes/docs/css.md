@@ -312,8 +312,9 @@ Positions allows you to place things anywhere and is more flexible than the flex
 [Position Property Values](https://www.w3schools.com/cssref/pr_class_position.asp)
 
 * static
-* relative (can change top and sides from where it would be regularly) PARENT
-* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative ) CHILD
+* USE RELATIVE for PARENT and ABSOLUTE for CHILD
+* relative (can change top and sides from where it would be regularly, takes it out of document flow and can overlap) PARENT
+* absolute (removed from flow, can get position from closest ancestor, if no ancestor then the initial containing block. Try by making parent relative.) CHILD
 * fixed (always present)
 
 
