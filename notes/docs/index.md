@@ -12,6 +12,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
 * [CSS Art](https://codepen.io/braydoncoyerffe8ea)
 * CSS Masking and Shaping elements [Clip Path section](https://bennettfeely.com/clippy/) and also [Masking a section](https://web.dev/css-masking/). Mask allows gradients/fade Clip is equal to delete the area outside. Maskingg has more options.
+* [Undraw.co] used for svg icons (https://undraw.co/search)
 
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
