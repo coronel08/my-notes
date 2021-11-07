@@ -11,6 +11,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * [Python Module library](https://github.com/vinta/awesome-python)
 * [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
 * [CSS Art](https://codepen.io/braydoncoyerffe8ea)
+* CSS Masking and Shaping elements [Clip Path section](https://bennettfeely.com/clippy/) and also [Masking a section](https://web.dev/css-masking/). Mask allows gradients/fade Clip is equal to delete the area outside. Maskingg has more options.
 
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
