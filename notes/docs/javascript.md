@@ -824,6 +824,31 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
     ```
 <br>
 
+### Nested Form Element
+Form: grab children items by name
+```
+<form action="" id="tweetForm">
+    <input type="text" name="username" placeholder="username">
+    <input type="text" name="tweet" placeholder="tweet">
+    <button>Tweet</button>
+</form>
+
+<script>
+    const tweetForm = document.querySelector('#tweetForm')
+
+    // Method 1
+    console.log(tweetForm.elements.username)
+
+    // Method 2
+    console.log(tweetForm.querySelector('[name="tweet"]'))
+
+</script>  
+
+
+```
+
+<br><br>
+
 ## eventListener
 Example can be seen in /javascript/rand-bg-color.html. Event Listeneres can be 
 * Mouse Events - click, mouseover, onmouseleave
@@ -843,7 +868,7 @@ hello.addEventListener('click', () =>{
 <br>
 
 ### Form Event Listener
-Check file Javascript/input-events.html to see a formw ith javascript and event listener.
+Check file Javascript/input-events.html to see a form with javascript and event listener.
 
 
 Can also do nested events / event Bubbling. To stop nest or bubbling use e.stopPropagation()
