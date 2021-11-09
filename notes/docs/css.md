@@ -732,36 +732,127 @@ Button needs data-toggle="collapse"
 [Tailwind Infoworld](https://www.infoworld.com/article/3622288/tailwind-css-learn-the-joys-of-functional-responsive-css.amp.html) shows navbar, responsive layout
 
 
-[Nerdcave](https://nerdcave.com/tailwind-cheat-sheet) Tailwind Cheat Sheet
+[Github.io Tailwind cheatsheet](https://umeshmk.github.io/Tailwindcss-cheatsheet/) && [Nerdcave](https://nerdcave.com/tailwind-cheat-sheet) Tailwind Cheat Sheet
 
 
 [Tailwind Install Docs](https://tailwindcss.com/docs/installation)
+
+
+[Tailwind Display](https://tailwindcss.com/docs/display)
+[Tailwind Position](https://tailwindcss.com/docs/position)
+[Hover, Active, Focus, Checked, First-Child, etc and other states](https://tailwindcss.com/docs/hover-focus-and-other-states)
+
+
+Tailwind set up for full page
+```
+<div class="flex flex-col justify-between min-h-screen bg-blue-800">
+    <nav class="h-20 w-full bg-blue-500">
+    </nav>
+
+    <section class="h-1/4 bg-blue-300">
+    </section>
+
+    <footer class="h-20 w-full bg-blue-500">
+    </footer>
+</div>
+
+```
+
+
+* Responsive breakpoints:
+    * flex - base breakpoint < 640px
+    * sm: - 640px
+    * md: - 768px
+    * lg: - 1024px
+    * xl: - 1280px
+    * 2xl: - 1536px
+* Positions:
+    * static - normal positionining
+    * relative - parent, used as parent container
+    * absolute - child, child container that gets positioned
+        * inset - to control where item is
+    * fixed - for navbars always on top
+    * sticky - once scrolled past it sticks to top
+* Displays:
+    * hidden - display-none
+    * invisible - visiblity-none
+    * block - like flex except items stack on top of each other
+        * inline-block - width doesnt go all the way
+    * flex - create a flex container(groups everything in one line) 
+        * inline-flex - width doesnt go all the way
+    * grid - create a grid container ```"grid gap-4 grid-cols-3"```
+    * table - 
+    * contents - to inherit parent container by using a phantom container
+* Other Positioning:
+    * [Tailwind Float](https://tailwindcss.com/docs/float) and [Tailwind Clear](https://tailwindcss.com/docs/clear)
+    * [Tailwind Object-Fit](https://tailwindcss.com/docs/object-fit)
+    * [Tailwind Object Position](https://tailwindcss.com/docs/object-position)
+
+
 
 ## Sizing and Spacing
 Margin and Padding is the same as bootstrap but can go higher in numbers <br>
 Can go from text-base to text-6xl 
 <br>
 
-Set [width](https://tailwindcss.com/docs/width) with either 
-* number- like w-6 
-* w-auto - 
-* w-screen - takes the entire width of viewport
-* w-full - full width
-* w-{fraction} - can use fractions like w-3/5 or w-11/12
+Set margin, padding, height, width, space and max/min with either 
+* auto - center
+* Margin Padding and Spacing :
+    * space-x-[ number ] - 
+    * mx-auto / my-auto - to center item
+    * ml-auto / mr-auto mt-auto / mb-auto - to align item to one side
+* Width and Height:
+    * w-24 or w-1/6 - to set width to a number or fractions
+    * w-screen / h-screen - takes the entire width of viewport
+    * w-full / h-full- full width
+    * min
+        * width - min-w-full / min-w-min / min-w-max
+        * height - min-h-0 / min-h-full / min-h-screen
+    * max 
+        * width - max-w-0 or max-w-none / max-w-full / max-w-min / max-w-max / max-w-screen-[ xs|sm|md|lg|xl|2xl ] / max-w-[ xs|sm|md|lg|xl ] / max-w-{2-7}xl
+        * height - max-h-24 / max-h-full / max-h-screen
 
-## Tailwind Flex
-[Tailwind Align Items](https://tailwindcss.com/docs/align-items#center)
-[Tailwind Containers](https://tailwindcss.com/docs/container)
-## Responsive design
-[Tailwind Responsive](https://tailwindcss.com/docs/responsive-design) breakpoints and responsive design
-[Tailwind Display](https://tailwindcss.com/docs/display)
-[Tailwind Position](https://tailwindcss.com/docs/position)
-[Tailwind Float](https://tailwindcss.com/docs/float) and [Tailwind Clear](https://tailwindcss.com/docs/clear)
-[Tailwind Object-Fit](https://tailwindcss.com/docs/object-fit)
-[Tailwind Object Position](https://tailwindcss.com/docs/object-position)
+## Tailwind Flex vs Grid
+
+* Containers - set max screen size depending on screen, doesn't center or come with any padding
+* Flex - Makes the area responsive to viewport, can combine flex-col and flex-row along with w-1/4 to make a responsive flexbox grid.
+    * flex-row - default flex / horizontal
+    * flex-col - flex up and down / vertical
+    * flex-wrap / flex-no-wrap - to make the flex wrap or overflow
+    * Control flex grow and shrink - 
+        * flex-1 - shrink and grow evenly
+        * flex-initial - shrink but dont grow 
+        * flex-auto - shrink and grow (taking into account starting size)
+        * flex-none - 
+    * flex-grow-0 / flex-grow - use flex-grow to have an item grow
+    * flex-shrink-0 / flex-shrink - use flex-shrink to have an item shrink
+
+* Grid - 
+    * grid-cols-[ 1-12 ] - to make grid
+        * col-span-{ 1-12 / full / auto} - 
+        * col-start-{ 1-12 / auto } -
+        * col-end-{ 1-12 / auto } -
+    * grid-rows [ 1-6] - to make row
+        * row-span-{ 1-6 / full / auto} - 
+        * row-start-{ 1-6 / auto } -
+        * row-end-{ 1-6 / auto } -
+    * grid-flow-row / grid-flow-col
 
 
-[Hover, Active, Focus, Checked, First-Child, etc and other states](https://tailwindcss.com/docs/hover-focus-and-other-states)
+|Flex           |       Grid            |   Both                | Notes
+---             |        ---            |   ---                 |   ---
+|               |                       |   gap-{size}          | Spacing between 
+|               |                       | justify-center        | Align horizontally / left and right
+|               | justify-items-center  |                       | Align horizontally / left and right
+|               | justify-self-center   |                       | Align individual horizontally / left and right
+|content-center | content-center        |                       | Controls how grids and *flex-wrap* align vertically /up and down
+|               |                       | items-center          | Align vertically / up and down  
+|               |                       | self-center           | Align individual vertically / up and down
+|               |                       |place-content-center   | Align vertically and horizontally at the same time
+|               |                       |place-items-center     | Align vertically and horizontally at the same time, items dont flex or grow
+|               |                       |place-self-center      | Align individual vertically and horizontally at the same time 
+
+
 
 #### Cards
 Made responsive card design in tailwind
@@ -784,7 +875,7 @@ Made responsive card design in tailwind
 
 #### Tailwind React
 [SmashMagazine](https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/) uses tailwind post-css and autoprefixer
-[Logrocket](https://blog.logrocket.com/theming-react-components-tailwind-css/) Creates a dark adn light theme in react. Not too helpful
+[Logrocket](https://blog.logrocket.com/theming-react-components-tailwind-css/) Creates a dark and light theme in react. Not too helpful
 
 
 

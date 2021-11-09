@@ -124,6 +124,9 @@ Math.floor(Math.random() * 100) + 1
 * && (and)
 * || (or)
 * ! (not)
+* ? (ternary)
+* ?? (nullish coalescing) - if value null return other value 
+* ?. (optional chaining)
 
 <br><br>
 
@@ -441,7 +444,7 @@ fruits.splice(1,0,"item1")
 ```
 
 ### Slice
-Slice method slices out a piece of an array into a new array. Doesn't chage array <br> 
+Slice method slices out a piece of an array into a new array. Doesn't change array <br> 
 slice(start,stop)
 <br> <br>
 
@@ -777,11 +780,11 @@ Can select using getElement or querySelector [W3 Query](https://www.w3schools.co
 
 ## Manipulate
 Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of objects, [MDN](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) list of methods like append, children. Look at Colt Steeles ch24: World of Dom to review. Practiced Dom manipulation in Javascript/Pokemon-Dom
-* classlist - 
-    * classlist.add("newClass") to add class to an element
-    * classlist.remove()
-    * classlist.contains()
-    * classlist.toggle()
+* classList - 
+    * classList.add("newClass") to add class to an element
+    * classList.remove()
+    * classList.contains()
+    * classList.toggle()
 * getAttribute 
 * setAttribute - can also change attributes using document.querySelector('input').type = "text"
 * appendChild - [W3](https://www.w3schools.com/jsref/met_node_appendchild.asp)
@@ -823,10 +826,12 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
 
 ## eventListener
 Example can be seen in /javascript/rand-bg-color.html. Event Listeneres can be 
-* click
+* Mouse Events - click, mouseover, onmouseleave
 * submit
 * change - only works when you click out the input box
 * input - works everytime the input box changes
+* Keyboard Events - keyup, keydown, key press
+* Window Events - resize, scroll, load
 
 ```
 hello = document.querySelector('#hello')
@@ -949,8 +954,13 @@ node {{filename}}
 [dev.to](https://dev.to/yumatsushima07/javascript-7-oop-fundamentals-you-will-need-4hk8) 7 OOP concepts
 
 
+[StackOverflow Class.Method vs Class.Prototype](https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method) 
+* class method can become static - just put static infront of it in ES6, can be called without in
+* instance method - in ES6 define the method/ fucntion in the class. Older way use Class.prototype.name 
+
 Object Prototypes -- Old and wrong way to add to a class
 <br><br>
+
 Factory Functions -- returns a new object without new, better to use **new** keyword and constructor function
 ```
 function Person(firstName, LastName, age){
@@ -959,6 +969,35 @@ function Person(firstName, LastName, age){
     person.lastName = lastName
     person.age = age
 }
+```
+
+
+
+Getters and Setters Example
+```
+class Temperature{
+    constructor(celsius){
+        this.celsius =celsius;
+    }
+
+    // getter, returns this.celsius as a fahrenheit value
+    get fahrenheit(){
+        return this.celsius * 1.8 + 32
+    }
+
+    // setter, sets value as a fahrenheit but converts it to this.celsius
+    set fahrenheit(value){
+        this.celsius = (value -32) / 1.8
+    }
+}
+
+let temp = new Temperature(22)
+console.log(temp.fahrenheit) //71.6
+
+// setter below
+temp.fahrenheit = 86
+console.log(temp.celsius) //30
+
 ```
 
 ## New and Constructor Functions
