@@ -373,9 +373,11 @@ If inheritting this, it could refer to the window. **This keyword acts different
 * concat
 * indexOf or lastIndexOf - get index of item
 * padStart - add items to the start of a string
+* match - string method that returns an object, can combine with RegEx ``` console.log("one two 100".match(/\d+/)) ```
 * repeat
-* replace
+* replace - Can also match with regular expressions and replace all items``` console.log("papa".replace("p", "m")) ```
 * replaceAll
+* search
 * slice
 * substring -almost same as slice
 * split
@@ -828,6 +830,7 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
 Form: grab children items by name
 ```
 <form action="" id="tweetForm">
+    <p>Test this param </p>
     <input type="text" name="username" placeholder="username">
     <input type="text" name="tweet" placeholder="tweet">
     <button>Tweet</button>
@@ -836,11 +839,12 @@ Form: grab children items by name
 <script>
     const tweetForm = document.querySelector('#tweetForm')
 
-    // Method 1
+    // Method 1 works on forms only
     console.log(tweetForm.elements.username)
 
-    // Method 2
+    // Method 2, nested querySelector
     console.log(tweetForm.querySelector('[name="tweet"]'))
+    console.log(tweetForm.querySelector('p'))
 
 </script>  
 
@@ -1079,4 +1083,41 @@ const math = {
 module.exports = math
 
 //could also add directly by adding module.exports to every variable that is going to be exported
+```
+
+
+---
+# RegEx
+See Code Excercises ch9 Eloquent Javascript for examples.
+
+
+Functions
+* test - simplest way to match, returns true or false
+* exec - RegEx method that returns null or an object
+* String Methods -    
+    * match - string method that returns an object ``` console.log("one two 100".match(/\d+/)) ```
+    * replace - the g at the end of the RegEx replaces all occurrences ``` console.log("Borobudur".replace(/[ou]/g, "a")) ```
+    * search - can be used with RegEx to get index 
+<br><br>
+
+Pattern Matching
+* */ zero or more - 
+* +/ more than once - Match at least once
+* ?/ optional -
+* |/ or - pipe to use or
+* []/ range - find any character within the bracket ``` [0-9] ```
+* ^/ exclusion - match everything except <b>use ^ </b> ```console.log(/[^0-8]/.exec('1291'))```
+* {start,end}/ repeat - match pattern either start or end number
+* ()/ groupings - everything in parenthesis counts as a single element
+
+
+Example
+```
+// Hardcoding vs Grouping and repeating. 
+let dateTime = /\d*-\d*-\d* \d*:\d/;
+console.log(dateTime.test("01-30-2003 15:20"));
+
+
+let dateTimeBetter = /(\d*-){2}\d*/;
+console.log(dateTimeBetter.exec("01-30-2003 15:20"))
 ```

@@ -54,7 +54,7 @@ Bootstrap
     * [Bootstrap Button](#bootstrap-button)
         * [Button Grouping](#button-grouping)
     * [Bootstrap Badge](#bootstrap-badge)
-    * [Bootstrap Images](bootstrap-images)
+    * [Bootstrap Images](#bootstrap-images)
     * [Bootstrap Forms](#bootstrap-forms)
         * [Input Group](#input-group)
     * [Bootstrap Navbar](#bootstrap-navbar)
@@ -71,6 +71,8 @@ Can use [Emmet shortcuts](https://docs.emmet.io/cheat-sheet/) for html.<br>
 [CSS Tricks](https://css-tricks.com/best-way-implement-wrapper-css/) Use Wrapper to wrap body and section 
 * Wrapper vs Section 
 * Body vs Div
+
+[SVG Example building out card](https://codepen.io/darkwiiplayer/pen/rNzvjwZ?editors=1000) uses svg, defs to make shape. use to reuse shape. 
 
 ### Semantic Elements
 Use more specified elements rather than Divs, not included the **tables element**
