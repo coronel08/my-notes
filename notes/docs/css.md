@@ -1,6 +1,9 @@
 # CSS and HTML and Bootstrap
 **HTML CSS Bootstrap Notes**
 
+[Fireship Wavy Backgrounds tutorial](https://fireship.io/lessons/wavy-backgrounds/)
+
+
 Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
 
@@ -517,11 +520,12 @@ pr-lg-5 #padding right on large screens
 #### Bootstrap Flex
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 
-Might need to add d-flex or d-block to get these working
-* justify-content : can change alignment of everything in flexbox
+Might need to add d-flex or d-block to get these working. Can also center things by adding a col inside a row.
+* justify-content-center : can change alignment of everything in flexbox
 * align-items / align-self : for the y axis, move up and down
     * align-items : used on row
     * align-self : used on col
+* text-center
 
 <br><br>
 

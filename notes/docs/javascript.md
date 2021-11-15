@@ -104,7 +104,7 @@ let plants = [
         * [Axios](#axios)
         * [Requests](#requests)
 * [OOP](#oop)
-* [Export](#export)
+* [Export & Import](#export-&-import)
 
 ---
 ## Math
@@ -1069,8 +1069,8 @@ class Color{
 const c1 = new Color(255,67,89, 'black')
 ```
 
-# Export
-Create an object and then export it 
+# Export & Import
+Create an object and then Export it 
 ```
 const PI = 3.14
 const square = x => x* x
@@ -1082,10 +1082,23 @@ const math = {
 
 module.exports = math
 
+//another way to export, default export
+export default function cube(x) {
+  return x * x * x;
+
 //could also add directly by adding module.exports to every variable that is going to be exported
+
 ```
 
+Create an Import
+```
+const {days, months} = require("./date-names");
+//or
+import {days, months} from "date-names";
 
+
+
+```
 ---
 # RegEx
 See Code Excercises ch9 Eloquent Javascript for examples.

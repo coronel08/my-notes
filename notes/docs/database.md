@@ -1,7 +1,8 @@
 # Database
-* Learn SQL [SQL ZOO](https://sqlzoo.net/) or [w3](https://www.w3schools.com/sql/)
+* Learn SQL [SQL ZOO](https://sqlzoo.net/) or [w3](https://www.w3schools.com/sql/) or [SQL Bolt](https://www.sqlbolt.com)
 * Pandas instead of SQL[Haki Benita Site](https://hakibenita.com/sql-for-data-analysis)
 * Move from excel to Python[Medium](https://towardsdatascience.com/a-complete-yet-simple-guide-to-move-from-excel-to-python-d664e5683039)
+
 
 Adding more advanced SQL methods
 * [SQL Rank Function](https://www.sqlshack.com/overview-of-sql-rank-functions/)
