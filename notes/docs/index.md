@@ -18,6 +18,9 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     * [Random pattern maker](https://tabbied.com/select-artwork)
     * [Random Background Pattern Maker](https://heropatterns.com/)
     * [Background Patterns](https://pattern.monster/)
+* Animate Scrolling
+    * [Animate](https://animate.style/)
+    * [Animate on Scroll](https://github.com/michalsnik/aos)
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
 * [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)

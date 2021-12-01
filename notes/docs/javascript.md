@@ -1,4 +1,8 @@
 # Javascript Basics
+
+[Github Algorithms & Data Structures](https://github.com/trekhleb/javascript-algorithms)
+
+
 Same as Javascript Dom Manipulation and Selectors Section
 Replace Jquery with Javascript[tobiashlin](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)<br>
 [sitepoint](https://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/)
@@ -73,6 +77,7 @@ let plants = [
         * [Function Expression](#function-expression)
         * [Function Declaration](#function-delcaration)
         * [Function Methods](#function-methods)
+            * [Built In Methods](#built-in-methods)
             * [This](#this)
         * [Arrow Functions](#arrow-functions)
     * [String Methods](#string-methods)
@@ -342,6 +347,44 @@ const myFunc = {
 }
 ```
 <br>
+
+
+#### Built In Methods
+* apply -  Apply is used to wrap a function it only takes one array of info can use the spread operator
+* bind
+* call - Call allows to pass multiple items in an argument list
+* toString
+
+<b>Apply Vs Call</b>
+Apply Example
+```
+function eat(food1, ...food2) {
+    console.log(food1, " and also this thing", food2)
+}
+// Apply is used to wrap a function it only takes one array of info can use the spread operator
+function eatWrapper(eatCallback, args) {
+    eatCallback.apply(this, args)
+}
+
+eatWrapper(eat, ["good", 33, "lots"])
+```
+
+Call Example
+```
+function Product(name, price, store = "N/A") {
+    this.name = name
+    this.price = price
+    this.store = store
+}
+// Call allows to pass multiple items in an argument list
+function Food(name, price, store) {
+    Product.call(this, name, price, store)
+    this.categrory = "food"
+
+}
+
+console.log(new Food("cheese", 12, "Ralphs"))
+```
 
 
 #### This
@@ -782,6 +825,7 @@ Can select using getElement or querySelector [W3 Query](https://www.w3schools.co
 
 ## Manipulate
 Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of objects, [MDN](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) list of methods like append, children. Look at Colt Steeles ch24: World of Dom to review. Practiced Dom manipulation in Javascript/Pokemon-Dom
+* createElement - create div/li/p etc [w3](https://www.w3schools.com/jsref/met_document_createelement.asp)
 * classList - 
     * classList.add("newClass") to add class to an element
     * classList.remove()
@@ -791,14 +835,17 @@ Important ones [W3](https://www.w3schools.com/jsref/dom_obj_all.asp) list of obj
 * setAttribute - can also change attributes using document.querySelector('input').type = "text"
 * appendChild - [W3](https://www.w3schools.com/jsref/met_node_appendchild.asp)
 * append - [W3](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append)
+* replaceWith - 
+* replaceChild -
 * prepend
+* insertBefore
 * removeChild
 * remove
-* createElement - create div/li/p etc [w3](https://www.w3schools.com/jsref/met_document_createelement.asp)
-* innerText - senitive to display hidden or none change text
+* innerText / textContent- senitive to display hidden or none change text, use textContent to alter text, innerText to grab text from an element
 * textContent - return everything text
 * innerHTML - can retreive html and update html, html changes wont change on innerText
 * value
+
 * parentElement - 
 * children - can also do childrenCount 
 * nextSibling - 
