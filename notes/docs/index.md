@@ -7,10 +7,14 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 ## Helpful Links
 **HTML Templates**
 * [HTML5up](https://html5up.net/)
+* [CSS Buttons](https://cssbuttons.io/)
 * [StartBootstrap Templates](https://startbootstrap.com/) and more templates [Bootstarters](https://www.bootstarters.com/?ref=producthunt)
 * [Python Module library](https://github.com/vinta/awesome-python)
-* [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
-* [CSS Art](https://codepen.io/braydoncoyerffe8ea)
+* Colors and Palletes
+    * [Styling Color Names](https://htmlcolorcodes.com/color-names/)
+    * [Color Pallete Ideas ](https://coolors.co/palettes/trending)
+    * [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
+* [CSS Art](https://codepen.io/braydoncoyer)
 * CSS Masking and Shaping elements [Clip Path section](https://bennettfeely.com/clippy/) and also [Masking a section](https://web.dev/css-masking/). Mask allows gradients/fade Clip is equal to delete the area outside. Maskingg has more options.
 * [Undraw.co] used for svg icons (https://undraw.co/search)
 * [Custom shape tool](https://www.shapedivider.app/)[SVG wave generator](https://getwaves.io/) and [SVG Blob shape generator](https://www.blobmaker.app/). [Soft Wave generator](https://www.softr.io/tools/svg-wave-generator) and [Softr Shape Generator](https://www.softr.io/tools/svg-shape-generator)
@@ -18,13 +22,17 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     * [Random pattern maker](https://tabbied.com/select-artwork)
     * [Random Background Pattern Maker](https://heropatterns.com/)
     * [Background Patterns](https://pattern.monster/)
-* Animate Scrolling
+* Javasccript Libraries
     * [Animate](https://animate.style/)
     * [Animate on Scroll](https://github.com/michalsnik/aos)
+    * [Greensock GSOP animations](https://greensock.com/gsap/)
+    * [Slick Carousel](https://github.com/kenwheeler/slick/)
+
+
 **Photos and Videos**
 * [Unsplash Photos](https://unsplash.com/)
 * [Pexels for Photos and Videos](https://www.pexels.com/search/videos/vacation%20beach%20/)
-* 
+
 **Emoji Markdown**
 [github](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 

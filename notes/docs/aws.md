@@ -428,6 +428,8 @@ Objects = files and buckets = directories
         * S3 Byte-Range - Can be used to speed up downloads by running parallel, can also be used to retrieve partial data
         * S3 Select and Glacier Select - use SQL statements to filter data
 
+* [S3 REST API](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html)
+
 ### EFS
 * Amazon Elastic File System (EFS) - multiple instances reading and writing simultaneously, linux file system (not compatible with windows), 
     * Regional resource and auto scaling. More expensive than EBS. use Security groups to control access.

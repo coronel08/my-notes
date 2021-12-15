@@ -927,6 +927,9 @@ Can also do nested events / event Bubbling. To stop nest or bubbling use e.stopP
 
 ---
 # Promises
+
+Async and Await is built on top of Promises and reduces boilerplate scripting. Try using async and await. Callbacks and promises were the old way of doing asynchronous code.
+
 Check /Javascript/Promises folder to see examples on Promises, Async, and Axios.
 <br><br>
 

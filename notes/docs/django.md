@@ -23,6 +23,8 @@ Combined Django and Flask frameworks.
 
 ---
 ## Django
+[Build Django Rest API backend](https://www.bezkoder.com/django-rest-api/)
+
 [Learn Django page](https://learndjango.com/tutorials/) for django tutorials
 
 

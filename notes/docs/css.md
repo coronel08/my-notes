@@ -165,8 +165,6 @@ https://fonts.google.com/
 Common styling properties and usefull sites.<br>
 [Text styling](https://www.w3schools.in/css3/text/)<br>
 [Text decoration](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration) shorthand for underline or color<br>
-[Styling Color Names](https://htmlcolorcodes.com/color-names/)<br>
-[Color Pallete Ideas ](https://coolors.co/palettes/trending)<br>
 [Border styling MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/border)<br>
 
 
@@ -510,7 +508,7 @@ ml-auto is now ms-auto
 mr-auto is now me-auto
 
 ##### Responsive margin and paddings
-CHange margin or padding based on screen size in bootstrap
+Change margin or padding based on screen size in bootstrap
 ```
 mr-lg-5 #margin right on large screens
 pr-lg-5 #padding right on large screens
@@ -520,6 +518,7 @@ pr-lg-5 #padding right on large screens
 #### Bootstrap Flex
 [Bootstrap Site](https://getbootstrap.com/docs/4.0/utilities/flex/) alignment with breakpoints and other flex properties
 
+[StackOverflow Bootstrap5 how to center](https://stackoverflow.com/questions/42388989/bootstrap-center-vertical-and-horizontal-alignment)
 Might need to add d-flex or d-block to get these working. Can also center things by adding a col inside a row.
 * justify-content-center : can change alignment of everything in flexbox
 * align-items / align-self : for the y axis, move up and down
