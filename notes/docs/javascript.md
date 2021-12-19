@@ -2,6 +2,7 @@
 
 [Github Algorithms & Data Structures](https://github.com/trekhleb/javascript-algorithms)
 
+filepaths, import path and use to get filepaths ``` path.join(__dirname, 'file_name.json') ``` or ``` path.resolve('search','data.json') ```
 
 Same as Javascript Dom Manipulation and Selectors Section
 Replace Jquery with Javascript[tobiashlin](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)<br>
@@ -21,6 +22,35 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
     * break, continue, else, return
 <br><br>
 
+
+**Function Declaration vs Function Expression vs method function vs etc** [Create and call a function](https://www.bitdegree.org/learn/javascript-call-function)
+Functions can be nested but remember, the nested function can only be called within the function outside of it. Not from the call
+* [FUNCTION VS CLASS](https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up)
+    * Class.method vs. Class.prototype.method (class method vs class prototype method)[https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method]
+* Function Declaration - use function declaration to make available ```global funcc(){}```
+* Function Expression - use function expression to local scope. ```const thing = () =>{}```
+* Function as an Object Method - ```  const thing = {name : ()=> { }}```
+* Function Constructor / Constructor Function - **Try to use these when possible** [Constructor Functions](https://www.programiz.com/javascript/constructor-function)
+* Class and Constructor. - CAN ALSO do CLASS DECLARATION or CLASS EXPRESSION. classses can extend and super [Check Out Class Section of Notes](#oop)
+
+
+```
+function doSomething(){} //hoisted in global
+vs
+
+const doStuff = () => {} // need to be defined before calling
+vs
+
+<!-- Can change this from an arrow function to regular function to access price:10 using this.price -->
+const doSomethingelse = {
+    price: 10,
+    test: (price) => console.log(price)
+    test2: function(){console.log(this.price)}
+}
+doSomethingelse.test(50)
+doSomethingelse.test2()
+
+```
 
 **Objects** = {} / Key value pairs, can mix and match objects{} and arrays[].
 An object gives you the ability to associate a property name with a value:
@@ -356,6 +386,7 @@ const myFunc = {
 * toString
 
 <b>Apply Vs Call</b>
+
 Apply Example
 ```
 function eat(food1, ...food2) {
@@ -945,13 +976,16 @@ Async is just a promise, using **async** and **await**. Always returns a promise
 Await can only be used with functions that use Async. Await will pause the execution of the function, waiting for a promise to be resolved.
 <br>
 
-Can do error checking with **try** or **then** and **catch** in an async and await function.
+Can do error checking with **try** or **then** or **finally** and **catch** in an async and await function.
 <br><br>
 
 ## API
 [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) HTTP API Methods like **GET, POST, DELETE, PATCH**
 
 Use Javascript fetch to get API, old way was XMLHttpRequest
+    -   [fetch how to](https://attacomsian.com/blog/using-javascript-fetch-api-to-get-and-post-data)
+    -   [Fetch PUT, POST, DELETE](https://attacomsian.com/blog/javascript-fetch-api)
+
 ```
 <!-- using then and catch -->
 fetch('https://api.cryptonator.com/api/ticker/btc-usd')
@@ -1029,12 +1063,15 @@ node {{filename}}
 
 ---
 # OOP
+
+Can write OOP using either Classes or Functions [FUNCTION VS CLASS](https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up)
+
 [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS) OOP Tutorial
 [dev.to](https://dev.to/yumatsushima07/javascript-7-oop-fundamentals-you-will-need-4hk8) 7 OOP concepts
 
 
 [StackOverflow Class.Method vs Class.Prototype](https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method) 
-* class method can become static - just put static infront of it in ES6, can be called without in
+* class method can become static - just put static infront of it in ES6, can be called without initializing class. 
 * instance method - in ES6 define the method/ fucntion in the class. Older way use Class.prototype.name 
 
 Object Prototypes -- Old and wrong way to add to a class
@@ -1076,26 +1113,38 @@ console.log(temp.fahrenheit) //71.6
 // setter below
 temp.fahrenheit = 86
 console.log(temp.celsius) //30
-
 ```
 
 ## New and Constructor Functions
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) New Operator and Constructor Functions
 ```
 <!-- This is the constructor function -->
-function Car(make, model, year){
+
+function Car(make, model, year) {
     this.make = make
     this.model = model
     this.year = year
+
+    this.info = function (optional) {
+        console.log("Hello", this.make, this.model, this.year, optional)
+    }
 }
 
 <!-- Create in instance of the object with new -->
 const car1 = new Car('Honda', 'Talon', 1993)
 <!-- Add a property to an object instance -->
 car1.color = 'black'
+<!-- call function -->
+car1.info()
 ```
-### Classes
-Use a class and constructor instead of constructor functions. Can inherit from other classes using **extends** and **super** inside of the constructor to inherit objects.  
+## Classes
+Can do a Class Declaration or CLass Expression. Can inherit from other classes using **extends** and **super** and **prototype** inside of the constructor to inherit objects.  
+
+Old way of writting classes before es6 https://www.javascripttutorial.net/es6/javascript-class/
+
+[Mozilla Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and [TutorialsPoint Classes](https://www.tutorialspoint.com/es6/es6_classes.htm)
+
+
 <br><br>
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Classes 
@@ -1112,8 +1161,8 @@ class Color{
     greet(){
         <!-- Destructuring the variables -->
         let {r,g,b, name} = this
-        return `Hello from ${name}, ${r}, ${g}, ${b}}`
-    }
+        return `Hello from ${name}, ${r}, ${g}, ${b}
+    }`
 }
 
 const c1 = new Color(255,67,89, 'black')
@@ -1121,6 +1170,8 @@ const c1 = new Color(255,67,89, 'black')
 
 # Export & Import
 Create an object and then Export it 
+Create an Import, ```export default``` can be named whatever when importing
+
 ```
 const PI = 3.14
 const square = x => x* x
@@ -1130,25 +1181,26 @@ const math = {
     square: square
 }
 
-module.exports = math
+module.exports = math or module.exports = {PI, square}
 
-//another way to export, default export
+
+//another way to export, default export used only once per file
 export default function cube(x) {
   return x * x * x;
 
 //could also add directly by adding module.exports to every variable that is going to be exported
+export const user = () = > console.log("test")
 
 ```
+Import a function
 
-Create an Import
 ```
 const {days, months} = require("./date-names");
 //or
 import {days, months} from "date-names";
-
-
-
 ```
+
+
 ---
 # RegEx
 See Code Excercises ch9 Eloquent Javascript for examples.

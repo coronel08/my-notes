@@ -1,8 +1,12 @@
 # Python
 Can run a script -interactive by using -i flag
+
 ```
 python -i <script>
 ```
+
+Use pathlib instead of os.path [Towards DataScience](https://towardsdatascience.com/why-you-should-start-using-pathlib-as-an-alternative-to-the-os-module-d9eccd994745)
+
 
 Indexing [start:stop:step]
 ```
