@@ -776,7 +776,7 @@ Tailwind set up for full page
     * static - normal positionining
     * relative - parent, used as parent container
     * absolute - child, child container that gets positioned
-        * inset - to control where item is
+        * inset - to control where item is [Inset](https://devmap.org/p/enhance-tailwindcss-projects.html)
     * fixed - for navbars always on top
     * sticky - once scrolled past it sticks to top
 * Displays:

@@ -25,6 +25,9 @@ Use **let** or **const** over **var**. Case Styling/Naming Conventions:
 
 **Function Declaration vs Function Expression vs method function vs etc** [Create and call a function](https://www.bitdegree.org/learn/javascript-call-function)
 Functions can be nested but remember, the nested function can only be called within the function outside of it. Not from the call
+
+By convention, the names of constructors are capitalized so that they can easily be distinguished from other functions.
+
 * [FUNCTION VS CLASS](https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up)
     * Class.method vs. Class.prototype.method (class method vs class prototype method)[https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method]
 * Function Declaration - use function declaration to make available ```global funcc(){}```
@@ -49,6 +52,7 @@ const doSomethingelse = {
 }
 doSomethingelse.test(50)
 doSomethingelse.test2()
+
 
 ```
 
@@ -139,6 +143,8 @@ let plants = [
         * [Axios](#axios)
         * [Requests](#requests)
 * [OOP](#oop)
+    * [Factory Functions](#Factory-Functions-&-Constructor-Functions)
+    * [Classes](#classes)
 * [Export & Import](#export-&-import)
 
 ---
@@ -1063,63 +1069,31 @@ node {{filename}}
 
 ---
 # OOP
-
+By convention, the names of constructors are capitalized so that they can easily be distinguished from other functions.
 Can write OOP using either Classes or Functions [FUNCTION VS CLASS](https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up)
 
 [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS) OOP Tutorial
 [dev.to](https://dev.to/yumatsushima07/javascript-7-oop-fundamentals-you-will-need-4hk8) 7 OOP concepts
 
 
-[StackOverflow Class.Method vs Class.Prototype](https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method) 
-* class method can become static - just put static infront of it in ES6, can be called without initializing class. 
-* instance method - in ES6 define the method/ fucntion in the class. Older way use Class.prototype.name 
 
-Object Prototypes -- Old and wrong way to add to a class
-<br><br>
-
-Factory Functions -- returns a new object without new, better to use **new** keyword and constructor function
+Can Nest functions inside other functions
 ```
-function Person(firstName, LastName, age){
-    const person = {}
-    person.firstName = firstName
-    person.lastName = lastName
-    person.age = age
-}
-```
-
-
-
-Getters and Setters Example
-```
-class Temperature{
-    constructor(celsius){
-        this.celsius =celsius;
+function outerFunc(){
+    function innerFunc(){
+        console.log(5)
     }
-
-    // getter, returns this.celsius as a fahrenheit value
-    get fahrenheit(){
-        return this.celsius * 1.8 + 32
-    }
-
-    // setter, sets value as a fahrenheit but converts it to this.celsius
-    set fahrenheit(value){
-        this.celsius = (value -32) / 1.8
-    }
+    return innerFunc()
 }
 
-let temp = new Temperature(22)
-console.log(temp.fahrenheit) //71.6
-
-// setter below
-temp.fahrenheit = 86
-console.log(temp.celsius) //30
+outerFunc()
 ```
 
-## New and Constructor Functions
+
+## Factory Functions & Constructor Functions
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) New Operator and Constructor Functions
 ```
 <!-- This is the constructor function -->
-
 function Car(make, model, year) {
     this.make = make
     this.model = model
@@ -1137,12 +1111,49 @@ car1.color = 'black'
 <!-- call function -->
 car1.info()
 ```
-## Classes
-Can do a Class Declaration or CLass Expression. Can inherit from other classes using **extends** and **super** and **prototype** inside of the constructor to inherit objects.  
 
-Old way of writting classes before es6 https://www.javascripttutorial.net/es6/javascript-class/
+
+
+Factory Functions -- returns a new object without new, better to use **new** keyword and constructor function
+```
+// function constructor example
+function Person(firstName, LastName, age){
+    const person = {}
+    person.firstName = firstName
+    person.lastName = lastName
+    person.age = age
+}
+
+// Function constructor, better
+function simpleConstructor(num1, num2){
+    this.number1 = num1;
+    this.number2 = num2
+
+    this.test = function(){
+        console.log("Scoped test", this.number1)
+    }
+}
+
+const eek = new simpleConstructor(5,6)
+console.log(eek.number2)
+
+eek.test()
+```
+
+
+
+## Classes
+Can do a **Class Declaration** or **Class Expression**. Can inherit from other classes using **extends** and **super** and **prototype** inside of the constructor to inherit objects.  
+
+[Old way of writting classes before es6](https://www.javascripttutorial.net/es6/javascript-class/) Object Prototypes -- Old and wrong way to add to a class
+
 
 [Mozilla Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and [TutorialsPoint Classes](https://www.tutorialspoint.com/es6/es6_classes.htm)
+
+
+[StackOverflow Class.Method vs Class.Prototype](https://stackoverflow.com/questions/1635116/javascript-class-method-vs-class-prototype-method) 
+* class method can become static - just put static infront of it in ES6, can be called without initializing class. 
+* instance method - in ES6 define the method/ fucntion in the class. Older way use Class.prototype.name 
 
 
 <br><br>
@@ -1167,6 +1178,42 @@ class Color{
 
 const c1 = new Color(255,67,89, 'black')
 ```
+
+
+Getters and Setters Example
+```
+class Temperature{
+    constructor(celsius){
+        this.celsius = celsius;
+        this.value = 5
+    }
+
+    <!-- Class Method -->
+    post(url, data, callback) {
+        console.log(url)
+    }
+
+    // getter, returns this.celsius as a fahrenheit value
+    get fahrenheit(){
+        return this.celsius * 1.8 + 32
+    }
+
+    // setter, sets value as a fahrenheit but converts it to this.celsius
+    set fahrenheit(value){
+        this.celsius = (value -32) / 1.8
+    }
+}
+
+let temp = new Temperature(22)
+console.log(temp.fahrenheit) //71.6
+temp.post("google.com")
+
+
+// setter below
+temp.fahrenheit = 86
+console.log(temp.celsius) //30
+```
+
 
 # Export & Import
 Create an object and then Export it 
