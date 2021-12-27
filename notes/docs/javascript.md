@@ -1,6 +1,7 @@
 # Javascript Basics
 
 [Github Algorithms & Data Structures](https://github.com/trekhleb/javascript-algorithms)
+[JS Cheat Sheet](https://github.com/mbeaudru/modern-js-cheatsheet)
 
 filepaths, import path and use to get filepaths ``` path.join(__dirname, 'file_name.json') ``` or ``` path.resolve('search','data.json') ```
 
