@@ -41,6 +41,12 @@ echo "venv .venv .git" > .dockerignore
 **mkdir -p** (parent) flag to create nested folders
 
 
+### Run
+Run live development server
+```
+cd notes && mkdocs serve -a localhost:8003
+```
+
 ### Todo
 * [x] Setup venv, python, requirements.txt
 * [x] Makedocs
