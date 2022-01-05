@@ -1,7 +1,7 @@
 # My-Notes
 Using mkdocs to document my notes on different languages, frameworks, and other. 
 
-theme file goes in /site/css/   overwrites styling and makes it mobile. 
+overwrites styling by adding styles in ``` /notes/docs/extra.css```
 
 For [mkdocs tutorial](https://towardsdatascience.com/creating-software-documentation-in-under-10-minutes-with-mkdocs-b11f52f0fb10)
 
@@ -47,22 +47,26 @@ Run live development server
 cd notes && mkdocs serve -a localhost:8003
 ```
 
+
+### Deploy
+Deploy to aws s3 bucket using [Toward AWS](https://towardsaws.com/build-a-simple-devops-pipeline-from-github-to-aws-s3-for-static-website-911c620dce31)
+
 ### Todo
 * [x] Setup venv, python, requirements.txt
 * [x] Makedocs
     * [ ] Organize notes
 * [x] Dockerize and setup in reverse proxy
     * [x] Setup Nginx Reverse Proxy
-* [ ] Work on React section
+* [x] Work on React section
     * [ ] API section needs work
-        * [ ] Axios vs ____
+        * [x] Axios vs Fetch
     * [x] Functions vs Classes
     * [x] Add callbacks vs promises
     * [x] Add classes  vs functions
     * [x] Add React Hooks
         * [x] useState()
         * [x] useEffect()
-* [ ] Javascript needs arrow function and other notes
+* [x] Javascript needs arrow function and other notes
 * [x] Work on Django section
     * [x] Add notes on building an api and setting up backend. 
     * [ ] Keep Adding to Django section
