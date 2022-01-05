@@ -38,6 +38,10 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Helpful Links
 
+**CHEATSHEET**
+
+-   [OverAPI](https://overapi.com/)
+
 **HTML Templates**
 
 -   [HTML5up](https://html5up.net/)
