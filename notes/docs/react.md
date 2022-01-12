@@ -192,6 +192,8 @@ Styled components are inline and can be used to define styles and reusable compo
 ---
 
 ## Redux
+[React hooks instead of redux](https://betterprogramming.pub/10-easy-steps-to-abandon-redux-for-the-remarkable-react-hooks-124916fc634d)
+
 
 [Redux Getting started](https://redux.js.org/introduction/getting-started)
 [Redux Essentials](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)

@@ -4,6 +4,27 @@ Horizontal Scaling  = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 
+AWS Well Architected Framework, best practices for designing in cloud
+1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations. Example Cloudformation to manage servers as code
+2. Security - protect information, Delivering business value through risk assesssments and mitigation
+    - Security Pillar of AWS Well Architected Framework can be broken down to:
+        1. IAM management - IAM, Cognito or Directory Service
+        2. Detective Controls - Security Hub, GuardDuty, Inspector, Detective
+            - Security Hub = A single place to aggregate and organize security findings for multiple AWS services. checks compliance with security standards and best practices. Suppports integration with CloudWatch Events allowing for custom actions when a finding is received. Region specific
+        3. Infastructure Protection - WAF for traffic filtering and AWS Shield for DDOS protection.
+        4. Data Protection - protect data at rest and transit using AWS KMS, AWS Certificate Manager, AWS Secrets Manager, AWS CloudHSM
+        5. Incident Response - plan to respond to security incident, AWS Config monitoring tool
+3. Reliability - ability to recover from disruptions and change resources to meet demands
+4. Performance Efficiency - use computing resources efficiently
+5. Cost Optimization service - Reduce cost of ownership, avoid or eliminate unneeded cost
+
+
+Shared Responsiblity Model:
+**AWS is Responsible for**: Compute, Storage, Database, Networking, Edge Locations, Availability Zones and Regions.
+**Customer is Responsible for**: App, Access Management, OS, Network and Firewall, Client and Server side encryption, and Network Traffic Protection.
+
+
+
 [Getting Started](https://aws.amazon.com/getting-started/?nc1=h_ls)
 
 
@@ -15,6 +36,10 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * Cloudfront CDN 
     * WAF Web application firewall
 
+
+* Infastructure as a Service - building blocks of cloud
+* Platform as a Service - removes the need to manage infastructure like hardware and OS. 
+* Software as a Service - completed product that is run and managed 
 
 * AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
     * [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
@@ -40,17 +65,6 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     * StackSets - Create, Update, Delete stacks across multiple accounts and regions
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)    
 
-AWS Well Architected Framework, best practices for designing in cloud
-1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations.
-2. Security - protect information
-3. Reliability - ability to recover from disruptions.
-4. Performance efficiency - use computing resources efficiently
-5. Cost Optimization service
-
-
-* Infastructure as a Service - building blocks of cloud
-* Platform as a Service - removes the need to manage infastructure like hardware and OS. 
-* Software as a Service - completed product that is run and managed 
 
 ## Table of contents
 
@@ -106,10 +120,11 @@ Most services are region scoped
         * Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
         * Hooks - correspond to lifecycle events such as ApplicationStart, ApplicationStop, etc.
         * Agent - a software package that makes it possible to be used in CodeDeploy
-* Amazon Detective - easily investigate security findings.
+* AWS Control Tower - setup baseline environment for scalable and secure workloads
+* Amazon Detective - easily investigate security findings. Collects data from AWS resources and uses machine learning on data
 * AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
-* Amazon GuardDuty - threat detection that monitors accounts and workloads
-* Amazon Macie - data security and data privacy service that uses machine learning to protect data 
+* Amazon GuardDuty - threat detection that continously monitors accounts and workloads for mailicious activity and unauthorized behavior, gets data from CloudTrail events, VPC flow logs, DNS logs.
+* Amazon Macie - data security and data privacy service that uses machine learning to automatically protect data. Available to protect data on S3. Common use case is discovering relevant data fields collected by Macie and turning those fields into custom alerts. 
 * AWS Professional Services - team of experts that help set up desired business on AWS
 * Amazon Quicksight - Business Intelligence tool
 * AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
@@ -307,6 +322,7 @@ Amazon Cloudfront is a Content Delivery Network that caches content closer to cu
 ---
 ## Networking
 Public and private subnets in a VPC can communicate with each other
+
 * VPC - Virtual Private Cloud is a regional resource, can organize resources into subnets which are availability zone resources
     * Internet Gateway - attach an internet gateway to a vpc to connect to the internet. Public subnets have a route to the internet gateway
     * NAT Gateway - AWS managed allow your instances in private subnets to access the internet while remaining private
@@ -321,6 +337,7 @@ Public and private subnets in a VPC can communicate with each other
     * AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS. Over internet
     * AWS Direct Connect establishes a direct connection between your data center and a VPC. It is a private connection and doesn't use internet. 
     * AWS Outposts - provides AWS infastracture to on premises facility. 
+    
 ![](https://raw.githubusercontent.com/coronel08/my-notes/main/photos/vpc.png)
 
 ### Network ACL 
@@ -520,7 +537,7 @@ Follow best practice of giving least privilages
         * Policy Resource - specify a resource using an ARN
         * Policy Condition - specify conditions
         * Policy Variables - policy variables act as placeholders in template
-    * Roles - Access to temporary time and permissions, given to users, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials.
+    * Roles - Access to temporary time and permissions, given to users, services, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials. Use an IAM policy for permissions. 
     * Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
     * Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp
     * Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
@@ -530,7 +547,7 @@ Follow best practice of giving least privilages
     * Organization Trail - trail that logs all events 
     * ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 * AWS Artifcat - Security and Compliance reports
-* AWS Shield - DDOS protection service
+* AWS Shield - DDOS protection service offered in standard or advanced. Layer 3 and 4 protection. Integrates with Route53, Cloudfront, Elastic Load Balancer(ELB).
 * AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail
     * Customer Master Key (CMK) - symmetric (AES-256 keys), never get access to the key
         * AWS Managed Service Default CMK - Free
@@ -541,28 +558,34 @@ Follow best practice of giving least privilages
         * Default KMS Policy - created if key policy not provided
         * Custom KMS Key Policy - define users and roles that can access the keys. Useful for cross account access
     * Envelope Encryption - anything over 4kb needs to be encrypted using Envelope Encryption, using GenerateDataKey API 
-* AWS Web Application Firewall (WAF) - used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront or Load Balancer
-* AWS Inspector - Automated security assessment service that helps improve the security and compliance
+* AWS Web Application Firewall (WAF) - Used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront, API Gateway, or Load Balancer. Pricing based on how many rules you deploy and traffic.
+    * Regular Rules - filters => condition => rules => Web Access Control List(ACL). 
+    * Rate-based Rules - requests will be blocked as it crosses rate based limit. Rate is calculated every 5 minutes. 
+* AWS Inspector - Automated security assessment service that helps improve the security and compliance of EC2 instances. 
 * SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation. Doesn't automatically rotate the database credential
     * SecureString - plain text parameter name with an encrypted value. only uses one call to get
 * AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS, RedShift, and DocumentDB. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
 
 ### Amazon Cognito
-* Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML
+* Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML. Look into re:Invent Serverless Authentication and Authorization slideshow.
     * Types
         * Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users. returns a token
             * Lambda Triggers - can invoke lambda functions on triggers
-        * Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools
+        * Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools. free
         * Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
 ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i3.jpg)
 
 * Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 * Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
 
-#### Directory Service
+### Directory Service
 * AWS Managed Microsoft AD - AD managed in AWS and can have on prem AD as a trusted connection. If user not in AWS checks On Prem
 * AD Connector - proxy into on prem AD
 * Simple AD - AD compatible managed directory on AWS, cant be joined with on premise AD. For microsoft in AWS
+
+
+### AWS Single Sign-On
+* AWS Single Sign On (SSO) - cloud service that allows users to sign in to a user portal with their existing corporate credentials and access all of their accounts and apps from one place. Can be integrated with Microsoft Active Directory, meaning they can enter their Active Directory credentials. 
 
 ### Security Token Service
 * Security Service Token (STS) - limited and temp access up to 15 mins - 1 hour. 
@@ -594,6 +617,7 @@ Follow best practice of giving least privilages
     * Alarm - triggers notifications for any metric
 * Cloudtrail - Log of all actions and API calls taking place in AWS by a user, role, or an AWS Service. 
 * AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting. 
+    * Specify resource to record => Setup S3 bucket to configure snapshots => Setup SNS to stream notifications => Grant AWS Config permissions for S3 and SNS => Setup rules 
 * X-Ray - troubleshooting application performance and errors, provides end to end view of requests as they travel through your application and maps underlying components. Can collect data across AWS Accounts. To debug and trace data across accounts
     * must import the AWS X-Ray SDK and install X-Ray daemon to enable it
     * Tracing - end to end way to follow requests
@@ -608,6 +632,20 @@ Follow best practice of giving least privilages
 |CloudWatch |CloudTrail  | Config|
 --- | --- | --- |
 | resource performance monitoring, events, and alerts | account specific activity and audit | resource specific history, audit, and compliance |
+
+
+
+### Improve Security AWS
+1. Accurate account info
+2. use MFA
+3. no hard coding secrets - use AWS Secrets Manager
+4. Limit security groups - use AWS Config or AWS Firewall Manager to ensure VPC config is correct 
+5. Intentional data policies
+6. Centralize AWS Cloudtrail logs
+7. Validate IAM roles - AWS IAM Access Analyzer 
+8. Take action on GuardDuty findings
+9. Rotate your keys
+10. Become involved in dev cycle
 
 
 ---
@@ -632,12 +670,7 @@ Follow best practice of giving least privilages
         * AWS support API 
         * Access to Infastructure Event Management(IEM) - provide architectural and scaling guidance
 
-* AWS Well Architected Framework - Evaluates workload agaisnt the 5 pillars
-    * Operational Excellence -  The ability to run and monitor systems and improve supporting processes and procedures. Example: Cloudformation to manage servers as code. 
-    * Security - Delivering business value through trisk assesssments and mitigation
-    * Reliability - Recover from interruptions and change resources to meet demand
-    * Performance Efficiency - Selecting right resources based on workload requirements and making informed decisions to maintain efficiency
-    * Cost Optimization - Reduce cost of ownership, avoid or eliminate unneeded cost.
+
 
 ---
 ## Migration 
@@ -717,3 +750,23 @@ Follow best practice of giving least privilages
 * Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
     * Standard Workflows - max duration 1 year, 2000/second. exaclty one workflow
     * Express Workflows - max duration 5 minutes 100,000/second. at least once workflow
+
+
+
+## Getting Started with AWS Security, Identity, and Compliance
+
+- Policy Example
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1", # who/what is authorized
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject", # which condition
+            "Resource": "arn:aws:s3:::notes.fdlme.com/*" # Resources to which authorized tasks are performed
+        }
+    ]
+}
+```
