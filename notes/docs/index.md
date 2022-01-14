@@ -49,6 +49,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 -   [StartBootstrap Templates](https://startbootstrap.com/) and more templates [Bootstarters](https://www.bootstarters.com/?ref=producthunt)
 -   [Python Module library](https://github.com/vinta/awesome-python)
 -   Colors and Palletes
+    - [Color Pallete Picker ](https://mycolor.space/)
     -   [Styling Color Names](https://htmlcolorcodes.com/color-names/)
     -   [Color Pallete Ideas ](https://coolors.co/palettes/trending)
     -   [Happy Hues color palettes](https://www.happyhues.co/palettes/4)
@@ -60,6 +61,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     -   [Random pattern maker](https://tabbied.com/select-artwork)
     -   [Random Background Pattern Maker](https://heropatterns.com/)
     -   [Background Patterns](https://pattern.monster/)
+    - [Background Jar Patterns](https://bgjar.com/)
 -   Javasccript Libraries
     -   [Animate](https://animate.style/)
     -   [Animate on Scroll](https://github.com/michalsnik/aos)
