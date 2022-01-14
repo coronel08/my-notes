@@ -7,12 +7,11 @@ Horizontal Scaling = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 ## Solution Architect
+
 When providing solutions can split requirements into:
 
 -   Functional Requirements : Define what an application does
 -   Non Functional Requirements : Define how an application operates
-
-
 
 AWS Well Architected Framework, best practices for designing in cloud
 
@@ -28,8 +27,6 @@ AWS Well Architected Framework, best practices for designing in cloud
 3. Reliability - ability to recover from disruptions and change resources to meet demands
 4. Performance Efficiency - use computing resources efficiently
 5. Cost Optimization service - Reduce cost of ownership, avoid or eliminate unneeded cost
-
-
 
 -   Cloud Value Framework, problems may occur with Migration related costs, such as Cloud Readiness and Entrenched It Organization be sure to look into:
 
@@ -51,14 +48,11 @@ AWS Well Architected Framework, best practices for designing in cloud
     -   Can Achieve 3 tiers based on engagement Registered => Select => Advanced
 -   Partner Central - provides partners with tools and content they need to grow their business on AWS
 
-
 Shared Responsiblity Model:
 
 **AWS is Responsible for**: Compute, Storage, Database, Networking, Edge Locations, Availability Zones and Regions.
 
 **Customer is Responsible for**: App, Access Management, OS, Network and Firewall, Client and Server side encryption, and Network Traffic Protection.
-
-
 
 [Getting Started](https://aws.amazon.com/getting-started/?nc1=h_ls)
 
@@ -78,28 +72,28 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
 -   Software as a Service - completed product that is run and managed
 
 -   AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
-    - [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
-    - Parameters - provide inputs for templates
-        - Ref, YAML shorthand !Ref can call Parameters and Resources
-        - Fn::GetAtt
-        - bootstrapped from filepath example location "/etc/ecs/ecs.config"
-    - Resources - describes resources that you want to provision, can associate with conditions
-    - Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
-        - Fn::FindInMap
-    - Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
-        - Need to be exported and imported using Fn::ImportValue
-    - Conditions
-        - Fn::If / Fn::Not / Fn::Equals etc
-    - Other Functions
-        - Fn::Join
-        - Fn::Sub
-    - Rollbacks - if failure the changes get deleted and version rolls back to before failure
-    - ChangeSets - view changes in stack before it happens
-    - Nested Stacks - reuse stacks in other stacks example load balancer
-    - Cross Stacks - Only within same region, helpful when stacks have different lifecycles, use Export and Import
-        - Fn::ImportValue - returns value of an output exported by another stack 
-    - StackSets - Create, Update, Delete stacks across multiple accounts and regions
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)
+    -   [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
+    -   Parameters - provide inputs for templates
+        -   Ref, YAML shorthand !Ref can call Parameters and Resources
+        -   Fn::GetAtt
+        -   bootstrapped from filepath example location "/etc/ecs/ecs.config"
+    -   Resources - describes resources that you want to provision, can associate with conditions
+    -   Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
+        -   Fn::FindInMap
+    -   Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
+        -   Need to be exported and imported using Fn::ImportValue
+    -   Conditions
+        -   Fn::If / Fn::Not / Fn::Equals etc
+    -   Other Functions
+        -   Fn::Join
+        -   Fn::Sub
+    -   Rollbacks - if failure the changes get deleted and version rolls back to before failure
+    -   ChangeSets - view changes in stack before it happens
+    -   Nested Stacks - reuse stacks in other stacks example load balancer
+    -   Cross Stacks - Only within same region, helpful when stacks have different lifecycles, use Export and Import
+        -   Fn::ImportValue - returns value of an output exported by another stack
+    -   StackSets - Create, Update, Delete stacks across multiple accounts and regions
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)
 
 ## Table of contents
 
@@ -203,7 +197,6 @@ Infrastructure as a Service - computers and data storage provided
 
 EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/latest/meta-data
 
-
 -   Instance Types:
     -   General Purpose - Balanced
     -   Compute Optimized - for processing heavy loads
@@ -211,15 +204,15 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Accelerated Computing - graphics or streaming
     -   Storage Optimized - Data warehousing or high read and write performance
 -   Pricing:
-    - On Demand - always available
-    - EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
-    - Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
-        - Standard RI - Most significant discount 72%
-        - Convertible RI - change attributes as long as its an even exchange discount 54%
-    - Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
-    - Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
-    - Dedicated Host - Fully dedicated to one host
-    ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
+    -   On Demand - always available
+    -   EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
+    -   Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
+        -   Standard RI - Most significant discount 72%
+        -   Convertible RI - change attributes as long as its an even exchange discount 54%
+    -   Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
+    -   Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
+    -   Dedicated Host - Fully dedicated to one host
+        ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
 
 ### Auto Scaling and Load Balancing
 
@@ -246,11 +239,11 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
                 -   SSL Passthrough - data passes through fully encrypted
                 -   SSL Termination / Offloading - load balancer decrypts traffic
             -   Network Load Balancer - TCP, UDP, TLS(new SSL). Low Latency and high performance, IP's are static. Works on layer4/Transport of OSI model, the end to end connections using TCP or UDP
-                - exposes a public static IP. Doesn't support "X-Forwarded-For" header
-                - Availablity Zone - creates a load balancer in each Availablity Zone,
-                - Cross-Zone Load Balancing - Disabled by default, pay for inter AZ data if enabled (Data between availability zones)
-                - Supports targets by IP address, including targets outside VPC
-                ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
+                -   exposes a public static IP. Doesn't support "X-Forwarded-For" header
+                -   Availablity Zone - creates a load balancer in each Availablity Zone,
+                -   Cross-Zone Load Balancing - Disabled by default, pay for inter AZ data if enabled (Data between availability zones)
+                -   Supports targets by IP address, including targets outside VPC
+                    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
         -   Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
             -   Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
             -   Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
@@ -258,6 +251,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             -   Scheduled Actions - Schedule adjustments based on patterns and time
 
 -   EC2 USer Data - can pass shell scripts and cloud-init directives. Used to run common configuration tasks. Run only during boot cycle when first launched but can be configured to run on restart.
+
     -   scripts - executed with root privileges
 
 -   AWS Resource Groups - Use to create custom console for environments and view/manage resources easily.
@@ -274,16 +268,16 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 ## Elastic BeanStalk
 
 -   Elastic Beanstalk - automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling. Can also perform health checks on Amazon EC2 instances. Platform as a Service
-    - Deployment Options
-        - All at Once - fastest but has downtime
-        - Rolling - updates a bucket at a time then moves to next. Rollback would be manually done
-        - Rolling with additional batches - like rolling but spins up new instances to move the batch. rollback would be manually done.
-        - Immutable - spins new instances in ASG, deploys to these and then swaps instances
-        - Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
-        - Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
-    - If Deployment fails when upgrading version, they get replaced with most recent successful deployment. 
-    - Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like ` .ebextensions/<mysettings>.config `
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
+    -   Deployment Options
+        -   All at Once - fastest but has downtime
+        -   Rolling - updates a bucket at a time then moves to next. Rollback would be manually done
+        -   Rolling with additional batches - like rolling but spins up new instances to move the batch. rollback would be manually done.
+        -   Immutable - spins new instances in ASG, deploys to these and then swaps instances
+        -   Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
+        -   Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
+    -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
+    -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
 [EBS Samples](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
 
@@ -323,15 +317,13 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 ## Lambda
 
 -   Pay per request and compute time, increasing RAM will also improve CPU and Network.
-    - from 128mb - 10gb (64mb increments), at 1792mb you get more than one CPU and need to use multi-threading
-    - Execution time ranging from 1 sec - 15 minutes
-    - /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb.
-    - up to 1000 concurrent executions, can be throttled with reserved concurrency
-    - Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
-    - Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
-        - Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions
-        - Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
+    -   from 128mb - 10gb (64mb increments), at 1792mb you get more than one CPU and need to use multi-threading
+    -   Execution time ranging from 1 sec - 15 minutes
+    -   /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb.
+    -   up to 1000 concurrent executions, can be throttled with reserved concurrency
+    -   Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
+    -   Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed - Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions - Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
 -   Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
 -   lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
 -   Lambda layers - zip file archive that contains additional code or data
@@ -352,10 +344,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             -   AWS_XRAY_CONTEXT_MISSING: by default, Log_Error
             -   AWS_XRAY_DAEMON_ADDRESS: the x ray daemon IP port
 -   Networking
-    - By default the Lambda function is launched in its own VPC and can't access resources or internet unless defined,
-    - ENI(Elastic Network Interface) allows it to interact with VPC
-    - Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q39-i1.jpg)
+    -   By default the Lambda function is launched in its own VPC and can't access resources or internet unless defined,
+    -   ENI(Elastic Network Interface) allows it to interact with VPC
+    -   Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q39-i1.jpg)
 
 ---
 
@@ -409,27 +401,27 @@ Public and private subnets in a VPC can communicate with each other
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q34-i1.jpg)
 
 -   Route 53 - Manages Dns records and offer health checks to monitor health and performance.
-    - Most common record routings are:
-        - A: hostname to ipv4 example.com -> 12.3.1.3
-        - AAAA: hostname to ipv6
-        - Cname: hostname to hostname test.example.com -> (only for non root domain). Can be used to map one domain name to another
-        - Alias: hostname to AWS resource, free and works for root domain. Can point to somthing like S3
-    - Time to Live
-        - High TTL(24hrs) has less traffic and possibly outdated records
-        - Low TTL(60hrs) more traffic on DNS and records are outdated for less time.
-    - Routing Policy
-        - simple -
-        - weighted - distributed based on percentage loads
-        - latency - redirect to server with least latency
-        - failover - health check mandatory
-        - geolocation - routing based on user location, needs a default policy in case no match.
-        - geoproximity - if you want to shift traffic from one region to another by increasing the bias
-        - multi-value - route traffic to multiple resources and associate health checks with records. not a substitute for Load Balancing but helps.
-    - Health Checks - checks status of resources, can integrate with CloudWatch
+    -   Most common record routings are:
+        -   A: hostname to ipv4 example.com -> 12.3.1.3
+        -   AAAA: hostname to ipv6
+        -   Cname: hostname to hostname test.example.com -> (only for non root domain). Can be used to map one domain name to another
+        -   Alias: hostname to AWS resource, free and works for root domain. Can point to somthing like S3
+    -   Time to Live
+        -   High TTL(24hrs) has less traffic and possibly outdated records
+        -   Low TTL(60hrs) more traffic on DNS and records are outdated for less time.
+    -   Routing Policy
+        -   simple -
+        -   weighted - distributed based on percentage loads
+        -   latency - redirect to server with least latency
+        -   failover - health check mandatory
+        -   geolocation - routing based on user location, needs a default policy in case no match.
+        -   geoproximity - if you want to shift traffic from one region to another by increasing the bias
+        -   multi-value - route traffic to multiple resources and associate health checks with records. not a substitute for Load Balancing but helps.
+    -   Health Checks - checks status of resources, can integrate with CloudWatch
 -   Cloudfront - Can integrate AWS Shield and AWS WAF to protect against network DDOS attacks.
-    - Can use infront of an Application Load Balancer
-    - Cloudfront Key Pairs - created by root user, used to create signed URLs or signed cookies.
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
+    -   Can use infront of an Application Load Balancer
+    -   Cloudfront Key Pairs - created by root user, used to create signed URLs or signed cookies.
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
 
 ---
 
@@ -480,17 +472,17 @@ Objects = files and buckets = directories
             -   Standard - 12 hours
             -   Bulk - 48 hours
     -   S3 Encryption
-        - SSE-S3 - server side encrypts S3 objects using keys managed by AWS
-            - Must set header "x-amz-server-side-encryption":"AES256"
-        - SSE-KMS - Key Management Service, server side encryption
-            - Must set header "x-amz-server-side-encryption":"aws:kms"
-            - Leverages GenerateDataKey & Decrypt KMS API calls
-            - Count against KMS limits
-        - SSE-C - Manage your own encryption, server side encryption
-            - Https must be used
-            - Encryption key must be provided in HTTP headers
-        - Client Side Encryption - Client handles encrypt/decrypt and manages keys
-        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt5-q55-i1.jpg)
+        -   SSE-S3 - server side encrypts S3 objects using keys managed by AWS
+            -   Must set header "x-amz-server-side-encryption":"AES256"
+        -   SSE-KMS - Key Management Service, server side encryption
+            -   Must set header "x-amz-server-side-encryption":"aws:kms"
+            -   Leverages GenerateDataKey & Decrypt KMS API calls
+            -   Count against KMS limits
+        -   SSE-C - Manage your own encryption, server side encryption
+            -   Https must be used
+            -   Encryption key must be provided in HTTP headers
+        -   Client Side Encryption - Client handles encrypt/decrypt and manages keys
+            ![](https://media.datacumulus.com/aws-dva-pt/assets/pt5-q55-i1.jpg)
     -   S3 Security, (can connect to s3 using VPC Endpoints and logged in AWS Cloudtrail). Cloudtrail tracks bucket level actions by default, need to enable S3 data events to track object level actions.
         -   User Based - IAM Policies sets what Users are allowed to do what API calls
         -   Resource Based
@@ -596,19 +588,19 @@ Security Bulletins - AWS notifies customers about security and privacy events.
 Follow best practice of giving least privilages
 
 -   AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user. Manage access in AWS by creating policies and attaching them to IAM Identities(users, groups, roles)
-    - Users - Recommended IAM entity when granting a person long term access permissions.
-    - Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group
-    - Policies - allows or denies permissions to AWS, attached to identity or users
-        - Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
-        - Policy Simulator - google it
-        - Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
-        - Policy Resource - specify a resource using an ARN
-        - Policy Condition - specify conditions
-        - Policy Variables - policy variables act as placeholders in template
-    - Roles - Access to temporary time and permissions, given to users, services, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials. Use an IAM policy for permissions.
-    - Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
-    - Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp \* Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
-    ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
+    -   Users - Recommended IAM entity when granting a person long term access permissions.
+    -   Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group
+    -   Policies - allows or denies permissions to AWS, attached to identity or users
+        -   Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
+        -   Policy Simulator - google it
+        -   Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
+        -   Policy Resource - specify a resource using an ARN
+        -   Policy Condition - specify conditions
+        -   Policy Variables - policy variables act as placeholders in template
+    -   Roles - Access to temporary time and permissions, given to users, services, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials. Use an IAM policy for permissions.
+    -   Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
+    -   Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp \* Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
+        ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
 -   AWS Organizations - For large business
     -   Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members. limit permissions but do not grant permissions.
     -   Organization Trail - trail that logs all events
@@ -636,12 +628,13 @@ Follow best practice of giving least privilages
 ### Amazon Cognito
 
 -   Amazon Cognito - let's customers add user sign in with Facebook, Google, Amazon. Helpful for hundreds of users, mobile users, or authenticate with SAML. Look into re:Invent Serverless Authentication and Authorization slideshow.
-    - Types
-        - Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users. returns a token
-            - Lambda Triggers - can invoke lambda functions on triggers
-    - Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools. free 
-    - Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
-    ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i3.jpg)
+
+    -   Types
+        -   Cognito User Pools - sing in for app users, integrate with API gateway and application load balancer. serverless database of users. returns a token
+            -   Lambda Triggers - can invoke lambda functions on triggers
+    -   Cognito Identity Pools - aws credentials mapped to IAM roles and policies that allows guests, integrates with cognito user pools. free
+    -   Cognito Sync - deprecated aand replaced by AppSync, syncs data from device to Cognito
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i3.jpg)
 
 -   Amazon Cloud Directory - directory service provides web-based directories to organize users, groups, devices, policies
 -   Amazon Directory Service - provides single sign on to AWS, uses existing Microsoft Actice Directory
