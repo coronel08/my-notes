@@ -4,6 +4,7 @@ Horizontal Scaling  = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 
+## Solution Architect
 AWS Well Architected Framework, best practices for designing in cloud
 1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations. Example Cloudformation to manage servers as code
 2. Security - protect information, Delivering business value through risk assesssments and mitigation
@@ -18,6 +19,31 @@ AWS Well Architected Framework, best practices for designing in cloud
 4. Performance Efficiency - use computing resources efficiently
 5. Cost Optimization service - Reduce cost of ownership, avoid or eliminate unneeded cost
 
+
+
+When providing solutions can split requirements into:
+* Functional Requirements : Define what an application does
+* Non Functional Requirements : Define how an application operates
+
+* Cloud Value Framework, problems may occur with Migration related costs, such as Cloud Readiness and Entrenched It Organization be sure to look into: 
+    1. Cost Savings : Total Cost of Ownership (TCO), compare cost of on premise vs aws and performance increases. Consumption based model allows to pay only for what you use. 
+        * Formula for Cost savings / sunk costs + migration costs = ROI. Make sure to include operational costs, depreciation, and recovery value for Hardware
+    2. Staff Productivity : Cloud opens up productivity with servers, networks, storage, apps, facilities, and security
+    3. Operational Resilience
+    4. Business Agility
+
+
+* Cloud Economics is made up of : 
+    * Business Value(Total Cost of Ownership TCO) : 
+    * Cloud Financial Management : use measurements and accountability to track spending. Optimize cost by identifying waste. Plan and Forecast future costs and spending. Cloud Financial Operations means investing in people process and tools. 
+
+
+## Amazon Partner Network
+- Consulting Partners - firms that help customers design, architect, build, migrate and manage their workloads and applications on AWS. Can include MSP
+    - Can achieve levels Registered => Select => Advanced => Premier
+- Technology Partners - provide hardware, connectivity and software solutions that are hosted on or integrated with the AWS cloud. Can include Independent Software Vendors
+    - Can Achieve 3 tiers based on engagement Registered => Select => Advanced
+- Partner Central - provides partners with tools and content they need to grow their business on AWS
 
 Shared Responsiblity Model:
 **AWS is Responsible for**: Compute, Storage, Database, Networking, Edge Locations, Availability Zones and Regions.
@@ -124,11 +150,13 @@ Most services are region scoped
 * Amazon Detective - easily investigate security findings. Collects data from AWS resources and uses machine learning on data
 * AWS Glue - data transformation tool that Extracts, Transforms, and Load service 
 * Amazon GuardDuty - threat detection that continously monitors accounts and workloads for mailicious activity and unauthorized behavior, gets data from CloudTrail events, VPC flow logs, DNS logs.
+* Amazon Elastisearch - Operational Analytics
 * Amazon Macie - data security and data privacy service that uses machine learning to automatically protect data. Available to protect data on S3. Common use case is discovering relevant data fields collected by Macie and turning those fields into custom alerts. 
 * AWS Professional Services - team of experts that help set up desired business on AWS
-* Amazon Quicksight - Business Intelligence tool
+* Amazon Quicksight - Business Intelligence tool, Dashboards and Visualizations
 * AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
 * Server Name Indication(SNI) - used to route multiple SSL certificates
+
 
 
 ### Serverless Computing
@@ -147,8 +175,14 @@ Most services are region scoped
     * Start Docker container
         * $(aws ecr get-login --no-include-email) - retrieves token valid for 12 hours
         * docker pull 1234567890.dkr.ecr.eu-west-1.amazonaws.com/demo:latest
+* EFS (Elastic File Storage)
 * EKS (Elastic Kubernetes Service) - 
 * Fargate - Works with both ECS and EKS, its a container engine
+* DynamoDB & Aurora
+* API Gateway
+* SNS, SQS, AWS App Sync, Amazon Event Bridge
+* AWS Step Functions
+* Amazon Kinesis, Amazon Athena
 
 ---
 ## EC2
@@ -456,7 +490,7 @@ Objects = files and buckets = directories
 
 
 ### Databases
-* Amazon RDS (Relational Database Service) - SQL to store and query data, managed service that automates scaling, backups, and setup. Stored on EBS
+* Amazon RDS (Relational Database Service) - SQL to store and query data, managed service that automates scaling, backups, and setup. Stored on EBS. Can host MySQL, Oracle, Microsoft SQL, MariaDB, Postgres.
     * Read Replicas - up to 5 Read Replicas, ASYNC so reads are eventually caught up. Cant write to replica. IF AWS in same region you do not pay for data transfers
     * RDS Multi AZ(Disaster Recovery) failover in case of loss
     * Encryption - encrypt with AWS KMS. If master is not encrypted the read replicas can't be encrypted. SSL Certificate to encrypt data in flight,needs to be turned on.
@@ -475,7 +509,7 @@ Objects = files and buckets = directories
         * Cluster Mode - data is partitioned across shards
 * Amazon Redshift - Fully Managed data warehousing services for big data analytics. Server Based
 * Amazon Storage Gateway - helps extend their on-premise storage to AWS
-* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework  
+* Amazon Elastic Map Reduce (EMR) - fast and efficient processing of big data using Hadoop framework, Apache Spark, or Apache Hive 
 * DocumentDB - managed MongoDB 
 * Neptune - graph database
 
@@ -677,6 +711,7 @@ Follow best practice of giving least privilages
 * AWS Total Cost Ownership (TCO) - free tool that provides info on possible savings when deploying to AWS. (Cost Explorer only analyzes current cost and ussage)
 * AWS Application Discovery Service - helps systems integrators plan application migration projects by identifying on-premise applications.
 * AWS Cloud Adoption Framework (CAF) - helps organizations design a road map to cloud adoption
+* AWS Migration Portfolio Assesment : available to Amazon Partner Network (APN). An assesment tool that recommends instance sizes, cost comparison, migration estimate, timeline and costs. 
 
 * AWS Cloud Migration Framework
     * Business 
@@ -686,9 +721,9 @@ Follow best practice of giving least privilages
     * Security
     * Operations
 * 6 Different Staretegies for Migration
-    * Rehosting - Lift and Shift 
+    * Rehosting - Lift and Shift recreate on AWS
     * Replatforming - Lift, Tinker, and Shift
-    * Refactoring - Driven by a need to add new features and edit code
+    * Refactoring - Driven by a need to add new features and edit code, modernize
     * Repurchasing - Software as a service option
     * Retaining - Keeping critical applications at the source environment
     * Retiring - removing applications that are no longer needed
@@ -753,8 +788,7 @@ Follow best practice of giving least privilages
 
 
 
-## Getting Started with AWS Security, Identity, and Compliance
-
+## Code as Config 
 - Policy Example
 ```
 {
