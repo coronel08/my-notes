@@ -6,6 +6,20 @@ Horizontal Scaling = adding several smaller instances when workloads increase
 
 Can work with AWS through AWS Management Console, CLI, or SDK
 
+## Global Infastracture
+
+Regions are geographically isolated areas and are made up of smaller availability zones/ data centers, Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets. Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
+
+Regions are picked based on the following:
+
+-   Compliance or regulations
+-   Proximity
+-   Available Services - some services may not be availaable in your region yet
+-   Pricing - varies by region due to operating costs
+
+Edge Locations
+Amazon Cloudfront is a Content Delivery Network that caches content closer to customers. An Edge Location is a site that is used for CDN.
+
 ## Solution Architect
 
 When providing solutions can split requirements into:
@@ -13,7 +27,7 @@ When providing solutions can split requirements into:
 -   Functional Requirements : Define what an application does
 -   Non Functional Requirements : Define how an application operates
 
-AWS Well Architected Framework, best practices for designing in cloud
+**AWS Well Architected Framework, best practices for designing in cloud**
 
 1. Operational Excellence - run and monitor systems to deliver business value, automate changes and manage daily operations. Example Cloudformation to manage servers as code
 2. Security - protect information, Delivering business value through risk assesssments and mitigation
@@ -27,6 +41,8 @@ AWS Well Architected Framework, best practices for designing in cloud
 3. Reliability - ability to recover from disruptions and change resources to meet demands
 4. Performance Efficiency - use computing resources efficiently
 5. Cost Optimization service - Reduce cost of ownership, avoid or eliminate unneeded cost
+
+<br>
 
 -   Cloud Value Framework, problems may occur with Migration related costs, such as Cloud Readiness and Entrenched It Organization be sure to look into:
 
@@ -82,7 +98,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
         -   Fn::FindInMap
     -   Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
         -   Need to be exported and imported using Fn::ImportValue
-    -   Conditions
+    -   Conditions, can't be used with Parameters
         -   Fn::If / Fn::Not / Fn::Equals etc
     -   Other Functions
         -   Fn::Join
@@ -136,6 +152,7 @@ Most services are region scoped
         -   AWS IAM:
         -   OPENID_CONNECT:
         -   AMAZON_COGNITO_USER_POOLS:
+-   AWS Budgets - Lets customers set custom budgets and receive alerts on costs, requires approximately 5 weeks of usage data to generate budget forecasts.
 -   AWS Certificate Manager (ACM) - provision, manage and deploy certificates(public or private) for https
 -   AWS CloudHSM - security model that lets you use your own encryption keys
 -   AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one
@@ -204,15 +221,31 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Accelerated Computing - graphics or streaming
     -   Storage Optimized - Data warehousing or high read and write performance
 -   Pricing:
-    -   On Demand - always available
-    -   EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
-    -   Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
-        -   Standard RI - Most significant discount 72%
-        -   Convertible RI - change attributes as long as its an even exchange discount 54%
-    -   Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
-    -   Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
-    -   Dedicated Host - Fully dedicated to one host
-        ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
+
+        -   On Demand - always available
+        -   EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
+        -   Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
+            -   Standard RI - Most significant discount 72%
+            -   Convertible RI - change attributes as long as its an even exchange discount 54%
+        -   Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
+        -   Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
+        -   Dedicated Host - Fully dedicated to one host
+            ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
+
+    <br><br>
+
+-   EC2 USer Data - can pass shell scripts and cloud-init directives. Used to run common configuration tasks. Run only during boot cycle when first launched but can be configured to run on restart.
+
+    -   scripts - executed with root privileges
+
+-   AWS Resource Groups - Use to create custom console for environments and view/manage resources easily.
+
+-   AWS Cost & Usage report - contains the most conprehensive set of AWS cost and usage data
+-   AWS Cost Explorer - visualize and understand and manage AWS cost and usage, forecast up to 12 months ahead.
+
+-   Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
+
+-   CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
 
 ### Auto Scaling and Load Balancing
 
@@ -250,19 +283,6 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             -   Simple Scaling - Increase or decrease based on a single scaling adjustment
             -   Scheduled Actions - Schedule adjustments based on patterns and time
 
--   EC2 USer Data - can pass shell scripts and cloud-init directives. Used to run common configuration tasks. Run only during boot cycle when first launched but can be configured to run on restart.
-
-    -   scripts - executed with root privileges
-
--   AWS Resource Groups - Use to create custom console for environments and view/manage resources easily.
-
--   AWS Cost & Usage report - contains the most conprehensive set of AWS cost and usage data
--   AWS Cost Explorer - visualize and understand and manage AWS cost and usage, forecast up to 12 months ahead.
-
--   Amazon Machine Image (AMI) - provides info to launch an instance from a previous image or template
-
--   CloudEndure Disaster Recovery - minimizes downtime and data loss, continually replicates machines
-
 ---
 
 ## Elastic BeanStalk
@@ -276,7 +296,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
         -   Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
     -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
-    -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`
+    -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`. Resources defined in ebextensions will get deleted on termination.
         ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
 [EBS Samples](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
@@ -322,7 +342,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb.
     -   up to 1000 concurrent executions, can be throttled with reserved concurrency
     -   Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
-    -   Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed - Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions - Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
+    -   Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
+    -   Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions
+    -   Lambda and CodeDeploy - can automate traffic shift for lambda aliases either rolling or all at once.
         ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
 -   Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
 -   lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront
@@ -348,22 +370,6 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   ENI(Elastic Network Interface) allows it to interact with VPC
     -   Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
         ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q39-i1.jpg)
-
----
-
-## Global Infastracture
-
-Regions are geographically isolated areas and are made up of smaller availability zones/ data centers, Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets. Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
-
-Regions are picked based on the following:
-
--   Compliance or regulations
--   Proximity
--   Available Services - some services may not be availaable in your region yet
--   Pricing - varies by region due to operating costs
-
-Edge Locations
-Amazon Cloudfront is a Content Delivery Network that caches content closer to customers. An Edge Location is a site that is used for CDN.
 
 ---
 
@@ -474,7 +480,7 @@ Objects = files and buckets = directories
     -   S3 Encryption
         -   SSE-S3 - server side encrypts S3 objects using keys managed by AWS
             -   Must set header "x-amz-server-side-encryption":"AES256"
-        -   SSE-KMS - Key Management Service, server side encryption
+        -   SSE-KMS - Key Management Service, server side encryption. Stores the Customer Master Key(CMK) and receives data from the clients which it encrypts and sends back.
             -   Must set header "x-amz-server-side-encryption":"aws:kms"
             -   Leverages GenerateDataKey & Decrypt KMS API calls
             -   Count against KMS limits
@@ -607,8 +613,8 @@ Follow best practice of giving least privilages
     -   ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 -   AWS Artifcat - Security and Compliance reports
 -   AWS Shield - DDOS protection service offered in standard or advanced. Layer 3 and 4 protection. Integrates with Route53, Cloudfront, Elastic Load Balancer(ELB).
--   AWS Key Management Service (KMS) FF- to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail
-    -   Customer Master Key (CMK) - symmetric (AES-256 keys), never get access to the key
+-   AWS Key Management Service (KMS) - to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail. KMS stores the CMK and receives data from the clients, which it encrypts and sends back.
+    -   Customer Master Key (CMK) - symmetric (AES-256 keys), never get access to the key. Includes metadata such as key ID, creation date, description, and key state. Contains the key material used to encrypt and decrypt data.
         -   AWS Managed Service Default CMK - Free
         -   User Keys created in KMS - $1/month
         -   User Keys imported - $1/month
