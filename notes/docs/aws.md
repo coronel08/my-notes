@@ -132,6 +132,7 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
     -   [Databases](#databases)
         -   [DynamoDB](#DynamoDB)
 -   [Security](#security)
+    -   [IAM](#iam)
     -   [Cognito](#amazon-cognito)
     -   [Security Token Service](#security-token-service)
     -   [Monitoring](#monitoring)
@@ -162,6 +163,9 @@ Most services are region scoped
         -   builds docker images, uses buidspec.yml(placed at root folder) for instructions
         -   by default can't access resources in VPC, CodeBuild is launched outside of VPC
         -   Timeouts - default value is 8 hours, can change it between 5 min - 8 hours.
+        -   Deployment - allows more control over deployment compared to Elastic Beanstalk(EBS)
+            -   in-place deployment -
+            -   blue/green deployment - provision a new set of instances, traffic is pointed to the new instances can revert to old instances if errors.
     -   AWS CodeDeploy - automates code deployment to instances.
         -   Order is Stop Application => Before Install => After Install => Start Application
         -   Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
@@ -176,6 +180,7 @@ Most services are region scoped
 -   AWS Professional Services - team of experts that help set up desired business on AWS
 -   Amazon Quicksight - Business Intelligence tool, Dashboards and Visualizations
 -   AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
+-   AWS Trusted Advisors - tool that provides live/real time guidance (phone or chat) to help provision resources following AWS best practices. Need to use atleast a Business Account.
 -   Server Name Indication(SNI) - used to route multiple SSL certificates
 
 ### Serverless Computing
@@ -256,7 +261,8 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Cannot add a volume to an existing instance if the existing volume is approaching capacity. A volume is attached to a new instance when it is added
         -   Auto Scaling groups in a vpc launches the EC2 instances in subnets
         -   Can seperate public vs private traffic. An internet facing load balancer will have a public IP address and will route requests to targets using private IP address. Therefore EC2 targets dont need a public IP.
-    -   Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region.
+    -   Elastic Load Balancing (ELB) - Balances traffic coming in, not global service. Distributes traffic across multiple Availability Zones within the same AWS Region. Communicates with EC2 instances using private IP addresses.
+        -   Monitors health of Instances and only routes traffic to healthy targets
         -   Access Logs - disabled by default, logs info such as time the request was received, clients IP, latencies, request paths, and server responses. Stored in S3 buckets and automatically encrypted using SSE-S3
         -   3 types of balancers (Stickiness in load balancing uses cookies to keep client connecting to the same server)
             -   Classic Load Balancer - HTTP, HTTPS, TCP. Used when needed to support older architecture
@@ -271,6 +277,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
                 -   need to use the "X-Forwarded-For" header to get originating IP address of traffic.
                 -   SSL Passthrough - data passes through fully encrypted
                 -   SSL Termination / Offloading - load balancer decrypts traffic
+                -   Request Tracing - track http requests, load balancer adds a header with a trace identifier to each request it receives.
+                -   Access Logs - captures detailed information about requests sent to your load balancer, disabled by default. Can analyze traffic patterns and troubleshoot issues because it tracks IP, latency, request path, and server response.
+                -   Have to make sure that load balancer is able to communicate with targets on listener and health check port. Must also make sure Load Balancer security groups allow traffic on the new port in both directions.
+                    -   ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q28-i1.jpg)
             -   Network Load Balancer - TCP, UDP, TLS(new SSL). Low Latency and high performance, IP's are static. Works on layer4/Transport of OSI model, the end to end connections using TCP or UDP
                 -   exposes a public static IP. Doesn't support "X-Forwarded-For" header
                 -   Availablity Zone - creates a load balancer in each Availablity Zone,
@@ -279,7 +289,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
                     ![](https://media.datacumulus.com/aws-dva-pt/assets/pt4-q50-i1.jpg)
         -   Scaling Policy Types (after scaling there is a default cooldown of 300 seconds before another scaling option can happen.)
             -   Target Tracking scaling - Increase or decrease based on target value such as 60% cpu usage
-            -   Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach
+            -   Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach. Cloudwatch alarms trigger the scaling process.
             -   Simple Scaling - Increase or decrease based on a single scaling adjustment
             -   Scheduled Actions - Schedule adjustments based on patterns and time
 
@@ -297,7 +307,8 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
     -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
     -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`. Resources defined in ebextensions will get deleted on termination.
-        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
+        -   To decouple application like a persistent Database, define externally and reference through environment variables
+            ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
 [EBS Samples](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
 
@@ -320,6 +331,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Delay Queue - default is 0 seconds but can be up to 15 minutes
     -   Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. "WaitTimeSeconds" Between 1 - 20 seconds.
     -   Security - can encrypt messages in queues using AWS KMS(Key Management Service)
+    -   Delete - When you delete a que all the messages are no longer available. Can take up to 60 seconds. 
 
 -   Kinesis - collect, process, and analyze streaming data such as Application logs, Metrics, and telemetry data. Meant for real time big data. Group data into shards using a partition key.
     -   Kinesis Data Streams - scaled with shards. Retention between 1 day(default) to 365. Manage scaling thru shard splitting or shard merging.
@@ -359,7 +371,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Streamed Services: DynamoDB, Kinesis. by default if function returns error the entire batch is reprocessed until succeed or expire
         -   Polled Services: SQS, MQ.
 -   Logging and Monitoring
-    -   Cloudwatch Events - either cronjob or codepipeline into Cloudwatch Events/EventBridge. Lambda metrics are displayed in Cloudwatch Metrics.
+    -   Cloudwatch Events - either cronjob or codepipeline into Cloudwatch Events/EventBridge. Lambda metrics are displayed in Cloudwatch Metrics. Can't be used to debug and trace data across accounts.
     -   X-Ray - enable in lambda configuration and use SDK in code.
         -   Environment variables
             -   \_X_AMZN_TRACE_ID: contains the tracing header
@@ -591,26 +603,14 @@ Objects = files and buckets = directories
 
 Security Bulletins - AWS notifies customers about security and privacy events.
 
+Root Account user can use MFA authentication such as (not sms, but other IAM users aside from root can use SMS) :
+
+-   Hardware MFA Device - hardware device that generates code to sign in
+-   U2F Security Key - USB device used for authentication
+-   Virtual MFA device - software app that runs on a device that generates code to sign in.
+
 Follow best practice of giving least privilages
 
--   AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user. Manage access in AWS by creating policies and attaching them to IAM Identities(users, groups, roles)
-    -   Users - Recommended IAM entity when granting a person long term access permissions.
-    -   Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group
-    -   Policies - allows or denies permissions to AWS, attached to identity or users
-        -   Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
-        -   Policy Simulator - google it
-        -   Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
-        -   Policy Resource - specify a resource using an ARN
-        -   Policy Condition - specify conditions
-        -   Policy Variables - policy variables act as placeholders in template
-    -   Roles - Access to temporary time and permissions, given to users, services, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials. Use an IAM policy for permissions.
-    -   Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policyand an identity policy to an IAM Role.
-    -   Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp \* Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
-        ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
--   AWS Organizations - For large business
-    -   Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members. limit permissions but do not grant permissions.
-    -   Organization Trail - trail that logs all events
-    -   ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 -   AWS Artifcat - Security and Compliance reports
 -   AWS Shield - DDOS protection service offered in standard or advanced. Layer 3 and 4 protection. Integrates with Route53, Cloudfront, Elastic Load Balancer(ELB).
 -   AWS Key Management Service (KMS) - to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail. KMS stores the CMK and receives data from the clients, which it encrypts and sends back.
@@ -630,6 +630,30 @@ Follow best practice of giving least privilages
 -   SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation. Doesn't automatically rotate the database credential
     -   SecureString - plain text parameter name with an encrypted value. only uses one call to get
 -   AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS, RedShift, and DocumentDB. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
+
+### IAM
+
+-   AWS IAM - Identity and Access Management, by default all actions denied. Have to grant privelages as the root user. Manage access in AWS by creating policies and attaching them to IAM Identities(users, groups, roles)
+    -   Users - Recommended IAM entity when granting a person long term access permissions.
+    -   Groups - Collection of Users and permissions, can't contain other groups or nest. Users can belong to more than 1 group
+    -   Policies - allows or denies permissions to AWS, attached to identity or users
+        -   Policy Generator Site - https://awspolicygen.s3.cn-north-1.amazonaws.com.cn/policygen.html
+        -   Policy Simulator - google it
+        -   Policy Principal - specify the principal that is allowed or denied access to a resource (a principal is a person or app that can make a request for an action on an AWS resource). Can use it in trust policies for IAM roles and in resource based policies, Can't use in an IAM identity based policy
+        -   Policy Resource - specify a resource using an ARN
+        -   Policy Condition - specify conditions
+        -   Policy Variables - policy variables act as placeholders in template
+        -   Permissions Boundary - managed policy that is used for an IAM user or role. Defines maximum permissions that the identity based policies can grant but does not grant permissions.
+            ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q59-i1.jpg)
+    -   Roles - Access to temporary time and permissions, given to users, services, apps, etc best for short term. Does not have standard long-term credentials instead temp credentials. Use an IAM policy for permissions.
+    -   Trust Policy - The only Resource based policy that IAM supports. Define which (accounts, users, and roles) can assume a role. Must attach both a trust policy and an identity policy to an IAM Role.
+    -   Certificates - used as a certificate manager only when you need to support HTTPS in a region that doesn't support AWS Certificate Manager(ACM).
+    -   Access Advisor and Credential Reports - tool to identify unused roles, IAM reports the last used timestamp
+    -   Access Analyzer - identify resources in your organization and accounts that are shared with an external entity. Helps identify unintended access to resources
+-   AWS Organizations - For large business
+    -   Service Control Policy (SCP) - To centrally control policies, Can do policies in Organizational Units and individual members. limit permissions but do not grant permissions.
+    -   Organization Trail - trail that logs all events
+    -   ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q32-i1.jpg)
 
 ### Amazon Cognito
 
@@ -674,6 +698,9 @@ Follow best practice of giving least privilages
 
 ### Monitoring
 
+-   AWS Systems Manager - allows to group resources like Ec2 instances, S3 buckets, by application, view operational data for monitoring and troubleshooting and take actions on groups of resources.
+    <br> <br>
+
 -   Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics.
     -   Metrics -
         -   Basic Monitoring - metrics every 5 mins
@@ -692,11 +719,11 @@ Follow best practice of giving least privilages
     -   must import the AWS X-Ray SDK and install X-Ray daemon to enable it
     -   Tracing - end to end way to follow requests
         -   Segments/SubSegments - details on app/service
-        -   Sampling - amount of requests sent
+        -   Sampling - amount of requests sent, can control amount of data that you record and modify sampling behavior without having to redeploy
         -   Annotations - Key-Value pairs used to index traces and use with filters
         -   Metadata - Key-Value pairs, not indexed or used for searching
     -   If not working in:
-        -   EC2 ensure IAM role has proper permissions and daemon running
+        -   EC2 ensure IAM role has proper permissions and daemon running. The X-Ray daemon uses the instances profile role automatically.
         -   AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
 
 | CloudWatch                                          | CloudTrail                          | Config                                           |
@@ -800,15 +827,23 @@ Follow best practice of giving least privilages
 
 ---
 
-## Serverless Application Model
+## Code as Config
+
+### Serverless Application Model
+
+Defines infastructure in a template. Enables teams to store and share reusable applications and assemble and deploy serverless architecture. No need to clone, build, package, or publish source code to AWS before deploying it.
 
 -   Yaml Code that is built on CloudFormations and can use CodeDeploy to deploy lambda functions.
 -   Structure - requires transform and resources
     -   Transform Header - indicates its SAM template "Transform: 'AWS::Serverless-2016-10-31'"
     -   Write Code
-        -   AWS::SERVERLESS::Function
-        -   AWS::SERVERLESS::Api
-        -   AWS::Serverless::SimpleTable
+        -   AWS::Serverless::Api - creates a collection of Amazon API gateway resources and methods that can be invoked through HTTPS endpoints.
+        -   AWS::Serverless:: Application
+        -   AWS::Serverless::Function - creates a Lambda function
+        -   AWS::Serverless::HttpApi
+        -   AWS:: Serverless::LayerVersion
+        -   AWS::Serverless::SimpleTable - Creates a DynamoDB table with a single attribute primary key.
+        -   AWS::Serverless::StateMachine
     -   Package and Deploy
         -   AWS cloudformation package
         -   AWS cloudformation deploy
@@ -818,17 +853,24 @@ Follow best practice of giving least privilages
     -   DynamoDBCrudPolicy - crud policy
 -   Serverless Application Repository (SAR) - repo for serverless applications
 
----
+### Cloud Development Kit
 
-## AWS Step Functions
+AWS CDK used to define resources using programming languages and cloudformation. If you want to define AWS infastructure in a programming language use Cloud Development Kit (CDK)
+
+-   Steps to use CDK - Create template from CDK => add code to create resources => Build the app (optional) => Synthesize one or more stacks in the app => Deploy
+    1. Template - ` CDK Init` and select language
+    2. Resources -add code to create resources.
+    3. Build -
+    4. Synthesize - creates a CloudFormation template
+    5. Deploy - ` CDK deploy`
+
+### AWS Step Functions
 
 -   Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
     -   Standard Workflows - max duration 1 year, 2000/second. exaclty one workflow
     -   Express Workflows - max duration 5 minutes 100,000/second. at least once workflow
 
-## Code as Config
-
--   Policy Example
+#### Policy Example
 
 ```
 {
@@ -844,3 +886,10 @@ Follow best practice of giving least privilages
     ]
 }
 ```
+
+-   S3 policy example with policy variable, example gives each user a home folder with access
+
+    -   ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q40-i1.jpg)
+
+-   Cloudformation acceptable Templates
+    -   ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q60-i1.jpg)
