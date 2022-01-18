@@ -87,33 +87,11 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
 -   Platform as a Service - removes the need to manage infastructure like hardware and OS.
 -   Software as a Service - completed product that is run and managed
 
--   AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
-    -   [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
-    -   Parameters - provide inputs for templates
-        -   Ref, YAML shorthand !Ref can call Parameters and Resources
-        -   Fn::GetAtt
-        -   bootstrapped from filepath example location "/etc/ecs/ecs.config"
-    -   Resources - describes resources that you want to provision, can associate with conditions
-    -   Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
-        -   Fn::FindInMap
-    -   Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
-        -   Need to be exported and imported using Fn::ImportValue
-    -   Conditions, can't be used with Parameters
-        -   Fn::If / Fn::Not / Fn::Equals etc
-    -   Other Functions
-        -   Fn::Join
-        -   Fn::Sub
-    -   Rollbacks - if failure the changes get deleted and version rolls back to before failure
-    -   ChangeSets - view changes in stack before it happens
-    -   Nested Stacks - reuse stacks in other stacks example load balancer
-    -   Cross Stacks - Only within same region, helpful when stacks have different lifecycles, use Export and Import
-        -   Fn::ImportValue - returns value of an output exported by another stack
-    -   StackSets - Create, Update, Delete stacks across multiple accounts and regions
-        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)
-
 ## Table of contents
 
 -   [AWS](#aws)
+    -   [Global Infastructure](#global-infastructure)
+    -   [Solution Architect](#solution-architect)
 -   [Services](#services)
     -   [Serverless Computing](#serverless-computing)
 -   [EC2](#ec2)
@@ -121,7 +99,6 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
 -   [Elastic BeanStalk](#elastic-beanstalk)
 -   [SNS + SQS + Kinesis](#SNS-SQS-and-Kinesis)
 -   [Lambda](#lambda)
--   [Global Infastructure](#global-infastructure)
 -   [Networking](#networking)
     -   [Network ACL](#network-acl)
     -   [DNS](#dns)
@@ -139,8 +116,11 @@ Serverless services include: AWS Lambda, AWS Fargate, Amazon SNS, Amazon SQS and
 -   [Support](#support)
 -   [Migration](#migration)
 -   [API gateway](#api-gateway)
--   [Serverless Application Model](#serverless-application-model)
--   [AWS Step Function](#aws-step-functions)
+-   [Code as Config](#code-as-config)
+    -   [Serverless Application Model](#serverless-application-model)
+    -   [Cloud Development Kit](#cloud-development-kit)
+    -   [AWS Step Function](#aws-step-functions)
+        -   [Policy Example](#policy-example)
 
 ## Services
 
@@ -160,7 +140,8 @@ Most services are region scoped
     -   AWS CodeCommit - used for software version control by developers. github clone
         -   Use AWS STS with AssumeRole API to share cross accounts. SSH Keys, Git credentials, AWS access keys, or HTTPS credentials in user profiles. Doesnt support HTTP public access
     -   AWS CodeBuild - continuous integration service allows testing code, jenkins clone
-        -   builds docker images, uses buidspec.yml(placed at root folder) for instructions
+        -   compiles source code, runs unit tests, and produces artifacts. Can build docker images
+        -   Buidspec.yml(placed at root folder) for instructions
         -   by default can't access resources in VPC, CodeBuild is launched outside of VPC
         -   Timeouts - default value is 8 hours, can change it between 5 min - 8 hours.
         -   Deployment - allows more control over deployment compared to Elastic Beanstalk(EBS)
@@ -169,8 +150,13 @@ Most services are region scoped
     -   AWS CodeDeploy - automates code deployment to instances.
         -   Order is Stop Application => Before Install => After Install => Start Application
         -   Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
-        -   Hooks - correspond to lifecycle events such as ApplicationStart, ApplicationStop, etc.
+        -   Appspec.yml - YAML or JSON file for specifying deployment hooks. Placed in the root directory
+            -   ECS - defines `TaskDefinition`, `LoadBalancerInfo`, subnets, security groups,
+            -   Lambda - defines which lambda version to deploy, which lambda version to use as validation tests
+            -   EC2 - used to determine what it should install, what lifecycle event hooks to run in response to deployment lifecycle events.
+        -   Hooks - correspond to lifecycle events such as ApplicationStart, ApplicationStop, ValidateService etc.
         -   Agent - a software package that makes it possible to be used in CodeDeploy
+            ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt2-q56-i1.jpg)
 -   AWS Control Tower - setup baseline environment for scalable and secure workloads
 -   Amazon Detective - easily investigate security findings. Collects data from AWS resources and uses machine learning on data
 -   AWS Glue - data transformation tool that Extracts, Transforms, and Load service
@@ -195,6 +181,7 @@ Most services are region scoped
             -   Binpack - places task on instance with least available cpu/memory. cost savings
             -   Random
             -   Spread - Evenly spread task
+    -   Dynamic Port Mapping - allows multiple tasks from a single service on the same container instance. ECS manages registering and deregistering containers using instance ID and port for each container.
     -   If you terminate an instance while in STOPPED state that may lead to synchronization issues, isnt automatically removed from cluster.
     -   ECR (Elastic Container Registry) - store images, make sure IAM permissions are set "ecr:GetAuthorizationToken" to authenticate to a registry.
     -   Start Docker container
@@ -227,15 +214,20 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Storage Optimized - Data warehousing or high read and write performance
 -   Pricing:
 
-        -   On Demand - always available
-        -   EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
-        -   Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
-            -   Standard RI - Most significant discount 72%
-            -   Convertible RI - change attributes as long as its an even exchange discount 54%
-        -   Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
-        -   Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
-        -   Dedicated Host - Fully dedicated to one host
-            ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
+    -   On Demand - always available
+    -   EC2 Savings Plan - Ideal for workloads that require consistent compute usage 1 year or 3 year terms. 72% savings
+    -   Reserved Instance - Billing discount applied to On Demand instance with 1 year or 3 year renewal
+        -   Standard RI - Most significant discount 72%
+        -   Convertible RI - change attributes as long as its an even exchange discount 54%
+        -   Locations
+            -   Regional Reserved Instances - Does not provide capacity reservation.
+            -   Zonal Reserved Instances - provides capacity in the specified availability zone. Abilitty to create and manage Capacity Reservations independently from billing discounts offered by Savings Plans or regional Reserved Instances
+    -   Spot Instance - Ideal for flexible workloads or one that can withstand interruptions. 90% savings
+        -   Instances can be Stopped, Hibernated, Terminated BUT NOT REBOOTED.
+    -   On-Demand Capacity Reservations -reserve compute capacity in an Availability Zone for any duration. Managed independently from Savings Plans or Regional Reserved Instances.
+    -   Dedicated Instance - Instance running on dedicated hardware but may share hardware with other instances in same account.
+    -   Dedicated Host - Fully dedicated to one host
+        ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q21-i1.jpg)
 
     <br><br>
 
@@ -307,7 +299,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
     -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
     -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`. Resources defined in ebextensions will get deleted on termination.
-        -   To decouple application like a persistent Database, define externally and reference through environment variables
+        -   Yaml or JSON formatted files
+        -   To decouple application like a persistent Database or configure your environment, define externally and reference through environment variables
+            <br>
+            `option_settings: aws:elasticbeanstalk:environment: LoadBalancerType: network`
             ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q10-i1.jpg)
 
 [EBS Samples](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html)
@@ -331,7 +326,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Delay Queue - default is 0 seconds but can be up to 15 minutes
     -   Long Polling - Pull requests to SQS Queue, decreases API calls and increases efficiency. "WaitTimeSeconds" Between 1 - 20 seconds.
     -   Security - can encrypt messages in queues using AWS KMS(Key Management Service)
-    -   Delete - When you delete a que all the messages are no longer available. Can take up to 60 seconds. 
+    -   Delete - When you delete a que all the messages are no longer available. Can take up to 60 seconds.
 
 -   Kinesis - collect, process, and analyze streaming data such as Application logs, Metrics, and telemetry data. Meant for real time big data. Group data into shards using a partition key.
     -   Kinesis Data Streams - scaled with shards. Retention between 1 day(default) to 365. Manage scaling thru shard splitting or shard merging.
@@ -352,7 +347,6 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   from 128mb - 10gb (64mb increments), at 1792mb you get more than one CPU and need to use multi-threading
     -   Execution time ranging from 1 sec - 15 minutes
     -   /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb.
-    -   up to 1000 concurrent executions, can be throttled with reserved concurrency
     -   Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
     -   Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
     -   Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases. Can be wieghted to distribute and test features between versions
@@ -377,17 +371,24 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             -   \_X_AMZN_TRACE_ID: contains the tracing header
             -   AWS_XRAY_CONTEXT_MISSING: by default, Log_Error
             -   AWS_XRAY_DAEMON_ADDRESS: the x ray daemon IP port
+-   Lambda Container Images - Can package lambda function code and dependencies as a container image using Docker. Image sizes up to 10GB in size.
+    -   Container image must use Lambda Runtime API and Lambda functions must be created from the same account as the ECR.
+    -   /tmp directory - temp storage with 512mb of storage
 -   Networking
     -   By default the Lambda function is launched in its own VPC and can't access resources or internet unless defined,
     -   ENI(Elastic Network Interface) allows it to interact with VPC
     -   Deploying lambda function in a private subnet with NAT Gateway/Instance gives it internet access. Can also use VPC endpoints to privately access AWS Services without a NAT
         ![](https://media.datacumulus.com/aws-dva-pt/assets/pt3-q39-i1.jpg)
+-   Scaling - Concurrency is the number of requests that a Lambda function is serving at any given time. If a lambda function is invoked while a request is still being processed nother instance is allocated and functions concurrency is increased. Can cause a portion of requests that are served by new instances to have a higher latency.
+    -   up to 1000 concurrent executions, can be throttled with reserved concurrency
+    -   Provisioned Concurrency - ensures all requests are served by initialized instances with low latency, used before an increase in invocations. Can use Application Auto Scaling to increase on schedule or based on utilization(use Application Auto Scaling API to register a target to create a scaling policy).
+    -   Reserved Concurrency - When a function has reserved concurrency no other function can use that concurrency. Limits the maximum concurrency for the function (can't configure on a schedule)
 
 ---
 
 ## Networking
 
-Public and private subnets in a VPC can communicate with each other
+Public and private subnets in a VPC can communicate with each other. A subnet can only be associated with one route table at a time.
 
 -   VPC - Virtual Private Cloud is a regional resource, can organize resources into subnets which are availability zone resources
     -   Internet Gateway - attach an internet gateway to a vpc to connect to the internet. Public subnets have a route to the internet gateway
@@ -397,7 +398,7 @@ Public and private subnets in a VPC can communicate with each other
         -   VPC Endpoints Gateway - only for S3 and DynamoDB allow you to connect to AWS using a private network instead of wwww
         -   VPC Endpoint Interface(ENI) - the rest of the services
     -   VPC Peering - connects two VPC privately with AWS network, must be established in each VPC
-    -   VPC Flow Logs - captures information about IP traffic to VPC, Subnet, Elastic Network Interface(ENI). Sent to S3 or Cloudwatch logs for storage
+    -   VPC Flow Logs - captures information about IP traffic to VPC, Subnet, Elastic Network Interface(ENI). Sent to S3 or Cloudwatch logs for storage. Can be used on VPC, subnet, or Network Interface to review IP traffic going to and from.
 -   VPG - Virtual Private Gateway / VPN
     -   AWS Client VPN
     -   AWS site-to-site VPN - uses IPSec to establish connection between on premise and AWS. Over internet
@@ -461,8 +462,11 @@ Lifecycle policies move data around to different storage classes based on time <
     -   Cannot be attached to multiple compute resources at a time. Free tier offers 30gb per month
     -   Types
         -   GP2/GP3: General Purpose SSD. 1tb - 16tb
+            -   Burst up to 3,000 IOPS and a max of 16,000 IOPS achieved at 5.3Tb
         -   IO1/IO2: High performance SSD for low latency and high throughput. Need more than 16,000 IOPS. 4gb - 16tb
-            -   Can be attached to multiple EC@ instances in the same AZ
+            -   Can be attached to multiple EC2 instances in the same AZ
+            -   Maximum ratio of provisioned IOPS to requested Volume Size(in Gb) is 50:1.
+                -   Example: for a 200Gb volume, max IOPS possible is 200 \* 50 = 10,000 IOPS
         -   ST1: Low Cost HDD designed for frequently accessed. Data Warehouse. Can't be a boot volume. 125mb - 16tb
         -   SC1: Low cost HDD less frequently accessed workloads
     -   Security - supports both in flight encryption and at rest using KMS
@@ -580,9 +584,12 @@ Objects = files and buckets = directories
             -   DeleteTable
         -   read
             -   GetItem - read based on primary key
-        -   batching - reduces # of API calls
+        -   batching - reduces # of API calls. It is possible that only some of the actions in the batch succeed while others do not.
             -   BatchWriteItem - up to 25 in one call, up to 16mb of data written, up to 400kb of data per item. If batched items fail we need to use exponential back-off algorithm
             -   BatchGetItem - up to 100 items, up to 16mb of data
+        -   Transactions - CRUD operations for multiple rows in different tables. if one update fails they all fail
+            -   capacity - consumes 2x WCU RCU
+            -   TransactWriteItems/TransactGetItems - Transactions alloww to group multiple actions together and submit them as a single all or nothing operation.
         -   query - returns items based on filter or value. up to 1mb of data
         -   scan - scans the entire table and filters out data(inefficient)
     -   DAX - DynamoDB Accelerator, low latency cache with 5 minutes TTL for cache by default
@@ -594,8 +601,9 @@ Objects = files and buckets = directories
         -   --page-size - full dataset received but each API call will request less data
         -   --max-items - max # of results
         -   --starting-token - dictates where to start
-    -   Transactions - CRUD operations for multiple rowa in different tables. if one update fails they all fail
-        -   capacity - consumes 2x WCU RCU
+    -   Backup - writes to S3 buckets but can't be used by users. To create backups that you can download or use in another AWS service use AWS Data Pipeline, Amazon EMR, or AWS Glue
+        -   On-Demand - Create backsup when you want
+        -   Point in Time - Enable automatic, continuous backups
 
 ---
 
@@ -703,14 +711,14 @@ Follow best practice of giving least privilages
 
 -   Cloudwatch - Focuses on the activity of AWS services and resources, reporting on their health and performance. Security repositry with threat analytics and metrics.
     -   Metrics -
-        -   Basic Monitoring - metrics every 5 mins
-        -   Detailed Monitoring - metrics every 1 min
+        -   Basic Monitoring - metrics every 5 mins, enabled by default using AWS Management Console
+        -   Detailed Monitoring - metrics every 1 min, enabled by default using CLI or SDK
         -   High Resolution - metrics every 1 second, alarm can be triggered as often as 10 seconds
     -   Logs - Can go to S3 for archival, stream to ElasticSearch. By default no logs from EC2 will go to CloudWatch. Can be setup on premise also. Never expire by default
         -   Cloudwatch Logs Agent - old version of agent, can only send CloudWatch logs
         -   CloudWatch Unified Agent - Can collect additional metrics like ram etc.
     -   Events - send notifications can schedule on a CRON or event pattern.
-        -   EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc
+        -   EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc. Use when you need to integrate with 3rd party SaaS applications.
     -   Alarm - triggers notifications for any metric
 -   Cloudtrail - Log of all actions and API calls taking place in AWS by a user, role, or an AWS Service.
 -   AWS Config - continually audit, monitor for compliance, or vulnerabilities in AWS.Helps with compliance auditing, security analysis, change management, and troubleshooting.
@@ -725,6 +733,25 @@ Follow best practice of giving least privilages
     -   If not working in:
         -   EC2 ensure IAM role has proper permissions and daemon running. The X-Ray daemon uses the instances profile role automatically.
         -   AWS Lambda ensure IAM role has IAM execution role and X-ray is imported into code
+        -   Example of write permissions for X-Ray via IAM policy: <br>
+        ```
+            {
+                "Version": "2012-10-17"
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": [
+                            "xray:PutTraceSegments",
+                            "xray:PutTelemetryRecords",
+                            "xray:GetSamplingRules",
+                            "xray:GetSamplingTargets",
+                            "xray:GetSamplingStatisticSummaries"
+                        ],
+                        "Resource": ["*"]
+                    }
+                ]
+            }
+        ```
 
 | CloudWatch                                          | CloudTrail                          | Config                                           |
 | --------------------------------------------------- | ----------------------------------- | ------------------------------------------------ |
@@ -820,7 +847,7 @@ Follow best practice of giving least privilages
 -   Caching - reduces # of calls made to API, Default TTL is 300 seconds but max is 3600s. Capacity between .5gb to 237gb. expensive so used mainly in production
 -   Usage Plans & Api Keys - use Api keys to identify clients and meter access, how much and how fast they can call api. can throttle and add quota
 -   CloudWatch - metrics are by stage
--   Security
+-   Security - controlling and managing access to REST API 
     -   Resource Policies / IAM - JSON similar to Lambda Resource policy, Allow for access and security. Great for users and role already in AWS
     -   Cognito User Pools - API gateway automatically verifies using AWS Cognito
     -   Lambda Authorizer / Custom Auth - token based auth OAuth or SAML, great for 3rd party
@@ -829,14 +856,49 @@ Follow best practice of giving least privilages
 
 ## Code as Config
 
+-   AWS CloudFormation - is a Yaml based tool used to define resources, infastructure as code. Uploads templates into S3
+    -   [AWS Resorces, all 224](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) represent different AWS components
+    -   Parameters - provide inputs for templates
+        -   Ref, YAML shorthand !Ref can call Parameters and Resources
+        -   Fn::GetAtt - returns the value of an attribute from a resource in the template
+        -   bootstrapped from filepath example location "/etc/ecs/ecs.config"
+        -   Parameters Supported:
+            -   String
+            -   Number
+            -   List<number> - Array of integers or floats
+            -   CommaDelimitedList - array of literal strings seperated by commas
+            -   AWS::EC2::KeyPair::KeyName - Amazon Ec2 Key pair name
+            -   AWS::EC2::SecurityGroup::Id - Security group ID
+            -   AWS::EC2::Subnet::Id - subnet Id
+            -   AWS::EC2::VPC::Id - VPC ID
+    -   Resources - describes resources that you want to provision, can associate with conditions
+    -   Mappings - hardcoded values, handy for dev vs prod or AWS regions etc
+        -   Fn::FindInMap
+    -   Outputs - optional values that can be imported into other stacks.example outputting variables like VPC ID or Subnet ID. Exported output values must have unique names within a single region.
+        -   Need to be exported and imported using Fn::ImportValue
+    -   Conditions, can't be used with Parameters
+        -   Fn::If / Fn::Not / Fn::Equals etc
+    -   Other Functions
+        -   Fn::Join
+        -   Fn::Sub
+    -   Drift Detection - detects if a stacks configuration differs, has drifted from expected configuration.
+    -   Rollbacks - if failure the changes get deleted and version rolls back to before failure
+    -   ChangeSets - view changes in stack before it happens
+    -   Nested Stacks - reuse stacks in other stacks example load balancer
+    -   Cross Stacks - Only within same region, helpful when stacks have different lifecycles, use Export and Import
+        -   Fn::ImportValue - returns value of an output exported by another stack
+    -   StackSets - Create, Update, Delete stacks across multiple accounts and regions
+        ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q3-i1.jpg)
+
 ### Serverless Application Model
 
-Defines infastructure in a template. Enables teams to store and share reusable applications and assemble and deploy serverless architecture. No need to clone, build, package, or publish source code to AWS before deploying it.
+Defines infastructure in a template. Combination of Lambda functions, event sources, and other resources(API, Database, Event Source Mapping) that work together to perform tasks. Enables teams to store and share reusable applications and assemble and deploy serverless architecture. No need to clone, build, package, or publish source code to AWS before deploying it.
 
 -   Yaml Code that is built on CloudFormations and can use CodeDeploy to deploy lambda functions.
 -   Structure - requires transform and resources
-    -   Transform Header - indicates its SAM template "Transform: 'AWS::Serverless-2016-10-31'"
-    -   Write Code
+    -   Transform Header (required) - indicates its SAM template "Transform: 'AWS::Serverless-2016-10-31'"
+    -   Accepts: Global, Description, Metadata, Parameters, Mappings, Conditions, Resources, Outputs
+    -   Globals (optional)
         -   AWS::Serverless::Api - creates a collection of Amazon API gateway resources and methods that can be invoked through HTTPS endpoints.
         -   AWS::Serverless:: Application
         -   AWS::Serverless::Function - creates a Lambda function
@@ -844,6 +906,7 @@ Defines infastructure in a template. Enables teams to store and share reusable a
         -   AWS:: Serverless::LayerVersion
         -   AWS::Serverless::SimpleTable - Creates a DynamoDB table with a single attribute primary key.
         -   AWS::Serverless::StateMachine
+    -   Resources (required) - specifies the resources such as EC2 or S3.
     -   Package and Deploy
         -   AWS cloudformation package
         -   AWS cloudformation deploy
@@ -866,9 +929,22 @@ AWS CDK used to define resources using programming languages and cloudformation.
 
 ### AWS Step Functions
 
+Serverless function orchestrator. Can create multi step proccesses using Lambda Functions for each step in the proccess to create a workflow. Handles state, checkpoints, restarts.
+
 -   Written in JSON Used to model workflows. Start workflow with SDK, API Gateway, Event Bridge
     -   Standard Workflows - max duration 1 year, 2000/second. exaclty one workflow
     -   Express Workflows - max duration 5 minutes 100,000/second. at least once workflow
+
+Task Example in step formation, example is of a single task. Can use different types such as `Wait`, `Fail`, etc.
+
+```
+"HelloWorld": {
+    "Type": "Task",
+    "Resource": "arn:aws:lambda:use-east-1:12345:function:HelloFunction",
+    "Next": "AfterHelloWorldState",
+    "Comment": "Run the HelloWorld Lambda function"
+}
+```
 
 #### Policy Example
 
