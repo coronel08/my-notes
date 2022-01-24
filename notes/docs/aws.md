@@ -6,6 +6,12 @@ Horizontal Scaling = adding several smaller instances when workloads increase
 
 Can work with AWS through AWS Management Console, CLI, or SDK
 
+-   AWS CLI
+    -   CLI Pagination
+        -   `--page-size` -
+        -   `--max-items` -
+        -   `--starting-token` -
+
 ## Global Infastracture
 
 Regions are geographically isolated areas and are made up of smaller availability zones/ data centers, Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets. Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
@@ -134,8 +140,7 @@ Most services are region scoped
         -   OPENID_CONNECT:
         -   AMAZON_COGNITO_USER_POOLS:
 -   AWS Budgets - Lets customers set custom budgets and receive alerts on costs, requires approximately 5 weeks of usage data to generate budget forecasts.
--   AWS Certificate Manager (ACM) - provision, manage and deploy certificates(public or private) for https
--   AWS CloudHSM - security model that lets you use your own encryption keys
+-   AWS CodeStar - JIRA clone. Provides a unified user interface, allows managing software development activities in one place. Comes with a project management dashboard that allows isssue tracking.
 -   AWS CodePipeline - Full CI build for AWS, Codestar is a wrapper that groups everything into one. Can add approval action to a stage. Creates a Cloudwatch Events Rule on change that starts Pipeline
     -   AWS CodeCommit - used for software version control by developers. github clone
         -   Use AWS STS with AssumeRole API to share cross accounts. SSH Keys, Git credentials, AWS access keys, or HTTPS credentials in user profiles. Doesnt support HTTP public access
@@ -152,7 +157,7 @@ Most services are region scoped
     -   AWS CodeDeploy - automates code deployment to instances.
         -   Order is Stop Application => Download Bundle => Before Install => After Install => Start Application => Validate Service (Validate Service always runs last)
         -   Deployment Groups - contains settings and configurations used during deployment such as rollbacks, triggers, and alarms
-        -   Appspec.yml - YAML or JSON file for specifying deployment hooks. Placed in the root directory
+        -   Appspec.yml - YAML or JSON file for specifying deployment hooks like integrating to Lambda. Placed in the root directory
             -   ECS - defines `TaskDefinition`, `LoadBalancerInfo`, subnets, security groups,
             -   Lambda - defines which lambda version to deploy, which lambda version to use as validation tests
             -   EC2 - used to determine what it should install, what lifecycle event hooks to run in response to deployment lifecycle events.
@@ -160,11 +165,8 @@ Most services are region scoped
         -   Agent - a software package that makes it possible to be used in CodeDeploy
             ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt2-q56-i1.jpg)
 -   AWS Control Tower - setup baseline environment for scalable and secure workloads
--   Amazon Detective - easily investigate security findings. Collects data from AWS resources and uses machine learning on data
 -   AWS Glue - data transformation tool that Extracts, Transforms, and Load service
--   Amazon GuardDuty - threat detection that continously monitors accounts and workloads for mailicious activity and unauthorized behavior, gets data from CloudTrail events, VPC flow logs, DNS logs.
 -   Amazon Elastisearch - Operational Analytics
--   Amazon Macie - data security and data privacy service that uses machine learning to automatically protect data. Available to protect data on S3. Common use case is discovering relevant data fields collected by Macie and turning those fields into custom alerts.
 -   AWS Professional Services - team of experts that help set up desired business on AWS
 -   Amazon Quicksight - Business Intelligence tool, Dashboards and Visualizations
 -   AWS Service Limits or Service Quotas - can use AWS Trusted Advisors Service Limit dashboard to monitor. Can be increased by contacting Amazon. Applied to AWS account level
@@ -192,6 +194,7 @@ Most services are region scoped
 -   EFS (Elastic File Storage)
 -   EKS (Elastic Kubernetes Service) -
 -   Fargate - Works with both ECS and EKS, its a container engine
+    - Launching 2 containers in a single task definition allows the two containers to share resources, lifecycle, and volumes.
 -   DynamoDB & Aurora
 -   API Gateway
 -   SNS, SQS, AWS App Sync, Amazon Event Bridge
@@ -251,6 +254,7 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 -   Scaling:
 
     -   EC2 Auto Scaling - Auto optimizes servers and instances to meet needs, can set min, desired, and max. Cannot span multiple Regions but can span availability zones in 1 region.
+        - Works with Application Load Balancers and Network Load Balancers
         -   By default health check configurations of auto scaling groups are set to EC2, to automate the replacement of unhealthy instances change from EC2 to ELB
         -   Cannot add a volume to an existing instance if the existing volume is approaching capacity. A volume is attached to a new instance when it is added
         -   Auto Scaling groups in a vpc launches the EC2 instances in subnets
@@ -286,6 +290,11 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
             -   Step Scaling - Increase or decrease based on scaling adjustments that vary by alarm breach. Cloudwatch alarms trigger the scaling process.
             -   Simple Scaling - Increase or decrease based on a single scaling adjustment
             -   Scheduled Actions - Schedule adjustments based on patterns and time
+    -   Errors
+        -   503 - Service Unavailable, target group has no registered targets
+        -   500 - Internal Server,
+        -   504 - Gateway Timeout, target in ALB is not responding
+        -   403 - Forbidden, web ACL monitoring requests to ALB and it blocked requests
 
 ---
 
@@ -299,11 +308,19 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
         -   Immutable - spins new instances in ASG, deploys to these and then swaps instances
         -   Traffic Splitting / Canary Testing - Only small % of traffic sent to new version to test for failures
         -   Blue Green - manual swap of URL's thru Route 53, better for minimum downtime and ability to rollback quickly
-    -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
+    -   Platforms
+        -   Custom Platform - more advanced customization. Can customize OS, software, and scripts.
+        -   Docker Single-Container platform - single container platform that allows you to define your stack and create an image.
+        -   Docker Multi-Container platform - Can run multiple containers on each instance and create an image.
+    -   Versioning
+        -   If Deployment fails when upgrading version, they get replaced with most recent successful deployment.
+        -   Each new version of your application creates an application version.
+            -   LifeCycle Policy - Tells Elastic BeanStalk to delete old application versions
     -   Environments - Can create and manage separate environments for development, testing, and production. Can save configurations and recreate them later.
     -   cron.yaml - defines periodic tasks like adding jobs to worker environments queue automatically at a regular interval.
     -   Beanstalk Extensions - zip file with .ebextensions/ directory and extensions ending in .config like `.ebextensions/<mysettings>.config`. Resources defined in ebextensions will get deleted on termination.
         -   Yaml or JSON formatted files
+        -   Can add a server certificate to the Load Balancer to enable HTTPS between clients and web server. (HTTPS works on Application Load Balancer and Classic Load Balancer)
         -   To decouple application like a persistent Database or configure your environment, define externally and reference through environment variables
             <br>
             `option_settings: aws:elasticbeanstalk:environment: LoadBalancerType: network`
@@ -325,7 +342,13 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 -   SQS -Simple Que Service, send store and receive messages. used to decouple applications. Default retention 4 days, max 14 days. up to 10 messages at a time. Group data by using Group ID. Scales automatically. Max size is 256kb.
 
     -   SQS Extended CLient - used for storing and consuming messages up to 2GB to get around 256KB. Consider using S3 for storage as well.
-    -   Standard Queue vs FIFO queue - Can't change queue type after you create it. At least once delivery. First In => First Out 300 msg/s without batching, 3000 msg/s with.
+    -   Queue - Can't change queue type after you create it.
+        -   Standard Queue - At least once delivery.
+        -   FIFO Queue - Exaclty once processing. First In => First Out 300 msg/s without batching, 3000 msg/s with.
+            -   Parameters
+                -   `MessageDeduplicationId` - prevents duplicates. If a message with an ID is sent succesfully, messages with the same ID are accepted but aren't delivered for 5 mins.
+                -   `MessageGroupId` - Specifies that a message belongs to a group. Messages in a group are processed 1 by 1 in a strict order.
+                -   `ReceiveRequestAttemptId` - Token used for deduplication of ReceiveMessage calls. If error from ReceiveMessage can retry with an identical receiveRequestAttempId.
     -   Message Visibility Timeout - message visibility timeout is 30 seconds by default, max 12 hours, if not processed within the timeout it will be processed twice. Prevents other consumers from receiving and processing the same message.
     -   Dead Letter Queue(DLQ) - set a threshold of how many times the message can go back into the queue. After the threshold the message goes into the DLQ(Dead Letter Queue)
     -   Delay Queue - default is 0 seconds but can be up to 15 minutes
@@ -348,6 +371,9 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Kinesis Data Analytics - SQL application, build sql queries, easiest way to analyze streaming data in real-time. Setup data source stream, write query, and setup destination for processed data.
     -   Kinesis Video Streams -
 
+Kinesis vs SQS
+![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt4-q33-i2.jpg)
+
 ---
 
 ## Lambda
@@ -357,7 +383,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
     -   Execution time ranging from 1 sec - 15 minutes
     -   /tmp directory max size is 512mb, disk space for lambda that is discarded when function stops running. Environment variables size max is 4kb.
         -   Execution Context - temp runtime that initializes any external dependencies such as database connections or HTTP endpoints. Lets subsequent invocations reuse, reduces "cold start". Lambda maintains the execution context for some time in case of reuse.
+    -   Environment Variables - Key Value pair of strings stored in version specific configuration. Retrieved depending on coding language Node Ex: `let region = process.env.AWS_REGION`
+        -   Stage Variables - define configuration attributes associated with a deployment stage of an API
     -   Dependencies - code and dependencies get zipped together and uploaded to Lambda if less than 50mb, else S3 first.
+        -   Lambda layers - zip file archive that contains additional code or data
     -   Versioning - is code + configuration that cant be changed. Versions get their own ARN(Amazon Resource Name) and cant be Changed
     -   Aliases - point to different lambda function versions like "dev", "test". Aliases can't reference other aliases, only Versions. Can be wieghted to distribute and test features between versions
 -   Lambda and CodeDeploy - can automate traffic shifting for lambda aliases either rolling or all at once.
@@ -367,7 +396,6 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
          ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q13-i3.jpg)
 -   Application Load Balancer multi-header values - the load balancer supports values thru query strings in the http address that get turned into json arrays. Application Load Balancers are integrated with lambda with a target group.
 -   lambda @ edge - for deployment alongside CDN using CloudFront, can use lambda to change requests and responses from CloudFront. Can be used to authenticate and authorize users
--   Lambda layers - zip file archive that contains additional code or data
 -   Invoking functions
     -   Synchronous Invocation - result is returned right away
         -   Services:
@@ -400,10 +428,10 @@ EC2 Metadata - Only accesible from inside AWS. URL: http://169.254.169.254/lates
 -   Scaling - Concurrency is the number of requests that a Lambda function is serving at any given time. If a lambda function is invoked while a request is still being processed nother instance is allocated and functions concurrency is increased. Can cause a portion of requests that are served by new instances to have a higher latency.
     -   up to 1000 concurrent executions(can be raised by asking Amazon), can be throttled with reserved concurrency
     -   Provisioned Concurrency - ensures all requests are served by initialized instances with low latency, used before an increase in invocations. Can use Application Auto Scaling to increase on schedule or based on utilization(use Application Auto Scaling API to register a target to create a scaling policy).
-    -   Reserved Concurrency - When a function has reserved concurrency no other function can use that concurrency. Limits the maximum concurrency for the function (can't configure on a schedule. Use when throttling happens, by default there are 900 unreserved concurrencies across all functions in a Region.
+    -   Reserved Concurrency - When a function has reserved concurrency no other function can use that concurrency. Limits the maximum concurrency for the function (can't configure on a schedule. Use when you need to throttle a lambda function, by default there are 900 unreserved concurrencies across all functions in a Region.
 -   CLI
     -   CreateFunction Api - to create a lambda function you need a `deployment package` and an `execution role`.
-        -   Deployment Package
+        -   Deployment Package - creates a lambda function. `AWS::Lambda::Function`
         -   Execution Role - grants the function permission to use AWS services such as Cloudatch and AWS X-Ray for request tracing.
         -   Error / InvalidParameterValueException -returned if one of the params in requests is invalid.
 
@@ -442,6 +470,7 @@ Public and private subnets in a VPC can communicate with each other. A subnet ca
 
 ![](https://assets-pt.media.datacumulus.com/aws-dva-pt/assets/pt1-q34-i1.jpg)
 
+-   AWS Certificate Manager (ACM) - provision, manage and deploy certificates(public or private) for https
 -   Route 53 - Manages Dns records and offer health checks to monitor health and performance.
     -   Most common record routings are:
         -   A: hostname to ipv4 example.com -> 12.3.1.3
@@ -466,6 +495,7 @@ Public and private subnets in a VPC can communicate with each other. A subnet ca
         -   Origin Protocol Policy - Server Policy
     -   Can use infront of an Application Load Balancer
     -   Cloudfront Multiple Origins- Can setup to deliver content from multiple origins.
+        -   Origin Groups - Cloudfront routes all incoming requests to the primary origin even when a previous request failed over to the secondary origin. Cloudfront only sends requests to the secondary origin after a request to the primary origin fails. Also uses secondary origin only when the HTTP method of the viewer request is `GET`, `HEAD`, `OPTIONS`. Two origins are enough to setup a failover.
     -   Global Accelerator - provides 2 static public IP's that act as a fixed entry point. Improves performance of users traffic by using global network infrastructure.
     -   Cloudfront Key Pairs - created by root user, used to create signed URLs or signed cookies. Can only haave two per account
         ![](https://media.datacumulus.com/aws-dva-pt/assets/pt1-q4-i2.jpg)
@@ -538,6 +568,7 @@ Objects = files and buckets = directories
                 -   `x-amz-server-side-encryption-customer-key-MD5`
         -   Client Side Encryption - Client handles encrypt/decrypt and manages keys
             ![](https://media.datacumulus.com/aws-dva-pt/assets/pt5-q55-i1.jpg)
+    -   Versioning - applies to all the objects in the bucket and allow the object to be recovered if deleted. Any files that were unversioned before enbaling versioning will have "null" version ID
     -   S3 Security, (can connect to s3 using VPC Endpoints and logged in AWS Cloudtrail). Cloudtrail tracks bucket level actions by default, need to enable S3 data events to track object level actions.
         -   User Based - IAM Policies sets what Users are allowed to do what API calls
         -   Resource Based
@@ -577,6 +608,7 @@ Objects = files and buckets = directories
     -   Read Replicas - up to 5 Read Replicas, ASYNC so reads are eventually caught up. Cant write to replica. IF AWS in same region you do not pay for data transfers
         -   Cross-Region Read Replicas - ensure availability in case regional avilability issues.
     -   RDS Multi AZ(Disaster Recovery) failover in case of loss
+    -   Scaling - Offers auto-scaling
     -   Backups - Automated backup feature enables point in time recovery and limited to a single AWS Region. Will store for a user-specified retention period (0-35 days).
         -   Multi AZ - backups occur on standby to reduce I/O impact on primary
         -   Multi Regional - manual snapshots and read replicas are supported across multiple Regions.
@@ -606,7 +638,7 @@ Objects = files and buckets = directories
 
 #### DynamoDB
 
--   Amazon DynamoDB - non relational database using key-value pairs. Replication across 3 AZ.
+-   Amazon DynamoDB - non relational database using key-value pairs. Replication across 3 AZ. Can also work multi-Region(can use global tables to specify a region where you want the table to be available at, reducing latency)
     -   Maximum size of an item is 400kb, can store large objects in S3 and send metadata to DynamoDB
     -   Primary Keys
         -   Partition Key only (hash) - must be unique for each item ex: user id
@@ -638,7 +670,7 @@ Objects = files and buckets = directories
             -   TransactWriteItems/TransactGetItems - Transactions alloww to group multiple actions together and submit them as a single all or nothing operation.
         -   query - returns items based on filter or value. up to 1mb of data(efficient)
         -   scan - scans the entire table up to 1mb of data and filters out data(inefficient)
-    -   DAX - DynamoDB Accelerator, low latency cache with 5 minutes TTL for cache by default. Reduces to microseconds (unlike Redis)
+    -   DAX - DynamoDB Accelerator / caching, low latency cache with 5 minutes TTL for cache by default. Reduces to microseconds (unlike Redis)
     -   Streams - changes in DynamoDB can be turned into a stream and read by Lambda and EC2 instances. Made of shards like Kinesis Data Streams. Streams are subject to a 24hr lifetime.
         -   Lambda - uses event source mapping with permissions. Invoked synchronously
         -   StreamViewType - determines what info is written to the stream
@@ -649,7 +681,7 @@ Objects = files and buckets = directories
         -   Parallel Scans - can scan large tables or indexes with multiple application worker threads scanning the segments in parallel.
     -   CLI
         -   --projection-expression - attributes to retrieve
-        -   --filter-expression - filter results from a query, applied after a query finishes but before results are returned. max 1mb of data
+        -   --filter-expression - filter results from a query, applied after a query finishes but before results are returned meaning it will consume the same amount of read capacity. max 1mb of data
         -   --condition-expressions - used to determine which items should be modified for data manipulation operations
         -   --page-size - full dataset received but each API call will request less data
         -   --max-items - max # of results
@@ -673,8 +705,11 @@ Root Account user can use MFA authentication such as (not sms, but other IAM use
 Follow best practice of giving least privilages
 
 -   AWS Artifcat - Security and Compliance reports
--   AWS Shield - DDOS protection service offered in standard or advanced. Layer 3 and 4 protection. Integrates with Route53, Cloudfront, Elastic Load Balancer(ELB).
+-   Amazon Detective - easily investigate security findings. Collects data from AWS resources and uses machine learning on data
+-   AWS Inspector - Automated security assessment service that helps improve the security and compliance of EC2 instances.
+-   Amazon GuardDuty - threat detection that continously monitors accounts and workloads for mailicious activity and unauthorized behavior, gets data from CloudTrail events, VPC flow logs, DNS logs.
 -   AWS Key Management Service (KMS) - to create and control encryption keys used to encrypt data such as EBS volumes. Audit key usage using CloudTrail. KMS stores the CMK and receives data from the clients, which it encrypts and sends back.
+    -   AWS CloudHSM - security model that lets you use your own encryption keys
     -   Symmetric vs Asymmetric key - Symetric key is one key used encrypt and decrypt while an Asymmetric Key gives public and private keys.
     -   Customer Master Key (CMK) - symmetric (AES-256 keys), never get access to the key. Includes metadata such as key ID, creation date, description, and key state. Contains the key material used to encrypt and decrypt data.
         -   AWS Managed Service Default CMK - Free
@@ -686,15 +721,16 @@ Follow best practice of giving least privilages
         -   Custom KMS Key Policy - define users and roles that can access the keys. Useful for cross account access
     -   Envelope Encryption - anything over 4kb needs to be encrypted using Envelope Encryption, using GenerateDataKey API
         -   Encrypts plaintext data with a data key and then encrypts the data key under another key.
--   AWS Web Application Firewall (WAF) - Used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront, API Gateway, or Load Balancer. Pricing based on how many rules you deploy and traffic.
-    -   Regular Rules - filters => condition => rules => Web Access Control List(ACL).
-    -   Rate-based Rules - requests will be blocked as it crosses rate based limit. Rate is calculated every 5 minutes.
--   AWS Inspector - Automated security assessment service that helps improve the security and compliance of EC2 instances.
+-   Amazon Macie - data security and data privacy service that uses machine learning to automatically protect data. Available to protect data on S3. Common use case is discovering relevant data fields collected by Macie and turning those fields into custom alerts.
+-   AWS Shield - DDOS protection service offered in standard or advanced. Layer 3 and 4 protection. Integrates with Route53, Cloudfront, Elastic Load Balancer(ELB).
 -   SSM Parameter Store - store configuration and secrets encrypted by KMS. Configured using path and IAM policies. Integrates with CloudWatch and Cloudformation. Doesn't automatically rotate the database credential
     -   Use Case: store database connection strings or other secret codes when you have already authenticated to AWS. Uses SDK to access paramter store.
     -   SecureString - plain text parameter name with an encrypted value. only uses one call to get
 -   AWS Secrets Manager - force rotation of secrets every X days. Secrets are encrypted using KMS. Integrate with RDS, RedShift, and DocumentDB. More expensive than SSM Parameter Store. Can't be used for encrypting data at rest.
     -   Used for Database Credentials, API Keys, other secrets throughout their lifecycle. Can't be used with Server-Side Encryption.
+-   AWS Web Application Firewall (WAF) - Used to monitor HTTP and HTTPS requests that are forwarded to Amazon CloudFront, API Gateway, or Load Balancer. Pricing based on how many rules you deploy and traffic.
+    -   Regular Rules - filters => condition => rules => Web Access Control List(ACL).
+    -   Rate-based Rules - requests will be blocked as it crosses rate based limit. Rate is calculated every 5 minutes.
 
 ### IAM
 
@@ -774,8 +810,10 @@ Follow best practice of giving least privilages
     -   Logs - Can go to S3 for archival, stream to ElasticSearch. By default no logs from EC2 will go to CloudWatch. Can be setup on premise also. Never expire by default
         -   Cloudwatch Logs Agent - old version of agent, can only send CloudWatch logs
         -   CloudWatch Unified Agent - Can collect additional metrics like ram etc.
-    -   Events - send notifications can schedule on a CRON or event pattern.
+    -   CloudWatch Events - near real-time stream of system events. send notifications can schedule on a CRON or event pattern.
         -   EventBridge - evolution of Cloudwatch events, can work with Zendesk, DataDog, Etc. Use when you need to integrate with 3rd party SaaS applications.
+        -   Rules - Matches incoming events and routes them to targets for processing
+        -   Targets - A target processes events in JSON format such as Lambda, Kinsesi Streams, ECS Tasks, Step Function, SNS/SQS,
     -   CloudWatch Alarm - triggers notifications for any metric, sent to an SNS or auto scaling policy. Alarms work together with CloudWatch Metrics.
         -   Period - Length of time to evaluate the metric or expression. Ex: one minute as period sends data every minute.
         -   Evaluation Period - number of most recent periods or data points to evaluate when determining alarm state.
@@ -918,6 +956,31 @@ Follow best practice of giving least privilages
     -   Resource Policies / IAM - JSON similar to Lambda Resource policy, Allow for access and security. Great for users and role already in AWS
     -   Cognito User Pools - API gateway automatically verifies using AWS Cognito
     -   Lambda Authorizer / Custom Auth - token based auth OAuth or SAML, great for 3rd party
+-   HTTP vs API
+
+| Integration   | HTTP API | REST API |
+| :------------ | :------: | -------: |
+| HTTP Endpoint |    X     |        X |
+| Lambda        |    X     |        X |
+| AWS Services  |    X     |        X |
+| ALB           |    X     |          |
+| NLB           |    X     |        X |
+| AWS CloudMap  |    X     |        X |
+| Mock          |          |        X |
+
+| Authorizers | HTTP API | REST API |
+| :---------- | :------: | -------: |
+| Lambda      |    X     |        X |
+| IAM         |    X     |        X |
+| Cognito     |    X     |        X |
+| Oauth 2.0   |    X     |          |
+
+| Security          | HTTP API | REST API |
+| :---------------- | :------: | -------: |
+| TLS               |    X     |        X |
+| Certs             |          |        X |
+| AWS WAF           |          |        X |
+| Resource Policies |          |        X |
 
 ---
 
@@ -967,14 +1030,14 @@ Defines infastructure in a template. Combination of Lambda functions, event sour
     -   Accepts: Global, Description, Metadata, Parameters, Mappings, Conditions, Resources, Outputs
     -   Globals (optional)
         -   AWS::Serverless::Api - creates a collection of Amazon API gateway resources and methods that can be invoked through HTTPS endpoints.
-        -   AWS::Serverless:: Application
+        -   AWS::Serverless::Application
         -   AWS::Serverless::Function - creates a Lambda function
         -   AWS::Serverless::HttpApi
         -   AWS:: Serverless::LayerVersion
         -   AWS::Serverless::SimpleTable - Creates a DynamoDB table with a single attribute primary key.
         -   AWS::Serverless::StateMachine
     -   Resources (required) - specifies the resources such as EC2 or S3.
-    -   Package and Deploy
+    -   Package and Deploy. Deploy zips artifacts and uploads them to S3
         -   AWS cloudformation package
         -   AWS cloudformation deploy
 -   Policy Templates - adds permission to lambda
