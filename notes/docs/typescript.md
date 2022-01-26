@@ -68,6 +68,7 @@ printVehicle(oldCivic)
         -   `"watch":true` - watches and compiles file on changes
         -   `"lib": ["dom","es2017"]` - allows to use native dom classes
 -   tsc {{file}} - compiles file
+-   npx create-react-app . --template typescript
 
 ## Syntax
 
@@ -93,7 +94,7 @@ printVehicle(oldCivic)
         -   mixed array `const importantDates: (Date | string)[] = [new Date()]`
     -   tupples `const pepsi: [string, boolean, number] = ["brown", true, 40]`
         -   tupple array - `let employee: [number, string][]` and `employee = [[1,"Brad"], [2, "John"],]`
-    -   Classes
+    -   Classes - A blueprint to create an object with some fields(values) and methods(functions)
 
     ```
     class Person{
@@ -103,6 +104,10 @@ printVehicle(oldCivic)
         constructor(id:number, name:string){
             this.id = id
             this.name = name
+        }
+
+        callName(): void {
+            console.log(`Hello from ${this.name}`)
         }
     }
 
