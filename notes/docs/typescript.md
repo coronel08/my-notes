@@ -27,35 +27,36 @@
     -   typeof - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
     -   instanceof - every other value tht is created with a constructor function
     -   Bad design pattern used as just an exmaple
-        ```
-        class Sorter{
-            constructor(public collection:number[] | string){}
 
-            sort(): void{
-                <!-- Can be refractored into const {length} = this.collection -->
-                const length = this.collection.length;
+```
+class Sorter{
+    constructor(public collection:number[] | string){}
 
-                for(let i=0; i < length; i++){
-                    for (let j=0; j < length -i - 1; j++){
-                        <!-- Use Type Guard Check if collection is an Array -->
-                        if(this.collection is instanceof Array){
-                            if(this.collection[j] > this.collection[j + 1]){
-                                const tempLeft = this.collection[j]
-                                this.collection[j] = this.collection[j + 1]
-                                this.collection[j + 1] = tempLeft
-                            }
-                        }
+    sort(): void{
+        <!-- Can be refractored into const {length} = this.collection -->
+        const length = this.collection.length;
 
-                        if(typeof this.collection === "string"){}
+        for(let i=0; i < length; i++){
+            for (let j=0; j < length -i - 1; j++){
+                <!-- Use Type Guard Check if collection is an Array -->
+                if(this.collection is instanceof Array){
+                    if(this.collection[j] > this.collection[j + 1]){
+                        const tempLeft = this.collection[j]
+                        this.collection[j] = this.collection[j + 1]
+                        this.collection[j + 1] = tempLeft
                     }
                 }
+
+                if(typeof this.collection === "string"){}
             }
         }
+    }
+}
 
-        const sorter = new Sorter([10,2,-5,0])
-        sorter.sort()
-        console.log(sorter.collection)
-        ```
+const sorter = new Sorter([10,2,-5,0])
+sorter.sort()
+console.log(sorter.collection)
+```
 
 ## Table of Contents
 
