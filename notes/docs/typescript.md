@@ -144,18 +144,18 @@ printVehicle(oldCivic)
 
 -   Optional - make a type definition optional, add question mark
 
-    ```
-    interface NumbersInterface {
-        id:number,
-        name:string,
-        age?:number
-    }
+```
+interface NumbersInterface {
+    id:number,
+    name:string,
+    age?:number
+}
 
-    const numbers:NumbersInterface = {
-        id:1,
-        name:"John Doe"
-    }
-    ```
+const numbers:NumbersInterface = {
+    id:1,
+    name:"John Doe"
+}
+```
 
 -   Not Null or Undefined - Make a value not null or undefined by using `!` ex : `console.log(x!.test())`
 
@@ -174,88 +174,88 @@ printVehicle(oldCivic)
             -   private: method can only be called by other methods in this class
             -   protected: method can be called by other methods in this class or by other methods in child classes
 
-            ```
-            class Person{
-                id:number
-                name:string
+```
+class Person{
+    id:number
+    name:string
 
-                constructor(id:number, name:string){
-                    this.id = id
-                    this.name = name
-                }
+    constructor(id:number, name:string){
+        this.id = id
+        this.name = name
+    }
 
-                callName(): void {
-                    console.log(`Hello from ${this.name}`)
-                }
-            }
+    callName(): void {
+        console.log(`Hello from ${this.name}`)
+    }
+}
 
-            let john = new Person(1,"John Doe")
-            ```
+let john = new Person(1,"John Doe")
+```
 
     -   object literal:
 
-        ```
-        let point: {x: number; y:number} = {x:10, y:20}
+```
+let point: {x: number; y:number} = {x:10, y:20}
 
-        <!-- Or the same thing below using a seperate type -->
+<!-- Or the same thing below using a seperate type -->
 
-        type Point = {x:number, y:number}
-        let point:Point = {x:10, y:20}
-        ```
+type Point = {x:number, y:number}
+let point:Point = {x:10, y:20}
+```
 
     -   function
 
         -   No Type Inference on arguments in a function
 
-            ```
-            <!-- Arrow Function -->
-            const logNumber:(i:number) => void = (i:number) => {
-                console.log(i)
-            }
-            <!-- or -->
-            const add = (a:number, b:number):number => {
-                return a + b
-            }
+```
+<!-- Arrow Function -->
+const logNumber:(i:number) => void = (i:number) => {
+    console.log(i)
+}
+<!-- or -->
+const add = (a:number, b:number):number => {
+    return a + b
+}
 
 
-            <!-- Function -->
-            function divide(a:number, b:number): number{
-                return a/b
-            }
-            <!-- Function with destructure -->
-            function printCoord(pt: {x:number, y:number}){
-                console.log("Coordinate x and y value are as follows" + pt.x + py.y)
-            }
-            printCoord({ x:3, y:7})
+<!-- Function -->
+function divide(a:number, b:number): number{
+    return a/b
+}
+<!-- Function with destructure -->
+function printCoord(pt: {x:number, y:number}){
+    console.log("Coordinate x and y value are as follows" + pt.x + py.y)
+}
+printCoord({ x:3, y:7})
 
-            <!-- Anonymous Function -->
-            const multiply = function(a:number, b:number): number{
-                return a * b
-            }
-            ```
+<!-- Anonymous Function -->
+const multiply = function(a:number, b:number): number{
+    return a * b
+}
+```
 
     -   Union/OR `let numberAboveZero: boolean | number = false`;
     -   Literals and Unions - define variables that can have specified values
 
-        ```
-        function printText(s:string, alignment: "left" | "right" | "center" ){
+```
+function printText(s:string, alignment: "left" | "right" | "center" ){
 
-        }
+}
 
-        printText("Hello World", "center")
-        ```
+printText("Hello World", "center")
+```
 
-        -   Literal Inference -
+-   Literal Inference -
 
-            ```
-            <!-- 1. change inference by adding a type assertion -->
-            const req = {url: "https://example.com", method: "GET" as "GET" }
-            handleRequest(req.url, req.method as "GET")
+    ```
+    <!-- 1. change inference by adding a type assertion -->
+    const req = {url: "https://example.com", method: "GET" as "GET" }
+    handleRequest(req.url, req.method as "GET")
 
-            <!-- 2. Use as const to convert the entire object to be type literals  -->
-            const req = {url: "https://example.com" method: "GET"} as const
-            handleRequest(req.url, req.method)
-            ```
+    <!-- 2. Use as const to convert the entire object to be type literals  -->
+    const req = {url: "https://example.com" method: "GET"} as const
+    handleRequest(req.url, req.method)
+    ```
 
 -   Type Inference - Use all the other times, guesses the type
 
