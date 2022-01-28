@@ -245,17 +245,17 @@ function printText(s:string, alignment: "left" | "right" | "center" ){
 printText("Hello World", "center")
 ```
 
--   Literal Inference -
+-   Literal Inference 
 
-    ```
-    <!-- 1. change inference by adding a type assertion -->
-    const req = {url: "https://example.com", method: "GET" as "GET" }
-    handleRequest(req.url, req.method as "GET")
+```
+<!-- 1. change inference by adding a type assertion -->
+const req = {url: "https://example.com", method: "GET" as "GET" }
+handleRequest(req.url, req.method as "GET")
 
-    <!-- 2. Use as const to convert the entire object to be type literals  -->
-    const req = {url: "https://example.com" method: "GET"} as const
-    handleRequest(req.url, req.method)
-    ```
+<!-- 2. Use as const to convert the entire object to be type literals  -->
+const req = {url: "https://example.com" method: "GET"} as const
+handleRequest(req.url, req.method)
+```
 
 -   Type Inference - Use all the other times, guesses the type
 
