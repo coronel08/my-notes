@@ -192,7 +192,7 @@ class Person{
 let john = new Person(1,"John Doe")
 ```
 
-    -   object literal:
+-   object literal:
 
 ```
 let point: {x: number; y:number} = {x:10, y:20}
@@ -203,9 +203,9 @@ type Point = {x:number, y:number}
 let point:Point = {x:10, y:20}
 ```
 
-    -   function
+-   function
 
-        -   No Type Inference on arguments in a function
+    -   No Type Inference on arguments in a function
 
 ```
 <!-- Arrow Function -->
@@ -234,7 +234,7 @@ const multiply = function(a:number, b:number): number{
 }
 ```
 
-    -   Union/OR `let numberAboveZero: boolean | number = false`;
+-   Union/OR `let numberAboveZero: boolean | number = false`;
     -   Literals and Unions - define variables that can have specified values
 
 ```
