@@ -76,58 +76,58 @@ console.log(sorter.collection)
 
     -   Extending a type
 
-        ```
-        type Animal = {
-            name: string
-        }
+```
+type Animal = {
+    name: string
+}
 
-        type Bear = Animal & {
-            honey: boolean
-        }
+type Bear = Animal & {
+    honey: boolean
+}
 
-        const bear = getBear()
-        bear.name
-        bear.honey
+const bear = getBear()
+bear.name
+bear.honey
 
-        <!-- Gets an error when trying to change, says Dupplicate identifier -->
-        type Animal = {
-            name: boolean
-        }
-        ```
+<!-- Gets an error when trying to change, says Dupplicate identifier -->
+type Animal = {
+    name: boolean
+}
+```
 
 -   Interfaces - Creates a new type describing the property names and value types of an object. Can't be used with primitives and unions, best used with Objects.
 
     -   Can extend interfaces and add new fields to an existing interface
 
-        ```
-        interface Vehicle {
-            name: string;
-            year:number;
-            broken: boolean;
-            [key: string]: any      //add any additional property
-        }
+```
+interface Vehicle {
+    name: string;
+    year:number;
+    broken: boolean;
+    [key: string]: any      //add any additional property
+}
 
-        interface SUV extends Vehicle{
-            lifted: boolean;
-        }
+interface SUV extends Vehicle{
+    lifted: boolean;
+}
 
-        <!-- Adding to an existing field -->
-        interface Vehicle {
-            wheels: number;
-        }
+<!-- Adding to an existing field -->
+interface Vehicle {
+    wheels: number;
+}
 
-        const oldCivic = {
-            name: 'civic',
-            year: 1998,
-            broken: true
-        }
+const oldCivic = {
+    name: 'civic',
+    year: 1998,
+    broken: true
+}
 
-        const printVehicle = (vehicle: Vehicle): void => {
-            console.log(vehicle.year)
-        }
+const printVehicle = (vehicle: Vehicle): void => {
+    console.log(vehicle.year)
+}
 
-        printVehicle(oldCivic)
-        ```
+printVehicle(oldCivic)
+```
 
 ## Commands
 
