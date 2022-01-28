@@ -27,7 +27,6 @@
     -   typeof - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
     -   instanceof - every other value tht is created with a constructor function
     -   Bad design pattern used as just an exmaple
-
         ```
         class Sorter{
             constructor(public collection:number[] | string){}
