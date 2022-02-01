@@ -176,6 +176,10 @@ Example of React Navlink and Route. Navlink is used to specify which element is 
 }
 ```
 
+
+### Protected routes
+Using React-Router-Dom [StackOverflow](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6) and [StackOverflow](https://stackoverflow.com/questions/69923420/how-to-use-private-route-in-react-router-domv6)
+
 <br><br>
 
 ---

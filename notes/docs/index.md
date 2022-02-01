@@ -106,6 +106,9 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 -   [Learning Git Interactive](https://learngitbranching.js.org/)
 -   [Conversational Git Blog](http://blog.anvard.org/conversational-git/)
 
+Can change defualt branch from `master` by doing `git config --global init.defaultBranch <name>` to something else like `main`
+Can change current branch name `git branch -m <name>`
+
 Git commands
 
 ```
