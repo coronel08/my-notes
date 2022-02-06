@@ -65,6 +65,8 @@ Can create notifications for issues. go to filters => Issues
 -   [Create a Template Jira Confluence](https://confluence.atlassian.com/doc/create-a-template-296093779.html)
 
 -   Press W key or . key for search dialog to log work can look into 10 ways to Log Work with Tempo,
+    - NBT(Internal) - Use 0 hours billable always. 
+    - RS-1(Meetings/General) - make sure to put a description of what went on  
 
 **Heirarchy of Jira**
 

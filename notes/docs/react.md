@@ -100,7 +100,29 @@ Instead of setting state with this.state in a constructor we can import useState
 [Web Dev Simplified YT](https://www.youtube.com/watch?v=O6P86uwfdR0)
 
 ```
-const [count, setCount] = useState("")
+const [count, setCount] = useState({})
+
+const handleQuantity = (e, id) => {
+    setCount(prevValue => {
+        ...prevValue,
+        [id]: e.target.value
+    })
+}
+```
+
+UseState example of updating an object
+
+```
+    const [formData, setFormData] = useState({ email: "", password: "" })
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+    <input type="email" placeholder="Enter Email" name="email" onChange={handleChange} value={formData.email} required />
 ```
 
 <br><br>
