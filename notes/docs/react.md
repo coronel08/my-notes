@@ -33,6 +33,7 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
     -   [Styling](#styling)
         -   [Inline Styling React](#inline-styling-react)
     -   [Redux](#redux)
+        -   [Redux Toolkit](#redux-toolkit)
     -   [Tutorials](#tutorials)
         -   [Navbar](#navbar)
         -   [Flashcard](#flashcard)
@@ -198,8 +199,8 @@ Example of React Navlink and Route. Navlink is used to specify which element is 
 }
 ```
 
-
 ### Protected routes
+
 Using React-Router-Dom [StackOverflow](https://stackoverflow.com/questions/69080444/react-router-dom-v6-protected-routes) [StackOverflow](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6) and [StackOverflow](https://stackoverflow.com/questions/69923420/how-to-use-private-route-in-react-router-domv6)
 
 <br><br>
@@ -218,8 +219,8 @@ Styled components are inline and can be used to define styles and reusable compo
 ---
 
 ## Redux
-[React hooks instead of redux](https://betterprogramming.pub/10-easy-steps-to-abandon-redux-for-the-remarkable-react-hooks-124916fc634d)
 
+[React hooks instead of redux](https://betterprogramming.pub/10-easy-steps-to-abandon-redux-for-the-remarkable-react-hooks-124916fc634d)
 
 [Redux Getting started](https://redux.js.org/introduction/getting-started)
 [Redux Essentials](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
@@ -237,10 +238,9 @@ npx create-react-app my-app --template redux
 
 Redux setup steps (Global state should go in the Redux store, local state should stay in React components)
 
--   **Setup Redux store**, middleware and thunks, make sure to ```import store from “./store”  ``` in main react file
+-   **Setup Redux store**, middleware and thunks, make sure to `import store from “./store” ` in main react file
     -   `npm install redux redux-thunk` and `npm install --save-dev redux-devtools-extension`
-    -   Import `{Provider} `, **Provider makes Redux store available to any component**  from react-redux and `createStore` from `redux `to reacts `index.js`
-
+    -   Import `{Provider} `, **Provider makes Redux store available to any component** from react-redux and `createStore` from `redux `to reacts `index.js`
 
 ```
 import {createStore, applyMiddleware} from "redux"
@@ -292,10 +292,11 @@ export defualt function taskReducer(store=initialState, action){
 -   Altering State using REDUX
 
     -   **mapStateToProps** or **mapDispatchToProps** - defines access to the store. [Images from Medium Guide](https://medium.com/swlh/how-to-use-redux-with-react-a-step-by-step-guide-1cca75c6397a)
+
         -   mapStateToProps - function takes the store/state and maps it to appState: state
-        ![](../../photos/mapToProps.jpeg)
-        - mapDispatchToProps - function to handle store updates, takes dispatch and returns an object where a function is mapped to the state.
-        ![](../../photos/mapDispatch.jpeg)
+            ![](../../photos/mapToProps.jpeg)
+        -   mapDispatchToProps - function to handle store updates, takes dispatch and returns an object where a function is mapped to the state.
+            ![](../../photos/mapDispatch.jpeg)
 
     -   **UseSelector** redux hook lets our component extract whatever pieces of data it needs from the Redux store state.
         -   Can also initiate state using UseSelector redux hook
@@ -341,6 +342,25 @@ store.dispatch({type: 'counter/decremented'})
 
 console.log(store.getState())
 ```
+
+### Redux Toolkit
+
+A batteries included redux setup [docs](https://redux-toolkit.js.org/)tutorials/quick-start
+
+```
+npm install @reduxjs/toolkit react-redux
+mkdir ./src/app && touch ./src/app/store.js
+```
+
+1. Create an empty redux store in `src/app/store.js`
+2. Import the store file and `Provider` from `react-redux` into `src/index.js` .
+    - Wrap app with `<Provider store={store}> <App/> </Provider>`
+3. Create a Redux State Slice. `src/components/counter/counterSlice.js` and import `createSlice from "@reduxjs/toolkit"`
+    - set initial state, set action reducers to update state,
+4. Add Slice reducers / counterSlice to the store. `src/app/store.js`
+5. Use redux state in component, example `components/counter/Counter.js`
+    - `import{useSelector, useDispatch} from "react-redux"` useSelector to get state, useDispatch to update state
+    - `import {decrement, increment} from "./counterSlice"` importing the actions to use with dispatch to change state
 
 ---
 
