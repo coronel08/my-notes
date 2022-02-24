@@ -4,8 +4,23 @@
     - [Flexbox](https://mui.com/system/flexbox/)
     - [Palette](https://mui.com/system/palette/)
     - [Sizing](https://mui.com/system/sizing/)
+    - [Spacing](https://mui.com/system/spacing/)
     - [Typography](https://mui.com/system/typography/)
 
+
+- Aligning Items / Center Items
+    - `margin-left:auto` `margin-right:auto`
+```
+<Stack direction="row" justifyContent="end">
+    <Button variant="contained"> Item 1 </Button>
+</Stack>
+
+or
+
+<Grid container alignContent="flex-end or justifyContent="flex-end"">
+    <Button> Example </Button>
+</Grid>
+```
 ## Table of Contents
 
 -   [Components](#components)

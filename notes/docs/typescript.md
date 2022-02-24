@@ -22,10 +22,10 @@
 -   Type Annotations - We tell Typescript what type of value a variable will refer to
 -   Type Inference - Typescript tries to figure out what type of value a variable refers to
 -   Type Assertion - use angle brackets or `as` to change a type.
--   Type Guard / Narrowing - Used to restore access to a sett of properties in a union. Can narrow type of value by checking either:
+-   Type Guard / Narrowing - Used to restore access to a set of properties in a union. Can narrow type of value by checking either:
 
     -   typeof - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
-    -   instanceof - every other value tht is created with a constructor function
+    -   instanceof - every other value that is created with a constructor function like an `Array`, `Date`, `Classname`
     -   Bad design pattern used as just an exmaple
 
 ```
@@ -47,7 +47,9 @@ class Sorter{
                     }
                 }
 
-                if(typeof this.collection === "string"){}
+                if(typeof this.collection === "string"){
+                    this.collection.match()
+                }
             }
         }
     }
@@ -96,7 +98,8 @@ type Animal = {
 ```
 
 -   Interfaces - Creates a new type describing the property names and value types of an object. Can't be used with primitives and unions, best used with Objects.
-
+    -   Use when we have very different objects that we want to work together
+    -   Promotes loose coupling
     -   Can extend interfaces and add new fields to an existing interface
 
 ```
@@ -129,6 +132,62 @@ const printVehicle = (vehicle: Vehicle): void => {
 printVehicle(oldCivic)
 ```
 
+-   Inheritance / Abstract Class - Try interfaces first unless different objects are closely related, Can use for classes when you need to inherit the class in another class instead of interfaces. 
+    -   Use when we are trying to build up a definition of an object
+    -   Strongly couples classes together abstraact classes and child classes are fully dependant on each other and dont function without the other. 
+
+```
+// sorter.ts file
+interface Sortable{
+    length: number;
+    compare(leftIndex:number, rightIndex:number): boolean
+    swap(leftIndex:number, rightIndex:number): void
+}
+
+export abstract class Sorter {
+    abstract length: number
+    abstract compare(leftIndex:number, rightIndex:number): boolean
+    abstract swap(leftIndex:number, rightIndex:number): void
+
+    sort():void{
+        const {length} = this
+        
+        for(let i=0; i < length; i++){
+            for(let j=0; j < length -1 -i; j++){
+                if(this.compare(j, j+1)){
+                    this.swap(j, j+1)
+                }
+            }
+        } 
+    }
+}
+
+
+// NumbersCollection.ts
+import {Sorter} from "./Sorter"
+
+export class NumbersCollection extends Sorter{
+    constructor(public data:number[]){
+        super()
+    }
+
+    get length():number{
+        return this.data.length
+    }
+
+    compare(leftIndex:number, rightIndex:number): boolean {
+        return this.data[leftIndex] > this.data[rightIndex]
+    }
+
+    swap(leftIndex:number, rightIndex:number): void{
+        const leftHand = this.data[leftIndex]
+        this.data[leftIndex] = this.data[rightIndex]
+        this.data[rightIndex] = leftHand
+    }
+}
+```
+
+
 ## Commands
 
 -   tsc --init - creates tscondig.json file
@@ -137,6 +196,7 @@ printVehicle(oldCivic)
         -   `"watch":true` - watches and compiles file on changes
         -   `"lib": ["dom","es2017"]` - allows to use native dom classes
 -   tsc {{file}} - compiles file
+-   tsc -w - watches for file changes once config file is there
 -   ts-node {{file}} - runs ts in node
 -   npx create-react-app . --template typescript
 
@@ -234,7 +294,9 @@ const multiply = function(a:number, b:number): number{
 }
 ```
 
--   Union/OR `let numberAboveZero: boolean | number = false`;
+-   Union / OR operator `let numberAboveZero: boolean | number = false`;
+    -   unions allow either of the typed types but will only allow properties that are shared between both.
+        -   Example: a `string | number` union will only allow shared properties like concat, length, indexOf etc.
     -   Literals and Unions - define variables that can have specified values
 
 ```
@@ -245,7 +307,7 @@ function printText(s:string, alignment: "left" | "right" | "center" ){
 printText("Hello World", "center")
 ```
 
--   Literal Inference 
+-   Literal Inference
 
 ```
 <!-- 1. change inference by adding a type assertion -->

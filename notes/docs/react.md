@@ -102,6 +102,7 @@ Instead of setting state with this.state in a constructor we can import useState
 
 ```
 const [count, setCount] = useState({})
+const [searches, setSeatches] = useState([])
 
 const handleQuantity = (e, id) => {
     setCount(prevValue => {
@@ -109,6 +110,8 @@ const handleQuantity = (e, id) => {
         [id]: e.target.value
     })
 }
+
+setSearches(searches => [...searches, query])
 ```
 
 UseState example of updating an object
@@ -202,6 +205,9 @@ Example of React Navlink and Route. Navlink is used to specify which element is 
 ### Protected routes
 
 Using React-Router-Dom [StackOverflow](https://stackoverflow.com/questions/69080444/react-router-dom-v6-protected-routes) [StackOverflow](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6) and [StackOverflow](https://stackoverflow.com/questions/69923420/how-to-use-private-route-in-react-router-domv6)
+
+
+[React Router v5 to v6](https://gist.github.com/mjackson/d54b40a094277b7afdd6b81f51a0393f)
 
 <br><br>
 

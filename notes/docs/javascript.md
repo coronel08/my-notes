@@ -78,23 +78,63 @@ const fitBitData = {
         goal : 160
     }
 }
-console.log(fitBitData.steps)
+console.log(fitBitData.workout[1], fitBitData.weight.start)
+```
+
+<br>
+-   Object.keys() - returns an array of keys
+-   Object.values() - returns an array of values
+-   Object.entries() - returns an array of entries
+-   Object.fromEntries(array) - returns an object from an array
+
+turn an array back into object
+
+```
+const array = [
+    ["x",5],
+    ["y", 10],
+]
+
+Object.fromEntries(array): // returns {x:5, y:10}
 ```
 
 <br>
 
 **Array** = [] / List can mix and match objects and arrays. Arrays give access to array methods like push, slice, filter, map etc. Array is an object with extra features.
 
+- Can use Array.from() to create an array 
+
 ```
 let plants = [
     ['fruits', 'apple','lemon'],
-    ['vegetable','lettuce','kale']
+    ['vegetable','lettuce','kale'],
     {
-        tree: apple
-        size : large
+        "tree": "apple",
+        "size" : "large"
     }
 ]
+
+console.log(plants[2].tree)
 ```
+
+<br>
+
+**Nested Arrays & Objects** = 
+An Array with nested Objects
+```
+let kvArray = [
+    {key:1, value:10},
+    {key:2, value:20},
+    {key:3, value:30}
+]
+
+let reformattedArray = kvArray.map(obj => {
+    let rObj = {}
+    rObj[obj.key] = obj.value
+    return rObj     // returns a new array with [{1:10}, {2:20}, {3:30}]
+})
+```
+
 
 <br>
 
@@ -128,9 +168,11 @@ let plants = [
         -   [Sorting Arrays](#sorting-arrays)
             -   [Highest or Lowest Array Value](#highest-or-lowest-array-value)
         -   [Array Itteration](#array-itteration-methods)
+            -   [For of Loop](#for-of-loop)
             -   [forEach](#forEach)
     -   [Objects Key/Value Pairs](#objects-key-value)
         -   [Iterate Objects](#iterate-objects)
+        -   [For in](#for-in)
     -   [Loops](#loops)
         -   [For Loop](#for-loop)
             -   [For Of Loop](#for-of-loop)
@@ -667,6 +709,28 @@ const movies = [
 ]
 let goodMovies = movies.filter(m => m.score > 80).map(m => m.title)
 ```
+<br><br>
+
+#### For Of Loop
+
+Easier way to loop and iterate arrays
+
+```
+let items = ['book','car','can']
+for (let item of items){
+    console.log(item)
+}
+```
+
+Refractor student nested for loop
+
+```
+for (let row of seatingChart){
+    for (let student of row){
+        console.log(student)
+    }
+}
+```
 
 <br><br>
 
@@ -710,8 +774,8 @@ let years = {
     2020 : "Bad"
 }
 
-years.1999  <!-- returns good  -->
-years[birthYear]  <!-- returns bad -->
+years.1999 
+years[1999]
 ```
 
 <br>
@@ -772,26 +836,7 @@ for (let i = 0; i < animals.length; i++){
 
 <br>
 
-#### For Of Loop
 
-Easier way to loop and iterate arrays
-
-```
-let items = ['book','car','can']
-for (let item of items){
-    console.log(item)
-}
-```
-
-Refractor student nested for loop
-
-```
-for (let row of seatingChart){
-    for (let student of row){
-        console.log(student)
-    }
-}
-```
 
 <br><br>
 
@@ -1365,7 +1410,7 @@ const math = {
 }
 
 module.exports = math or module.exports = {PI, square}
-
+export {Pi, square}
 
 //another way to export, default export used only once per file
 export default function cube(x) {
