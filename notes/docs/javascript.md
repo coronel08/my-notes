@@ -135,6 +135,23 @@ let reformattedArray = kvArray.map(obj => {
 })
 ```
 
+**Array functions on an Object**
+Use array functions on an object
+```
+const checkedBoolean = {
+        "Base Material": false,
+        "Grid Management": true,
+        "Training Video": false
+}
+
+
+function filterCheckboxes(){
+    return Object.entries(checkedBoolean)
+        .filter((item) => item[1] === true )
+        .map((item) => item[0])
+}
+```
+
 
 <br>
 
@@ -709,6 +726,27 @@ const movies = [
 ]
 let goodMovies = movies.filter(m => m.score > 80).map(m => m.title)
 ```
+
+Can Also filter by using a find method if we know what we are looking for
+```
+let distCenters = [
+    { 
+        address: "Work",
+        city: "Los Angeles"
+    },
+    { 
+        address: Home"
+        city: awthorne"
+    },
+]
+
+let selectedValue = "Home"
+
+let obj = distCenters.find(dist => dist.address === selectedValue)
+console.log(obj.city)
+```
+
+
 <br><br>
 
 #### For Of Loop
