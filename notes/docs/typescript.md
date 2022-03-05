@@ -15,13 +15,16 @@
     -   Object Types:
         -   functions -
         -   arrays - represent a collection of records with some sort order
-        -   tupples - Typescript Data Structure, array like structure represents one record, fixed length with specified types.
+        -   tuples - Typescript Data Structure, array like structure represents one record, fixed length with specified types. Can represent named objects with a tuple.
+            1. Define the tuple as a new type
+            2. Convert the row of strings into appropriate types.
         -   enum - adds values to a list
         -   classes -
         -   objects -
 -   Type Annotations - We tell Typescript what type of value a variable will refer to
 -   Type Inference - Typescript tries to figure out what type of value a variable refers to
 -   Type Assertion - use angle brackets or `as` to change a type.
+    -   Override typescripts default behavior
 -   Type Guard / Narrowing - Used to restore access to a set of properties in a union. Can narrow type of value by checking either:
 
     -   typeof - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
@@ -63,6 +66,7 @@ console.log(sorter.collection)
 ## Table of Contents
 
 -   [Basics](#basics)
+    -   [Inheritance vs Composition](#inheritance-vs-composition)
 -   [Commands](#commands)
 -   [Syntax](#syntax)
     -   [Destructure](#destructure)
@@ -132,9 +136,9 @@ const printVehicle = (vehicle: Vehicle): void => {
 printVehicle(oldCivic)
 ```
 
--   Inheritance / Abstract Class - Try interfaces first unless different objects are closely related, Can use for classes when you need to inherit the class in another class instead of interfaces. 
+-   Inheritance / Abstract Class - Try interfaces first unless different objects are closely related, Can use for classes when you need to inherit the class in another class instead of interfaces.
     -   Use when we are trying to build up a definition of an object
-    -   Strongly couples classes together abstraact classes and child classes are fully dependant on each other and dont function without the other. 
+    -   Strongly couples classes together abstraact classes and child classes are fully dependant on each other and dont function without the other.
 
 ```
 // sorter.ts file
@@ -151,14 +155,14 @@ export abstract class Sorter {
 
     sort():void{
         const {length} = this
-        
+
         for(let i=0; i < length; i++){
             for(let j=0; j < length -1 -i; j++){
                 if(this.compare(j, j+1)){
                     this.swap(j, j+1)
                 }
             }
-        } 
+        }
     }
 }
 
@@ -186,6 +190,60 @@ export class NumbersCollection extends Sorter{
     }
 }
 ```
+
+-   Generics - allows us to define the type of a property, argument, return value at a future point. Used heavily in rewriteable code.
+    -   Like function arguments but for types in class/function definitions.
+
+```
+<!-- Convention is to name a generic <T> for type -->
+class HoldAnything<T>{
+    data: T
+
+    add(a: T): T {
+        return a
+    }
+}
+
+const holdNumber = new HoldAnything<number>()
+holdNumber.data = 1234
+holdNumber.add(10)
+
+const holdString = new HoldAnything<string>()
+holdString.data = "asdfsad"
+```
+
+### Inheritance vs Composition
+Examples taken from Typescript Course by Stephen Grider
+
+- Inheritance - is a relationship between 2 classes, can use extends to inherit a base class. Copy and paste methods into a new class 
+<!-- CsvFileReader.ts -->
+```
+export abstract class CsvFileReader<T>{
+    data: T[] = []
+
+    constructor(public filename: string){}
+
+    abstract mapRow(row: string[]): T
+}
+```
+<!-- MatchReader.ts -->
+```
+import {CsvFileReader} from "./CsvFileReader"
+
+type MatchData = [string, string]
+export class MatchReader extends CvsFileReader<MatchData>{
+    mapRow(row: string[]):MatchData{
+        return [ row[0], row[1] ]
+    }
+}
+```
+- Composition - has a relationship between 2 classes
+Ex: class Wall has a shape method that calculates area
+![](../../photos/composition1.png)
+
+Ex: Interfaces om Summary are defined but used in other classes by meeting requirements / having methods named the same.
+![](../../photos/composition2.png)
+
 
 
 ## Commands
