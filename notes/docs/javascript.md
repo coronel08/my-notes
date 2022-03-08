@@ -152,6 +152,20 @@ function filterCheckboxes(){
 }
 ```
 
+Another Example
+```
+const reactionEmoji = {
+  thumbsUp: '👍',
+  hooray: '🎉',
+  heart: '❤️',
+  rocket: '🚀',
+  eyes: '👀'
+}
+
+console.log(Object.entries(reactionEmoji).map(([name, emoji]) => {
+    console.log("Name is : ", name, emoji)
+}))
+```
 
 <br>
 
@@ -1435,6 +1449,7 @@ console.log(temp.celsius) //30
 
 # Export & Import
 [StackOverflow Link](https://stackoverflow.com/questions/38296667/getting-unexpected-token-export) Barnstokkr comment on es6 vs old js
+
 Create an object and then Export it
 Create an Import, `export default` can be named whatever when importing
 
