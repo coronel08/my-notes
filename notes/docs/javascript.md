@@ -1434,7 +1434,7 @@ console.log(temp.celsius) //30
 ```
 
 # Export & Import
-
+[StackOverflow Link](https://stackoverflow.com/questions/38296667/getting-unexpected-token-export) Barnstokkr comment on es6 vs old js
 Create an object and then Export it
 Create an Import, `export default` can be named whatever when importing
 
