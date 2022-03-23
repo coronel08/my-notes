@@ -11,6 +11,9 @@ Can work with AWS through AWS Management Console, CLI, or SDK
         -   `--page-size` -
         -   `--max-items` -
         -   `--starting-token` -
+    -   `aws sts get-caller-identity` - get account info
+    -   `aws configure get region` - aws get region
+    -   `aws cloudformation describe-stacks` - cloudformation
 
 ## Global Infastracture
 
