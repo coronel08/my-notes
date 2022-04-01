@@ -7,6 +7,8 @@ Horizontal Scaling = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 -   AWS CLI
+    - aws configure --profile test #setup
+        - aws s3 ls --profile test #call test profile
     -   CLI Pagination
         -   `--page-size` -
         -   `--max-items` -
