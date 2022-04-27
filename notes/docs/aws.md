@@ -435,6 +435,8 @@ Kinesis vs SQS
         -   Execution Role - grants the function permission to use AWS services such as Cloudatch and AWS X-Ray for request tracing.
         -   Error / InvalidParameterValueException -returned if one of the params in requests is invalid.
 
+[AWS Node package dependencies](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-package.html)
+
 ---
 
 ## Networking

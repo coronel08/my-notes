@@ -124,7 +124,11 @@ git push and git pull - Push and pull remote repo
 
 *** git pull is the same as running git fetch and git merge
 
+git fetch --all fetches all branches 
+
 git status - Shows what changes have been made
+
+git diff master origin/master- difference between current and remote repo
 
 git log or gitk - Shows info
 
@@ -145,10 +149,12 @@ Rebasing best practices w/ team [Rebasing Blog](https://blog.algolia.com/master-
 git checkout -b [branch name] - This is the same as Git Branch [branch name], then Git checkout [branch name]
 git checkout [commit or HEAD^ or tag] - This detaches head
 
-git merge [branch name] - Use merge branch [branch name], run it in master branch
-git mergetool    - Tool for resolving merge conflicts
+git merge [branch name] - Use merge branch [branch name], run it in master branch and use branch name to merge those features in.
+git mergetool - Tool for resolving merge conflicts
 
 git push --set-upstream origin [branch name]   - THIS sets branch to be uploaded to Github
+git push -u origin [branch name] - same as set upstream, shortcut. used once to initiate branch
+git push -u origin HEAD - shortcut to push current branch to the same name on the remote branch.   
 
 git branch -v   - View branches and last commit
 
