@@ -17,8 +17,8 @@ a[1:8:2]
 
 * Naming Conventions for python
     * functions: snake_case, constants uppercase SNAKE_CASE
-    * classes: CamelCase
-    * module names/file names : keep name short and lowercase, avoid special symbols
+    * classes: CamelCase/PascalCase
+    * module names/file names : keep name short and lowercase, avoid special symbols, use underscore as a space. file_name.py
     * Parameters = variable names in def statement, arguments = values passed into a function
 
 

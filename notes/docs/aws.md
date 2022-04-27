@@ -7,10 +7,15 @@ Horizontal Scaling = adding several smaller instances when workloads increase
 Can work with AWS through AWS Management Console, CLI, or SDK
 
 -   AWS CLI
+    - aws configure --profile test #setup
+        - aws s3 ls --profile test #call test profile
     -   CLI Pagination
         -   `--page-size` -
         -   `--max-items` -
         -   `--starting-token` -
+    -   `aws sts get-caller-identity` - get account info
+    -   `aws configure get region` - aws get region
+    -   `aws cloudformation describe-stacks` - cloudformation
 
 ## Global Infastracture
 
