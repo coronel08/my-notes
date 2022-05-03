@@ -133,6 +133,9 @@ git diff master origin/master- difference between current and remote repo
 git log or gitk - Shows info
 
 git describe [ref or master or branch] - Use to figure out where you are if using tags or branches
+
+git stash -u - stash changes and can bring them back.
+git stash pop(is apply and drop at the same time) / git stash apply - to bring back git changes. 
 ```
 
 <br><br>
@@ -150,6 +153,7 @@ git checkout -b [branch name] - This is the same as Git Branch [branch name], th
 git checkout [commit or HEAD^ or tag] - This detaches head
 
 git merge [branch name] - Use merge branch [branch name], run it in master branch and use branch name to merge those features in.
+git merge [branch name] --squash - compacts history in merge
 git mergetool - Tool for resolving merge conflicts
 
 git push --set-upstream origin [branch name]   - THIS sets branch to be uploaded to Github
@@ -157,8 +161,10 @@ git push -u origin [branch name] - same as set upstream, shortcut. used once to 
 git push -u origin HEAD - shortcut to push current branch to the same name on the remote branch.   
 
 git branch -v   - View branches and last commit
-
 git branch -d [branch-name] - THIS DELETES A BRANCH
+
+git remote add origin [git url] - add remote origin
+git push -u origin master - flag u is short for upstream
 
 git rebase master - If we are in [working branch name] this puts it on top of master linearly.
 git rebase [branch name] - Run in master
