@@ -5,7 +5,7 @@
 
 filepaths, import path and use to get filepaths `path.join(__dirname, 'file_name.json')` or `path.resolve('search','data.json')`
 
-npm packages commands `npm i` or `npm i --save-dev `
+npm packages commands `npm i` or `npm i --save-dev ` or `npm i -D`
 
 Same as Javascript Dom Manipulation and Selectors Section
 Replace Jquery with Javascript[tobiashlin](https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/)<br>

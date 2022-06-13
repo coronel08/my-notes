@@ -20,6 +20,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 -   [Database](database.md)
 -   [Django](django.md)
 -   [Docker](docker.md)
+-   [GraphQL](graphql.md)
 -   [Javascript](javascript.md)
 -   [Python](python.md)
 -   [React](react.md)
