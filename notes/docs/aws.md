@@ -1061,8 +1061,10 @@ AWS CDK used to define resources using programming languages and cloudformation.
     1. Template - ` CDK Init` and select language
     2. Resources -add code to create resources.
     3. Build -
-    4. Synthesize - creates a CloudFormation template
+    4. Synthesize - `CDK synth` creates a CloudFormation template
     5. Deploy - ` CDK deploy`
+    6. Destroy - `CDK destroy`
+    
 
 ### AWS Step Functions
 
