@@ -120,6 +120,7 @@ git clone [github repo]
 git add [.  or folder/ or filename]
 
 git commit -m 'message' - This is to add changes locally
+git commit -a -m "message" - This is git add and git commit.
 
 git push and git pull - Push and pull remote repo
 

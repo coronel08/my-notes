@@ -1,5 +1,7 @@
 # Typescript
 
+Can initialize a repo using `tsc --init` and can watch files using `tsc- -w`. Can also use `nodemon` and `concurrently` to automate refreshes
+
 -   Types - used by compiler to analyze our code for errors.
     -   Primitive Types:
         -   any - avoids checking values
@@ -25,10 +27,10 @@
 -   Type Inference - Typescript tries to figure out what type of value a variable refers to
 -   Type Assertion - use angle brackets or `as` to change a type.
     -   Override typescripts default behavior
--   Type Guard / Narrowing - Used to restore access to a set of properties in a union. Can narrow type of value by checking either:
+-   Type Guard / Narrowing - Used to restore access to a set of properties in a UNION. Can narrow type of value by checking either:
 
-    -   typeof - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
-    -   instanceof - every other value that is created with a constructor function like an `Array`, `Date`, `Classname`
+    -   `typeof` - Can narrow type using primitives only on `number`, `string`, `boolean`, or `symbol`
+    -   `instanceof` - every other value that is created with a constructor function like an `Array`, `Date`, `Classname`
     -   Bad design pattern used as just an exmaple
 
 ```
@@ -112,6 +114,7 @@ interface Vehicle {
     year:number;
     broken: boolean;
     [key: string]: any      //add any additional property
+    summary(): string       //define a function named summary that returns a string.
 }
 
 interface SUV extends Vehicle{
@@ -126,7 +129,10 @@ interface Vehicle {
 const oldCivic = {
     name: 'civic',
     year: 1998,
-    broken: true
+    broken: true,
+    summary():string {                          //define an ES5 function in the object
+        return `Name: ${this.name}`;    
+    } 
 }
 
 const printVehicle = (vehicle: Vehicle): void => {
@@ -309,7 +315,14 @@ class Person{
 
 let john = new Person(1,"John Doe")
 ```
+-   class shortcut using `Parameter Properties`
+```
+class Person{
+    constructor(public number:id, public name:string){
 
+    }
+}
+```
 -   object literal:
 
 ```
@@ -420,4 +433,253 @@ const {age, name}: {age:number; name:string} = profile
 const {
 coords: {lat, lng},
 }: {coords:{lat:number; lng:number}} = profile
+```
+
+
+# Examples
+
+## Array
+```let colors: string[] = ["red", "green", "blue"]```
+Multiple types in an array
+```
+const importantDates:(Date | string)[] = [new Date()]
+
+```
+
+Defined using either a interface or type
+
+```
+interface contactDataInterface {
+    name:string;
+    number:string;
+}
+
+type contactDataInterface = {
+    name:string;
+    number:string;
+}
+
+let contactData:contactDataInterface[] = [
+    {name:"US", number:"877-252-2648"},
+    {name:"Mexico", number:"800-874-8748"}
+]
+
+```
+2d array/nested lists
+```
+let carsByMake:string[][] = [] 
+let carByMake.push([
+    ["f150"],
+    ["camry"],
+    ["camaro"]
+])
+```
+
+### Tupples Array in TS
+Tupples, not really supported in the same way it does in python [JS Tupples](https://betterprogramming.pub/tuples-in-javascript-57ede9b1c9d2)
+-   tupples `const pepsi: [string, boolean, number] = ["brown", true, 40]`
+-   tupple array - `let employee: [number, string][]` and `employee = [[1,"Brad"], [2, "John"],]`
+Combine type and tupples
+```
+type Drink = [string, boolean, number]
+const pepsi: Drink = [brown, true, number]
+```
+
+### React Function / Declaration
+Can use an interface or type 
+```
+type Person = {
+  name: string;
+  age: number;
+};
+
+interface Person {
+  name: string;
+  age: number;
+}
+ 
+function greet(person: Person) {
+  return "Hello " + person.name;
+}
+
+
+<!-- Can also define in line -->
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+ 
+greet("Maddison", new Date());
+```
+
+An example of a destructured React Function
+```
+interface setStepInterface {
+    step:number;
+    setStep:Function
+}
+
+export default function TemporaryDrawer({steo, setStep}: setStepInterface){
+    return ...
+}
+```
+### React Expression
+```
+interface KnowledgeBaseItemProps {
+    title?: string;
+    description?: string;
+    link?: string;
+}
+
+const KnowledgeBaseItem: React.FC<KnowledgeBaseItemProps> = ({
+    title, 
+    description,
+    link,
+}) => {
+    return ...
+}
+```
+
+### Destructuring
+```
+const logWeather = ({date,weather}: {date:Date, weather:string}):void  => {
+    console.log(date, weather)
+}
+
+
+const todaysWeather ={
+    date: new Date(),
+    weather: 'sunny'
+}
+
+logWeather(todaysWeather)
+```
+
+Destructuring nested objects
+```
+const profile ={
+    name:'Alex',
+    age:20,
+    coords: {
+        lat: 0,
+        long:15
+    },
+
+    setAge(age:number):void{
+        this.age = age
+    }
+}
+
+const {age}:{age:number} = profile
+const {coords: {lat, lng}} : {coords: {lat:number, lng:number}} = profile
+```
+
+### OOP Classes
+Can define the variable and type in the constructor or in the class examples below
+```
+class Sorter {
+    collection: number[]
+    constructor(collection:number[]){
+        this.collection = collection 
+    }
+}
+
+VS Shortcut below, its the same thing ---------------------------------------------------------------
+class Sorter {
+    constructor(public collection:number[]){}
+    print(){
+        console.log(this.collection)
+    }
+}
+
+```
+
+```
+class Vehicle {
+    constructor(public color:string){
+        this.color = color
+    }
+
+    public honk():void {
+        console.log("beep from protected honk")
+    }
+}
+
+class Car extends Vehicle {
+    constructor (public wheels:number, color:string){
+        super(color)
+    }
+
+    public drive():void{
+        console.log("vrooom vrooom")
+    }
+
+}
+
+const vehicle1 = new Vehicle("red")
+console.log(vehicle1.color)
+vehicle1.honk()
+
+const car1 = new Car(4, "red")
+car1.drive()
+```
+
+Or can define the variable in its own type and
+```
+export class Company {
+  companyName: string;
+  catchPhrase: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+
+  constructor() {
+    this.companyName = faker.company.companyName();
+    this.catchPhrase = faker.company.catchPhrase();
+    this.location = {
+      lat: parseFloat(faker.address.latitude()),
+      lng: parseFloat(faker.address.longitude()),
+    };
+  }
+
+  markerContent(): string {
+    return `
+    <div>
+      <h1>Company Name: ${this.companyName}</h1>
+      <h3>Catchphrase: ${this.catchPhrase}</h3>
+    </div>
+    `;
+  }
+}
+```
+
+classes can implement an interface to make sure that they can be coupled.
+```
+interface Mappable {
+    loction: {
+        lat: number;
+        lng: number;
+    }
+    markerContent():string
+    color:string
+}
+
+export class User implements Mappable {
+    name:string;
+    location:{
+        lat:number;
+        lng:number;
+    }
+    color:string = red
+
+    constructor(){
+        this.name = "test"
+        ...etc blah blah blah
+    }
+
+    markerContent():string{
+        return "this is a test string"
+    }
+}
+
 ```
