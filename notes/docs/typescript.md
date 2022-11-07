@@ -1,6 +1,7 @@
 # Typescript
 
-Can initialize a repo using `tsc --init` and can watch files using `tsc- -w`. Can also use `nodemon` and `concurrently` to automate refreshes
+Can initialize a repo using `npm init -y` along with `tsc --init` and can watch files using `tsc- -w`. Can also use `nodemon` and `concurrently` to automate refreshes
+Typescript Interfaces are written in PascalCase
 
 -   Types - used by compiler to analyze our code for errors.
     -   Primitive Types:
@@ -219,7 +220,7 @@ holdString.data = "asdfsad"
 ```
 
 ### Inheritance vs Composition
-Examples taken from Typescript Course by Stephen Grider
+Examples taken from Typescript Course by Stephen Grider, try to do compositional over inheritance
 
 - Inheritance - is a relationship between 2 classes, can use extends to inherit a base class. Copy and paste methods into a new class 
 <!-- CsvFileReader.ts -->
