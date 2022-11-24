@@ -93,6 +93,8 @@ Building a clock component using classes then refractoring to functions [dev.to]
 -   useRef - common use case of this is to grab html elements from DOM. Like useState but doesnt trigger a re-render
 -   useMemo - used when needed to make expensive calculations, improve performance
 -   useCallback -
+![](../../photos/memoVsCallback.jpeg)
+
 
 #### UseState
 

@@ -4,6 +4,8 @@
 [Fireship Wavy Backgrounds tutorial](https://fireship.io/lessons/wavy-backgrounds/)
 
 
+[Fonts in HTML and CSS](https://twitter.com/BHolmesDev/status/1565346414955073536?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ)
+
 Notes for CSS, made during vid-site1 project
 Check [Readme for Video site](https://github.com/coronel08/website-vid-project) I made.
 
@@ -114,6 +116,52 @@ Buttons inside form default "type="submit"" change to "type="button"" or somethi
 Form method defaults to **GET** method, not **POST**
 <br><br>
 
+
+### Example HTML 
+Dropdown uses `datalist` and `options` to create a dropdown with suggestions
+```
+<label for="ice-cream-choice"> Choose a flavor</label>
+<input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice"/>
+
+<datalist id="ice-cream-flavors">
+    <option value="Chocolate">
+    <option value="Coconut">
+    <option value="Mint">
+</datalist>
+```
+
+Usings `details` to create an accordion
+```
+<details>
+    <summary> Frequently asked questions </summary>
+    This is the faqs page details
+</details>
+<details>
+    <summary> Privacy </summary>
+    This is the privacy page details
+</details>
+```
+
+Using `base` to create a base url for something like images
+```
+<head>
+    <base href="https://test.com/" target="_blank">
+</head>
+<body>
+    <a href="etc"> GO to img</a>
+</body>
+```
+
+Use `loading="lazy"` for loading images once they enter iframe.
+
+
+Use img on error to remove img
+```
+<img src="test.png" onerror="this.remove()" />
+```
+
+Look into `scroll-snap-align` and `scroll-snap-stop` and `scroll-snap-type`
+
 ---
 ## CSS
 ### Stylesheet
@@ -182,6 +230,21 @@ Units of measurement for CSS em/rem/px/% etc[w3 schools](https://www.w3schools.c
 
 #### Media Queries
 [MDN](https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/) Media Queries
+
+scoped custom properties with calc for hover effects
+```
+.card:hover { --hover: 1; }
+.card__img {
+  transform: scale(calc(1 + (var(--hover) * 0.5)))
+    rotate(calc(var(--hover) * -5deg)); 
+  transition: transform 0.2s;
+}
+```
+
+Container Queries
+https://twitter.com/shadeed9/status/1566807515299446786?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ
+https://twitter.com/shadeed9/status/1564682064204648455?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ
+
 <br><br>
 
 #### Navbar 
@@ -747,6 +810,13 @@ Button needs data-toggle="collapse"
 [Tailwind Display](https://tailwindcss.com/docs/display)
 [Tailwind Position](https://tailwindcss.com/docs/position)
 [Hover, Active, Focus, Checked, First-Child, etc and other states](https://tailwindcss.com/docs/hover-focus-and-other-states)
+
+
+Tailwind reuse a component throughout the app
+```
+const outlineBox = "border-2 rounded-lg border-slate-50"
+<div className={outlineBox} />
+```
 
 
 Tailwind set up for full page

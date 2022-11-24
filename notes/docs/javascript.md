@@ -2,6 +2,7 @@
 
 [Github Algorithms & Data Structures](https://github.com/trekhleb/javascript-algorithms)
 [JS Cheat Sheet](https://github.com/mbeaudru/modern-js-cheatsheet)
+[Linter Setup](https://twitter.com/BHolmesDev/status/1561440170502651905?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ)
 
 filepaths, import path and use to get filepaths `path.join(__dirname, 'file_name.json')` or `path.resolve('search','data.json')`
 

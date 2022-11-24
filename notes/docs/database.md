@@ -2,6 +2,7 @@
 * Learn SQL [SQL ZOO](https://sqlzoo.net/) or [w3](https://www.w3schools.com/sql/) or [SQL Bolt](https://www.sqlbolt.com)
 * Pandas instead of SQL[Haki Benita Site](https://hakibenita.com/sql-for-data-analysis)
 * Move from excel to Python[Medium](https://towardsdatascience.com/a-complete-yet-simple-guide-to-move-from-excel-to-python-d664e5683039)
+[Mode SQL](https://mode.com/sql-tutorial/)
 
 
 Adding more advanced SQL methods
@@ -70,6 +71,14 @@ Data Types
 * DATE - YYYY-MM-DD
 * DATETIME
 * BIT - 0 or 1 or NULL
+
+
+![](../../photos/sql1.jpeg)
+![](../../photos/sql2.jpeg)
+![](../../photos/sql3.jpeg)
+![](../../photos/sql4.jpeg)
+
+
 ## Syntax Basics
 SYNTAX
 ```

@@ -200,6 +200,7 @@ export class NumbersCollection extends Sorter{
 
 -   Generics - allows us to define the type of a property, argument, return value at a future point. Used heavily in rewriteable code.
     -   Like function arguments but for types in class/function definitions.
+    - ![](../../photos/tsGenerics.jpeg)
 
 ```
 <!-- Convention is to name a generic <T> for type -->
@@ -438,6 +439,24 @@ coords: {lat, lng},
 
 
 # Examples
+
+Can use Typescript to validate an email string
+```
+function sendEmail(email: `${string}@${string}.${string}`){}
+sendEmail("test@gmail.com")
+```
+
+
+Can use Typescript Omit to create different types instead of using optional
+```
+type User = {
+    id:number
+    name:string
+    email: string
+}
+
+type UnsavedUser = Omit <User, "id">
+```
 
 ## Array
 ```let colors: string[] = ["red", "green", "blue"]```
@@ -683,4 +702,11 @@ export class User implements Mappable {
     }
 }
 
+```
+
+### React18
+Now any component has to declare that it receives children if you want to pass it children. Replace the tope line with the bottom line to fix this
+```
+FC<MyProps>
+FC<PropsWithChildren<MyProps>>
 ```

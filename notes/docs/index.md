@@ -85,6 +85,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 -   [GoalKicker Notes](https://goalkicker.com/)
 -   [Eloquent Javascript](https://eloquentjavascript.net/)
 -   [DB Links and tools](https://github.com/mgramin/awesome-db-tools)
+- [Font Suggestions from Twitter](https://twitter.com/ChukwuAdaeze/status/1554553916150480898?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ)
 
 **Tutorials**
 
@@ -109,6 +110,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 Can change defualt branch from `master` by doing `git config --global init.defaultBranch <name>` to something else like `main`
 Can change current branch name `git branch -m <name>`
+Can create an upstream branch automatically if it doesnt exist `git config --global push.autoSetupRemote true`
 
 Git commands
 
