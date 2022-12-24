@@ -162,6 +162,10 @@ Use img on error to remove img
 
 Look into `scroll-snap-align` and `scroll-snap-stop` and `scroll-snap-type`
 
+
+`FormData`
+[FormData Twitter Example](https://twitter.com/ISharify/status/1540986730207186945?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ) and [FormData blog](https://dev.to/smeijer/simple-form-handling-in-react-o72)
+
 ---
 ## CSS
 ### Stylesheet

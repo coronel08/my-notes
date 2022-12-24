@@ -6,6 +6,7 @@ Notes on learning React.
 
 Build tools for Development Webpack(bundler), Babel(supporting older browsers), Terser(minify files)
 
+[FreeCodeCamp React cheatsheet](https://www.freecodecamp.org/news/the-react-cheatsheet/)
 [React Docs Getting Started](https://reactjs.org/docs/hello-world.html)
 [15 React Libraries](https://dev.to/coursesity/react-libraries-to-use-in-2021-15-top-picks-37d7) to use
 Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-app/)
@@ -27,6 +28,7 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
             -   [useEffect](#useeffect)
             -   [useFetch](#usefetch)
     -   [API](#api)
+        - [React Query](#react-query)
     -   [Switch vs Router](#switch-vs-router)
     -   [Hashrouter vs Browserrouter](#hashrouter-vs-browserrouter)
     -   [Navlink vs Link](#navlink-vs-link)
@@ -177,6 +179,26 @@ function useReducer(){
 
 Can test api with api placeholders [jsonplaceholder](https://jsonplaceholder.typicode.com/users)
 
+
+### React Query
+[Practical React Query](https://tkdodo.eu/blog/practical-react-query)
+Can use react query instead of axios or fetch to include loading state etc. Below react query checks if device has a rear facing camera. 
+```
+import {useQuery} from "react-query" 
+
+export const useHasRearFacingCamera = () => {
+    useQuery(
+        "has-rear-camera", 
+        async () => {
+            await navigator.mediaDevices.getUserMedia({
+                video: {facingMode: {exact:"environment"} }
+            })
+        }
+    )
+}
+
+```
+
 ---
 
 ## Switch vs Router
@@ -227,6 +249,8 @@ Styled components are inline and can be used to define styles and reusable compo
 ---
 
 ## Redux
+
+Can also use [Zustand](https://daishi.gumroad.com/l/uaxms)
 
 [React hooks instead of redux](https://betterprogramming.pub/10-easy-steps-to-abandon-redux-for-the-remarkable-react-hooks-124916fc634d)
 

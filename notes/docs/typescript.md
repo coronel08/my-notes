@@ -1,5 +1,12 @@
 # Typescript
 
+[Type-level](https://type-level-typescript.com/) typescript tutorial
+
+Typecript example
+![](../../photos/ts1.jpeg)
+![](../../photos/ts2.jpeg)
+
+
 Can initialize a repo using `npm init -y` along with `tsc --init` and can watch files using `tsc- -w`. Can also use `nodemon` and `concurrently` to automate refreshes
 Typescript Interfaces are written in PascalCase
 
