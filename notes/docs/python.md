@@ -22,7 +22,7 @@ a[1:8:2]
     * Parameters = variable names in def statement, arguments = values passed into a function
 
 
-Added python venv using, can use [configParser](https://pythonhowtoprogram.com/how-to-use-configparser-for-configuration-files-in-python-3/) or python-dotenv for secret/variavles
+Added python venv using, can use [configParser](https://pythonhowtoprogram.com/how-to-use-configparser-for-configuration-files-in-python-3/) or python-dotenv for secret/variables
 ```
 virtualenv venv
 <!-- Activate venv on linux -->
@@ -204,13 +204,22 @@ for index, item in enumerate(items):
 
 
 ## Iterate
+Simple Enumerate example
+```
+flavor_list = ['vanilla', 'chocolate', 'pecan', 'strawberry']
+for index, flavor in enumerate(flavor_list, 1):
+    print(f"{index} : {flavor}")
+```
+
 Using Enumerate to add index to item iteration. Can also use zip before enumerate to combine multiple lists
 ```
 list1 = ['a', 'b', 'c', 'd', 'e']
 for index, item in enumerate(list1):
     print(index,item)
 ```
-Using zip
+Using zip, zip wraps to items with a lazy generator. Zip yields tuples containing the values from the iterator. Zip items should be the same length or else use `zip_longest` from 'itertools' the built in module. 
+
+zip truncates it output silently to the shortest iterator if you supply it with iterators of different lengths. 
 ```
 list_a = [1, 2, 3, 4]
 list_b = [10, 20, 30, 40]
@@ -227,7 +236,7 @@ for a, b in zip(list_a, list_b):
   list_sum.append(a + b)
 print(list_sum) # [11, 22, 33, 44]
 ```
-For list of unequal lengths zip_longest and zip_shortest
+For list of unequal lengths `zip_longest` and `zip_shortest`. `zip_longest` will replace non existing values to `None`
 ```
 from itertools import zip_longest, zip_shortest
 short = [1, 2]
@@ -509,4 +518,24 @@ print(greeting(shout))
 string = 'This is a test string.'
 _, this, *rest = string.split(' ')
 <!-- prints is -->
+```
+
+
+Without Destructuring 
+```
+snacks = [('bacon', 350), ('donut', 240), ('muffin', 190)]
+
+for item in range(len(snacks)):
+    item = snacks[i]
+    name = item[0]
+    calories = item[1]
+```
+
+With Destructuring
+```
+for name, calories in snacks:
+    print(f"{name} has {calories} calories")
+
+for rank,(name, calories) in enumerate(snacks, 1):
+    print(f"#{rank}: {name} has {calories} calories")
 ```

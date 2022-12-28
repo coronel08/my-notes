@@ -1,5 +1,21 @@
-# ------------------------------------------------- Chapter 6 Breadth-first-search
+# ------------------------------------------------- Bubble Sort
 from collections import deque
+
+
+def bubble_sort(item):
+    for _ in range(len(item)):
+        for i in range(1, len(item)):
+            if item[i] < item[i - 1]:
+                temporary = item[i]
+                item[i] = item[i-1]
+                item[i - 1] = temporary
+                # item[i-1], item[i] = item[i], item[i -1] #One line destructure swap shortcut.
+names = ['pretzels', 'carrots', 'arugula', 'bacon']
+bubble_sort(names)
+print(names)
+
+
+# ------------------------------------------------- Chapter 6 Breadth-first-search
 
 graph = {}
 graph["you"] = ["alice", "bob", "claire"]
@@ -25,19 +41,19 @@ def search(name):
         person = search_queue.popleft()
         if not person in searched:
             if person_is_seller(person):
-                print (person, "is a mango seller")
+                print(person, "is a mango seller")
                 return True
-            else: 
+            else:
                 search_queue += graph[person]
                 searched.append(person)
     return False
 
+
 search("you")
 
 
-
 # --------------------------------------------------------------- Chap 7 Dijkstra's algorithm
-# Create a dict with nested dict values. 
+# Create a dict with nested dict values.
 graph2 = {}
 graph2["start"] = {}
 graph2["start"]["a"] = 6
@@ -47,7 +63,7 @@ print(graph2["start"].keys())
 graph2["a"] = {}
 graph2["a"]["fin"] = 1
 graph2["b"] = {}
-graph2["b"]["a"] = 3 
+graph2["b"]["a"] = 3
 graph2["b"]["fin"] = 5
 graph2["fin"] = {}
 
@@ -63,7 +79,8 @@ parents = {}
 parents["a"] = "start"
 parents["b"] = "start"
 parents["fin"] = None
-processed = [] # array to keep track of nodes
+processed = []  # array to keep track of nodes
+
 
 def find_lowest_cost_node(costs):
     lowest_cost = float("inf")
@@ -74,6 +91,7 @@ def find_lowest_cost_node(costs):
             lowest_cost = cost
             lowest_cost_node = node
     return lowest_cost_node
+
 
 # Algo for search
 node = find_lowest_cost_node(costs)
@@ -88,4 +106,3 @@ while node is not None:
     processed.append(node)
     print(node, cost, neighbors)
     node = find_lowest_cost_node(costs)
-
