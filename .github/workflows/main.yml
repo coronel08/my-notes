@@ -9,15 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Configure Python
+      uses: gabrielfalcao/pyenv-action@v7
+      with: 
+        default: 3.8.6
     - name: Configure AWS Credentials
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8' 
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-1 # Use your bucket region here
+
+    # - name: create environment
+    #   run: pyenv local 3.8.6 && python -mvenv .venv386
 
     # Here you could add some building steps if you were dealing with some angular/react/Vue...
     - name: Build static site
