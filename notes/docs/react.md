@@ -28,7 +28,7 @@ Docker a react app[mherman blog](https://mherman.org/blog/dockerizing-a-react-ap
             -   [useEffect](#useeffect)
             -   [useFetch](#usefetch)
     -   [API](#api)
-        - [React Query](#react-query)
+        -   [React Query](#react-query)
     -   [Switch vs Router](#switch-vs-router)
     -   [Hashrouter vs Browserrouter](#hashrouter-vs-browserrouter)
     -   [Navlink vs Link](#navlink-vs-link)
@@ -95,8 +95,7 @@ Building a clock component using classes then refractoring to functions [dev.to]
 -   useRef - common use case of this is to grab html elements from DOM. Like useState but doesnt trigger a re-render
 -   useMemo - used when needed to make expensive calculations, improve performance
 -   useCallback -
-![](../../photos/memoVsCallback.jpeg)
-
+    ![](../../photos/memoVsCallback.jpeg)
 
 #### UseState
 
@@ -179,16 +178,17 @@ function useReducer(){
 
 Can test api with api placeholders [jsonplaceholder](https://jsonplaceholder.typicode.com/users)
 
-
 ### React Query
+
 [Practical React Query](https://tkdodo.eu/blog/practical-react-query)
-Can use react query instead of axios or fetch to include loading state etc. Below react query checks if device has a rear facing camera. 
+Can use react query instead of axios or fetch to include loading state etc. Below react query checks if device has a rear facing camera.
+
 ```
-import {useQuery} from "react-query" 
+import {useQuery} from "react-query"
 
 export const useHasRearFacingCamera = () => {
     useQuery(
-        "has-rear-camera", 
+        "has-rear-camera",
         async () => {
             await navigator.mediaDevices.getUserMedia({
                 video: {facingMode: {exact:"environment"} }
@@ -229,7 +229,6 @@ Example of React Navlink and Route. Navlink is used to specify which element is 
 ### Protected routes
 
 Using React-Router-Dom [StackOverflow](https://stackoverflow.com/questions/69080444/react-router-dom-v6-protected-routes) [StackOverflow](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6) and [StackOverflow](https://stackoverflow.com/questions/69923420/how-to-use-private-route-in-react-router-domv6)
-
 
 [React Router v5 to v6](https://gist.github.com/mjackson/d54b40a094277b7afdd6b81f51a0393f)
 
@@ -436,6 +435,8 @@ npm run dev
 
 Make sure to edit [metadata](https://nextjs.org/learn/basics/assets-metadata-css/metadata) in head section and create a [layout](https://nextjs.org/learn/basics/assets-metadata-css/metadata)
 
+[Next 12 Middleware](https://www.ctnicholas.dev/articles/how-to-use-nextjs-middleware)
+
 ### CSS styling
 
 Global styles are imported into the pages/\_app.js, all other styles use css modules and must end with .module.css
@@ -451,8 +452,9 @@ Next has its own [Image tag](https://nextjs.org/docs/basic-features/image-optimi
 -   Static Rendering - The HTML is generated at build time and will be reused on each request.
     -   getStaticProps - page content depends on external data. Can Data Fetch so that we can pre render with data
     -   getStaticPaths - page path depends on external data
--   Server Rendering - The HTML is generated on each request. Best for data pages that need data that is rendered on each request.
-    -   getServerSideProps - is run on every request, fetches the data and passes it to the page
+-   Server Rendering - The HTML is generated on each request. Best for data pages that need data that is rendered on each request. - getServerSideProps - is run on every request, fetches the data and passes it to the page
+
+![](../../photos/next-rendering.jpeg)
 
 ### Router
 
