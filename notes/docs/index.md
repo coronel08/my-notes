@@ -35,6 +35,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
         -   [4.3 Juggling Commits #2](#4.3-juggling-commits-2)
         -   [5.1 Rebasing over 9000](#5.1-rebasing-over-9000)
 -   [Linux](#linux)
+-   [Swift](swift.md)
 
 ---
 
@@ -85,7 +86,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 -   [GoalKicker Notes](https://goalkicker.com/)
 -   [Eloquent Javascript](https://eloquentjavascript.net/)
 -   [DB Links and tools](https://github.com/mgramin/awesome-db-tools)
-- [Font Suggestions from Twitter](https://twitter.com/ChukwuAdaeze/status/1554553916150480898?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ)
+-   [Font Suggestions from Twitter](https://twitter.com/ChukwuAdaeze/status/1554553916150480898?s=20&t=f9VKeBU0Gw7h6XF4d8dscQ)
 
 **Tutorials**
 
@@ -128,7 +129,7 @@ git push and git pull - Push and pull remote repo
 
 *** git pull is the same as running git fetch and git merge
 
-git fetch --all fetches all branches 
+git fetch --all fetches all branches
 
 git status - Shows what changes have been made
 
@@ -139,7 +140,7 @@ git log or gitk - Shows info
 git describe [ref or master or branch] - Use to figure out where you are if using tags or branches
 
 git stash -u - stash changes and can bring them back.
-git stash pop(is apply and drop at the same time) / git stash apply - to bring back git changes. 
+git stash pop(is apply and drop at the same time) / git stash apply - to bring back git changes.
 ```
 
 <br><br>
@@ -162,7 +163,7 @@ git mergetool - Tool for resolving merge conflicts
 
 git push --set-upstream origin [branch name]   - THIS sets branch to be uploaded to Github
 git push -u origin [branch name] - same as set upstream, shortcut. used once to initiate branch
-git push -u origin HEAD - shortcut to push current branch to the same name on the remote branch.   
+git push -u origin HEAD - shortcut to push current branch to the same name on the remote branch.
 
 git branch -v   - View branches and last commit
 git branch -d [branch-name] - THIS DELETES A BRANCH
