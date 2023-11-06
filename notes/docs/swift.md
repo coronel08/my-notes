@@ -1,5 +1,10 @@
 # Swift
 
+Swift has 2 types of memory `Stack` and `Heap`. Only objects in the Heap are counted towards ARC. Device shares heap
+
+Objects in the Stack: String, Bool, Int, most basic types. Struct, Enum
+Objects in the Heap: Functions, Class, Actors. Objects in the heap are Reference Types, when we edit them the object is changed in place.
+
 Swift is a type safe language that uses the following types similar to typescript
 
 -   String
@@ -16,6 +21,15 @@ Swift is a type safe language that uses the following types similar to typescrip
     -   [Strings](#strings)
     -   [Data Types](#data-types)
     -   [Conditionals](#conditionals)
+        -   [If Let](#if-let)
+        -   [Switch Case](#switch-case)
+        -   [Guard](#guard)
+    -   [Loops](#loops)
+    -   [Functions](#functions)
+    -   [OOP](#OOP)
+        -   [Classes](#classes)
+        -   [Enum](#enum)
+        -   [Struct](#struct)
 
 ## Basics
 
@@ -134,7 +148,44 @@ let scoreDecoration = if teamScore > 10 {
 
 ```
 
--   Switch Case
+### If-Let
+
+if there is a value, let newvalue equal that value
+
+```
+if let newValue = userIsPremium {
+    // Here we have access to the non optional equal value.
+} else {
+  return false
+}
+
+// easier way to write and read this.
+if let newValue = userIsPremium {
+    return newValue
+}
+return false
+```
+
+can also do if let chaining
+
+```
+checkIfUserIsSetup(){
+    if let isNew= userIsNew, letDidCompleteOnboarding = userDidCompleteOnboarding{
+        return true
+    },
+
+    //can shorthand
+    if let userIsNew, userDidCompleteOnboarding
+
+    // same but with guard
+    guard let userIsNew, userDidCompleteOnboarding else {
+        return false
+    }
+
+}
+```
+
+### Switch Case
 
 ```
 
@@ -150,6 +201,25 @@ default:
 print("Everything tastes good in soup.")
 }
 
+```
+
+### Guard
+
+Guard makes sure there is a value
+
+```
+guard let newValue = userIsPremium else {
+    return false // failure is entering this closure
+}
+// here we have access to the non optional value
+return newValue
+
+
+can also write it as this below where we reusethe variable name
+guard let userIsPremium else {
+    return false
+}
+return userIsPremium
 ```
 
 ## Loops
@@ -197,12 +267,21 @@ func fetchUsername(from server: String) async -> String {
 }
 ```
 
-## Classes
+## OOP
+
+### Classes
+
+Class vs Struct: class is in heap, struct is in stack. Example is A classroom is a class and giving out 30 quizzes is a struct.
 
 ```
 class Shape {
-    init(name: String) {
+    let isPaid: Bool ?
+    let dateCreated: Date
+
+    init(name: String, dateCreated: Date = .now, isPaid: Bool?) {
        self.name = name
+       self.dateCreated = dateCreated ?? .now
+       self.isPaid = isPaid
     }
 
 }
@@ -210,16 +289,72 @@ var shape = Shape(name:'test')
 
 ```
 
+### Struct
+
 Use struct to create a structure. Structures support many of the same behaviors as classes, including methods and initializers. One of the most important differences between structures and classes is that structures are always copied when they’re passed around in your code, but classes are passed by reference.
+
+-   Structs have an implicit init, but can be added to change behavoir like a default value or adding values to self.
 
 ```
 struct Card {
     var rank: Rank
     var suit: Suit
+    private(set) var hasWon : Bool
+
     func simpleDescription() -> String {
         return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
+
+    // Lets swift know that we are mutating inside of stack so it is okay with mutating in place.
+    mutating func markUserAsWon(){
+        isPremium = true
+    }
+
+    mutating func updateHasWon(newValue:Bool){
+        hasWon = newValue
+    }
+
 }
 let threeOfSpades = Card(rank: .three, suit: .spades)
 let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+threeOfSpades.markUserAsWon()
+threeOfSpades.updateHasWon(newValue: true)
+```
+
+### Enum
+
+similar to structs except we have all known use cases at runtime
+
+```
+struct CarModel {
+    let brand: CardBrandOption
+    let model: String
+}
+
+enum CardBrandOption{
+    case ford
+    case toyota
+    case honda
+
+    // Switch case version
+    var title:String {
+        switch self {
+            case .ford:
+                return "Ford"
+            case .toyota:
+                return "Toyota"
+        }
+    }
+
+    // if else version
+    var title: String {
+        if self == .ford {
+            return "Ford"
+        } else if self === .toyota {
+            return "Toyota"
+        } else {
+            return "Default value"
+        }
+    }
+}
 ```
