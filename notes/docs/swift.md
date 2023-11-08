@@ -505,11 +505,27 @@ func getData(){
     downloadData { (returnedData) in
         text = returnedData
     }
+
+    downloadData4 {[weak self] (returnedResult) in
+        self?.text = returnedResult.data
+    }
 }
 
 func downloadData(completionHandler: @escaping (_ data: String) -> Void){
     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
         completionHandler "New Data!"
+    }
+}
+
+// cleaned format below
+struct DownloadResult{
+    let data:String
+}
+
+func downloadData2(completionHandler: @escaping (DownloadResult) -> Void){
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+        let result = DownloadResult(data: "NewData!")
+        completionHandler(result)
     }
 }
 
