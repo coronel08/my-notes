@@ -13,6 +13,7 @@ Swift is a type safe language that uses the following types similar to typescrip
 -   Double
 -   Bool
 -   Any
+-   Generics can be done like this `let fruits3 = Array<String> = ["Apple", "Orange"]`
 
 ## Table of Contents
 
@@ -20,16 +21,23 @@ Swift is a type safe language that uses the following types similar to typescrip
     -   [Basics](#basics)
     -   [Strings](#strings)
     -   [Data Types](#data-types)
+        -   [Tuple](#tuple)
+        -   [List](#list)
+        -   [Dictionary](#dictionary)
+        -   [Sets](#sets)
+            -   [Combining Data Types](#combining-data-types)
     -   [Conditionals](#conditionals)
         -   [If Let](#if-let)
         -   [Switch Case](#switch-case)
         -   [Guard](#guard)
     -   [Loops](#loops)
+        -   [Higher order Functions](#higher-order-functions)
     -   [Functions](#functions)
     -   [OOP](#OOP)
         -   [Classes](#classes)
         -   [Enum](#enum)
         -   [Struct](#struct)
+    -   [Async](#async)
 
 ## Basics
 
@@ -58,11 +66,17 @@ Swift is a type safe language that uses the following types similar to typescrip
     -   hasPrefix
     -   hasSuffix
 
+---
+
 ## Data Types
+
+### Tuple
 
 -   tuple - We cannot add or remove elements from a tuple in Swift but can use a nested dictionary to edit values of a tuple `var product = ("MacBook", 1099.99)`
 
     -   named tuple - `var company = (product: "Programiz App", version: 2.1)`
+
+### List
 
 -   list - []
 
@@ -104,6 +118,22 @@ Swift is a type safe language that uses the following types similar to typescrip
     }
     ```
 
+    -   look into an item if it exists
+
+    ```
+    if fruitsArray.indices.contains(4){
+        let item = fruitsArray[4]
+    }
+    ```
+
+    -   reference an item in the list or loop in a map
+
+    ```
+    newList = list.map{$0.name}
+    ```
+
+### Dictionary
+
 -   dictionary - empty dictionary [:]
     -   type notations - `let emptyDictionary: [String: Float] = [:]`
     -   countof items in dictionary `emptyDictionary.count`
@@ -132,6 +162,52 @@ occupations["Jayne"] = "Public Relations"
 for (key,value) in emptyDictionary {
   print("\(key): \(value)")
 }
+```
+
+-   Dictionary with typings
+
+```
+struct PostModel {
+    let id:String
+    let title: String
+    let likeCount: Int
+}
+
+// written as an array
+var postArray: [PostModel] = [
+    PostModel(id:"abc123", title:"Post 1", likeCount: 5),
+    PostModel(id:"abc1234", title:"Post 2", likeCount: 15)
+]
+
+written as a dict
+var postDict: [String: PostModel] = [
+    "abc123" : PostModel(id:"abc123", title:"Post 1", likeCount: 5),
+    "abc1234" :  PostModel(id:"abc1234", title:"Post 2", likeCount: 15)
+
+]
+```
+
+### Sets
+
+Unique values only in a set
+
+```
+var fruitsSet: Set<String> = ["Apple", "Orange", "Apple"]
+```
+
+#### Combining data types
+
+```
+struct ProductModel {
+    let title: String
+    let price: int
+}
+
+var myProduct: [ProductModel] = [
+    ProductModel(title: "Product 1", price: 50),
+    ProductModel(title: "Product 2", price: 150),
+    ]
+
 ```
 
 ## Conditionals
@@ -224,12 +300,30 @@ return userIsPremium
 
 ## Loops
 
+Loops can be broken or ended using `break` or `continue` to skip
+
 -   for Loop
 
 ```
 let individualScores = [75, 43, 103, 87, 12]
 for score in individualScores {
 print(score)
+}
+```
+
+-   for loop of range
+
+```
+for item in 0 .. <100{
+    print (item)
+}
+```
+
+-   for loop enumerated
+
+```
+for (index, lesson) in itemList.enumerated(){
+    print("index: \(index) || lesson: \(lesson)")
 }
 ```
 
@@ -241,6 +335,51 @@ while n < 100 {
     n *= 2
 }
 print(n)
+```
+
+### Higher Order Functions
+
+-   filter
+
+```
+struct DatabaseUser {
+    let name: String
+    let isPremium: Bool
+    let order: Int
+}
+
+var allUsers: [DatabaseUser] = [
+    DatabaseUser(name: "Nick", isPremium: true, order:4)
+    DatabaseUser(name: "Emily", isPremium: false, order:3)
+]
+
+allPremiumUsers: [DatabaseUser] = allUsers.filter{ user in
+    if user.isPremium {
+        return true
+    }
+
+    return false
+}
+
+// shorthand for above code
+allPremiumUsers: [DatabaseUser] = allUsers.filter{ user in
+    return user.isPremium
+}
+
+// shorthand for above code, using $0
+allPremiumUsers: [DatabaseUser] = allUsers.filter({$0.isPremium})
+```
+
+-   map: map thru an array and return a new array
+
+```
+    var usernames: [String] = allUsers.map{user in
+        return user.name
+    }
+
+    // shorthand way of doing it
+    var usernames: [String] = allUsers.map({$0.name})
+
 ```
 
 ## Functions
@@ -357,4 +496,21 @@ enum CardBrandOption{
         }
     }
 }
+```
+
+## Async
+
+```
+func getData(){
+    downloadData { (returnedData) in
+        text = returnedData
+    }
+}
+
+func downloadData(completionHandler: @escaping (_ data: String) -> Void){
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+        completionHandler "New Data!"
+    }
+}
+
 ```
