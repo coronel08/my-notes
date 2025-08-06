@@ -36,6 +36,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
         -   [5.1 Rebasing over 9000](#5.1-rebasing-over-9000)
 -   [Linux](#linux)
 -   [Swift](swift.md)
+-   [SQL](sql.md)
 
 ---
 
